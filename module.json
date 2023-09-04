@@ -7,9 +7,10 @@
     "active": 1,
     "order": 2,
     "providers": [
-        "Modules\\Xot\\Providers\\XotServiceProvider"
+        "Modules\\Xot\\Providers\\XotServiceProvider",
+        "Modules\\Xot\\Providers\\Filament\\AdminPanelProvider"
     ],
-    "aliases": {},
+    "aliases": [],
     "files": [],
     "requires": []
 }
