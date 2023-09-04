@@ -7,6 +7,7 @@ namespace Modules\Xot\Database\Migrations;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Facades\Module;
@@ -25,6 +26,8 @@ abstract class XotBaseMigration extends Migration
     // *
     public function __construct()
     {
+        $this->registerLaravelBlueprintMacros();
+
         if (null === $this->model) {
             $model = $this->getModel();
             // 37     Dead catch - Exception is never thrown in the try block.
@@ -267,6 +270,62 @@ abstract class XotBaseMigration extends Migration
         $this->getConn()->table(
             $this->getTable(),
             $next
+        );
+    }
+
+    /**
+     * Adds some macros to base Laravel Schema class.
+     */
+    private function registerLaravelBlueprintMacros(): void
+    {
+        /*
+         *  Registers `created_by`, `updated_by` and `deleted_by` entries for
+         *  a table, in order to track who performed the last CRUD operation
+         *  against a specific DB row.
+         *  Passing `null` for one or more parameters will skip the registration
+         *  of the associated columns.
+         */
+        Blueprint::macro(
+            'registerUserCrudMarkers',
+            function (
+                ?string $createdByColumnName = 'created_by',
+                ?string $updatedByColumnName = 'updated_by',
+                ?string $deletedByColumnName = 'deleted_by',
+            ) {
+                /* @var Blueprint $this */
+                if ($createdByColumnName) {
+                    $this
+                        ->foreignIdFor(
+                            model: \Modules\User\Models\User::class,
+                            column: $createdByColumnName,
+                        )
+                        ->nullable()
+                        ->nullOnDelete()
+                        ->cascadeOnUpdate();
+                }
+
+                if ($updatedByColumnName) {
+                    $this
+                        ->foreignIdFor(
+                            model: \Modules\User\Models\User::class,
+                            column: $updatedByColumnName,
+                        )
+                        ->nullable()
+                        ->nullOnDelete()
+                        ->cascadeOnUpdate();
+                }
+
+                if ($deletedByColumnName) {
+                    $this
+                        ->foreignIdFor(
+                            model: \Modules\User\Models\User::class,
+                            column: $deletedByColumnName,
+                        )
+                        ->nullable()
+                        ->nullOnDelete()
+                        ->cascadeOnUpdate();
+                }
+            }
         );
     }
 }// end XotBaseMigration
