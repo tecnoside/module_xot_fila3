@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers\Filament;
 
+use Filament\Pages\Dashboard;
+use Filament\Widgets\AccountWidget;
 use Filament\Facades\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -43,14 +45,14 @@ abstract class XotBasePanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Teal,
             ])
-            ->discoverResources(in: base_path('Modules/'.$this->module.'/Filament/Resources'), for: "{$moduleNamespace}\\Filament\\Resources")
-            ->discoverPages(in: base_path('Modules/'.$this->module.'/Filament/Admin/Pages'), for: "{$moduleNamespace}\\Filament\\Admin\\Pages")
+            ->discoverResources(in: base_path('Modules/'.$this->module.'/Filament/Resources'), for: sprintf('%s\Filament\Resources', $moduleNamespace))
+            ->discoverPages(in: base_path('Modules/'.$this->module.'/Filament/Admin/Pages'), for: sprintf('%s\Filament\Admin\Pages', $moduleNamespace))
             ->pages([
-                Pages\Dashboard::class,
+                Dashboard::class,
             ])
-            ->discoverWidgets(in: base_path('Modules/'.$this->module.'/Filament/Admin/Widgets'), for: "{$moduleNamespace}\\Filament\\Admin\\Widgets")
+            ->discoverWidgets(in: base_path('Modules/'.$this->module.'/Filament/Admin/Widgets'), for: sprintf('%s\Filament\Admin\Widgets', $moduleNamespace))
             ->widgets([
-                Widgets\AccountWidget::class,
+                AccountWidget::class,
                 // Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([

@@ -10,14 +10,15 @@ declare(strict_types=1);
 
 namespace Modules\Xot\QueryFilters;
 
+use Closure;
 use Illuminate\Database\Eloquent\Builder;
 
-class Status
+final class Status
 {
     /**
      * Undocumented function.
      */
-    public function handle(Builder $builder, \Closure $next): \Closure
+    public function handle(Builder $builder, Closure $next): Closure
     {
         if (request()->has('status')) {
             $builder->where('status', request('status'));

@@ -9,7 +9,7 @@ use Livewire\Livewire;
 /**
  * LivewireService.
  */
-class LivewireService
+final class LivewireService
 {
     /**
      * Undocumented function.

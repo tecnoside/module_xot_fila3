@@ -4,6 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Database\Migrations;
 
+use ReflectionClass;
+use Illuminate\Database\Schema\Builder;
+use Doctrine\DBAL\Schema\AbstractSchemaManager;
+use Doctrine\DBAL\Schema\Table;
+use Doctrine\DBAL\Schema\Index;
+use Closure;
+use Modules\User\Models\User;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Migrations\Migration;
@@ -28,7 +35,7 @@ abstract class XotBaseMigration extends Migration
     {
         $this->registerLaravelBlueprintMacros();
 
-        if (! $this->model instanceof \Illuminate\Database\Eloquent\Model) {
+        if (! $this->model instanceof Model) {
             $model = $this->getModel();
             // 37     Dead catch - Exception is never thrown in the try block.
             // try {
@@ -38,6 +45,7 @@ abstract class XotBaseMigration extends Migration
             //    throw new \Exception('<br><br>Table '.get_class($this).' does not have model '.$model.'<br><br>');
             // }
         }
+        
         // $this->model = new $this->model();
     }
 
@@ -48,10 +56,12 @@ abstract class XotBaseMigration extends Migration
         if (null !== $this->model_class) {
             return $this->model_class;
         }
+        
         $name = class_basename($this);
         $name = Str::before(Str::after($name, 'Create'), 'Table');
         $name = Str::singular($name);
-        $reflectionClass = new \ReflectionClass($this);
+        
+        $reflectionClass = new ReflectionClass($this);
         $filename = (string) $reflectionClass->getFilename();
         $mod_path = Module::getPath();
 
@@ -67,22 +77,22 @@ abstract class XotBaseMigration extends Migration
 
     public function getTable(): string
     {
-        if (! $this->model instanceof \Illuminate\Database\Eloquent\Model) {
+        if (! $this->model instanceof Model) {
             return '';
         }
 
         return $this->model->getTable();
     }
 
-    public function getConn(): \Illuminate\Database\Schema\Builder
+    public function getConn(): Builder
     {
         // $conn_name=with(new MyModel())->getConnectionName();
         // \DB::reconnect('mysql');
         // dddx(config('database'));
         // \DB::purge('mysql');
         // \DB::reconnect('mysql');
-        if (! $this->model instanceof \Illuminate\Database\Eloquent\Model) {
-            throw new \Exception('model is null');
+        if (! $this->model instanceof Model) {
+            throw new Exception('model is null');
         }
 
         $connectionName = $this->model->getConnectionName();
@@ -91,7 +101,7 @@ abstract class XotBaseMigration extends Migration
         return Schema::connection($connectionName);
     }
 
-    public function getSchemaManager(): \Doctrine\DBAL\Schema\AbstractSchemaManager
+    public function getSchemaManager(): AbstractSchemaManager
     {
         return $this->getConn()
             ->getConnection()
@@ -101,7 +111,7 @@ abstract class XotBaseMigration extends Migration
     /**
      * @throws \Doctrine\DBAL\Exception
      */
-    public function getTableDetails(): \Doctrine\DBAL\Schema\Table
+    public function getTableDetails(): Table
     {
         return $this->getSchemaManager()
             ->listTableDetails($this->getTable());
@@ -110,7 +120,7 @@ abstract class XotBaseMigration extends Migration
     /**
      * @throws \Doctrine\DBAL\Exception
      *
-     * @return array<\Doctrine\DBAL\Schema\Index>
+     * @return array<Index>
      */
     public function getTableIndexes(): array
     {
@@ -209,6 +219,7 @@ abstract class XotBaseMigration extends Migration
     {
         $table_details = $this->getTableDetails();
         $table_details->dropPrimaryKey();
+        
         $sql = 'ALTER TABLE '.$this->getTable().' DROP PRIMARY KEY;';
         $this->query($sql);
     }
@@ -243,7 +254,7 @@ abstract class XotBaseMigration extends Migration
     {
         // Call to an undefined method Illuminate\Database\Schema\Builder::renameColumn().
         /**
-         * @var \Illuminate\Database\Schema\Blueprint
+         * @var Blueprint
          */
         $builder = $this->getConn();
         $builder->renameColumn($from, $to);
@@ -252,7 +263,7 @@ abstract class XotBaseMigration extends Migration
     /**
      * Undocumented function.
      */
-    public function tableCreate(\Closure $next): void
+    public function tableCreate(Closure $next): void
     {
         if (! $this->tableExists()) {
             $this->getConn()->create(
@@ -265,7 +276,7 @@ abstract class XotBaseMigration extends Migration
     /**
      * Undocumented function.
      */
-    public function tableUpdate(\Closure $next): void
+    public function tableUpdate(Closure $next): void
     {
         $this->getConn()->table(
             $this->getTable(),
@@ -296,7 +307,7 @@ abstract class XotBaseMigration extends Migration
                 if ($createdByColumnName) {
                     $this
                         ->foreignIdFor(
-                            model: \Modules\User\Models\User::class,
+                            model: User::class,
                             column: $createdByColumnName,
                         )
                         ->nullable()
@@ -307,7 +318,7 @@ abstract class XotBaseMigration extends Migration
                 if ($updatedByColumnName) {
                     $this
                         ->foreignIdFor(
-                            model: \Modules\User\Models\User::class,
+                            model: User::class,
                             column: $updatedByColumnName,
                         )
                         ->nullable()
@@ -318,7 +329,7 @@ abstract class XotBaseMigration extends Migration
                 if ($deletedByColumnName) {
                     $this
                         ->foreignIdFor(
-                            model: \Modules\User\Models\User::class,
+                            model: User::class,
                             column: $deletedByColumnName,
                         )
                         ->nullable()

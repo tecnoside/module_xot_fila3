@@ -7,9 +7,11 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
-class Memoization
+use Closure;
+final class Memoization
 {
-    protected array $memoized = [];
+    private array $memoized = [];
+    
     private static ?self $_instance = null;
 
     /**
@@ -37,7 +39,7 @@ class Memoization
     /**
      * Undocumented function.
      */
-    public function memoize(string $key, \Closure $callback): mixed
+    public function memoize(string $key, Closure $callback): mixed
     {
         if (! isset($this->memoized[$key])) {
             return $this->memoized[$key] = $callback();

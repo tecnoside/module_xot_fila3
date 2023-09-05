@@ -16,6 +16,7 @@ abstract class XotBaseResource extends Resource
     // //use ContextualResource;
 
     protected static ?string $model = null;
+    
     // protected static ?string $navigationIcon = 'heroicon-o-bell';
     // protected static ?string $navigationLabel = 'Custom Navigation Label';
     // protected static ?string $activeNavigationIcon = 'heroicon-s-document-text';

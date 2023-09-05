@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Http\Middleware;
 
+use Nwidart\Modules\Laravel\Module;
+use Exception;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Support\Str;
@@ -12,12 +14,13 @@ use Webmozart\Assert\Assert;
 abstract class XotBaseFilamentMiddleware extends Middleware
 {
     public static string $module = 'EWall';
+    
     public static string $context = 'filament';
 
     protected function authenticate($request, array $guards): void
     {
         $contextName = $this->getContextName();
-        Assert::string($guardName = config("{$contextName}.auth.guard"), 'fix config ['.$contextName.'.auth.guard]');
+        Assert::string($guardName = config(sprintf('%s.auth.guard', $contextName)), 'fix config ['.$contextName.'.auth.guard]');
         $guard = $this->auth->guard($guardName);
 
         if (! $guard->check()) {
@@ -43,11 +46,11 @@ abstract class XotBaseFilamentMiddleware extends Middleware
     {
         $contextName = $this->getContextName();
 
-        return route("{$contextName}.auth.login");
+        return route(sprintf('%s.auth.login', $contextName));
     }
 
     /**
-     * @return \Nwidart\Modules\Laravel\Module|\Nwidart\Modules\Module
+     * @return Module|\Nwidart\Modules\Module
      */
     private function getModule()
     {
@@ -55,13 +58,13 @@ abstract class XotBaseFilamentMiddleware extends Middleware
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     private function getContextName(): string
     {
         $this->getModule();
         if ('' === static::$context || '0' === static::$context) {
-            throw new \Exception('Context has to be defined in your class');
+            throw new Exception('Context has to be defined in your class');
         }
 
         return Str::slug(static::$context);

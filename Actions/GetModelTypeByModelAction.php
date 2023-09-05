@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 use Modules\Xot\Contracts\ModelContract;
 use Spatie\QueueableAction\QueueableAction;
 
-class GetModelTypeByModelAction
+final class GetModelTypeByModelAction
 {
     use QueueableAction;
 

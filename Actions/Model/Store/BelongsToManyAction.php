@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model\Store;
 
+use Modules\Xot\DTOs\RelationDTO;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\QueueableAction\QueueableAction;
 
-class BelongsToManyAction
+final class BelongsToManyAction
 {
     use QueueableAction;
 
-    public function execute(Model $model, \Modules\Xot\DTOs\RelationDTO $relationDTO): void
+    public function execute(Model $model, RelationDTO $relationDTO): void
     {
         /*
         dddx(['message' => 'wip',
@@ -23,10 +25,11 @@ class BelongsToManyAction
             $to = $relationDTO->data['to'] ?? [];
             $model->{$relationDTO->name}()->sync($to);
             $status = 'collegati ['.implode(', ', $to).'] ';
-            \Illuminate\Support\Facades\Session::flash('status', $status);
+            Session::flash('status', $status);
 
             return;
         }
+        
         $model->{$relationDTO->name}()->sync($relationDTO->data);
     }
 }

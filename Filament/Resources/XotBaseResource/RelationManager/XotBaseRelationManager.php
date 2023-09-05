@@ -24,7 +24,7 @@ abstract class XotBaseRelationManager extends RelationManager
         return __($res);
     }
 
-    public static function getPluralModelLabel(): string
+    protected static function getPluralModelLabel(): string
     {
         return static::trans('navigation.plural');
     }

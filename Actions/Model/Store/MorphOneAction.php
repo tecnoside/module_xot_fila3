@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model\Store;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Modules\Xot\DTOs\RelationDTO;
 use Spatie\QueueableAction\QueueableAction;
 
-class MorphOneAction
+final class MorphOneAction
 {
     use QueueableAction;
 
@@ -19,8 +20,9 @@ class MorphOneAction
         //    $relation->data = json_decode($relation->data, true);
         // }
         if (! $relationDTO->rows instanceof MorphOne) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
+        
         $rows = $relationDTO->rows;
         if ($rows->exists()) {
             $rows->update($relationDTO->data);

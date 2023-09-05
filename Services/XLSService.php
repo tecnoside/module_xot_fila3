@@ -8,15 +8,20 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use Exception;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Validation\ValidationException;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Support\Collection;
 
 /**
  * Undocumented class.
  */
-class XLSService
+final class XLSService
 {
     private static ?self $instance = null;
-    protected Collection $data;
+    
+    private Collection $collection;
 
     public function __construct()
     {
@@ -71,6 +76,7 @@ class XLSService
                 if (UrlService::make()->checkValidUrl((string) $column)) {
                     $col_row[] = ['col' => $col_key, 'int_col' => $int_col_key, 'row' => $row_key, 'url' => $column];
                 }
+                
                 ++$int_col_key;
             }
         }
@@ -85,7 +91,7 @@ class XLSService
     {
         $file = request()->file('file');
         if (null === $file) {
-            throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
+            throw new Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
 
         return $this->fromRequestFile($file);
@@ -94,24 +100,25 @@ class XLSService
     /**
      * Undocumented function.
      *
-     * @param array<int,\Illuminate\Http\UploadedFile>|\Illuminate\Http\UploadedFile $file
+     * @param array<int, UploadedFile>|UploadedFile $file
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
-    public function fromRequestFile(array|\Illuminate\Http\UploadedFile $file): self
+    public function fromRequestFile(array|UploadedFile $file): self
     {
         if (! \is_object($file)) {
-            throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
+            throw new Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
 
         if (! method_exists($file, 'getRealPath')) {
-            throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
+            throw new Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
+        
         $realPath = $file->getRealPath();
 
         if (false === $realPath) {
-            throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
+            throw new Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
 
         return $this->fromFilePath($realPath);
@@ -130,7 +137,7 @@ class XLSService
          */
         // $reader = Excel::import($path);
 
-        $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($path);
+        $spreadsheet = IOFactory::load($path);
         $worksheet = $spreadsheet->getActiveSheet();
         $highestDataRow = $worksheet->getHighestDataRow();
         $column_limit = $worksheet->getHighestDataColumn();
@@ -144,17 +151,18 @@ class XLSService
                 $cell = $col.$row;
                 $tmp[$col] = $worksheet->getCell($cell)->getValue();
             }
+            
             $data->push(collect($tmp));
         }
 
-        $this->data = $data;
+        $this->collection = $data;
 
         return $this;
     }
 
     public function getData(): Collection
     {
-        return $this->data;
+        return $this->collection;
     }
 
     /*

@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model\Store;
 
+use Modules\Xot\DTOs\RelationDTO;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\QueueableAction\QueueableAction;
 
-class HasManyDeepAction
+final class HasManyDeepAction
 {
     use QueueableAction;
 
-    public function execute(Model $model, \Modules\Xot\DTOs\RelationDTO $relationDTO): void
+    public function execute(Model $model, RelationDTO $relationDTO): void
     {
         dddx('wip');
     }

@@ -10,10 +10,12 @@ namespace Modules\Xot\Providers;
 use Modules\Xot\Actions\Filament\PrepareDefaultNavigation;
 use Savannabits\FilamentModules\ContextServiceProvider;
 
-class XotBaseContextServiceProvider extends ContextServiceProvider
+final class XotBaseContextServiceProvider extends ContextServiceProvider
 {
     public $app;
+    
     public static string $name = 'xot-filament';
+    
     public static string $module = 'Xot';
 
     public function packageRegistered(): void
@@ -23,7 +25,6 @@ class XotBaseContextServiceProvider extends ContextServiceProvider
                 $this->registerConfigs();
             }
         );
-        parent::packageRegistered();
     }
 
     public function registerConfigs(): void
@@ -36,7 +37,6 @@ class XotBaseContextServiceProvider extends ContextServiceProvider
 
     public function boot(): void
     {
-        parent::boot();
         // --- savanna is for filament 3.
         // app(FilamentModules::class)->prepareDefaultNavigation(static::$module, static::$name);
 

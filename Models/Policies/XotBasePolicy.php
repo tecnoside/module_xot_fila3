@@ -22,6 +22,7 @@ abstract class XotBasePolicy
         if ($user->hasRole('super-admin')) {
             return true;
         }
+        
         if ($user->email == $xotData->super_admin && null != $xotData->super_admin) {
             try {
                 $user->assignRole('super-admin');

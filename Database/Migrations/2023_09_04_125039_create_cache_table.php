@@ -8,7 +8,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  * Undocumented class.
  */
-class CreateCacheTable extends XotBaseMigration
+final class CreateCacheTable extends XotBaseMigration
 {
     /**
      * Run the migrations.
@@ -17,7 +17,7 @@ class CreateCacheTable extends XotBaseMigration
     {
         // -- CREATE --
         $this->tableCreate(
-            function (Blueprint $blueprint): void {
+            static function (Blueprint $blueprint) : void {
                 $blueprint->string('key')->primary();
                 $blueprint->mediumText('value');
                 $blueprint->integer('expiration');

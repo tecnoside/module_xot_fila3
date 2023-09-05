@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 /**
@@ -29,7 +30,7 @@ function chain(string $primary_field, string $parent_field, string $sort_field, 
 /**
  * Class ChainService.
  */
-class ChainService
+final class ChainService
 {
     public array $table = [];
 
@@ -38,7 +39,7 @@ class ChainService
     /**
      * ChainService constructor.
      *
-     * @param \Illuminate\Support\Collection&\iterable<\Illuminate\Database\Eloquent\Model> $collection
+     * @param Collection&\iterable<Model> $collection
      *
      * @return void
      */
@@ -61,8 +62,10 @@ class ChainService
                 $row[$this->parent_field] = 0;
                 $row->save();
             }
+            
             $this->table[$row[$this->parent_field]][$row[$this->primary_field]] = $row;
         }
+        
         $this->makeBranch($rootcatid, 0, $maxlevel);
     }
 
@@ -71,21 +74,28 @@ class ChainService
         if (! \is_array($this->table)) {
             $this->table = [];
         }
+        
         // dddx([$this->table, $parent_id]);
         if (! \array_key_exists($parent_id, $this->table)) {
             return;
         }
+        
         $rows = $this->table[$parent_id];
         foreach ($rows as $key => $value) {
             $rows[$key]['key'] = $this->sort_field;
         }
+        
         usort($rows, fn (array $a, array $b): int => $this->chainCMP($a, $b));
         foreach ($rows as $row) {
             $row['indent'] = $level;
             $this->chain_table[] = $row;
-            if (isset($this->table[$row[$this->primary_field]]) && (($maxlevel > $level + 1) || (0 === $maxlevel))) {
-                $this->makeBranch($row[$this->primary_field], $level + 1, $maxlevel);
+            if (!isset($this->table[$row[$this->primary_field]])) {
+                continue;
             }
+            if ($maxlevel <= $level + 1 && 0 !== $maxlevel) {
+                continue;
+            }
+            $this->makeBranch($row[$this->primary_field], $level + 1, $maxlevel);
         }
     }
 
@@ -94,6 +104,7 @@ class ChainService
         return $a[$a['key']] <=> $b[$b['key']];
     }
 }
+
 /*
 function chainCMP($a, $b){
     if($a[$a['key']] == $b[$b['key']]){

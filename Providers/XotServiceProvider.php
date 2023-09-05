@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers;
 
+use Modules\Xot\Providers\Traits\TranslatorTrait;
+use Modules\Xot\Services\ProfileTest;
+use Modules\Xot\Console\Commands\DatabaseBackUpCommand;
 use Illuminate\Database\Events\MigrationsEnded;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Artisan;
@@ -16,12 +19,13 @@ use Modules\Xot\View\Composers\XotComposer;
 /**
  * Class XotServiceProvider.
  */
-class XotServiceProvider extends XotBaseServiceProvider
+final class XotServiceProvider extends XotBaseServiceProvider
 {
     // use Traits\PresenterTrait;
-    use Traits\TranslatorTrait;
+    use TranslatorTrait;
 
     public string $module_name = 'xot';
+    
     /**
      * The module directory.
      */
@@ -72,7 +76,7 @@ class XotServiceProvider extends XotBaseServiceProvider
 
         $this->app->bind(
             'profile',
-            fn (): \Modules\Xot\Services\ProfileTest => new \Modules\Xot\Services\ProfileTest()
+            static fn(): ProfileTest => new ProfileTest()
         );
     }
 
@@ -94,9 +98,13 @@ class XotServiceProvider extends XotBaseServiceProvider
     {
         $files = File::files($path);
         foreach ($files as $file) {
-            if ('php' === $file->getExtension() && false !== $file->getRealPath()) {
-                include_once $file->getRealPath();
+            if ('php' !== $file->getExtension()) {
+                continue;
             }
+            if (false === $file->getRealPath()) {
+                continue;
+            }
+            include_once $file->getRealPath();
         }
     }
 
@@ -139,7 +147,7 @@ class XotServiceProvider extends XotBaseServiceProvider
     {
         Event::listen(
             MigrationsEnded::class,
-            function (): void {
+            static function () : void {
                 Artisan::call('ide-helper:models -r -W');
             }
         );
@@ -155,7 +163,7 @@ class XotServiceProvider extends XotBaseServiceProvider
                 // \Modules\Xot\Console\CreateAllRepositoriesCommand::class,
                 // \Modules\Xot\Console\PanelMakeCommand::class,
                 // \Modules\Xot\Console\FixProvidersCommand::class,
-                \Modules\Xot\Console\Commands\DatabaseBackUpCommand::class,
+                DatabaseBackUpCommand::class,
                 // \Modules\Xot\Console\Commands\WorkerCheck::class,
                 // \Modules\Xot\Console\Commands\WorkerRetry::class,
                 // \Modules\Xot\Console\Commands\WorkerStop::class,

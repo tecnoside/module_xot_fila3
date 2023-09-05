@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use InvalidArgumentException;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Types\Types;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
-class TypeGuesser
+final class TypeGuesser
 {
-    /**
-     * @var string
-     */
-    protected static $default = 'word';
+    private static string $default = 'word';
 
     /**
      * Create a new TypeGuesser instance.
@@ -52,11 +50,11 @@ class TypeGuesser
      *
      * @param string $property
      */
-    protected function hasNativeResolverFor($property): bool
+    private function hasNativeResolverFor($property): bool
     {
         try {
             $this->faker->getFormatter($property);
-        } catch (\InvalidArgumentException) {
+        } catch (InvalidArgumentException) {
             return false;
         }
 
@@ -70,16 +68,16 @@ class TypeGuesser
      *
      * @return string
      */
-    protected function guessBasedOnType(Type $type, $size)
+    private function guessBasedOnType(Type $type, ?int $size)
     {
         $typeName = $type->getName();
 
         return match ($typeName) {
             Types::BOOLEAN => 'boolean',
-            Types::BIGINT, Types::INTEGER, Types::SMALLINT => 'randomNumber'.($size ? "({$size})" : ''),
+            Types::BIGINT, Types::INTEGER, Types::SMALLINT => 'randomNumber'.($size ? sprintf('(%s)', $size) : ''),
             Types::DATE_MUTABLE, Types::DATE_IMMUTABLE => 'date',
             Types::DATETIME_MUTABLE, Types::DATETIME_IMMUTABLE => 'dateTime',
-            Types::DECIMAL, Types::FLOAT => 'randomFloat'.($size ? "({$size})" : ''),
+            Types::DECIMAL, Types::FLOAT => 'randomFloat'.($size ? sprintf('(%s)', $size) : ''),
             Types::TEXT => 'text',
             Types::TIME_MUTABLE, Types::TIME_IMMUTABLE => 'time',
             default => self::$default,
@@ -89,7 +87,7 @@ class TypeGuesser
     /**
      * Predicts county type by locale.
      */
-    protected function predictCountyType(): string
+    private function predictCountyType(): string
     {
         if ('en_US' === $this->faker->locale) {
             return "sprintf('%s County', \$faker->city)";
@@ -101,7 +99,7 @@ class TypeGuesser
     /**
      * Predicts country code based on $size.
      */
-    protected function predictCountryType(?int $size): string
+    private function predictCountryType(?int $size): string
     {
         return match ($size) {
             2 => 'countryCode',
@@ -114,7 +112,7 @@ class TypeGuesser
     /**
      * Predicts type of title by $size.
      */
-    protected function predictTitleType(?int $size): string
+    private function predictTitleType(?int $size): string
     {
         if (null === $size || $size <= 10) {
             return 'title';

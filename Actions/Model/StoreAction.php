@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Spatie\QueueableAction\QueueableAction;
 
-class StoreAction
+final class StoreAction
 {
     use QueueableAction;
 
@@ -18,6 +18,7 @@ class StoreAction
         if (! isset($data['lang']) && \in_array('lang', $model->getFillable(), true)) {
             $data['lang'] = app()->getLocale();
         }
+        
         /*if (
             ! isset($data['user_id'])
             && \in_array('user_id', $row->getFillable(), true)

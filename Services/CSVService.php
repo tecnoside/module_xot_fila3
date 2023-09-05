@@ -14,10 +14,10 @@ use function Safe\file;
 /**
  * Class CSVService.
  */
-class CSVService
+final class CSVService
 {
     private static ?self $instance = null;
-    protected Collection $data;
+    
 
     public function __construct()
     {
@@ -56,7 +56,7 @@ class CSVService
         // }
         $csv = [];
         foreach ($lines as $key => $value) {
-            $csv[$key] = str_getcsv((string) $value);
+            $csv[$key] = str_getcsv($value);
         }
 
         return $csv;

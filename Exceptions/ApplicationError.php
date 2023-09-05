@@ -7,12 +7,13 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Exceptions;
 
+use JsonSerializable;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 
 use function Safe\json_encode;
 
-class ApplicationError implements Arrayable, Jsonable, \JsonSerializable
+final class ApplicationError implements Arrayable, Jsonable, JsonSerializable
 {
     public function __construct(private readonly string $help = '', private readonly string $error = '')
     {

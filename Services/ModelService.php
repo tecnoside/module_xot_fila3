@@ -10,6 +10,9 @@ declare(strict_types=1);
 namespace Modules\Xot\Services;
 
 // ----------- Requests ----------
+use ReflectionClass;
+use ReflectionMethod;
+use ErrorException;
 use function get_class;
 
 use Illuminate\Database\Eloquent\Model;
@@ -26,9 +29,10 @@ use function in_array;
 /**
  * Class ModelService.
  */
-class ModelService
+final class ModelService
 {
-    protected Model $model;
+    private Model $model;
+    
     private static ?self $_instance = null;
 
     /**
@@ -78,21 +82,21 @@ class ModelService
         // $post_type = $this->getPostType();
         // Relation::morphMap([$post_type => get_class($model)]);
         $data = collect($data)->filter(
-            fn ($item, $key): bool => \in_array($key, $methods, true)
+            static fn($item, $key): bool => \in_array($key, $methods, true)
         )->map(
-            function ($v, $k) use ($model, $data) {
+            static function ($v, $k) use ($model, $data) {
                 if (! \is_string($k)) {
                     dddx([$k, $v, $data]);
                 }
+
                 $rows = $model->$k();
                 $related = null;
                 if (\is_object($rows) && method_exists($rows, 'getRelated')) {
                     $related = $rows->getRelated();
                 }
-
                 return (object) [
                     'relationship_type' => class_basename($rows),
-                    'is_relation' => $rows instanceof \Illuminate\Database\Eloquent\Relations\Relation,
+                    'is_relation' => $rows instanceof Relation,
                     'related' => $related,
                     'data' => $v,
                     'name' => $k,
@@ -101,7 +105,7 @@ class ModelService
             }
         )
             ->filter(
-                fn ($item) => $item->is_relation
+                static fn($item) => $item->is_relation
             )
             ->all();
 
@@ -122,7 +126,7 @@ class ModelService
         $post_type = collect($models)->search($model::class);
 
         if (false === $post_type) {
-            $post_type = \Illuminate\Support\Str::snake(class_basename($model));
+            $post_type = Str::snake(class_basename($model));
             Relation::morphMap([$post_type => $model::class]);
         }
 
@@ -136,23 +140,31 @@ class ModelService
     public function getRelations(): array
     {
         $model = $this->model;
-        $reflectionClass = new \ReflectionClass($model);
+        $reflectionClass = new ReflectionClass($model);
         $relations = [];
         $methods = $reflectionClass->getMethods();
 
         foreach ($methods as $method) {
             $doc = $method->getDocComment();
 
-            $res = $method->getName(); // ?? $method->__toString(); // 76     Call to an undefined method ReflectionType::getName().
+            $res = $method->getName();
+            // ?? $method->__toString(); // 76     Call to an undefined method ReflectionType::getName().
             // $res = PHP_VERSION_ID < 70100 ? $method->__toString() : $method->getName();
             // $returnType = $method->getReturnType();
             // if (null !== $returnType && false !== strpos($returnType->getName(), '\\Relations\\')) {
             // if (in_array(class_basename($returnType->getName()), ['HasOne', 'HasMany', 'BelongsTo', 'BelongsToMany', 'MorphToMany', 'MorphTo'])) {
             //    $relations[] = $res;
             // } elseif ($doc && false !== strpos($doc, '\\Relations\\')) {
-            if (0 === $method->getNumberOfRequiredParameters() && $method->class === $model::class && ($doc && str_contains($doc, '\\Relations\\'))) {
-                $relations[] = $res;
+            if (0 !== $method->getNumberOfRequiredParameters()) {
+                continue;
             }
+            if ($method->class !== $model::class) {
+                continue;
+            }
+            if (!($doc && str_contains($doc, '\\Relations\\'))) {
+                continue;
+            }
+            $relations[] = $res;
         }
 
         return $relations;
@@ -169,25 +181,27 @@ class ModelService
         $model = $this->model;
         $relationships = [];
 
-        foreach ((new \ReflectionClass($model))->getMethods(\ReflectionMethod::IS_PUBLIC) as $reflectionMethod) {
-            if ($reflectionMethod->class !== $model::class
-                || ! empty($reflectionMethod->getParameters())
-                || __FUNCTION__ === $reflectionMethod->getName()
-            ) {
+        foreach ((new ReflectionClass($model))->getMethods(ReflectionMethod::IS_PUBLIC) as $reflectionMethod) {
+            if ($reflectionMethod->class !== $model::class) {
                 continue;
             }
-
+            if (! empty($reflectionMethod->getParameters())) {
+                continue;
+            }
+            if (__FUNCTION__ === $reflectionMethod->getName()) {
+                continue;
+            }
             try {
                 $return = $reflectionMethod->invoke($model);
 
                 if ($return instanceof Relation) {
                     $relationships[$reflectionMethod->getName()] = [
                         'name' => $reflectionMethod->getName(),
-                        'type' => (new \ReflectionClass($return))->getShortName(),
-                        'model' => (new \ReflectionClass($return->getRelated()))->getName(),
+                        'type' => (new ReflectionClass($return))->getShortName(),
+                        'model' => (new ReflectionClass($return->getRelated()))->getName(),
                     ];
                 }
-            } catch (\ErrorException) {
+            } catch (ErrorException) {
             }
         }
 
@@ -199,7 +213,7 @@ class ModelService
         $relations = self::getRelationships();
 
         return collect($relations)->map(
-            fn (array $item) => $item['name']
+            static fn(array $item) => $item['name']
         )->values()->all();
     }
 
@@ -219,7 +233,7 @@ class ModelService
             if (! $doctrineTable->hasIndex($tbl.'_'.$index.'_index')) {
                 Schema::connection($conn->getName())->table(
                     $tbl,
-                    function ($table) use ($index): void {
+                    static function ($table) use ($index) : void {
                         $table->index($index);
                     }
                 );
@@ -231,17 +245,17 @@ class ModelService
     {
         $model = $this->model;
 
-        return \Illuminate\Support\Facades\Schema::connection($model->getConnectionName())->hasColumn($model->getTable(), $field_name);
+        return Schema::connection($model->getConnectionName())->hasColumn($model->getTable(), $field_name);
     }
 
     public function addField(Model $model, string $field_name, string $field_type, array $attrs = []): void
     {
         $model = $this->model;
-        if (! \Illuminate\Support\Facades\Schema::connection($model->getConnectionName())->hasColumn($model->getTable(), $field_name)) {
-            \Illuminate\Support\Facades\Schema::connection($model->getConnectionName())
+        if (! Schema::connection($model->getConnectionName())->hasColumn($model->getTable(), $field_name)) {
+            Schema::connection($model->getConnectionName())
                 ->table(
                     $model->getTable(),
-                    function ($table) use ($field_name, $field_type): void {
+                    static function ($table) use ($field_name, $field_type) : void {
                         $table->{$field_type}($field_name);
                     }
                 );
@@ -283,17 +297,15 @@ class ModelService
         $table_names = $dbSchemaManager->listTableNames();
 
         return collect($table_names)->map(
-            function ($table_name) use ($dbSchemaManager): array {
+            static function ($table_name) use ($dbSchemaManager) : array {
                 $doctrineTable = $dbSchemaManager->listTableDetails($table_name);
                 $columns = $doctrineTable->getColumns();
-
                 $collection = collect($columns)->map(
-                    fn ($col): array => [
+                    static fn($col): array => [
                         'name' => $col->getName(),
                         'type' => $col->getType()->getName(),
                     ]
                 );
-
                 return ['name' => $table_name, 'fields' => $collection];
             }
         );

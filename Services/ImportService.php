@@ -4,6 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Exception;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use stdClass;
+use GuzzleHttp\Psr7\Utils;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Cookie\CookieJar;
@@ -37,14 +45,17 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Class ImportService.
  */
-class ImportService
+final class ImportService
 {
     private static ?self $instance = null;
-    protected ClientInterface $client;
-    protected ?CookieJarInterface $cookieJar = null;
-    protected ResponseInterface $res;
+    
+    private ClientInterface $client;
+    
+    private ?CookieJarInterface $cookieJar = null;
+    
+    private ResponseInterface $response;
 
-    protected array $client_options = [];
+    private array $client_options = [];
 
     public function __construct()
     {
@@ -83,7 +94,7 @@ class ImportService
     {
         ini_set('max_execution_time', '3000');
 
-        $route_current = \Illuminate\Support\Facades\Route::current();
+        $route_current = Route::current();
         $params = [];
         if ($route_current instanceof \Illuminate\Routing\Route) {
             $params = $route_current->parameters();
@@ -91,7 +102,7 @@ class ImportService
 
         // $cookieJar = new CookieJar();
 
-        if (! $this->cookieJar instanceof \GuzzleHttp\Cookie\CookieJarInterface) {
+        if (! $this->cookieJar instanceof CookieJarInterface) {
             $this->initCookieJar();
         }
 
@@ -100,6 +111,7 @@ class ImportService
         foreach ($fields as $field) {
             $headers[$field] = \Illuminate\Support\Facades\Request::header($field);
         }
+        
         $this->enableRedirect();
         $this->client_options['headers'] = $headers;
         $this->client_options['headers']['Referer'] = 'http://www.google.com';
@@ -135,11 +147,11 @@ class ImportService
     public function enableCookie(array $cookies): void
     {
         // $cookieJar->setCookie(SetCookie::fromString('SID="AuthKey 23ec5d03-86db-4d80-a378-6059139a7ead"; expires=Thu, 24 Nov 2016 13:52:20 GMT; path=/; domain=.sketchup.com'));
-        if (! $this->cookieJar instanceof \GuzzleHttp\Cookie\CookieJarInterface) {
+        if (! $this->cookieJar instanceof CookieJarInterface) {
             $this->cookieJar = $this->initCookieJar();
         }
 
-        $url_info = parse_url($this->client_options['base_uri']);
+        $url_info = parse_url((string) $this->client_options['base_uri']);
 
         // $domain = $url_info['host'];
         $domain = collect($url_info)->get('host');
@@ -152,12 +164,13 @@ class ImportService
             ];
             $this->cookieJar->setCookie(new SetCookie($cookieData));
         }
+        
         $this->client_options['cookies'] = $this->cookieJar;
     }
 
     public function enableRedirect(): void
     {
-        $onRedirect = function (RequestInterface $request, ResponseInterface $response, UriInterface $uri): void {
+        $onRedirect = static function (RequestInterface $request, ResponseInterface $response, UriInterface $uri) : void {
             echo '<hr/>Redirecting! '.$request->getUri().' to '.$uri."\n";
         };
         $redirect_params = [
@@ -202,7 +215,7 @@ class ImportService
         return $res->getHeaderLine('X-Guzzle-Redirect-History');
     }
 
-    public function jqueryRequest(string $method, string $url, array $attrs = []): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function jqueryRequest(string $method, string $url, array $attrs = []): Application|Factory|View
     {
         return view()->make('ui::jquery_request');
     }
@@ -214,6 +227,7 @@ class ImportService
         if (null == $this->client) {
             $this->importInit();
         }
+        
         if (! isset($this->client_options['base_uri'])) {
             $url_info = parse_url($url);
             $this->client_options['base_uri'] = collect($url_info)->get('scheme').'://'.collect($url_info)->get('host');
@@ -228,15 +242,17 @@ class ImportService
                 $url .= '?'.$query;
             }
         }
+        
         $url = (string) $url;
 
         $base_uri = $this->client_options['base_uri'];
         if (Str::startsWith($url, $base_uri)) {
             $url = substr($url, \strlen((string) $base_uri));
         }
+        
         try {
             $res = $this->client->request($method, $url, array_merge($this->client_options, $attrs));
-            $this->res = $res;
+            $this->response = $res;
 
             $this->client_options['headers']['Referer'] = $this->client_options['base_uri'].$url;
             $html = (string) $res->getBody();
@@ -271,12 +287,12 @@ class ImportService
 
     public function getStatusCode(): int
     {
-        return $this->res->getStatusCode();
+        return $this->response->getStatusCode();
     }
 
     public function getRedirectHistory(): string
     {
-        return $this->res->getHeaderLine('X-Guzzle-Redirect-History'); // http://first-redirect, http://second-redirect, etc...
+        return $this->response->getHeaderLine('X-Guzzle-Redirect-History'); // http://first-redirect, http://second-redirect, etc...
         // echo $res->getHeaderLine('X-Guzzle-Redirect-Status-History');// 301, 302, etc...
     }
 
@@ -292,7 +308,7 @@ class ImportService
 
     public function getCacheKey(string $method, string $url, array $attrs = []): string
     {
-        $key = json_encode(['method' => $method, 'url' => $url, 'attrs' => $attrs]);
+        $key = json_encode(['method' => $method, 'url' => $url, 'attrs' => $attrs], JSON_THROW_ON_ERROR);
 
         return $key.'_1';
     }
@@ -310,14 +326,14 @@ class ImportService
         );
         $this->client_options['headers']['referer'] = $url;
         if (! \is_string($value)) {
-            throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
+            throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
         }
 
         return $value;
     }
 
     /**
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws FileNotFoundException
      */
     public function cacheRequestFile(string $method, string $url, array $attrs = []): string
     {
@@ -330,6 +346,7 @@ class ImportService
             } else {
                 $this->client_options['base_uri'] = '';
             }
+            
             $url = $url_info->get('path');
             if (null !== $url_info->get('query')) {
                 $url .= '?'.$url_info->get('query');
@@ -346,6 +363,7 @@ class ImportService
 
             return (string) $content;
         }
+        
         $body = $this->gRequest($method, (string) $url, $attrs);
         \Illuminate\Support\Facades\Storage::disk('cache')->put($file_path, (string) $body);
         $this->client_options['headers']['referer'] = $url;
@@ -355,7 +373,7 @@ class ImportService
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAddressFields(array $params): array
     {
@@ -365,11 +383,12 @@ class ImportService
 
             return [];
         }
-        $linked = new \stdClass();
+        
+        $linked = new stdClass();
         $location_url = config('services.google.url_location_api').'?address='.urlencode((string) $address).'&key='.config('services.google.maps_key');
         $loc_json = $this->cacheRequest('GET', $location_url);
 
-        $loc_obj = (object) json_decode($loc_json);
+        $loc_obj = (object) json_decode($loc_json, null, 512, JSON_THROW_ON_ERROR);
 
         if (isset($loc_obj->results[0])) {
             $loc_obj = $loc_obj->results[0];
@@ -381,6 +400,7 @@ class ImportService
                 $sk .= '_short';
                 $linked->$sk = $addr->short_name;
             }
+            
             $linked->latitude = $loc_obj->geometry->location->lat;
             $linked->longitude = $loc_obj->geometry->location->lng;
         } else {
@@ -389,7 +409,7 @@ class ImportService
                 'address' => $address,
                 'obj' => $loc_obj,
             ];
-            throw new \Exception('address not valide');
+            throw new Exception('address not valide');
             // dddx($msg);
         }
 
@@ -440,22 +460,25 @@ class ImportService
 
             return;
         }
+        
         if (! isset($url)) {
             dddx(['err' => 'url is missing']);
 
             return;
         }
+        
         $resource = fopen($filename, 'w');
         if (false === $resource) {
-            throw new \Exception('can open '.$filename);
+            throw new Exception('can open '.$filename);
         }
-        $stream = \GuzzleHttp\Psr7\Utils::streamFor($resource);
+        
+        $stream = Utils::streamFor($resource);
         $this->gRequest(
             'get',
             $url,
             [
                 'sink' => $stream,
-                'progress' => function (string $download_size, string $downloaded, string $upload_size, string $uploaded): void {
+                'progress' => static function (string $download_size, string $downloaded, string $upload_size, string $uploaded) : void {
                     // $this->downloadProgress($download_size, $downloaded, $upload_size, $uploaded);
                     echo '<br>['.$download_size.']['.$downloaded.']['.$upload_size.']['.$uploaded.']';
                 },
@@ -503,10 +526,11 @@ class ImportService
         /**
          * @var object
          */
-        $json = json_decode($json);
+        $json = json_decode($json, null, 512, JSON_THROW_ON_ERROR);
         if (! isset($json->hits)) {
             return null;
         }
+        
         /**
          * @var array
          */
@@ -556,7 +580,7 @@ class ImportService
         $to = 'it';
         extract($params);
         $q = urlencode($q);
-        $urldata = file_get_contents("https://translate.googleapis.com/translate_a/single?client=gtx&sl={$from}&tl={$to}&dt=t&q={$q}");
+        $urldata = file_get_contents(sprintf('https://translate.googleapis.com/translate_a/single?client=gtx&sl=%s&tl=%s&dt=t&q=%s', $from, $to, $q));
         $tr = $urldata;
         $tr = mb_substr($tr, 3, -6);
         $tr .= '["';
@@ -583,7 +607,7 @@ class ImportService
         // if (false === $urldata) {
         //    throw new \Exception('can not get '.$urldata);
         // }
-        $data = (array) json_decode($urldata, true);
+        $data = (array) json_decode($urldata, true, 512, JSON_THROW_ON_ERROR);
         // $data = Json::decode($urldata, Json::FORCE_ARRAY);
         // $data = (array) Json::decode($urldata, Json::FORCE_ARRAY);
 
@@ -599,6 +623,7 @@ class ImportService
 
             return;
         }
+        
         $responseData = (array) $data['responseData'];
 
         return $responseData['translatedText'];
@@ -613,11 +638,11 @@ class ImportService
         extract($params);
         $crawler = new Crawler($html);
         $forms = $crawler->filter($node_tag)->each(
-            fn (Crawler $node): array => [
+            static fn(Crawler $node): array => [
                 'action' => $node->attr('action'),
                 'method' => $node->attr('method'),
                 'fields' => $node->filter('input')->each(
-                    fn (Crawler $crawler): array => [$crawler->attr('name') => $crawler->attr('value')]
+                    static fn(Crawler $crawler): array => [$crawler->attr('name') => $crawler->attr('value')]
                 ),
             ]
         );

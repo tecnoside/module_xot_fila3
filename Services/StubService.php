@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use Exception;
+use Illuminate\Support\Facades\Session;
+use ReflectionClass;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use stdClass;
 use Doctrine\DBAL\Schema\Column;
 
 use function get_class;
@@ -25,7 +30,7 @@ use Symfony\Component\Finder\SplFileInfo;
 /**
  * Class StubService.
  */
-class StubService
+final class StubService
 {
     // public ?Model $model;
     public string $model_class;
@@ -37,6 +42,7 @@ class StubService
     public array $custom_replaces = [];
 
     public bool $debug = false;
+    
     // -- model (object) or class (string)
     // -- stub_name name of stub
     // -- create yes or not
@@ -118,14 +124,15 @@ class StubService
             // echo '<br/>['.$file.']['.$class.']';
             return $class;
         }
+        
         try {
             $this->generate();
-        } catch (\Exception $e) {
+        } catch (Exception $exception) {
             dddx(
                 [
-                    'e' => $e,
+                    'e' => $exception,
                     'class' => $class,
-                    'model_class' => $this->getModelClass(),
+                    'model_class' => $this->model_class,
                     // 'back' => debug_backtrace(),
                 ]
             );
@@ -150,7 +157,7 @@ class StubService
         $ns = implode('\\', \array_slice(explode('\\', $ns), 0, -1));
 
         if (Str::startsWith($ns, '\\')) {
-            $ns = Str::after($ns, '\\');
+            return Str::after($ns, '\\');
         }
 
         return $ns;
@@ -162,7 +169,7 @@ class StubService
         $ns = implode('\\', \array_slice(explode('\\', $ns), 0, -1));
 
         if (Str::startsWith($ns, '\\')) {
-            $ns = Str::after($ns, '\\');
+            return Str::after($ns, '\\');
         }
 
         return $ns;
@@ -204,6 +211,7 @@ class StubService
         if (isset($fields['updated_at'])) {
             $dummy_timestamps = 'true';
         }
+        
         // $user_class = get_class(Auth::user());
         $user_class = $xotData->getUserClass();
 
@@ -239,7 +247,7 @@ class StubService
                 // function (Column $column) {
                 function ($column): array {
                     if (! $column instanceof Column) {
-                        throw new \Exception('['.__LINE__.']['.__FILE__.']');
+                        throw new Exception('['.__LINE__.']['.__FILE__.']');
                     }
 
                     return $this->mapTableProperties($column);
@@ -264,6 +272,7 @@ class StubService
         if (! method_exists($model, 'getFillable')) {
             return collect([]);
         }
+        
         $fillables = $model->getFillable();
         if ([] === $fillables) {
             $fillables = $model->getConnection()->getSchemaBuilder()->getColumnListing($model->getTable());
@@ -289,18 +298,18 @@ class StubService
         $platform->registerDoctrineTypeMapping('enum', 'string');
 
         return $this->getFillable()->map(
-            function ($input_name) use ($connection, $model) {
+            static function ($input_name) use ($connection, $model) {
                 try {
                     $table_name = $connection->getTablePrefix().$model->getTable();
                     if (! \is_string($input_name)) {
-                        throw new \Exception('['.__LINE__.']['.__FILE__.']');
+                        throw new Exception('['.__LINE__.']['.__FILE__.']');
                     }
 
                     return $connection->getDoctrineColumn($table_name, $input_name);
-                } catch (\Exception $e) {
-                    $msg = 'message:['.$e->getMessage().']
-                        file:['.$e->getFile().']
-                        line:['.$e->getLine().']
+                } catch (Exception $exception) {
+                    $msg = 'message:['.$exception->getMessage().']
+                        file:['.$exception->getFile().']
+                        line:['.$exception->getLine().']
                         caller:['.__LINE__.']['.basename(__FILE__).']
                         ';
 
@@ -320,7 +329,7 @@ class StubService
                 }
             }
         )->filter(
-            fn($item): bool => $item instanceof \Doctrine\DBAL\Schema\Column
+            static fn($item): bool => $item instanceof Column
         );
     }
 
@@ -344,7 +353,7 @@ class StubService
         $stub = str_replace(
             array_keys($replace),
             array_values($replace),
-            $stub
+            (string) $stub
         );
 
         $file = $this->getClassFile();
@@ -354,16 +363,17 @@ class StubService
 
         try {
             File::put($file, $stub);
-        } catch (\Exception $e) {
-            $msg = '['.$file.'] '.$e->getMessage().'
+        } catch (Exception $exception) {
+            $msg = '['.$file.'] '.$exception->getMessage().'
                 ['.__LINE__.']
                 ['.class_basename(self::class).']
                 ';
-            throw new \Exception($msg, $e->getCode(), $e);
+            throw new Exception($msg, $exception->getCode(), $exception);
         }
+        
         $msg = ' ['.$file.'] is under creating , refresh page';
 
-        \Illuminate\Support\Facades\Session::flash($msg);
+        Session::flash($msg);
 
         return $this;
     }
@@ -376,21 +386,23 @@ class StubService
     public function getDirModel(): string
     {
         if (class_exists($this->model_class)) {
-            $reflectionClass = new \ReflectionClass($this->model_class);
+            $reflectionClass = new ReflectionClass($this->model_class);
             // dddx($autoloader_reflector);
             $class_file_name = $reflectionClass->getFileName();
             if (false === $class_file_name) {
-                throw new \Exception('autoloader_reflector false');
+                throw new Exception('autoloader_reflector false');
             }
 
             return \dirname($class_file_name);
         }
+        
         $class = $this->model_class;
 
         if (Str::startsWith($class, '\\')) {
             $class = Str::after($class, '\\');
         }
-        $tmp = collect(explode('\\', $class))->slice(0, -1)->implode('\\');
+        
+        $tmp = collect(explode('\\', (string) $class))->slice(0, -1)->implode('\\');
         // $path = base_path($class);
         $path = base_path($tmp);
 
@@ -424,7 +436,7 @@ class StubService
             default:
                 $msg = '['.$this->name.'] Unkwon !['.__LINE__.']['.basename(__FILE__).']';
                 // dddx($msg);
-                throw new \Exception($msg);
+                throw new Exception($msg);
         }
     }
 
@@ -464,12 +476,12 @@ class StubService
                 return $dirModel.'/'.$className.'.php';
             default:
                 $msg = '['.$this->name.'] Unkwon !['.__LINE__.']['.basename(__FILE__).']';
-                throw new \Exception($msg);
+                throw new Exception($msg);
         }
     }
 
     /**
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
+     * @throws FileNotFoundException
      */
     public function getFields(): array
     {
@@ -477,6 +489,7 @@ class StubService
         if (! method_exists($model, 'getFillable')) {
             return [];
         }
+        
         $fillables = $model->getFillable();
         // dddx($fillables);
 
@@ -488,11 +501,12 @@ class StubService
                     'deleted_ip', 'created_ip', 'updated_ip',
                 ]
             )->all();
-            $reflectionClass = new \ReflectionClass($model);
+            $reflectionClass = new ReflectionClass($model);
             $class_filename = $reflectionClass->getFileName();
             if (false === $class_filename) {
-                throw new \Exception('autoloader_reflector err');
+                throw new Exception('autoloader_reflector err');
             }
+            
             $fillables_str = \chr(13).\chr(10).'    protected $fillable=[\''.implode("','", $fillables)."'];".\chr(13).\chr(10);
             $class_content = File::get($class_filename);
             $class_content_before = Str::before($class_content, '{');
@@ -500,9 +514,10 @@ class StubService
             $class_content_new = $class_content_before.'{'.$fillables_str.$class_content_after;
             File::put($class_filename, $class_content_new);
         }
+        
         $fields = [];
         foreach ($fillables as $fillable) {
-            $tmp = new \stdClass();
+            $tmp = new stdClass();
             try {
                 $col = $model->getConnection()->getDoctrineColumn($model->getTable(), $fillable); // ->getType();//->getName();
                 // dddx(get_class_methods($col->getType()));
@@ -522,14 +537,16 @@ class StubService
                     $tmp->type = 'Id';
                 } else {
                     $tmp->type = Str::studly($col->getType()->getName());
-                    $tmp->type = str_replace('\\', '', $tmp->type);
+                    $tmp->type = str_replace('\\', '', (string) $tmp->type);
                 }
+                
                 $tmp->name = $fillable;
                 if ($col->getNotnull() && ! $col->getAutoincrement()) {
                     $tmp->rules = 'required';
                 }
+                
                 $tmp->comment = $col->getComment();
-            } catch (\Exception) {
+            } catch (Exception) {
                 // $input_type='Text';
                 // $tmp=new \stdClass();
                 $tmp->type = 'Text';
@@ -592,11 +609,12 @@ class StubService
          */
         $brother_file = Arr::first(
             $models,
-            fn(SplFileInfo $file): bool => 'php' === $file->getExtension()
+            static fn(SplFileInfo $file): bool => 'php' === $file->getExtension()
         );
-        if (!$brother_file instanceof \Symfony\Component\Finder\SplFileInfo) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        if (!$brother_file instanceof SplFileInfo) {
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
+        
         $brother_class = $this->getModelNamespace().'\\'.$brother_file->getFilenameWithoutExtension();
         $brother = app($brother_class);
         $indexes = $brother->getConnection()->getDoctrineSchemaManager()->listTableIndexes($this->getTable());
@@ -633,13 +651,14 @@ class StubService
          */
         $brother_file = Arr::first(
             $models,
-            fn(SplFileInfo $file): bool => 'php' === $file->getExtension()
+            static fn(SplFileInfo $file): bool => 'php' === $file->getExtension()
         );
         // dddx(get_class_methods($brother_file));
         // dddx($brother_file->getFilenameWithoutExtension());
-        if (!$brother_file instanceof \Symfony\Component\Finder\SplFileInfo) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+        if (!$brother_file instanceof SplFileInfo) {
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
+        
         $brother_class = $this->getModelNamespace().'\\'.$brother_file->getFilenameWithoutExtension();
         // getRandomBrotherModel
         // dddx($brother_class);
@@ -658,7 +677,7 @@ class StubService
     /**
      * Maps properties.
      */
-    protected function mapTableProperties(Column $column): array
+    private function mapTableProperties(Column $column): array
     {
         $name = $column->getName();
         /*
@@ -690,40 +709,15 @@ class StubService
     }
 
     /**
-     * Checks if a given column should be included in the factory.
-     */
-    protected function shouldBeIncluded(Column $column): bool
-    {
-        $shouldBeIncluded = $column->getNotNull() /* || $this->includeNullableColumns */
-            && ! $column->getAutoincrement();
-
-        if (! $this->getModel()->usesTimestamps()) {
-            return $shouldBeIncluded;
-        }
-
-        $timestamps = [
-            $this->getModel()->getCreatedAtColumn(),
-            $this->getModel()->getUpdatedAtColumn(),
-        ];
-
-        if (method_exists($this->getModel(), 'getDeletedAtColumn')) {
-            $timestamps[] = $this->getModel()->getDeletedAtColumn();
-        }
-
-        return $shouldBeIncluded
-            && ! \in_array($column->getName(), $timestamps, true);
-    }
-
-    /**
      * Undocumented function.
      *
      * @param string $key
      * @param string $value
      */
-    protected function mapToFactory($key, $value = null): array
+    private function mapToFactory($key, $value = null): array
     {
         return [
-            $key => null === $value ? $value : "'{$key}' => {$value}",
+            $key => null === $value ? $value : sprintf('\'%s\' => %s', $key, $value),
         ];
     }
 
@@ -732,7 +726,7 @@ class StubService
      *
      * @return string
      */
-    protected function mapToFaker(Column $column)
+    private function mapToFaker(Column $column)
     {
         return app(TypeGuesser::class)->guess(
             $column->getName(),

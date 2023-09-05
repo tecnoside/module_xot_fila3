@@ -8,17 +8,19 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Tests\Feature;
 
+use PHPUnit\Framework\Attributes\Test;
+use Exception;
+use Symfony\Component\DomCrawler\Crawler;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
-class RouteDomTest extends TestCase
+final class RouteDomTest extends TestCase
 {
     /**
      * A basic test example.
-     *
-     * @test
      */
+    #[Test]
     public function routes(): void
     {
         $urls = [
@@ -46,16 +48,19 @@ class RouteDomTest extends TestCase
             */
             $url = str_replace('index.php', '', (string) $url);
             if (null === $url) {
-                throw new \Exception('url is null');
+                throw new Exception('url is null');
             }
+            
             if (! \is_string($url)) {
-                throw new \Exception('url is not a string');
+                throw new Exception('url is not a string');
             }
+            
             $response = $this->get($url);
             $html = $response->getContent();
             if (false === $html) {
-                throw new \Exception('cannot get content');
+                throw new Exception('cannot get content');
             }
+            
             // dd(get_class_methods($response));
             // dd($response->streamedContent());The response is not a streamed response
             $status = $response->status();
@@ -67,15 +72,16 @@ class RouteDomTest extends TestCase
                 echo $base_url.$url.' (success ?)'.\chr(13);
                 static::assertTrue(true);
             }
+            
             echo PHP_EOL;
 
             $dom = $this->dom($html);
             // $links = $dom->filter('a')->links();
             $links = $dom->filter('a')->each(
-                fn ($node) => $node->attr('href')
+                static fn($node) => $node->attr('href')
             );
             $links = collect($links)->filter(
-                fn ($item): bool => ! Str::startsWith($item, 'mailto:')
+                static fn($item): bool => ! Str::startsWith($item, 'mailto:')
                     && ! Str::startsWith($item, 'https://mail.')
                     && Str::startsWith($item, '/')
             )->all();
@@ -89,9 +95,9 @@ class RouteDomTest extends TestCase
     so you must define its base URI passing an absolute URL to the constructor of the
     "Symfony\Component\DomCrawler\AbstractUriElement" class ("" was passed)
     */
-    private function dom(string $html): \Symfony\Component\DomCrawler\Crawler
+    private function dom(string $html): Crawler
     {
-        $crawler = new \Symfony\Component\DomCrawler\Crawler();
+        $crawler = new Crawler();
         $crawler->addHTMLContent($html, 'UTF-8');
 
         return $crawler;

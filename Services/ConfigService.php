@@ -12,10 +12,10 @@ use Illuminate\Support\Collection;
 /**
  * Class ConfigService.
  */
-class ConfigService
+final class ConfigService
 {
     private static ?self $instance = null;
-    protected Collection $data;
+    
 
     public function __construct()
     {

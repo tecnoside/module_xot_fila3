@@ -8,16 +8,16 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Tests\Feature;
 
+use PHPUnit\Framework\Attributes\Test;
 use Illuminate\Support\Facades\App;
 use Tests\TestCase;
 
-class RouteTest extends TestCase
+final class RouteTest extends TestCase
 {
     /**
      * A basic test example.
-     *
-     * @test
      */
+    #[Test]
     public function routes(): void
     {
         // dddx('/'.App::getlocale().'/home');
@@ -42,6 +42,7 @@ class RouteTest extends TestCase
                 echo $appURL.$url.' (success ?)';
                 static::assertTrue(true);
             }
+            
             echo PHP_EOL;
         }
     }

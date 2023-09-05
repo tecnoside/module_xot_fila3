@@ -11,34 +11,32 @@ use Modules\Xot\DTOs\RelationDTO;
 use Spatie\LaravelData\DataCollection;
 use Spatie\QueueableAction\QueueableAction;
 
-class FilterRelationsAction
+final class FilterRelationsAction
 {
     use QueueableAction;
 
     /**
-     * @return \Spatie\LaravelData\DataCollection<(int|string), \Modules\Xot\DTOs\RelationDTO>
+     * @return DataCollection<(int | string), RelationDTO>
      */
     public function execute(Model $model, array $data): DataCollection
     {
         $methods = get_class_methods($model);
         $res = collect($data)
             ->filter(
-                fn ($value, $item): bool => \in_array($item, $methods, true)
+                static fn($value, $item): bool => \in_array($item, $methods, true)
             )
             ->filter(
-                function ($value, $item) use ($model): bool {
+                static function ($value, $item) use ($model) : bool {
                     $rows = $model->$item();
-
                     return $rows instanceof Relation;
                 }
             )->map(
-                function ($value, $item) use ($model): array {
+                static function ($value, $item) use ($model) : array {
                     $rows = $model->$item();
                     // $related = null;
                     // if (method_exists($rows, 'getRelated')) {
                     // Cannot call method getRelated() on class-string|object
                     $related = $rows->getRelated();
-
                     // }
                     // if(!is_array($value)){
                     //    dddx(['item'=>$item,'value'=>$value]);
