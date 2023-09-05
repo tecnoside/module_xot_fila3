@@ -13,7 +13,7 @@ use Webmozart\Assert\Assert;
 
 abstract class XotBaseResource extends Resource
 {
-    // use ContextualResource;
+    // //use ContextualResource;
 
     protected static ?string $model = null;
     // protected static ?string $navigationIcon = 'heroicon-o-bell';

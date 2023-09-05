@@ -347,7 +347,7 @@ if (! function_exists('getModelByName')) {
         }
         $path = collect($files)->first(
             function ($file) use ($name): bool {
-                $info = pathinfo($file);
+                $info = pathinfo((string) $file);
                 // Offset 'filename' on array{dirname?: string, basename: string, extension?: string, filename: string} on left side of ?? always exists and is not nullable.
                 $filename = $info['filename']; // ?? '';
 

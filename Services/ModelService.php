@@ -287,14 +287,14 @@ class ModelService
                 $doctrineTable = $dbSchemaManager->listTableDetails($table_name);
                 $columns = $doctrineTable->getColumns();
 
-                $fields = collect($columns)->map(
+                $collection = collect($columns)->map(
                     fn ($col): array => [
                         'name' => $col->getName(),
                         'type' => $col->getType()->getName(),
                     ]
                 );
 
-                return ['name' => $table_name, 'fields' => $fields];
+                return ['name' => $table_name, 'fields' => $collection];
             }
         );
     }

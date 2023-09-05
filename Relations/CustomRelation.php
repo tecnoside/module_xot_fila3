@@ -88,14 +88,14 @@ class CustomRelation extends Relation
      *
      * @return array
      */
-    public function match(array $models, Collection $results, $relation)
+    public function match(array $models, Collection $collection, $relation)
     {
         // Trying to invoke Closure|null but it might not be a callable.
         if (! \is_callable($this->eagerMatcher)) {
             throw new \Exception('eagerMatcher is not callable');
         }
 
-        return ($this->eagerMatcher)($models, $results, $relation, $this);
+        return ($this->eagerMatcher)($models, $collection, $relation, $this);
     }
 
     /**

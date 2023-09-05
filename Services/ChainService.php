@@ -19,9 +19,9 @@ foreach($ordered as $item){
 
 */
 
-function chain(string $primary_field, string $parent_field, string $sort_field, Collection $rows, int $root_id = 0, int $maxlevel = 25): array
+function chain(string $primary_field, string $parent_field, string $sort_field, Collection $collection, int $root_id = 0, int $maxlevel = 25): array
 {
-    $c = new ChainService($primary_field, $parent_field, $sort_field, $rows, $root_id, $maxlevel);
+    $c = new ChainService($primary_field, $parent_field, $sort_field, $collection, $root_id, $maxlevel);
 
     return $c->chain_table;
 }
@@ -38,21 +38,21 @@ class ChainService
     /**
      * ChainService constructor.
      *
-     * @param (\Illuminate\Support\Collection&\iterable<\Illuminate\Database\Eloquent\Model>) $rows
+     * @param \Illuminate\Support\Collection&\iterable<\Illuminate\Database\Eloquent\Model> $collection
      *
      * @return void
      */
     public function __construct(public string $primary_field, public string $parent_field, public string $sort_field, /**
      * Undocumented variable.
      */
-        public Collection $rows, int $root_id = 0, int $maxlevel = 25)
+        public Collection $collection, int $root_id = 0, int $maxlevel = 25)
     {
         $this->buildChain($root_id, $maxlevel);
     }
 
     public function buildChain(int $rootcatid, int $maxlevel): void
     {
-        foreach ($this->rows as $row) {
+        foreach ($this->collection as $row) {
             // considerando che ChainService viene utilizzato da XotBasePanel->optionsTree()
             // che a sua volta viene utilizzato in FormX\Resources\views\collective\fields\select\field_parent.blade.php
             // che vuole parent_id (radice) uguale a 0

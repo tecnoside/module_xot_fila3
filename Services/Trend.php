@@ -96,7 +96,7 @@ class Trend
 
     public function aggregate(string $column, string $aggregate): Collection
     {
-        $values = $this->builder
+        $collection = $this->builder
             ->toBase()
             ->selectRaw(
                 "
@@ -109,7 +109,7 @@ class Trend
             ->orderBy($this->dateAlias)
             ->get();
 
-        return $this->mapValuesToDates($values);
+        return $this->mapValuesToDates($collection);
     }
 
     public function average(string $column): Collection
@@ -137,7 +137,7 @@ class Trend
         return $this->aggregate($column, 'count');
     }
 
-    public function mapValuesToDates(Collection $values): Collection
+    public function mapValuesToDates(Collection $collection): Collection
     {
         /*
         $values = $values->map(fn ($value) => new TrendValue(
@@ -154,7 +154,7 @@ class Trend
         */
 
         // Cannot access property $aggregate on mixed.
-        $values = $values->map(
+        $collection = $collection->map(
             fn ($value): \Modules\Xot\Datas\TrendData => TrendData::from(
                 [
                     'date' => $value->{$this->dateAlias},
@@ -176,7 +176,7 @@ class Trend
                 )
             );
 
-        return $values
+        return $collection
             ->merge($placeholders)
             ->unique('date')
             ->sort()

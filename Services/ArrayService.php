@@ -131,7 +131,7 @@ class ArrayService
      */
     public static function fixType(array $data): array
     {
-        $res = collect($data)
+        $collection = collect($data)
             ->map(
                 function ($item) {
                     if (! is_array($item)) {
@@ -151,7 +151,7 @@ class ArrayService
                 }
             );
 
-        return $res->all();
+        return $collection->all();
     }
 
     /**

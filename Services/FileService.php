@@ -89,7 +89,7 @@ class FileService
                     throw new \Exception('message:['.$e->getMessage().']
                         path :['.$path.']
                         file from ['.$filename_from.']
-                        file to ['.$filename_to.']');
+                        file to ['.$filename_to.']', $e->getCode(), $e);
                 }
             }
             Assert::string($asset, 'wip');
@@ -269,17 +269,17 @@ class FileService
         $path_pub = 'assets_packs/'.$ns.'/'.$path1;
         $filename_pub = public_path($path_pub);
 
-        if (! \File::exists(\dirname($filename_pub))) {
+        if (! \Illuminate\Support\Facades\File::exists(\dirname($filename_pub))) {
             try {
-                \File::makeDirectory(\dirname($filename_pub), 0755, true, true);
+                \Illuminate\Support\Facades\File::makeDirectory(\dirname($filename_pub), 0755, true, true);
             } catch (\Exception $e) {
                 dd('Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']');
             }
         }
-        if (\File::exists($filename)) {
+        if (\Illuminate\Support\Facades\File::exists($filename)) {
             try {
                 // echo '<hr>'.$filename.' >>>>  '.$filename_pub; //4 debug
-                \File::copy($filename, $filename_pub);
+                \Illuminate\Support\Facades\File::copy($filename, $filename_pub);
             } catch (\Exception $e) {
                 dd('Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']');
             }
@@ -318,17 +318,17 @@ class FileService
         $path_pub = 'assets_packs/'.$ns.'/'.$path1;
         $filename_pub = public_path($path_pub);
 
-        if (! \File::exists(\dirname($filename_pub))) {
+        if (! \Illuminate\Support\Facades\File::exists(\dirname($filename_pub))) {
             try {
-                \File::makeDirectory(\dirname($filename_pub), 0755, true, true);
+                \Illuminate\Support\Facades\File::makeDirectory(\dirname($filename_pub), 0755, true, true);
             } catch (\Exception $e) {
                 dd('Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']');
             }
         }
-        if (\File::exists($filename)) {
+        if (\Illuminate\Support\Facades\File::exists($filename)) {
             try {
                 // echo '<hr>'.$filename.' >>>>  '.$filename_pub; //4 debug
-                \File::copy($filename, $filename_pub);
+                \Illuminate\Support\Facades\File::copy($filename, $filename_pub);
             } catch (\Exception $e) {
                 dd('Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']');
             }
@@ -353,8 +353,7 @@ class FileService
         $asset = '/themes/'.$ns_name.'/'.$filename;
         $filename_to = public_path($asset);
         $filename_from = str_replace(['/', '\\'], [\DIRECTORY_SEPARATOR, \DIRECTORY_SEPARATOR], $filename_from);
-        // --------------------------------------------------
-        $msg = [
+        [
             'filename' => $filename,
             'from' => $filename_from,
             'to' => $filename_to,
@@ -363,7 +362,7 @@ class FileService
         ];
 
         $dir_to = \dirname($filename_to);
-        if (! \File::exists($dir_to)) {
+        if (! \Illuminate\Support\Facades\File::exists($dir_to)) {
             try {
                 File::makeDirectory($dir_to, 0755, true, true);
             } catch (\Exception $e) {
@@ -426,7 +425,7 @@ class FileService
         $filename_to = public_path($tmp);
         $filename_to = str_replace(['/', '\\'], [\DIRECTORY_SEPARATOR, \DIRECTORY_SEPARATOR], $filename_to);
         $asset = asset($tmp);
-        $msg = [
+        [
             'key' => $key,
             'filename_from' => $filename_from,
             'filename_from_exists' => File::exists($filename_from),
@@ -438,7 +437,7 @@ class FileService
         if (! File::exists($filename_from)) {
         }
         $dir_to = \dirname($filename_to);
-        if (! \File::exists($dir_to)) {
+        if (! \Illuminate\Support\Facades\File::exists($dir_to)) {
             try {
                 File::makeDirectory($dir_to, 0755, true, true);
             } catch (\Exception $e) {
@@ -570,16 +569,16 @@ class FileService
                     $old_path = str_replace('/', \DIRECTORY_SEPARATOR, $old_path);
                     $new_path = public_path('assets_packs'.\DIRECTORY_SEPARATOR.$hints.\DIRECTORY_SEPARATOR.$filename);
                     $new_path = str_replace('/', \DIRECTORY_SEPARATOR, $new_path);
-                    if (! \File::exists(\dirname($new_path))) {
+                    if (! \Illuminate\Support\Facades\File::exists(\dirname($new_path))) {
                         try {
-                            \File::makeDirectory(\dirname($new_path), 0755, true, true);
+                            \Illuminate\Support\Facades\File::makeDirectory(\dirname($new_path), 0755, true, true);
                         } catch (\Exception $e) {
                             dd('Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']');
                         }
                     }
-                    if (\File::exists($old_path)) {
+                    if (\Illuminate\Support\Facades\File::exists($old_path)) {
                         try {
-                            \File::copy($old_path, $new_path);
+                            \Illuminate\Support\Facades\File::copy($old_path, $new_path);
                         } catch (\Exception $e) {
                             dd('Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']');
                         }
@@ -677,10 +676,10 @@ class FileService
     public static function config(string $key): int|float|string|array|null
     {
         $ns_name = Str::before($key, '::');
-        $group = Str::of($key)->after('::')->before('.');
-        $item = Str::after($key, $ns_name.'::'.$group.'.');
+        $stringable = Str::of($key)->after('::')->before('.');
+        $item = Str::after($key, $ns_name.'::'.$stringable.'.');
         $ns_dir = self::getViewNameSpacePath($ns_name);
-        $path = $ns_dir.'/../../Config/'.$group.'.php';
+        $path = $ns_dir.'/../../Config/'.$stringable.'.php';
         if (! File::exists($path)) {
             ArrayService::save(['filename' => $path, 'data' => []]);
         }
@@ -704,12 +703,9 @@ class FileService
     public static function viewPath(string $key): string
     {
         $ns_name = Str::before($key, '::');
-        /**
-         * @var iterable<string>|string
-         */
-        $group = Str::of($key)->after('::');
+        $stringable = Str::of($key)->after('::');
         $ns_dir = self::getViewNameSpacePath($ns_name);
-        Assert::string($group_dir = Str::replace('.', '/', $group), 'wip');
+        Assert::string($group_dir = Str::replace('.', '/', $stringable), 'wip');
         $res = $ns_dir.'/'.$group_dir.'.blade.php';
 
         return self::fixPath($res);
@@ -746,7 +742,7 @@ class FileService
                 throw new \Exception('Unable to copy
                     from ['.$from.']
                     to ['.$to.']
-                    message ['.$e->getMessage().']');
+                    message ['.$e->getMessage().']', $e->getCode(), $e);
             }
         }
     }
@@ -767,9 +763,9 @@ class FileService
     public static function getConfigKey(string $key): string
     {
         $ns_name = Str::before($key, '::');
-        $group = Str::of($key)->after('::')->before('.');
+        $stringable = Str::of($key)->after('::')->before('.');
 
-        return Str::after($key, $ns_name.'::'.$group.'.');
+        return Str::after($key, $ns_name.'::'.$stringable.'.');
     }
 
     /**
@@ -780,7 +776,7 @@ class FileService
      */
     public static function configCopy(string $from, string $to, bool $force = false): void
     {
-        $from_path = self::configPath($from);
+        self::configPath($from);
         $to_path = self::configPath($to);
         // self::copy($from_path, $to_path);
 
@@ -840,10 +836,10 @@ class FileService
         $files = File::allFiles($path);
 
         $comps = [];
-        foreach ($files as $k => $v) {
-            if ('php' === $v->getExtension()) {
+        foreach ($files as $file) {
+            if ('php' === $file->getExtension()) {
                 $tmp = (object) [];
-                $class_name = $v->getFilenameWithoutExtension();
+                $class_name = $file->getFilenameWithoutExtension();
 
                 $tmp->class_name = $class_name;
                 Assert::string($comp_name = Str::replace('\\', ' ', $class_name), 'wip');
@@ -851,16 +847,14 @@ class FileService
                 $tmp->comp_name = $prefix.$tmp->comp_name;
 
                 $tmp->comp_ns = $namespace.'\\'.$class_name;
-                $relative_path = $v->getRelativePath();
+                $relative_path = $file->getRelativePath();
                 Assert::string($relative_path = Str::replace('/', '\\', $relative_path), 'wip');
 
                 if ('' !== $relative_path) {
                     $tmp->comp_name = '';
                     $piece = collect(explode('\\', $relative_path))
                         ->map(
-                            function ($item) {
-                                return Str::slug(Str::snake($item));
-                            }
+                            fn($item) => Str::slug(Str::snake($item))
                         )
                         ->implode('.');
                     $tmp->comp_name .= $piece;
@@ -921,17 +915,17 @@ class FileService
             return null;
         }
         // try {
-        $a = new \ReflectionClass($class_name);
+        $reflectionClass = new \ReflectionClass($class_name);
         // 856    Dead catch - Exception is never thrown in the try block.
 
         // } catch (\Exception $e) {
         //    return null;
         // }
-        if (false === $a->getFileName()) {
+        if (false === $reflectionClass->getFileName()) {
             return null;
         }
 
-        return $a->getFileName();
+        return $reflectionClass->getFileName();
     }
 
     public static function url2Path(string $url): string
