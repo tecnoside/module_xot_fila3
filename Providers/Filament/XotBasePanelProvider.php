@@ -29,13 +29,14 @@ abstract class XotBasePanelProvider extends PanelProvider
 
     public function panel(Panel $panel): Panel
     {
+
         $moduleNamespace = $this->getModuleNamespace();
         $moduleLow = Str::lower($this->module);
-        /*
-        if ('xot' != $moduleLow) {
-            dddx([$moduleNamespace, $moduleLow]);
-        }
-        */
+
+        //if (! in_array($moduleLow,['chart','xot'])) {
+        //    dddx([$moduleNamespace, $moduleLow]);
+        //}
+
         $panel = $panel
             ->id($moduleLow.'::admin')
             ->path($moduleLow.'/admin')
@@ -79,6 +80,8 @@ abstract class XotBasePanelProvider extends PanelProvider
                  ->sort(3),
          ]);
         */
+
+
         return $panel;
     }
 
