@@ -19,7 +19,7 @@ trait FormRequestTrait
         // dddx($pieces);
         $pieces = \array_slice($pieces, 3);
         $pieces = collect($pieces)->map(
-            fn($item): string => \Illuminate\Support\Str::snake($item)
+            fn ($item): string => \Illuminate\Support\Str::snake($item)
         )->all();
         $trad_name = $pack.'::'.implode('.', $pieces);
         $trad = trans($trad_name);

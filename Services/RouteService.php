@@ -33,6 +33,7 @@ class RouteService
             return true;
         }
         $segments = \Illuminate\Support\Facades\Request::segments();
+
         return (is_countable($segments) ? \count($segments) : 0) > 0 && 'livewire' === $segments[0] && true === session('in_admin');
     }
 
@@ -418,7 +419,7 @@ class RouteService
 
         return collect($tmp_arr)
             ->filter(
-                fn($item): bool => ! \in_array($item, ['Module', 'Item'], true)
+                fn ($item): bool => ! \in_array($item, ['Module', 'Item'], true)
             )
             ->map(
                 function ($item) use ($params) {

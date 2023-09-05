@@ -28,7 +28,7 @@ abstract class XotBaseMigration extends Migration
     {
         $this->registerLaravelBlueprintMacros();
 
-        if (!$this->model instanceof \Illuminate\Database\Eloquent\Model) {
+        if (! $this->model instanceof \Illuminate\Database\Eloquent\Model) {
             $model = $this->getModel();
             // 37     Dead catch - Exception is never thrown in the try block.
             // try {
@@ -67,7 +67,7 @@ abstract class XotBaseMigration extends Migration
 
     public function getTable(): string
     {
-        if (!$this->model instanceof \Illuminate\Database\Eloquent\Model) {
+        if (! $this->model instanceof \Illuminate\Database\Eloquent\Model) {
             return '';
         }
 
@@ -81,7 +81,7 @@ abstract class XotBaseMigration extends Migration
         // dddx(config('database'));
         // \DB::purge('mysql');
         // \DB::reconnect('mysql');
-        if (!$this->model instanceof \Illuminate\Database\Eloquent\Model) {
+        if (! $this->model instanceof \Illuminate\Database\Eloquent\Model) {
             throw new \Exception('model is null');
         }
 

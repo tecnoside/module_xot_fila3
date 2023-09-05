@@ -60,7 +60,7 @@ abstract class XotBaseFilamentMiddleware extends Middleware
     private function getContextName(): string
     {
         $this->getModule();
-        if (static::$context === '' || static::$context === '0') {
+        if ('' === static::$context || '0' === static::$context) {
             throw new \Exception('Context has to be defined in your class');
         }
 

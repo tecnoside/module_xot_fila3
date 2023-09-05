@@ -73,7 +73,7 @@ trait Getter
 
     public static function __callStatic(string $method, array $args): mixed
     {
-        if (preg_match('/^([gs]et)([A-Z])(.*)$/', $method, $match) !== 0) {
+        if (0 !== preg_match('/^([gs]et)([A-Z])(.*)$/', $method, $match)) {
             $reflectionClass = new \ReflectionClass(self::class);
             $property = mb_strtolower((string) $match[2]).$match[3];
             if ($reflectionClass->hasProperty($property)) {

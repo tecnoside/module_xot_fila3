@@ -8,7 +8,6 @@ use function call_user_func_array;
 
 use Illuminate\Support\Arr;
 use Nwidart\Modules\Facades\Module;
-use Nwidart\Modules\Laravel\Module as LaravelModule;
 
 /**
  * --.

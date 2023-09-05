@@ -15,7 +15,7 @@ trait TranslatorTrait
         // Override the JSON Translator
         $this->app->extend(
             'translator',
-            function (Translator $translator): \Modules\Xot\Services\TranslatorService {
+            function (Translator $translator): TranslatorService {
                 $translatorService = new TranslatorService($translator->getLoader(), $translator->getLocale());
                 $translatorService->setFallback($translator->getFallback());
 

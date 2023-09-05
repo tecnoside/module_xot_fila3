@@ -36,7 +36,7 @@ class DocxService
 
     public static function getInstance(): self
     {
-        if (!self::$instance instanceof \Modules\Xot\Services\DocxService) {
+        if (! self::$instance instanceof \Modules\Xot\Services\DocxService) {
             self::$instance = new self();
         }
 
@@ -181,6 +181,7 @@ class DocxService
                             $prefix.'.'.$key => $item,
                         ];
                     }
+
                     // Carbon::setLocale('it');
                     return [
                         $prefix.'.'.$key => $item,

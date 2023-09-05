@@ -16,7 +16,7 @@ trait DropboxTrait
     {
         Storage::extend(
             'dropbox',
-            function ($app, array $config): \League\Flysystem\Filesystem {
+            function ($app, array $config): Filesystem {
                 // dddx($config);
 
                 $client = new DropboxClient($config['authorizationToken']);

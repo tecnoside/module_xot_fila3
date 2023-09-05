@@ -126,12 +126,11 @@ class TypeGuesser
     /**
      * Get type guess.
      *
-     * @param string   $name
-     * @param int|null $size
+     * @param string $name
      *
      * @return string
      */
-    private function guessBasedOnName($name, ?int $size = null)
+    private function guessBasedOnName($name, int $size = null)
     {
         return match ($name) {
             'login' => 'userName',

@@ -38,7 +38,7 @@ class ModelService
      */
     public static function getInstance(): self
     {
-        if (!self::$_instance instanceof \Modules\Xot\Services\ModelService) {
+        if (! self::$_instance instanceof \Modules\Xot\Services\ModelService) {
             self::$_instance = new self();
         }
 
@@ -78,7 +78,7 @@ class ModelService
         // $post_type = $this->getPostType();
         // Relation::morphMap([$post_type => get_class($model)]);
         $data = collect($data)->filter(
-            fn($item, $key): bool => \in_array($key, $methods, true)
+            fn ($item, $key): bool => \in_array($key, $methods, true)
         )->map(
             function ($v, $k) use ($model, $data) {
                 if (! \is_string($k)) {
@@ -101,7 +101,7 @@ class ModelService
             }
         )
             ->filter(
-                fn($item) => $item->is_relation
+                fn ($item) => $item->is_relation
             )
             ->all();
 
@@ -199,7 +199,7 @@ class ModelService
         $relations = self::getRelationships();
 
         return collect($relations)->map(
-            fn(array $item) => $item['name']
+            fn (array $item) => $item['name']
         )->values()->all();
     }
 
@@ -288,7 +288,7 @@ class ModelService
                 $columns = $doctrineTable->getColumns();
 
                 $fields = collect($columns)->map(
-                    fn($col): array => [
+                    fn ($col): array => [
                         'name' => $col->getName(),
                         'type' => $col->getType()->getName(),
                     ]

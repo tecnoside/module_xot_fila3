@@ -53,7 +53,7 @@ class ImportService
 
     public static function getInstance(): self
     {
-        if (!self::$instance instanceof \Modules\Xot\Services\ImportService) {
+        if (! self::$instance instanceof \Modules\Xot\Services\ImportService) {
             self::$instance = new self();
         }
 
@@ -91,7 +91,7 @@ class ImportService
 
         // $cookieJar = new CookieJar();
 
-        if (!$this->cookieJar instanceof \GuzzleHttp\Cookie\CookieJarInterface) {
+        if (! $this->cookieJar instanceof \GuzzleHttp\Cookie\CookieJarInterface) {
             $this->initCookieJar();
         }
 
@@ -135,7 +135,7 @@ class ImportService
     public function enableCookie(array $cookies): void
     {
         // $cookieJar->setCookie(SetCookie::fromString('SID="AuthKey 23ec5d03-86db-4d80-a378-6059139a7ead"; expires=Thu, 24 Nov 2016 13:52:20 GMT; path=/; domain=.sketchup.com'));
-        if (!$this->cookieJar instanceof \GuzzleHttp\Cookie\CookieJarInterface) {
+        if (! $this->cookieJar instanceof \GuzzleHttp\Cookie\CookieJarInterface) {
             $this->cookieJar = $this->initCookieJar();
         }
 
@@ -294,7 +294,7 @@ class ImportService
     {
         $key = json_encode(['method' => $method, 'url' => $url, 'attrs' => $attrs]);
 
-        return $key . '_1';
+        return $key.'_1';
     }
 
     public function cacheRequest(string $method, string $url, array $attrs = []): string
@@ -613,11 +613,11 @@ class ImportService
         extract($params);
         $crawler = new Crawler($html);
         $forms = $crawler->filter($node_tag)->each(
-            fn(Crawler $node): array => [
+            fn (Crawler $node): array => [
                 'action' => $node->attr('action'),
                 'method' => $node->attr('method'),
                 'fields' => $node->filter('input')->each(
-                    fn(Crawler $crawler): array => [$crawler->attr('name') => $crawler->attr('value')]
+                    fn (Crawler $crawler): array => [$crawler->attr('name') => $crawler->attr('value')]
                 ),
             ]
         );

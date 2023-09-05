@@ -13,7 +13,7 @@ class DetachAction
 
     public function execute(Model $model, array $data, array $rules): Model
     {
-        if (property_exists($model, 'pivot') && $model->pivot !== null) {
+        if (property_exists($model, 'pivot') && null !== $model->pivot) {
             return $model;
         }
         $res = $model->pivot->delete();

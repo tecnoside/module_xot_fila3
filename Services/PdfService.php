@@ -23,7 +23,7 @@ class PdfService
 
     public static function getInstance(): self
     {
-        if (!self::$instance instanceof \Modules\Xot\Services\PdfService) {
+        if (! self::$instance instanceof \Modules\Xot\Services\PdfService) {
             self::$instance = new self();
         }
 
@@ -46,7 +46,7 @@ class PdfService
         }
         $pdfMerger = new \Jurosh\PDFMerge\PDFMerger();
         $pdf_files = collect(File::files($path))->filter(
-            fn($file, $key): bool =>
+            fn ($file, $key): bool =>
                 // dddx(get_class_methods($file));
                 // dddx($file->getBasename());
                 'pdf' === $file->getExtension() && ! Str::startsWith($file->getBasename(), '_')

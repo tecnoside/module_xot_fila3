@@ -16,7 +16,6 @@ class RouteTest extends TestCase
     /**
      * A basic test example.
      *
-     *
      * @test
      */
     public function routes(): void

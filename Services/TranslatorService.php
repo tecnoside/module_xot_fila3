@@ -67,7 +67,7 @@ class TranslatorService extends BaseTranslator
         )
         // ->dd()
             ->filter(
-                fn(array $v, $k): bool => $v['dir_exists'] && \strlen((string) $v['lang_dir']) > 3
+                fn (array $v, $k): bool => $v['dir_exists'] && \strlen((string) $v['lang_dir']) > 3
             )
             ->groupBy(['ns_group'])  // risparmio salvataggi
             ->all();

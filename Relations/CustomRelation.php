@@ -31,16 +31,16 @@ class CustomRelation extends Relation
      * Create a new belongs to relationship instance.
      */
     public function __construct(Builder $builder, Model $model, /* implements BuilderContract */
-    /**
-     * The baseConstraints callback.
-     */
-    protected \Closure $baseConstraints, /**
+        /**
+         * The baseConstraints callback.
+         */
+        protected \Closure $baseConstraints, /**
      * The eagerConstraints callback.
      */
-    protected ?\Closure $eagerConstraints, /**
+        protected ?\Closure $eagerConstraints, /**
      * The eager constraints model matcher.
      */
-    protected ?\Closure $eagerMatcher)
+        protected ?\Closure $eagerMatcher)
     {
         parent::__construct($builder, $model);
     }

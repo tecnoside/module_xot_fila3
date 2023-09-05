@@ -28,7 +28,7 @@ trait SushiConfigCrud
                 $data = array_merge($data, $model->toArray());
 
                 $config_name = $model->config_name;
-                if (class_exists('\\' . \Modules\Tenant\Services\TenantService::class)) {
+                if (class_exists('\\'.\Modules\Tenant\Services\TenantService::class)) {
                     $config_name = \Modules\Tenant\Services\TenantService::getName().'/'.$config_name;
                 }
                 $config_path = config_path($config_name.'.php');
@@ -65,7 +65,7 @@ trait SushiConfigCrud
                 $data = $model->toArray();
 
                 $config_name = $model->config_name;
-                if (class_exists('\\' . \Modules\Tenant\Services\TenantService::class)) {
+                if (class_exists('\\'.\Modules\Tenant\Services\TenantService::class)) {
                     $config_name = \Modules\Tenant\Services\TenantService::getName().'/'.$config_name;
                 }
                 $config_path = config_path($config_name.'.php');
@@ -75,7 +75,7 @@ trait SushiConfigCrud
                     $original = [];
                 }
                 $up = collect($original)->groupBy('id')->map(
-                    fn($item) => $item->first()
+                    fn ($item) => $item->first()
                 )->all();
                 $id = $data['id'];
                 $up[$id] = $data;
@@ -94,7 +94,7 @@ trait SushiConfigCrud
             $data = $model->toArray();
 
             $config_name = $model->config_name;
-            if (class_exists('\\' . \Modules\Tenant\Services\TenantService::class)) {
+            if (class_exists('\\'.\Modules\Tenant\Services\TenantService::class)) {
                 $config_name = \Modules\Tenant\Services\TenantService::getName().'/'.$config_name;
             }
             $config_path = config_path($config_name.'.php');
@@ -104,7 +104,7 @@ trait SushiConfigCrud
                 $original = [];
             }
             $up = collect($original)->groupBy('id')->map(
-                fn($item) => $item->first()
+                fn ($item) => $item->first()
             )->all();
             $id = $data['id'];
             unset($up['id']);

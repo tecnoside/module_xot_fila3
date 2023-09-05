@@ -41,7 +41,7 @@ trait Cacheable
      */
     public static function getCacheInstance(): CacheManager
     {
-        if (!self::$cache instanceof \Illuminate\Cache\CacheManager) {
+        if (! self::$cache instanceof \Illuminate\Cache\CacheManager) {
             self::$cache = app('cache');
         }
 

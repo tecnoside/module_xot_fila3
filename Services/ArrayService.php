@@ -34,7 +34,7 @@ class ArrayService
 
     public static function getInstance(): self
     {
-        if (!self::$instance instanceof \Modules\Xot\Services\ArrayService) {
+        if (! self::$instance instanceof \Modules\Xot\Services\ArrayService) {
             self::$instance = new self();
         }
 
@@ -393,6 +393,7 @@ class ArrayService
             'text' => '.',
             // 'text'=>$text,
         ];
+
         return match ($out) {
             'link' => view()->make('ui::download_icon', $view_params),
             'download' => response()->download($pathToFile),
