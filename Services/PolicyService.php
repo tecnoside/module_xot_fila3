@@ -19,12 +19,12 @@ class PolicyService
     protected static array $in_vars = [];
 
     protected static array $out_vars = [];
-    private static ?PolicyService $instance = null;
+    private static ?PolicyService $policyService = null;
 
     public static function getInstance(): self
     {
-        if (null === self::$instance) {
-            self::$instance = new self();
+        if (!self::$policyService instanceof \Modules\Xot\Services\PolicyService) {
+            self::$policyService = new self();
         }
 
         /*
@@ -32,7 +32,7 @@ class PolicyService
             throw new \Exception('something gone bad');
         }
         */
-        return self::$instance;
+        return self::$policyService;
     }
 
     /**
@@ -56,8 +56,8 @@ class PolicyService
 
         self::$in_vars['namespace'] = $class_ns;
         self::$in_vars['class'] = $class;
-        $autoloader_reflector = new \ReflectionClass(self::$in_vars['class']);
-        $filename = $autoloader_reflector->getFileName();
+        $reflectionClass = new \ReflectionClass(self::$in_vars['class']);
+        $filename = $reflectionClass->getFileName();
         if (false === $filename) {
             throw new \Exception('autoloader_reflector error');
         }

@@ -11,11 +11,7 @@ class MorphedByManyAction
 {
     use QueueableAction;
 
-    public function __construct()
-    {
-    }
-
-    public function execute(Model $row, \Modules\Xot\DTOs\RelationDTO $relation): void
+    public function execute(Model $model, \Modules\Xot\DTOs\RelationDTO $relationDTO): void
     {
         dddx('wip');
     }

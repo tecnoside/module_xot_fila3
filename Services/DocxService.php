@@ -34,13 +34,9 @@ class DocxService
 
     public array $values;
 
-    public function __construct()
-    {
-    }
-
     public static function getInstance(): self
     {
-        if (null === self::$instance) {
+        if (!self::$instance instanceof \Modules\Xot\Services\DocxService) {
             self::$instance = new self();
         }
 
@@ -111,8 +107,8 @@ class DocxService
             return [];
         }
 
-        $data = collect($row)->map(
-            function ($item, $key) use ($prefix, $row) {
+        return collect($row)->map(
+            function ($item, string $key) use ($prefix, $row): array {
                 if ($row->$key instanceof Carbon) {
                     $item = $row->$key->format('d/m/Y');
                     $item_year = $row->$key->format('Y');
@@ -147,8 +143,6 @@ class DocxService
         )
             ->collapse()
             ->all();
-
-        return $data;
     }
 
     /**
@@ -177,26 +171,23 @@ class DocxService
         // $arr = $row->toArray();
         // dddx($arr);
         $data = collect($arr)->map(
-            function ($item, $key) use ($row, $prefix, $arr) {
+            function ($item, string $key) use ($row, $prefix, $arr): array {
                 // *
-                if ('' !== $arr[$key] && \is_object($row->$key)) {
-                    if ($row->$key instanceof Carbon) {
-                        try {
-                            $item = $row->$key->format('d/m/Y');
-                        } catch (\Exception $e) {
-                            return [
-                                $prefix.'.'.$key => $item,
-                            ];
-                        }
-
-                        // Carbon::setLocale('it');
+                if ('' !== $arr[$key] && \is_object($row->$key) && $row->$key instanceof Carbon) {
+                    try {
+                        $item = $row->$key->format('d/m/Y');
+                    } catch (\Exception) {
                         return [
                             $prefix.'.'.$key => $item,
-                            $prefix.'.'.$key.'_locale' => ucfirst($row->$key->translatedFormat('d F Y')),
-                            $prefix.'.'.$key.'_dm' => ucfirst($row->$key->translatedFormat('d F')),
-                            $prefix.'.'.$key.'_year' => $row->$key->format('Y'),
                         ];
                     }
+                    // Carbon::setLocale('it');
+                    return [
+                        $prefix.'.'.$key => $item,
+                        $prefix.'.'.$key.'_locale' => ucfirst($row->$key->translatedFormat('d F Y')),
+                        $prefix.'.'.$key.'_dm' => ucfirst($row->$key->translatedFormat('d F')),
+                        $prefix.'.'.$key.'_year' => $row->$key->format('Y'),
+                    ];
                 }
                 // */
 

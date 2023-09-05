@@ -176,7 +176,7 @@ abstract class XotBaseServiceProvider extends ServiceProvider
             //    $filenames = [];
             // }
             foreach ($filenames as $filename) {
-                $info = pathinfo($filename);
+                $info = pathinfo((string) $filename);
 
                 // $tmp->namespace='\\'.$vendor.'\\'.$pack.'\\Events\\'.$info['filename'];
                 $event_name = $info['filename'];
@@ -224,8 +224,8 @@ abstract class XotBaseServiceProvider extends ServiceProvider
     public function loadEventsFrom(string $path): void
     {
         $events = $this->getEventsFrom($path);
-        foreach ($events as $v) {
-            Event::listen($v->event, $v->listener);
+        foreach ($events as $event) {
+            Event::listen($event->event, $event->listener);
         }
     }
 

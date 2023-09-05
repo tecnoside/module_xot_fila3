@@ -53,7 +53,7 @@ class ImportService
 
     public static function getInstance(): self
     {
-        if (null === self::$instance) {
+        if (!self::$instance instanceof \Modules\Xot\Services\ImportService) {
             self::$instance = new self();
         }
 
@@ -83,22 +83,22 @@ class ImportService
     {
         ini_set('max_execution_time', '3000');
 
-        $route_current = \Route::current();
+        $route_current = \Illuminate\Support\Facades\Route::current();
         $params = [];
-        if (null !== $route_current) {
+        if ($route_current instanceof \Illuminate\Routing\Route) {
             $params = $route_current->parameters();
         }
 
         // $cookieJar = new CookieJar();
 
-        if (null === $this->cookieJar) {
+        if (!$this->cookieJar instanceof \GuzzleHttp\Cookie\CookieJarInterface) {
             $this->initCookieJar();
         }
 
         $headers = [];
         $fields = ['User-Agent', 'Accept', 'Accept-Language', 'Accept-Encoding', 'Connection', 'Cookie', 'Upgrade-Insecure-Requests', 'Cache-Control'];
         foreach ($fields as $field) {
-            $headers[$field] = \Request::header($field);
+            $headers[$field] = \Illuminate\Support\Facades\Request::header($field);
         }
         $this->enableRedirect();
         $this->client_options['headers'] = $headers;
@@ -135,13 +135,10 @@ class ImportService
     public function enableCookie(array $cookies): void
     {
         // $cookieJar->setCookie(SetCookie::fromString('SID="AuthKey 23ec5d03-86db-4d80-a378-6059139a7ead"; expires=Thu, 24 Nov 2016 13:52:20 GMT; path=/; domain=.sketchup.com'));
-        if (null === $this->cookieJar) {
+        if (!$this->cookieJar instanceof \GuzzleHttp\Cookie\CookieJarInterface) {
             $this->cookieJar = $this->initCookieJar();
         }
 
-        /**
-         * @var \Illuminate\Contracts\Support\Arrayable
-         */
         $url_info = parse_url($this->client_options['base_uri']);
 
         // $domain = $url_info['host'];
@@ -218,9 +215,6 @@ class ImportService
             $this->importInit();
         }
         if (! isset($this->client_options['base_uri'])) {
-            /**
-             * @var array
-             */
             $url_info = parse_url($url);
             $this->client_options['base_uri'] = collect($url_info)->get('scheme').'://'.collect($url_info)->get('host');
 
@@ -238,7 +232,7 @@ class ImportService
 
         $base_uri = $this->client_options['base_uri'];
         if (Str::startsWith($url, $base_uri)) {
-            $url = substr($url, \strlen($base_uri));
+            $url = substr($url, \strlen((string) $base_uri));
         }
         try {
             $res = $this->client->request($method, $url, array_merge($this->client_options, $attrs));
@@ -246,7 +240,7 @@ class ImportService
 
             $this->client_options['headers']['Referer'] = $this->client_options['base_uri'].$url;
             $html = (string) $res->getBody();
-        } catch (GuzzleException $e) {
+        } catch (GuzzleException) {
             $html = null;
         }
 
@@ -299,9 +293,8 @@ class ImportService
     public function getCacheKey(string $method, string $url, array $attrs = []): string
     {
         $key = json_encode(['method' => $method, 'url' => $url, 'attrs' => $attrs]);
-        $key .= '_1';
 
-        return $key;
+        return $key . '_1';
     }
 
     public function cacheRequest(string $method, string $url, array $attrs = []): string
@@ -309,7 +302,7 @@ class ImportService
         $key = $this->getCacheKey($method, $url, $attrs = []);
         $value = Cache::store('file')->rememberForever(
             $key,
-            function () use ($method, $url, $attrs) {
+            function () use ($method, $url, $attrs): string {
                 $body = $this->gRequest($method, $url, $attrs);
 
                 return (string) $body;
@@ -330,9 +323,6 @@ class ImportService
     {
         // --- uguale ma al posto di usare il sistema cache usa i file
         if (! isset($this->client_options['base_uri'])) {
-            /**
-             * @var array
-             */
             $parse_url = parse_url($url);
             $url_info = collect($parse_url);
             if (null !== $url_info->get('scheme') && null !== $url_info->get('host')) {
@@ -350,22 +340,14 @@ class ImportService
         // $params=['method'=>$method,'url'=>$url,'attrs'=>$attrs];
         // $key=json_encode(array_values($params));
         // $key=str_slug
-        if (\Storage::disk('cache')->exists($file_path)) {
-            $content = \Storage::disk('cache')->get($file_path);
+        if (\Illuminate\Support\Facades\Storage::disk('cache')->exists($file_path)) {
+            $content = \Illuminate\Support\Facades\Storage::disk('cache')->get($file_path);
             $this->client_options['headers']['referer'] = $url;
 
             return (string) $content;
         }
         $body = $this->gRequest($method, (string) $url, $attrs);
-        /*
-        if (isset($gres->is_error)) {
-            $body = '';
-        } else {
-            $body = $gres->getBody();
-        }
-        */
-
-        $res = \Storage::disk('cache')->put($file_path, (string) $body);
+        \Illuminate\Support\Facades\Storage::disk('cache')->put($file_path, (string) $body);
         $this->client_options['headers']['referer'] = $url;
 
         // echo '<br/>da sito ['.$url.']';
@@ -384,8 +366,7 @@ class ImportService
             return [];
         }
         $linked = new \stdClass();
-        $location_url = config('services.bing.url_location_api').'?query='.urlencode($address).'&maxResults=5&key='.config('services.bing.maps_key');
-        $location_url = config('services.google.url_location_api').'?address='.urlencode($address).'&key='.config('services.google.maps_key');
+        $location_url = config('services.google.url_location_api').'?address='.urlencode((string) $address).'&key='.config('services.google.maps_key');
         $loc_json = $this->cacheRequest('GET', $location_url);
 
         $loc_obj = (object) json_decode($loc_json);
@@ -474,7 +455,7 @@ class ImportService
             $url,
             [
                 'sink' => $stream,
-                'progress' => function ($download_size, $downloaded, $upload_size, $uploaded): void {
+                'progress' => function (string $download_size, string $downloaded, string $upload_size, string $uploaded): void {
                     // $this->downloadProgress($download_size, $downloaded, $upload_size, $uploaded);
                     echo '<br>['.$download_size.']['.$downloaded.']['.$upload_size.']['.$uploaded.']';
                 },
@@ -539,21 +520,17 @@ class ImportService
     /**
      * @return mixed|null
      */
-    public function pexels(array $params)
+    public function pexels(array $params): void
     {
-        $lang = app()->getLocale();
-        $q = 'necessary';
+        app()->getLocale();
         extract($params);
-        // --- devono mandare via mail api key ..
-        // dd($this->client);
-        $url = 'https://api.pexels.com/v1/search?query='.$q.'&per_page=15&page=1';
     }
 
     // -------------------------------------------------------------------------
 
     public function trans(array $params): mixed
     {
-        $i = rand(0, 20);
+        $i = random_int(0, 20);
         if ($i > 0 && $i < 10) {
             return $this->googleTrans($params);
         }
@@ -564,7 +541,7 @@ class ImportService
     /**
      * @return mixed|null
      */
-    public function apertiumTrans(array $params)
+    public function apertiumTrans(array $params): void
     {
         // https://github.com/24aitor/Laralang/blob/master/src/Builder/ApertiumTrans.php
         // $host = 'api.apertium.org';
@@ -574,14 +551,13 @@ class ImportService
 
     public function googleTrans(array $params): string
     {
-        $host = 'translate.googleapis.com';
         $q = 'necessary';
         $from = 'en';
         $to = 'it';
         extract($params);
         $q = urlencode($q);
         $urldata = file_get_contents("https://translate.googleapis.com/translate_a/single?client=gtx&sl={$from}&tl={$to}&dt=t&q={$q}");
-        $tr = (string) $urldata;
+        $tr = $urldata;
         $tr = mb_substr($tr, 3, -6);
         $tr .= '["';
         $tr = explode('],[', $tr);
@@ -635,24 +611,17 @@ class ImportService
         $html = '';
         $node_tag = '';
         extract($params);
-        $crawler = new Crawler((string) $html);
+        $crawler = new Crawler($html);
         $forms = $crawler->filter($node_tag)->each(
-            function (Crawler $node) {
-                return [
-                    'action' => $node->attr('action'),
-                    'method' => $node->attr('method'),
-                    'fields' => $node->filter('input')->each(
-                        function (Crawler $node1) {
-                            return [$node1->attr('name') => $node1->attr('value')];
-                        }
-                    ),
-                ];
-            }
+            fn(Crawler $node): array => [
+                'action' => $node->attr('action'),
+                'method' => $node->attr('method'),
+                'fields' => $node->filter('input')->each(
+                    fn(Crawler $crawler): array => [$crawler->attr('name') => $crawler->attr('value')]
+                ),
+            ]
         );
         foreach ($forms as $k => $v) {
-            /**
-             * @var array
-             */
             $v_fields = $v['fields'];
             $forms[$k]['fields'] = collect($v_fields)->collapse()->all();
         }

@@ -32,7 +32,7 @@ abstract class XotBaseRouteServiceProvider extends RouteServiceProvider
      */
     public function boot(): void
     {
-        \Config::set('extra_conn', \Request::segment(2)); // Se configurato va a prendere db diverso
+        \Illuminate\Support\Facades\Config::set('extra_conn', \Illuminate\Support\Facades\Request::segment(2)); // Se configurato va a prendere db diverso
         if (method_exists($this, 'bootCallback')) {
             $this->bootCallback();
         }

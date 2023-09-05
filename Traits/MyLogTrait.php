@@ -31,7 +31,7 @@ trait MyLogTrait
             function ($model): void {
                 // dddx(static::$logModel);
                 $user = auth()->user();
-                if (null !== $user) {
+                if ($user instanceof \Illuminate\Contracts\Auth\Authenticatable) {
                     $model->created_by = $user->handle;
                     $model->updated_by = $user->handle.'';
                 }
@@ -51,13 +51,13 @@ trait MyLogTrait
                 $parz['id_tbl'] = $model->getKey(); // work
                 if (\is_object($model)) {
                     $data = collect((array) $model)->filter(
-                        function ($value, $key) {
+                        function ($value, $key): bool {
                             $key = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '', $key);
 
                             return '*attributes' === $key;
                         }
                     )->values()[0];
-                    $parz['data'] = json_encode($data);
+                    $parz['data'] = json_encode($data, JSON_THROW_ON_ERROR);
                 }
 
                 $log = static::$logModel;
@@ -65,7 +65,7 @@ trait MyLogTrait
 
                 if (auth()->check()) {
                     $user = auth()->user();
-                    if (null !== $user) {
+                    if ($user instanceof \Illuminate\Contracts\Auth\Authenticatable) {
                         $model->updated_by = $user->handle.'';
                     }
                 }

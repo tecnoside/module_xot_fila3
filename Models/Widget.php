@@ -99,7 +99,7 @@ class Widget extends BaseModel
         }
         $view .= '.'.$this->blade;
         $view_params = [
-            'lang' => \App::getLocale(),
+            'lang' => \Illuminate\Support\Facades\App::getLocale(),
             'view' => $view,
             'row' => $this->linked,
             'widget' => $this,

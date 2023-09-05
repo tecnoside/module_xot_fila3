@@ -18,15 +18,15 @@ class NavService
 {
     public static function yearNav(): Renderable
     {
-        $request = \Request::capture();
-        $routename = \Route::currentRouteName();
+        $request = \Illuminate\Support\Facades\Request::capture();
+        $routename = \Illuminate\Support\Facades\Route::currentRouteName();
         // $request->route('parameter_name')
         // $request->route()->paremeters()
         // 20     Cannot call method parameters() on mixed
         // $paz = request()->route()->parameters();
-        $route_current = \Route::current();
+        $route_current = \Illuminate\Support\Facades\Route::current();
         $params = [];
-        if (null !== $route_current) {
+        if ($route_current instanceof \Illuminate\Routing\Route) {
             $params = $route_current->parameters();
         }
         $year = $request->input('year', date('Y'));
@@ -38,14 +38,10 @@ class NavService
             $tmp['title'] = $year;
             // Strict comparison using === between numeric-string and (float|int) will always evaluate to false
             // if (date('Y') === $params['year']) {
-            if (intval($params['year']) === intval(date('Y'))) {
+            if ((int) $params['year'] === (int) date('Y')) {
                 $tmp['title'] = '['.$tmp['title'].']';
             }
-            if ($year === $params['year']) {
-                $tmp['active'] = 1;
-            } else {
-                $tmp['active'] = 0;
-            }
+            $tmp['active'] = $year === $params['year'] ? 1 : 0;
 
             if (null === $routename) {
                 throw new \Exception('routename is null');
@@ -69,12 +65,12 @@ class NavService
     public static function monthYearNav(): Renderable
     {
         // possiamo trasformarlo in una macro
-        $request = \Request::capture();
-        $routename = \Route::currentRouteName();
+        $request = \Illuminate\Support\Facades\Request::capture();
+        $routename = \Illuminate\Support\Facades\Route::currentRouteName();
 
-        $route_current = \Route::current();
+        $route_current = \Illuminate\Support\Facades\Route::current();
         $params = [];
-        if (null !== $route_current) {
+        if ($route_current instanceof \Illuminate\Routing\Route) {
             $params = $route_current->parameters();
         }
 
@@ -96,11 +92,7 @@ class NavService
             if (date('Y') === $params['year'] && date('m') === $params['month']) {
                 $tmp['title'] = '['.$tmp['title'].']';
             }
-            if ($year === $params['year'] && $month === $params['month']) {
-                $tmp['active'] = 1;
-            } else {
-                $tmp['active'] = 0;
-            }
+            $tmp['active'] = $year === $params['year'] && $month === $params['month'] ? 1 : 0;
             if (null === $routename) {
                 throw new \Exception('routename is null');
             }

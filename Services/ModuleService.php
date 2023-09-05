@@ -25,7 +25,7 @@ class ModuleService
      */
     public static function getInstance(): self
     {
-        if (! self::$_instance) {
+        if (!self::$_instance instanceof \Modules\Xot\Services\ModuleService) {
             self::$_instance = new self();
         }
 
@@ -93,7 +93,7 @@ class ModuleService
                     if (! $reflection_class->isAbstract()) {
                         $data[$tmp->name] = $tmp->class;
                     }
-                } catch (\Exception $e) {
+                } catch (\Exception) {
                 }
             }
         }

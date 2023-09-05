@@ -29,7 +29,7 @@ class XLSService
      */
     public static function getInstance(): self
     {
-        if (null === self::$instance) {
+        if (!self::$instance instanceof \Modules\Xot\Services\XLSService) {
             self::$instance = new self();
         }
 
@@ -51,7 +51,7 @@ class XLSService
     {
         $numeric = $num % 26;
         $letter = chr(65 + $numeric);
-        $num2 = intval($num / 26);
+        $num2 = (int) ($num / 26);
         if ($num2 > 0) {
             return $this->getNameFromNumber($num2 - 1).$letter;
         }
@@ -108,13 +108,13 @@ class XLSService
         if (! method_exists($file, 'getRealPath')) {
             throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
-        $path = $file->getRealPath();
+        $realPath = $file->getRealPath();
 
-        if (false === $path) {
+        if (false === $realPath) {
             throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
 
-        return $this->fromFilePath($path);
+        return $this->fromFilePath($realPath);
     }
 
     /**
@@ -131,10 +131,10 @@ class XLSService
         // $reader = Excel::import($path);
 
         $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($path);
-        $sheet = $spreadsheet->getActiveSheet();
-        $row_limit = $sheet->getHighestDataRow();
-        $column_limit = $sheet->getHighestDataColumn();
-        $row_range = range(1, $row_limit);
+        $worksheet = $spreadsheet->getActiveSheet();
+        $highestDataRow = $worksheet->getHighestDataRow();
+        $column_limit = $worksheet->getHighestDataColumn();
+        $row_range = range(1, $highestDataRow);
         $column_range = range('A', $column_limit);
 
         $data = collect([]);
@@ -142,7 +142,7 @@ class XLSService
             $tmp = [];
             foreach ($column_range as $col) {
                 $cell = $col.$row;
-                $tmp[$col] = $sheet->getCell($cell)->getValue();
+                $tmp[$col] = $worksheet->getCell($cell)->getValue();
             }
             $data->push(collect($tmp));
         }

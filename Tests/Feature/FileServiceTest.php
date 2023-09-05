@@ -11,7 +11,7 @@ class FileServiceTest extends TestCase
     /**
      * @test
      */
-    public function asset()
+    public function asset(): void
     {
         static::assertTrue(true);
     }
@@ -19,7 +19,7 @@ class FileServiceTest extends TestCase
     /**
      * @test
      */
-    public function viewNamespaceToDir()
+    public function viewNamespaceToDir(): void
     {
         static::assertTrue(true);
     }
@@ -27,7 +27,7 @@ class FileServiceTest extends TestCase
     /**
      * @test
      */
-    public function getViewNameSpacePath()
+    public function getViewNameSpacePath(): void
     {
         static::assertTrue(true);
     }
@@ -35,7 +35,7 @@ class FileServiceTest extends TestCase
     /**
      * @test
      */
-    public function getViewNameSpaceUrl()
+    public function getViewNameSpaceUrl(): void
     {
         static::assertTrue(true);
     }
@@ -43,7 +43,7 @@ class FileServiceTest extends TestCase
     /**
      * @test
      */
-    public function getViewNameSpaceUrlNomodule()
+    public function getViewNameSpaceUrlNomodule(): void
     {
         static::assertTrue(true);
     }
@@ -51,7 +51,7 @@ class FileServiceTest extends TestCase
     /**
      * @test
      */
-    public function path2Url()
+    public function path2Url(): void
     {
         static::assertTrue(true);
     }
@@ -59,7 +59,7 @@ class FileServiceTest extends TestCase
     /**
      * @test
      */
-    public function viewThemeNamespaceToAsset()
+    public function viewThemeNamespaceToAsset(): void
     {
         static::assertTrue(true);
     }
@@ -67,7 +67,7 @@ class FileServiceTest extends TestCase
     /**
      * @test
      */
-    public function viewNamespaceToAsset()
+    public function viewNamespaceToAsset(): void
     {
         static::assertTrue(true);
     }
@@ -75,7 +75,7 @@ class FileServiceTest extends TestCase
     /**
      * @test
      */
-    public function getFileUrl()
+    public function getFileUrl(): void
     {
         static::assertTrue(true);
     }
@@ -83,7 +83,7 @@ class FileServiceTest extends TestCase
     /**
      * @test
      */
-    public function viewNamespaceToUrl()
+    public function viewNamespaceToUrl(): void
     {
         static::assertTrue(true);
     }
@@ -91,7 +91,7 @@ class FileServiceTest extends TestCase
     /**
      * @test
      */
-    public function getRealFile()
+    public function getRealFile(): void
     {
         static::assertTrue(true);
     }

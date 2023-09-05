@@ -40,8 +40,8 @@ trait Updater
          * need to have the updated_by field here as well.
          */
         static::creating(
-            function ($model) {
-                if (null !== auth()->user()) {
+            function ($model): void {
+                if (auth()->user() instanceof \Illuminate\Contracts\Auth\Authenticatable) {
                     $model->created_by = auth()->user()->handle ?? '';
                     $model->updated_by = auth()->user()->handle ?? '';
                 }
@@ -52,7 +52,7 @@ trait Updater
          * updating.
          */
         static::updating(
-            function ($model) {
+            function ($model): void {
                 $model->updated_by = auth()->user()->handle ?? '';
             }
         );

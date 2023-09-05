@@ -37,7 +37,6 @@ class RouteDomTest extends TestCase
         if ($depth > 4) {
             return;
         }
-        $i = 0;
 
         foreach ($urls as $url) {
             /*
@@ -45,7 +44,7 @@ class RouteDomTest extends TestCase
                 return;
             }
             */
-            $url = str_replace('index.php', '', $url);
+            $url = str_replace('index.php', '', (string) $url);
             if (null === $url) {
                 throw new \Exception('url is null');
             }
@@ -59,7 +58,7 @@ class RouteDomTest extends TestCase
             }
             // dd(get_class_methods($response));
             // dd($response->streamedContent());The response is not a streamed response
-            $status = (int) $response->status();
+            $status = $response->status();
             if (! \in_array($status, [200, 302], true)) {
                 echo $base_url.$url.' (FAILED) did not return a 200 or 302 ['.$response->status().'].'.\chr(13);
                 // dd($base_url.$url);
@@ -73,16 +72,12 @@ class RouteDomTest extends TestCase
             $dom = $this->dom($html);
             // $links = $dom->filter('a')->links();
             $links = $dom->filter('a')->each(
-                function ($node) {
-                    return $node->attr('href');
-                }
+                fn($node) => $node->attr('href')
             );
             $links = collect($links)->filter(
-                function ($item) {
-                    return ! Str::startsWith($item, 'mailto:')
-                        && ! Str::startsWith($item, 'https://mail.')
-                        && Str::startsWith($item, '/');
-                }
+                fn($item): bool => ! Str::startsWith($item, 'mailto:')
+                    && ! Str::startsWith($item, 'https://mail.')
+                    && Str::startsWith($item, '/')
             )->all();
 
             $this->checkLinks($links, $depth + 1);
@@ -96,9 +91,9 @@ class RouteDomTest extends TestCase
     */
     private function dom(string $html): \Symfony\Component\DomCrawler\Crawler
     {
-        $dom = new \Symfony\Component\DomCrawler\Crawler();
-        $dom->addHTMLContent($html, 'UTF-8');
+        $crawler = new \Symfony\Component\DomCrawler\Crawler();
+        $crawler->addHTMLContent($html, 'UTF-8');
 
-        return $dom;
+        return $crawler;
     }
 }

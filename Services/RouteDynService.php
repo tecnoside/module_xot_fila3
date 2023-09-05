@@ -39,7 +39,7 @@ class RouteDynService
         if (\in_array('prefix', array_keys($v), true)) {
             return $v['prefix'];
         }
-        $prefix = mb_strtolower($v['name']);
+        $prefix = mb_strtolower((string) $v['name']);
         // /*
         $param_name = self::getParamName($v, $namespace);
         if ('' !== $param_name) {
@@ -67,7 +67,7 @@ class RouteDynService
         if (\in_array('as', array_keys($v), true)) {
             return $v['as'];
         }
-        $as = (string) mb_strtolower($v['name']).'';
+        $as = mb_strtolower((string) $v['name']).'';
         $as = str_replace('/', '.', $as);
         Assert::string($as = preg_replace('/{.*}./', '', $as));
 
@@ -86,7 +86,7 @@ class RouteDynService
         // if($namespace!=null){
         $namespace = $v['name'];
         // }
-        $namespace = str_replace('{', '', $namespace);
+        $namespace = str_replace('{', '', (string) $namespace);
         $namespace = str_replace('}', '', $namespace);
         if ('' === $namespace) {
             return null;
@@ -160,7 +160,7 @@ class RouteDynService
             throw new \Exception('params_name is not an array');
         }
         $opts = [
-            'parameters' => [(string) mb_strtolower($v['name']) => implode('}/{', $params_name)],
+            'parameters' => [mb_strtolower((string) $v['name']) => implode('}/{', $params_name)],
             'names' => self::prefixedResourceNames(self::getAs($v, $namespace)),
         ];
         if (isset($v['only'])) {
@@ -170,8 +170,8 @@ class RouteDynService
             $opts['only'] = ['index'];
         }
         $where = [];
-        foreach ($params_name as $pn) {
-            $where[$pn] = '[0-9]+';
+        foreach ($params_name as $param_name) {
+            $where[$param_name] = '[0-9]+';
         }
         $opts['where'] = $where; // se c'e' "id_" di sicuro e' un numero
 
@@ -184,7 +184,7 @@ class RouteDynService
             return $v['controller'];
         }
         $v['controller'] = $v['name'];
-        $v['controller'] = str_replace('/', '_', $v['controller']);
+        $v['controller'] = str_replace('/', '_', (string) $v['controller']);
         $v['controller'] = str_replace('{', '', $v['controller']);
         $v['controller'] = str_replace('}', '', $v['controller']);
         if (! \is_string($v['controller'])) {
@@ -194,14 +194,14 @@ class RouteDynService
         $v['controller'] = Str::studly($v['controller']);
         // camel_case foo_bar  => fooBar
         // studly_case foo_bar => FooBar
-        $v['controller'] = $v['controller'].'Controller';
+        $v['controller'] .= 'Controller';
 
         return $v['controller'];
     }
 
     public static function getUri(array $v, ?string $namespace): string
     {
-        return mb_strtolower($v['name']);
+        return mb_strtolower((string) $v['name']);
     }
 
     public static function getMethod(array $v, ?string $namespace): array
@@ -243,11 +243,11 @@ class RouteDynService
         static::$curr=$curr;
         }*/
         reset($array);
-        foreach ($array as $k => $v) {
+        foreach ($array as $v) {
             $group_opts = self::getGroupOpts($v, $namespace);
             $v['group_opts'] = $group_opts;
             self::createRouteResource($v, $namespace);
-            \Route::group(
+            \Illuminate\Support\Facades\Route::group(
                 $group_opts,
                 function () use ($v, $namespace, $curr): void {
                     self::createRouteActs($v, $namespace, $curr);
@@ -268,8 +268,8 @@ class RouteDynService
         }
         $opts = self::getResourceOpts($v, $namespace);
         $controller = self::getController($v, $namespace);
-        $name = mb_strtolower($v['name']);
-        \Route::resource($name, $controller, $opts);
+        $name = mb_strtolower((string) $v['name']);
+        \Illuminate\Support\Facades\Route::resource($name, $controller, $opts);
         // ->where(['container1' => "^((?!create|edit).)*$"])  //BadMethodCallException Method Illuminate\Routing\PendingResourceRegistration::where does not exist.
         //  ->middleware('manageContainer','container1')// ->where(['id_'.$v['name'] => '[0-9]+']);
     }
@@ -313,7 +313,7 @@ class RouteDynService
         reset($v['acts']);
 
         $controller = self::getController($v, $namespace);
-        foreach ($v['acts'] as $k1 => $v1) {
+        foreach ($v['acts'] as $v1) {
             // try {
             $v1['controller'] = $controller; // le acts hanno il controller del padre
             // } catch (\Exception $e) {
@@ -335,7 +335,7 @@ class RouteDynService
                 Route::$method($uri, $callback);
             }
             */
-            \Route::match($method, $uri, $callback);
+            \Illuminate\Support\Facades\Route::match($method, $uri, $callback);
         } // endforeach
     }
 

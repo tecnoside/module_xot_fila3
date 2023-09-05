@@ -33,11 +33,11 @@ class ArtisanService
         // echo '<h3>['.TenantService::getName().']</h3>';
         // echo '<pre>'.print_r(TenantService::config('database'), true).'</pre>';
         // da fare anche in noconsole, e magari mettere un policy
-        $module_name = \Request::input('module', '');
+        $module_name = \Illuminate\Support\Facades\Request::input('module', '');
         switch ($act) {
             case 'migrate':
-                \DB::purge('mysql');
-                \DB::reconnect('mysql');
+                \Illuminate\Support\Facades\DB::purge('mysql');
+                \Illuminate\Support\Facades\DB::reconnect('mysql');
                 if ('' !== $module_name) {
                     echo '<h3>Module '.$module_name.'</h3>';
 
@@ -128,10 +128,8 @@ class ArtisanService
         $files = File::files(storage_path('logs'));
         $log = request('log', '');
         $content = '';
-        if ('' !== $log) {
-            if (File::exists(storage_path('logs/'.$log))) {
-                $content = File::get(storage_path('logs/'.$log));
-            }
+        if ('' !== $log && File::exists(storage_path('logs/'.$log))) {
+            $content = File::get(storage_path('logs/'.$log));
         }
         $pattern = '/url":"([^"]*)"/';
         preg_match_all($pattern, $content, $matches);

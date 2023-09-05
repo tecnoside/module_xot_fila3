@@ -16,8 +16,8 @@ abstract class XotBaseFilamentMiddleware extends Middleware
 
     protected function authenticate($request, array $guards): void
     {
-        $context = $this->getContextName();
-        Assert::string($guardName = config("{$context}.auth.guard"), 'fix config ['.$context.'.auth.guard]');
+        $contextName = $this->getContextName();
+        Assert::string($guardName = config("{$contextName}.auth.guard"), 'fix config ['.$contextName.'.auth.guard]');
         $guard = $this->auth->guard($guardName);
 
         if (! $guard->check()) {
@@ -41,9 +41,9 @@ abstract class XotBaseFilamentMiddleware extends Middleware
 
     protected function redirectTo($request): string
     {
-        $context = $this->getContextName();
+        $contextName = $this->getContextName();
 
-        return route("{$context}.auth.login");
+        return route("{$contextName}.auth.login");
     }
 
     /**
@@ -59,8 +59,8 @@ abstract class XotBaseFilamentMiddleware extends Middleware
      */
     private function getContextName(): string
     {
-        $module = $this->getModule();
-        if (! static::$context) {
+        $this->getModule();
+        if (static::$context === '' || static::$context === '0') {
             throw new \Exception('Context has to be defined in your class');
         }
 

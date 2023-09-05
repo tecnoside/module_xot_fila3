@@ -19,17 +19,17 @@ abstract class XotBaseViewModel implements Arrayable
     {
         return collect((new \ReflectionClass($this))->getMethods())
             ->reject(
-                fn (\ReflectionMethod $method) => \in_array($method->getName(), ['__construct', 'toArray'], true)
+                fn (\ReflectionMethod $reflectionMethod): bool => \in_array($reflectionMethod->getName(), ['__construct', 'toArray'], true)
             )
             ->filter(
-                fn (\ReflectionMethod $method) => \in_array(
+                fn (\ReflectionMethod $reflectionMethod): bool => \in_array(
                     'public',
-                    \Reflection::getModifierNames($method->getModifiers()),
+                    \Reflection::getModifierNames($reflectionMethod->getModifiers()),
                     true
                 )
             )
-            ->mapWithKeys(fn (\ReflectionMethod $method) => [
-                Str::snake($method->getName()) => $this->{$method->getName()}(),
+            ->mapWithKeys(fn (\ReflectionMethod $reflectionMethod): array => [
+                Str::snake($reflectionMethod->getName()) => $this->{$reflectionMethod->getName()}(),
             ])
             ->toArray();
     }

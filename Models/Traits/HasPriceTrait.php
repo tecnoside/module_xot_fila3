@@ -35,11 +35,7 @@ trait HasPriceTrait
 
     public function getSubtotalCurrencyAttribute($value): \Cknow\Money\Money
     {
-        if ($this->qty > 0) {
-            $value = $this->qty * $this->price;
-        } else {
-            $value = $this->price;
-        }
+        $value = $this->qty > 0 ? $this->qty * $this->price : $this->price;
 
         return @money($value, $this->currency);
     }

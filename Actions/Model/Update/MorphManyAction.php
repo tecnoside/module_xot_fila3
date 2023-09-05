@@ -11,16 +11,10 @@ class MorphManyAction
 {
     use QueueableAction;
 
-    public function __construct()
-    {
-    }
-
     /**
      * Undocumented function.
-     *
-     * @return void
      */
-    public function execute(Model $row, \Modules\Xot\DTOs\RelationDTO $relation)
+    public function execute(Model $model, \Modules\Xot\DTOs\RelationDTO $relationDTO): void
     {
         dddx('wip');
     }

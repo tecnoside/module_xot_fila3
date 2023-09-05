@@ -23,7 +23,7 @@ class PdfService
 
     public static function getInstance(): self
     {
-        if (null === self::$instance) {
+        if (!self::$instance instanceof \Modules\Xot\Services\PdfService) {
             self::$instance = new self();
         }
 
@@ -44,25 +44,24 @@ class PdfService
         if (! class_exists(\Jurosh\PDFMerge\PDFMerger::class)) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
-        $pdf = new \Jurosh\PDFMerge\PDFMerger();
+        $pdfMerger = new \Jurosh\PDFMerge\PDFMerger();
         $pdf_files = collect(File::files($path))->filter(
-            function ($file, $key) {
+            fn($file, $key): bool =>
                 // dddx(get_class_methods($file));
                 // dddx($file->getBasename());
-                return 'pdf' === $file->getExtension() && ! Str::startsWith($file->getBasename(), '_');
-            }
+                'pdf' === $file->getExtension() && ! Str::startsWith($file->getBasename(), '_')
         );
         foreach ($this->filenames as $filename) {
             // $pdf->addPDF($filename.'.pdf');
-            $pdf->addPDF($filename);
+            $pdfMerger->addPDF($filename);
         }
         foreach ($pdf_files as $pdf_file) {
             $pdf_path = $pdf_file->getRealPath();
             // echo '<br/> ADD: '.$pdf_path;
             // if(! Str::startsWith($file, '_')
-            $pdf->addPDF($pdf_path);
+            $pdfMerger->addPDF($pdf_path);
         }
-        $pdf->merge('file', $path.'/_all.pdf');
+        $pdfMerger->merge('file', $path.'/_all.pdf');
 
         return $this;
     }

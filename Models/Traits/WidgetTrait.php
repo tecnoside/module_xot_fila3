@@ -43,8 +43,8 @@ trait WidgetTrait
 
     // non sembra funzionare, perchè?
 
-    public function scopeOfLayoutPosition(Builder $query, string $layout_position): Builder
+    public function scopeOfLayoutPosition(Builder $builder, string $layout_position): Builder
     {
-        return $query->where('layout_position', $layout_position);
+        return $builder->where('layout_position', $layout_position);
     }
 }

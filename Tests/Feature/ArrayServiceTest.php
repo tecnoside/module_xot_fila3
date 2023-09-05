@@ -11,7 +11,7 @@ class ArrayServiceTest extends TestCase
     /**
      * @test
      */
-    public function toXLS()
+    public function toXLS(): void
     {
         static::assertTrue(true);
     }
@@ -19,7 +19,7 @@ class ArrayServiceTest extends TestCase
     /**
      * @test
      */
-    public function toXLSPhpoffice()
+    public function toXLSPhpoffice(): void
     {
         static::assertTrue(true);
     }
@@ -27,7 +27,7 @@ class ArrayServiceTest extends TestCase
     /**
      * @test
      */
-    public function save()
+    public function save(): void
     {
         static::assertTrue(true);
     }

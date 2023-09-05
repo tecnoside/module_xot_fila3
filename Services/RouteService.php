@@ -29,17 +29,11 @@ class RouteService
             return config()->get('in_admin');
         }
         */
-        if ('admin' === \Request::segment(1)) {
+        if ('admin' === \Illuminate\Support\Facades\Request::segment(1)) {
             return true;
         }
-        $segments = \Request::segments();
-        if (\count($segments) > 0 && 'livewire' === $segments[0]) {
-            if (true === session('in_admin')) {
-                return true;
-            }
-        }
-
-        return false;
+        $segments = \Illuminate\Support\Facades\Request::segments();
+        return (is_countable($segments) ? \count($segments) : 0) > 0 && 'livewire' === $segments[0] && true === session('in_admin');
     }
 
     // --- sarebbe deprecata ma il mal di testa
@@ -58,8 +52,8 @@ class RouteService
             $route = '#';
         }
         */
-        $route_action = (string) \Route::currentRouteAction();
-        $old_act = Str::snake(Str::after($route_action, '@'));
+        $route_action = (string) \Illuminate\Support\Facades\Route::currentRouteAction();
+        Str::snake(Str::after($route_action, '@'));
         // Cannot call method getName() on mixed.
         $routename = ''; // Request::route()->getName();
         $old_act_route = last(explode('.', $routename));
@@ -68,9 +62,9 @@ class RouteService
         }
 
         $routename_act = Str::before($routename, $old_act_route).''.$act;
-        $route_current = \Route::current();
+        $route_current = \Illuminate\Support\Facades\Route::current();
         $route_params = [];
-        if (null !== $route_current) {
+        if ($route_current instanceof \Illuminate\Routing\Route) {
             $route_params = $route_current->parameters();
             $routename = $route_current->getName();
         }
@@ -81,7 +75,7 @@ class RouteService
             $route_params = [];
         }
         */
-        if (\Route::has($routename_act)) {
+        if (\Illuminate\Support\Facades\Route::has($routename_act)) {
             $parz = array_merge($route_params, [$row]);
             $parz = array_merge($parz, $query);
             $route = route($routename_act, $parz);
@@ -365,7 +359,7 @@ class RouteService
      */
     public static function getAct(): string
     {
-        $route_action = \Route::currentRouteAction();
+        $route_action = \Illuminate\Support\Facades\Route::currentRouteAction();
         if (null === $route_action) {
             throw new \Exception('$route_action is null');
         }
@@ -389,7 +383,7 @@ class RouteService
      */
     public static function getModuleName(): string
     {
-        $route_action = \Route::currentRouteAction();
+        $route_action = \Illuminate\Support\Facades\Route::currentRouteAction();
         if (null === $route_action) {
             throw new \Exception('$route_action is null');
         }
@@ -404,7 +398,7 @@ class RouteService
      */
     public static function getControllerName(): string
     {
-        $route_action = \Route::currentRouteAction();
+        $route_action = \Illuminate\Support\Facades\Route::currentRouteAction();
         if (null === $route_action) {
             throw new \Exception('$route_action is null');
         }
@@ -414,8 +408,8 @@ class RouteService
 
     public static function getView(): string
     {
-        $tmp = self::getControllerName();
-        $tmp_arr = explode('\\', $tmp);
+        $controllerName = self::getControllerName();
+        $tmp_arr = explode('\\', $controllerName);
 
         $params = getRouteParameters();
         [$containers, $items] = params2ContainerItem($params);
@@ -424,9 +418,7 @@ class RouteService
 
         return collect($tmp_arr)
             ->filter(
-                function ($item) {
-                    return ! \in_array($item, ['Module', 'Item'], true);
-                }
+                fn($item): bool => ! \in_array($item, ['Module', 'Item'], true)
             )
             ->map(
                 function ($item) use ($params) {

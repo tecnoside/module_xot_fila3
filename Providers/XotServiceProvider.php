@@ -57,8 +57,8 @@ class XotServiceProvider extends XotBaseServiceProvider
     public function registerCallback(): void
     {
         // $this->loadHelpersFrom(__DIR__.'/../Helpers'); //non serve piu
-        $loader = AliasLoader::getInstance();
-        $loader->alias('Panel', 'Modules\Cms\Services\PanelService');
+        $aliasLoader = AliasLoader::getInstance();
+        $aliasLoader->alias('Panel', 'Modules\Cms\Services\PanelService');
 
         // $loader->alias(\Modules\Xot\Facades\Profile::class,
         // $this->registerPresenter();
@@ -72,9 +72,7 @@ class XotServiceProvider extends XotBaseServiceProvider
 
         $this->app->bind(
             'profile',
-            function () {
-                return new \Modules\Xot\Services\ProfileTest();
-            }
+            fn(): \Modules\Xot\Services\ProfileTest => new \Modules\Xot\Services\ProfileTest()
         );
     }
 
@@ -119,18 +117,15 @@ class XotServiceProvider extends XotBaseServiceProvider
 
     private function redirectSSL(): void
     {
-        if (config('xra.forcessl')) {
-            // --- meglio ficcare un controllo anche sull'env
-            if (isset($_SERVER['SERVER_NAME']) && 'localhost' !== $_SERVER['SERVER_NAME']
-                && isset($_SERVER['REQUEST_SCHEME']) && 'http' === $_SERVER['REQUEST_SCHEME']
-            ) {
-                URL::forceScheme('https');
-                /*
-                 * da fare in htaccess
-                 */
-                if (! request()->secure() /* && in_array(env('APP_ENV'), ['stage', 'production']) */) {
-                    exit(redirect()->secure(request()->getRequestUri()));
-                }
+        // --- meglio ficcare un controllo anche sull'env
+        if (config('xra.forcessl') && (isset($_SERVER['SERVER_NAME']) && 'localhost' !== $_SERVER['SERVER_NAME']
+            && isset($_SERVER['REQUEST_SCHEME']) && 'http' === $_SERVER['REQUEST_SCHEME'])) {
+            URL::forceScheme('https');
+            /*
+             * da fare in htaccess
+             */
+            if (! request()->secure() /* && in_array(env('APP_ENV'), ['stage', 'production']) */) {
+                exit(redirect()->secure(request()->getRequestUri()));
             }
         }
     }

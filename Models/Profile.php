@@ -107,8 +107,8 @@ class Profile extends BaseModel implements ModelWithUserContract, ModelProfileCo
     {
         // $user = TenantService::model('user'); //no bisgna guardare dentro config(auth  etc etc
         // $user_class = \get_class($user);
-        $user_class = getUserClass();
+        $userClass = getUserClass();
 
-        return $this->belongsTo($user_class);
+        return $this->belongsTo($userClass);
     }
 }

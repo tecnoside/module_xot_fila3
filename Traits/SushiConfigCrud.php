@@ -28,7 +28,7 @@ trait SushiConfigCrud
                 $data = array_merge($data, $model->toArray());
 
                 $config_name = $model->config_name;
-                if (class_exists('\Modules\Tenant\Services\TenantService')) {
+                if (class_exists('\\' . \Modules\Tenant\Services\TenantService::class)) {
                     $config_name = \Modules\Tenant\Services\TenantService::getName().'/'.$config_name;
                 }
                 $config_path = config_path($config_name.'.php');
@@ -40,7 +40,7 @@ trait SushiConfigCrud
                 $new = array_merge($original, [$data]);
                 $fillable = $model->getFillable();
                 $new = collect($new)->map(
-                    function ($item) use ($fillable) {
+                    function (array $item) use ($fillable): array {
                         foreach ($fillable as $v) {
                             if (! isset($item[$v])) {
                                 $item[$v] = null;
@@ -65,7 +65,7 @@ trait SushiConfigCrud
                 $data = $model->toArray();
 
                 $config_name = $model->config_name;
-                if (class_exists('\Modules\Tenant\Services\TenantService')) {
+                if (class_exists('\\' . \Modules\Tenant\Services\TenantService::class)) {
                     $config_name = \Modules\Tenant\Services\TenantService::getName().'/'.$config_name;
                 }
                 $config_path = config_path($config_name.'.php');
@@ -75,9 +75,7 @@ trait SushiConfigCrud
                     $original = [];
                 }
                 $up = collect($original)->groupBy('id')->map(
-                    function ($item) {
-                        return $item->first();
-                    }
+                    fn($item) => $item->first()
                 )->all();
                 $id = $data['id'];
                 $up[$id] = $data;
@@ -96,7 +94,7 @@ trait SushiConfigCrud
             $data = $model->toArray();
 
             $config_name = $model->config_name;
-            if (class_exists('\Modules\Tenant\Services\TenantService')) {
+            if (class_exists('\\' . \Modules\Tenant\Services\TenantService::class)) {
                 $config_name = \Modules\Tenant\Services\TenantService::getName().'/'.$config_name;
             }
             $config_path = config_path($config_name.'.php');
@@ -106,9 +104,7 @@ trait SushiConfigCrud
                 $original = [];
             }
             $up = collect($original)->groupBy('id')->map(
-                function ($item) {
-                    return $item->first();
-                }
+                fn($item) => $item->first()
             )->all();
             $id = $data['id'];
             unset($up['id']);

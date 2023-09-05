@@ -18,7 +18,7 @@ class PhoneValueObject
 
     public static function fromString(string $phone): PhoneValueObject
     {
-        if (! preg_match('/^\+1\d{10}$/', $phone)) {
+        if (preg_match('/^\+1\d{10}$/', $phone) === 0) {
             throw new \InvalidArgumentException('It is not valid phone value');
         }
 

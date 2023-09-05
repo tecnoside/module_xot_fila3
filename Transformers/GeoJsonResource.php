@@ -36,7 +36,7 @@ class GeoJsonResource extends ResCollection
      */
     public function toArray(\Illuminate\Http\Request $request): array
     {
-        $lang = app()->getLocale();
+        app()->getLocale();
         // 34     Parameter #1 $model of static method Modules\Cms\Services\PanelService::make()->get() expects Illuminate\Database\Eloquent\Model, $this(Modules\Xot\Transformers\GeoJsonResource) given.
 
         // 33     Access to an undefined property Modules\Xot\Transformers\GeoJsonResource::$post_id.
