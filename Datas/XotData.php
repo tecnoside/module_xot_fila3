@@ -36,6 +36,9 @@ class XotData extends Data
     public bool $register_pub_theme = false;
     public bool $register_collective = false;
 
+    public string $team_class = '\Modules\User\Models\Team';
+    public string $membership_class = '\Modules\User\Models\Membership';
+
     public ?string $super_admin = null;
 
     public static function make(): self
@@ -54,6 +57,16 @@ class XotData extends Data
         Assert::classExists($class = config('auth.providers.users.model'), 'check config auth');
 
         return $class;
+    }
+
+    public function getTeamClass(): string
+    {
+        return $this->team_class;
+    }
+
+    public function getMembershipClass(): string
+    {
+        return $this->membership_class;
     }
 
     public function getProfileClass(): string
