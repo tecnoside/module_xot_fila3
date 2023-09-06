@@ -14,6 +14,11 @@ abstract class XotBaseRelationManager extends RelationManager
 
     // protected static ?string $recordTitleAttribute = 'name';
 
+    public static function getModuleName(): string
+    {
+        return Str::between(static::$model, 'Modules\\', '\Filament');
+    }
+
     public static function trans(string $key): string
     {
         $moduleNameLow = Str::lower(static::getModuleName());

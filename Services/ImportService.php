@@ -551,16 +551,13 @@ final class ImportService
         return $this->mymemoryTrans($params);
     }
 
-    /**
-     * @return mixed|null
-     */
-    public function apertiumTrans(array $params): void
-    {
-        // https://github.com/24aitor/Laralang/blob/master/src/Builder/ApertiumTrans.php
-        // $host = 'api.apertium.org';
-        // $urldata = file_get_contents("http://$host/json/translate?q=$urlString&langpair=$this->from|$this->to");
-        // $data = json_decode($urldata, true);
-    }
+    // public function apertiumTrans(array $params): void
+    // {
+    // https://github.com/24aitor/Laralang/blob/master/src/Builder/ApertiumTrans.php
+    // $host = 'api.apertium.org';
+    // $urldata = file_get_contents("http://$host/json/translate?q=$urlString&langpair=$this->from|$this->to");
+    // $data = json_decode($urldata, true);
+    // }
 
     public function googleTrans(array $params): string
     {
