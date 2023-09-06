@@ -16,14 +16,14 @@ abstract class XotBaseRelationManager extends RelationManager
 
     public static function getModuleName(): string
     {
-        return Str::between(static::$model, 'Modules\\', '\Filament');
+        return Str::between(static::class, 'Modules\\', '\Filament');
     }
 
     public static function trans(string $key): string
     {
         $moduleNameLow = Str::lower(static::getModuleName());
-        Assert::notNull(static::$model);
-        $modelNameSlug = Str::kebab(class_basename(static::$model));
+        // Assert::notNull(static::$model);
+        $modelNameSlug = Str::kebab(class_basename(static::class));
         $res = $moduleNameLow.'::'.$modelNameSlug.'.'.$key;
 
         return __($res);

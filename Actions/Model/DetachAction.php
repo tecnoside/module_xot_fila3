@@ -18,6 +18,7 @@ class DetachAction
             return $model;
         }
 
+        // Access to an undefined property Illuminate\Database\Eloquent\Model::$pivot.
         $res = $model->pivot->delete();
         if ($res) {
             Session::flash('status', 'scollegato');

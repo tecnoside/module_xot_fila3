@@ -38,7 +38,7 @@ interface ModelProfileContract extends ModelContract
      *
      * @return $this
      */
-    public function assignRole(array $roles = []);
+    public function assignRole($roles = []);
 
     /**
      * Determine if the model has (one of) the given role(s).
@@ -54,7 +54,7 @@ interface ModelProfileContract extends ModelContract
      *
      * @param string|int|array|\Spatie\Permission\Contracts\Role|\Illuminate\Support\Collection $roles
      */
-    public function hasAnyRole(array $roles = []): bool;
+    public function hasAnyRole($roles = []): bool;
 
     /**
      * Determine if the model may perform the given permission.

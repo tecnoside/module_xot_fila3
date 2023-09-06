@@ -16,6 +16,7 @@ class PrepareDefaultNavigation
      */
     public function execute(string $module, string $context): void
     {
+        // Call to an undefined static method Filament\Facades\Filament::forContext().
         Filament::serving(
             static function () use ($module, $context): void {
                 Filament::forContext(
