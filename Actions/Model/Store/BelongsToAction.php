@@ -4,20 +4,19 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model\Store;
 
-use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\Xot\DTOs\RelationDTO;
 use Spatie\QueueableAction\QueueableAction;
 
-final class BelongsToAction
+class BelongsToAction
 {
     use QueueableAction;
 
     public function execute(Model $model, RelationDTO $relationDTO): void
     {
         if (! $relationDTO->rows instanceof BelongsTo) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         $related = $relationDTO->rows->create($relationDTO->data);

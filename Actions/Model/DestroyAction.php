@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model;
 
-use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Session;
 use Spatie\QueueableAction\QueueableAction;
 
-final class DestroyAction
+class DestroyAction
 {
     use QueueableAction;
 

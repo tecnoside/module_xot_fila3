@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Rules;
 
-use Exception;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Contracts\Validation\Rule;
 
 /**
  * Class DateTimeRule.
  */
-final class DateTimeRule implements Rule
+class DateTimeRule implements Rule
 {
     /**
      * @param string $attribute
@@ -29,7 +29,7 @@ final class DateTimeRule implements Rule
         } catch (Exception) {
             return false;
         }
-        
+
         /* -- non fa il suo dovere --
         request()->replace([$attribute=>$value_new]);
         */

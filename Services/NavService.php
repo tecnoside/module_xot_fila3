@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
-use Exception;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Request;
@@ -15,7 +14,7 @@ use function Safe\date;
 /**
  * Class NavService.
  */
-final class NavService
+class NavService
 {
     public static function yearNav(): Renderable
     {
@@ -30,7 +29,7 @@ final class NavService
         if ($route_current instanceof \Illuminate\Routing\Route) {
             $params = $route_current->parameters();
         }
-        
+
         $year = $request->input('year', date('Y'));
         --$year;
         $nav = [];
@@ -43,13 +42,13 @@ final class NavService
             if ((int) $params['year'] === (int) date('Y')) {
                 $tmp['title'] = '['.$tmp['title'].']';
             }
-            
+
             $tmp['active'] = $year === $params['year'] ? 1 : 0;
 
             if (null === $routename) {
-                throw new Exception('routename is null');
+                throw new \Exception('routename is null');
             }
-            
+
             $tmp['url'] = route($routename, $params);
             $nav[] = (object) $tmp;
             ++$year;
@@ -84,9 +83,9 @@ final class NavService
         $q = 2;
         $date = Carbon::create($year, $month, 1);
         if (false === $date) {
-            throw new Exception('carbon error');
+            throw new \Exception('carbon error');
         }
-        
+
         $d = $date->subMonths($q);
         $nav = [];
         for ($i = 0; $i < ($q * 2) + 1; ++$i) {
@@ -97,12 +96,12 @@ final class NavService
             if (date('Y') === $params['year'] && date('m') === $params['month']) {
                 $tmp['title'] = '['.$tmp['title'].']';
             }
-            
+
             $tmp['active'] = $year === $params['year'] && $month === $params['month'] ? 1 : 0;
             if (null === $routename) {
-                throw new Exception('routename is null');
+                throw new \Exception('routename is null');
             }
-            
+
             $tmp['url'] = route($routename, $params);
             $nav[] = (object) $tmp;
             $d->addMonth();

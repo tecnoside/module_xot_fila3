@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
-use Exception;
 use function count;
 
 use Illuminate\Support\Facades\Request;
@@ -17,14 +16,14 @@ use Illuminate\Support\Str;
  *
  * @method string urlAct($params)
  */
-final class RouteService
+class RouteService
 {
     public static function inAdmin(array $params = []): mixed
     {
         if (isset($params['in_admin'])) {
             return $params['in_admin'];
         }
-        
+
         // dddx(ThemeService::__getStatic('in_admin'));
         /* Cannot call method get() on mixed
         if (null !== config()->get('in_admin')) {
@@ -34,7 +33,7 @@ final class RouteService
         if ('admin' === Request::segment(1)) {
             return true;
         }
-        
+
         $segments = Request::segments();
 
         return (is_countable($segments) ? \count($segments) : 0) > 0 && 'livewire' === $segments[0] && true === session('in_admin');
@@ -62,7 +61,7 @@ final class RouteService
         $routename = ''; // Request::route()->getName();
         $old_act_route = last(explode('.', $routename));
         if (! \is_string($old_act_route)) {
-            throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
+            throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
         }
 
         $routename_act = Str::before($routename, $old_act_route).''.$act;
@@ -72,7 +71,7 @@ final class RouteService
             $route_params = $route_current->parameters();
             $routename = $route_current->getName();
         }
-        
+
         /*
         try {
             $route_params = optional(\Route::current())->parameters();
@@ -83,6 +82,7 @@ final class RouteService
         if (Route::has($routename_act)) {
             $parz = array_merge($route_params, [$row]);
             $parz = array_merge($parz, $query);
+
             return route($routename_act, $parz);
         }
 
@@ -202,11 +202,11 @@ final class RouteService
         if (inAdmin($params)) {
             $tmp[] = 'admin';
         }
-        
+
         for ($i = 0; $i <= $n; ++$i) {
             $tmp[] = 'container'.$i;
         }
-        
+
         $tmp[] = $act;
 
         return implode('.', $tmp);
@@ -360,22 +360,22 @@ final class RouteService
     /**
      * Function getAct.
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public static function getAct(): string
     {
         $route_action = Route::currentRouteAction();
         if (null === $route_action) {
-            throw new Exception('$route_action is null');
+            throw new \Exception('$route_action is null');
         }
-        
+
         $act = Str::after($route_action, '@');
 
         // --- i prossimi 2 if son per i controller con metodo invoke
         if (Str::contains($act, '\\')) {
             $act = Str::afterLast($act, '\\');
         }
-        
+
         if (Str::endsWith($act, 'Controller')) {
             $act = Str::before($act, 'Controller');
         }
@@ -386,13 +386,13 @@ final class RouteService
     /**
      * Function.
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public static function getModuleName(): string
     {
         $route_action = Route::currentRouteAction();
         if (null === $route_action) {
-            throw new Exception('$route_action is null');
+            throw new \Exception('$route_action is null');
         }
 
         return Str::between($route_action, 'Modules\\', '\Http');
@@ -401,13 +401,13 @@ final class RouteService
     /**
      * Function.
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public static function getControllerName(): string
     {
         $route_action = Route::currentRouteAction();
         if (null === $route_action) {
-            throw new Exception('$route_action is null');
+            throw new \Exception('$route_action is null');
         }
 
         return Str::between($route_action, 'Http\Controllers\\', 'Controller');
@@ -425,11 +425,12 @@ final class RouteService
 
         return collect($tmp_arr)
             ->filter(
-                static fn($item): bool => ! \in_array($item, ['Module', 'Item'], true)
+                static fn ($item): bool => ! \in_array($item, ['Module', 'Item'], true)
             )
             ->map(
                 static function ($item) use ($params) {
                     $item = Str::snake($item);
+
                     return $params[$item] ?? $item;
                 }
             )->implode('.');

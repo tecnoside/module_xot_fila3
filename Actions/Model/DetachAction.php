@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model;
 
-use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Session;
 use Spatie\QueueableAction\QueueableAction;
 
-final class DetachAction
+class DetachAction
 {
     use QueueableAction;
 
@@ -17,7 +17,7 @@ final class DetachAction
         if (property_exists($model, 'pivot') && null !== $model->pivot) {
             return $model;
         }
-        
+
         $res = $model->pivot->delete();
         if ($res) {
             Session::flash('status', 'scollegato');

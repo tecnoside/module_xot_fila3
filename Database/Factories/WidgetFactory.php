@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Database\Factories;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Model;
 use Modules\Xot\Models\Widget;
 
 /**
  * Undocumented class.
  */
-final class WidgetFactory extends Factory
+class WidgetFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.

@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers;
 
-use Modules\Xot\Providers\Traits\TranslatorTrait;
-use Modules\Xot\Services\ProfileTest;
-use Modules\Xot\Console\Commands\DatabaseBackUpCommand;
 use Illuminate\Database\Events\MigrationsEnded;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Artisan;
@@ -14,18 +11,21 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
+use Modules\Xot\Console\Commands\DatabaseBackUpCommand;
+use Modules\Xot\Providers\Traits\TranslatorTrait;
+use Modules\Xot\Services\ProfileTest;
 use Modules\Xot\View\Composers\XotComposer;
 
 /**
  * Class XotServiceProvider.
  */
-final class XotServiceProvider extends XotBaseServiceProvider
+class XotServiceProvider extends XotBaseServiceProvider
 {
     // use Traits\PresenterTrait;
     use TranslatorTrait;
 
     public string $module_name = 'xot';
-    
+
     /**
      * The module directory.
      */
@@ -76,7 +76,7 @@ final class XotServiceProvider extends XotBaseServiceProvider
 
         $this->app->bind(
             'profile',
-            static fn(): ProfileTest => new ProfileTest()
+            static fn (): ProfileTest => new ProfileTest()
         );
     }
 
@@ -147,7 +147,7 @@ final class XotServiceProvider extends XotBaseServiceProvider
     {
         Event::listen(
             MigrationsEnded::class,
-            static function () : void {
+            static function (): void {
                 Artisan::call('ide-helper:models -r -W');
             }
         );

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Database\Factories;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Model;
 use Modules\Xot\Models\Profile;
 
-final class ProfileFactory extends Factory
+class ProfileFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.

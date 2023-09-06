@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model\Update;
 
-use Modules\Xot\DTOs\RelationDTO;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Session;
+use Modules\Xot\DTOs\RelationDTO;
 use Spatie\QueueableAction\QueueableAction;
 
-final class BelongsToManyAction
+class BelongsToManyAction
 {
     use QueueableAction;
 
@@ -26,7 +26,7 @@ final class BelongsToManyAction
 
             return;
         }
-        
+
         $model->{$relationDTO->name}()->sync($relationDTO->data);
     }
 }

@@ -7,15 +7,12 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
-use Illuminate\Support\Collection;
-
 /**
  * Class ConfigService.
  */
-final class ConfigService
+class ConfigService
 {
     private static ?self $instance = null;
-    
 
     public function __construct()
     {

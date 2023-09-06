@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\DB;
 use Exception;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
 use function Safe\define;
@@ -27,7 +27,7 @@ if (! defined('STDIN')) {
 /**
  * Class ArtisanService.
  */
-final class ArtisanService
+class ArtisanService
 {
     /**
      * @throws FileNotFoundException
@@ -135,7 +135,7 @@ final class ArtisanService
         if ('' !== $log && File::exists(storage_path('logs/'.$log))) {
             $content = File::get(storage_path('logs/'.$log));
         }
-        
+
         $pattern = '/url":"([^"]*)"/';
         preg_match_all($pattern, $content, $matches);
 
@@ -249,7 +249,7 @@ final class ArtisanService
             Artisan::call($command, $arguments);
 
             return $output.'[<pre>'.Artisan::output().'</pre>]';  // dato che mi carico solo le route minime menufull.delete non esiste.. impostare delle route comuni.
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             // throw new Exception('['.__LINE__.']['.class_basename(__CLASS__).']');
             return '[<pre>'.$exception->getMessage().'</pre>]';
             // dddx(get_class_methods($e));

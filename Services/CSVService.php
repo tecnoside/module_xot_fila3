@@ -7,17 +7,14 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
-use Illuminate\Support\Collection;
-
 use function Safe\file;
 
 /**
  * Class CSVService.
  */
-final class CSVService
+class CSVService
 {
     private static ?self $instance = null;
-    
 
     public function __construct()
     {

@@ -8,7 +8,7 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  * Undocumented class.
  */
-final class CreateCacheLocksTable extends XotBaseMigration
+class CreateCacheLocksTable extends XotBaseMigration
 {
     /**
      * Run the migrations.
@@ -17,7 +17,7 @@ final class CreateCacheLocksTable extends XotBaseMigration
     {
         // -- CREATE --
         $this->tableCreate(
-            static function (Blueprint $blueprint) : void {
+            static function (Blueprint $blueprint): void {
                 $blueprint->string('key')->primary();
                 $blueprint->string('owner');
                 $blueprint->integer('expiration');

@@ -19,20 +19,20 @@ use Intervention\Image\Facades\Image;
 /**
  * Class ImageService.
  */
-final class ImageService
+class ImageService
 {
     private static ?self $_instance = null;
-    
+
     private \Intervention\Image\Image $image;
-    
+
     private int $width;
-    
+
     private int $height;
-    
+
     private string $src;
-    
+
     private string $dirname;
-    
+
     private ?string $filename = null;
 
     /**
@@ -65,7 +65,7 @@ final class ImageService
             if (null === $v) {
                 $v = '';
             }
-            
+
             $this->{$func}($v);
         }
 
@@ -81,15 +81,15 @@ final class ImageService
         if ('' === $val) {
             $val = $nophoto_path;
         }
-        
+
         if (Str::startsWith($val, '//')) {
             $val = 'http:'.$val;
         }
-        
+
         if (Str::startsWith($val, '/photos/')) {
             $val = public_path($val);
         }
-        
+
         try {
             $this->image = Image::make($val);
         } catch (Exception) {
@@ -107,16 +107,16 @@ final class ImageService
         if ('' === $val) {
             $val = public_path('img/nophoto.jpg');
         }
-        
+
         if (Str::startsWith($val, url(''))) { // se e' una immagine locale
             $val = public_path(substr($val, \strlen(url(''))));
         }
-        
+
         $str = '/laravel-filemanager/';
         if (Str::startsWith($val, $str)) {
             $val = public_path(substr($val, \strlen($str)));
         }
-        
+
         $this->src = $val;
 
         $this->setImg($val);
@@ -188,9 +188,9 @@ final class ImageService
     public function src(): string
     {
         if (null === $this->filename) {
-            throw new Exception('[.__LINE__.]['.class_basename(self::class).']');
+            throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
-        
+
         $src = '/'.str_replace(public_path('/'), '', $this->filename);
 
         return str_replace('//', '/', $src);

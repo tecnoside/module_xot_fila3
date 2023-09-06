@@ -23,7 +23,7 @@ use Webmozart\Assert\Assert;
 /**
  * Class FileService.
  */
-final class FileService
+class FileService
 {
     /**
      * 18     Method Modules\Xot\Services\FileService::asset() should return string but return statement is missing.

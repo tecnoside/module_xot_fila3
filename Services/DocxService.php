@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Illuminate\Contracts\Support\Arrayable;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 use PhpOffice\PhpWord\TemplateProcessor;
+
+use function Safe\json_decode;
 
 /*
 use PhpOffice\PhpWord\PhpWord;
@@ -24,15 +25,15 @@ https://code-boxx.com/convert-html-to-docx-using-php/
 
 */
 
-use function Safe\json_decode;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * Class DocxService.
  */
-final class DocxService
+class DocxService
 {
     private static ?self $instance = null;
-    
+
     public string $docx_input;
 
     public array $values;
@@ -84,14 +85,14 @@ final class DocxService
         $tpl = new TemplateProcessor($this->docx_input);
         // $tpl->setValue('customer_title', 'test');
         $tpl->setValues($this->values);
-        
+
         $info = pathinfo($this->docx_input);
         // dddx($info);
         $filename_out = $info['basename'];
         $filename_out_path = storage_path($filename_out);
         try {
             $tpl->saveAs($filename_out_path);
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             // handle exception
             dddx([$exception]);
         }
@@ -101,7 +102,7 @@ final class DocxService
 
     /**
      * @param Arrayable $row
-     * @param string                                  $prefix
+     * @param string    $prefix
      *
      * @return array
      */
@@ -112,7 +113,7 @@ final class DocxService
         }
 
         return collect($row)->map(
-            static function ($item, string $key) use ($prefix, $row) : array {
+            static function ($item, string $key) use ($prefix, $row): array {
                 if ($row->$key instanceof Carbon) {
                     $item = $row->$key->format('d/m/Y');
                     $item_year = $row->$key->format('Y');
@@ -143,6 +144,7 @@ final class DocxService
                 if (\is_string($item)) {
                     $item = str_replace('&', '&amp;', $item);
                 }
+
                 return [
                     $prefix.'.'.$key => $item,
                 ];
@@ -178,7 +180,7 @@ final class DocxService
         // $arr = $row->toArray();
         // dddx($arr);
         $data = collect($arr)->map(
-            static function ($item, string $key) use ($row, $prefix, $arr) : array {
+            static function ($item, string $key) use ($row, $prefix, $arr): array {
                 // *
                 if ('' !== $arr[$key] && \is_object($row->$key) && $row->$key instanceof Carbon) {
                     try {
@@ -220,6 +222,7 @@ final class DocxService
                 if (\is_string($item)) {
                     $item = str_replace('&', '&amp;', $item);
                 }
+
                 return [$prefix.'.'.$key => $item];
             }
         )->collapse()

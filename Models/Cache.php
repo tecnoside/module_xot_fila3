@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Models;
 
-final class Cache extends BaseModel
+class Cache extends BaseModel
 {
     protected $table = 'cache';
 

@@ -4,54 +4,54 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Datas;
 
-use Modules\User\Models\Team;
-use Modules\User\Models\Membership;
 use Illuminate\Database\Eloquent\Model;
+use Modules\User\Models\Membership;
+use Modules\User\Models\Team;
 use Spatie\LaravelData\Data;
 use Webmozart\Assert\Assert;
 
 /**
  * Undocumented class.
  */
-final class XotData extends Data
+class XotData extends Data
 {
     public string $main_module;
-     // => 'Blog'
+    // => 'Blog'
     public string $param_name = 'noset';
 
     public string $adm_home = '01';
-    
+
     public string $adm_theme; // ' => 'AdminLTE',
     // public bool $enable_ads;//' => '1',
 
     public string $primary_lang = 'it';
-    
+
     // 'pub_theme' => 'DirectoryBs5',
     public string $pub_theme;
-     // ' => 'One',
+    // ' => 'One',
     public string $search_action = 'it/videos';
-    
+
     public bool $show_trans_key = false;
-    
+
     public string $register_type = '0';
-    
+
     public string $verification_type = '';
-    
+
     public bool $login_verified = false;
 
     public bool $disable_frontend_dynamic_route = false;
-    
+
     public bool $disable_admin_dynamic_route = false;
 
     public bool $register_adm_theme = false;
-    
+
     public bool $register_pub_theme = false;
-    
+
     public bool $register_collective = false;
 
-    public string $team_class = '\\' . Team::class;
-    
-    public string $membership_class = '\\' . Membership::class;
+    public string $team_class = '\\'.Team::class;
+
+    public string $membership_class = '\\'.Membership::class;
 
     public ?string $super_admin = null;
 

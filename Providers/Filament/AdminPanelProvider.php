@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers\Filament;
 
-final class AdminPanelProvider extends XotBasePanelProvider
+class AdminPanelProvider extends XotBasePanelProvider
 {
     protected string $module = 'Xot';
 }

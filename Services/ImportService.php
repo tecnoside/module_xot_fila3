@@ -43,7 +43,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Class ImportService.
  */
-final class ImportService
+class ImportService
 {
     private static ?self $instance = null;
 

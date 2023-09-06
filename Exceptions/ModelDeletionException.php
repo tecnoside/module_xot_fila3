@@ -7,11 +7,10 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Exceptions;
 
-use Exception;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 
-final class ModelDeletionException extends ApplicationException
+class ModelDeletionException extends ApplicationException
 {
     private readonly string $model;
 
@@ -29,7 +28,7 @@ final class ModelDeletionException extends ApplicationException
     {
         $res = trans('exception.model_not_deleted.help');
         if (! \is_string($res)) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         return $res;
@@ -45,7 +44,7 @@ final class ModelDeletionException extends ApplicationException
             ]
         );
         if (! \is_string($res)) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         return $res;

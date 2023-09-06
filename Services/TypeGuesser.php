@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
-use InvalidArgumentException;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Types\Types;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
+use InvalidArgumentException;
 
-final class TypeGuesser
+class TypeGuesser
 {
     private static string $default = 'word';
 
@@ -63,8 +63,6 @@ final class TypeGuesser
 
     /**
      * Try to guess the right faker method for the given type.
-     *
-     * @param int|null $size
      *
      * @return string
      */

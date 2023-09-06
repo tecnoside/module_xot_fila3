@@ -4,23 +4,22 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model\Update;
 
-use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
 use Modules\Xot\DTOs\RelationDTO;
 use Spatie\QueueableAction\QueueableAction;
 
-final class BelongsToAction
+class BelongsToAction
 {
     use QueueableAction;
 
     public function execute(Model $model, RelationDTO $relationDTO): void
     {
         if (! $relationDTO->rows instanceof BelongsTo) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
-        
+
         $rows = $relationDTO->rows;
 
         if (! \is_array($relationDTO->data)) {
@@ -44,9 +43,9 @@ final class BelongsToAction
         if (Arr::isAssoc($relationDTO->data)) {
             $sub = $rows->first();
             if (null == $sub) {
-                throw new Exception('['.__LINE__.']['.__FILE__.']');
+                throw new \Exception('['.__LINE__.']['.__FILE__.']');
             }
-            
+
             app(RelationAction::class)->execute($sub, $relationDTO->data);
         }
 

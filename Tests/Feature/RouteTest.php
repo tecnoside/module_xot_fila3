@@ -8,11 +8,11 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Tests\Feature;
 
-use PHPUnit\Framework\Attributes\Test;
 use Illuminate\Support\Facades\App;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
-final class RouteTest extends TestCase
+class RouteTest extends TestCase
 {
     /**
      * A basic test example.
@@ -42,7 +42,7 @@ final class RouteTest extends TestCase
                 echo $appURL.$url.' (success ?)';
                 static::assertTrue(true);
             }
-            
+
             echo PHP_EOL;
         }
     }

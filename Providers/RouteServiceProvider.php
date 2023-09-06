@@ -16,7 +16,7 @@ use Modules\Xot\Http\Middleware\SetDefaultLocaleForUrlsMiddleware;
 
 // --- bases -----
 
-final class RouteServiceProvider extends XotBaseRouteServiceProvider
+class RouteServiceProvider extends XotBaseRouteServiceProvider
 {
     /**
      * The module namespace to assume when generating URLs to actions.
@@ -82,10 +82,10 @@ final class RouteServiceProvider extends XotBaseRouteServiceProvider
             // throw new \Exception('[.__LINE__.]['.class_basename(__CLASS__).']');
             $langs = ['it' => 'it', 'en' => 'en'];
         }
-        
+
         $lang_pattern = collect(array_keys($langs))->implode('|');
         $lang_pattern = '/|'.$lang_pattern.'|/i';
-        
+
         $router->pattern('lang', $lang_pattern);
         // -------------------------------------------------------------
         // $models = TenantService::config('morph_map');
@@ -94,11 +94,11 @@ final class RouteServiceProvider extends XotBaseRouteServiceProvider
             // throw new Exception('[' . print_r($models, true) . '][' . __LINE__ . '][' . class_basename(__CLASS__) . ']');
             $models = [];
         }
-        
+
         $models_collect = collect(array_keys($models));
         $models_collect->implode('|');
         $models_collect->map(
-            static fn($item) => Str::plural((string) $item)
+            static fn ($item) => Str::plural((string) $item)
         )->implode('|');
         /*--pattern vuoto
         dddx([

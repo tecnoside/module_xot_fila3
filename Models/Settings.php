@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Models;
 
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * Modules\Xot\Models\Settings.
  *
- * @property int                             $id
+ * @property int         $id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- * @property string                          $name
- * @property string|null                     $value
+ * @property string      $name
+ * @property string|null $value
  *
  * @method static Builder|Settings newModelQuery()
  * @method static Builder|Settings newQuery()
@@ -29,7 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  * @mixin IdeHelperSettings
  * @mixin \Eloquent
  */
-final class Settings extends Model
+class Settings extends Model
 {
     /**
      * @var string[]
