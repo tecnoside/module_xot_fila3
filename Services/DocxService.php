@@ -125,7 +125,8 @@ class DocxService
                 }
                 if (isJson($row->$key)) {
                     // dddx($row->$key);
-                    $tmp = (array) json_decode((string) $row->$key, null, 512, JSON_THROW_ON_ERROR);
+                    // $tmp = (array) json_decode((string) $row->$key, null, 512, JSON_THROW_ON_ERROR);
+                    $tmp = (array) json_decode($row->$key);
                     $data = [];
                     foreach ($tmp as $k => $v) {
                         if (\is_array($v)) {
@@ -203,7 +204,8 @@ class DocxService
                 // */
                 if (isJson($row->$key)) {
                     // dddx($row->$key);
-                    $tmp = (array) json_decode((string) $row->$key, null, 512, JSON_THROW_ON_ERROR);
+                    // $tmp = (array) json_decode((string) $row->$key, null, 512, JSON_THROW_ON_ERROR);
+                    $tmp = (array) json_decode($row->$key);
                     $data = [];
                     foreach ($tmp as $k => $v) {
                         if (\is_array($v)) {

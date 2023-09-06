@@ -661,7 +661,13 @@ class StubService
         // getRandomBrotherModel
         // dddx($brother_class);
         $brother = app($brother_class);
+        /**
+         * @var array<int, string>
+         */
         $fillables = $brother->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+        /**
+         * @var array<int>|\Illuminate\Support\Enumerable<(int|string), int>
+         */
         $except = [
             'created_at', 'updated_at', 'updated_by', 'created_by', 'deleted_at', 'deleted_by',
             'deleted_ip', 'created_ip', 'updated_ip',

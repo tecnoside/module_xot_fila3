@@ -748,6 +748,9 @@ class FileService
     public static function viewPath(string $key): string
     {
         $ns_name = Str::before($key, '::');
+        /**
+         * @var iterable<string>|string
+         */
         $stringable = Str::of($key)->after('::');
         $ns_dir = self::getViewNameSpacePath($ns_name);
         Assert::string($group_dir = Str::replace('.', '/', $stringable), 'wip');
@@ -881,7 +884,7 @@ class FileService
             Assert::string($content = File::get($components_json));
 
             // return (array) json_decode((string) $content, null, 512, JSON_THROW_ON_ERROR);
-            return json_decode($content, false);
+            return (array) json_decode($content, false);
         }
 
         // $files = File::allFiles(\dirname($components_json));
