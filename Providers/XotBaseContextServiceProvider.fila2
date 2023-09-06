@@ -10,7 +10,7 @@ namespace Modules\Xot\Providers;
 use Modules\Xot\Actions\Filament\PrepareDefaultNavigation;
 use Savannabits\FilamentModules\ContextServiceProvider;
 
-final class XotBaseContextServiceProvider extends ContextServiceProvider
+class XotBaseContextServiceProvider extends ContextServiceProvider
 {
     public $app;
     
