@@ -6,10 +6,10 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Filters\Images;
 
-use Intervention\Image\Filters\FilterInterface;
+use Intervention\Image\Filters\FilterContract;
 use Intervention\Image\Image;
 
-class Small implements FilterInterface
+class Small implements FilterContract
 {
     public function applyFilter(Image $image): Image
     {

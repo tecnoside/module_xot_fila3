@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ResponseContract;
 use Psr\Http\Message\UriInterface;
 use Request;
 
@@ -51,7 +51,7 @@ class ImportService
 
     private ?CookieJarInterface $cookieJar = null;
 
-    private ResponseInterface $response;
+    private ResponseContract $response;
 
     private array $client_options = [];
 
@@ -171,7 +171,7 @@ class ImportService
 
     public function enableRedirect(): void
     {
-        $onRedirect = static function (RequestInterface $request, ResponseInterface $response, UriInterface $uri): void {
+        $onRedirect = static function (RequestInterface $request, ResponseContract $response, UriInterface $uri): void {
             echo '<hr/>Redirecting! '.$request->getUri().' to '.$uri."\n";
         };
         $redirect_params = [
