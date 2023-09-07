@@ -20,16 +20,16 @@ class Search
     /**
      * Undocumented function.
      */
-    public function handle(Builder $builder, \Closure $next, array $args = []): \Closure
+    public function handle(Builder $query, \Closure $next, array $args = []): \Closure
     {
         $search_fields = [];
-        $model = $builder->getModel();
+        $model = $query->getModel();
         $q = request('q', '');
 
         $search_fields = $model->getFillable();
         // $table = $model->getTable();
         if (\strlen((string) $q) > 1) {
-            $builder = $builder->where(
+            $query = $query->where(
                 static function ($subquery) use ($search_fields, $q): void {
                     foreach ($search_fields as $search_field) {
                         if (Str::contains($search_field, '.')) {
@@ -38,9 +38,9 @@ class Search
                             // dddx([$rel, $rel_field]);
                             $subquery = $subquery->orWhereHas(
                                 $rel,
-                                static function (Builder $builder) use ($rel_field, $q): void {
+                                static function (Builder $query) use ($rel_field, $q): void {
                                     // dddx($subquery1->getConnection()->getDatabaseName());
-                                    $builder->where($rel_field, 'like', '%'.$q.'%');
+                                    $query->where($rel_field, 'like', '%'.$q.'%');
                                     // dddx($subquery1);
                                 }
                             );
@@ -56,6 +56,6 @@ class Search
 
         // dddx(['q' => $q, 'sql' => $query->toSql()]);
 
-        return $next($builder);
+        return $next($query);
     }
 }

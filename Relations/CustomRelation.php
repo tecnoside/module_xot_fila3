@@ -30,7 +30,7 @@ class CustomRelation extends Relation
     /**
      * Create a new belongs to relationship instance.
      */
-    public function __construct(Builder $builder, Model $model, /* implements BuilderContract */
+    public function __construct(Builder $query, Model $model, /* implements BuilderContract */
         /**
          * The baseConstraints callback.
          */
@@ -42,7 +42,7 @@ class CustomRelation extends Relation
      */
         protected ?\Closure $eagerMatcher)
     {
-        parent::__construct($builder, $model);
+        parent::__construct($query, $model);
     }
 
     /**
@@ -125,15 +125,15 @@ class CustomRelation extends Relation
             $columns = [$this->related->getTable().'.*'];
         }
 
-        $builder = $this->query->applyScopes();
+        $query = $this->query->applyScopes();
 
-        $models = $builder->addSelect($columns)->getModels();
+        $models = $query->addSelect($columns)->getModels();
 
         // If we actually found models we will also eager load any relationships that
         // have been specified as needing to be eager loaded. This will solve the
         // n + 1 query problem for the developer and also increase performance.
         if ((is_countable($models) ? \count($models) : 0) > 0) {
-            $models = $builder->eagerLoadRelations($models);
+            $models = $query->eagerLoadRelations($models);
         }
 
         return $this->related->newCollection($models);

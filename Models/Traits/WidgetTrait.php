@@ -6,9 +6,9 @@ namespace Modules\Xot\Models\Traits;
 
 // use Laravel\Scout\Searchable;
 // ----- models------
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Modules\Xot\Models\Widget;
 
 // ---- services -----
@@ -27,7 +27,7 @@ trait WidgetTrait
         return $this->morphMany(Widget::class, 'post')
             // ->whereNull('layout_position')
             ->where(
-                static function ($query) : void {
+                static function ($query): void {
                     $query->where('layout_position', '')
                         ->orWhereNull('layout_position');
                 }
@@ -44,8 +44,8 @@ trait WidgetTrait
 
     // non sembra funzionare, perchè?
 
-    public function scopeOfLayoutPosition(Builder $builder, string $layout_position): Builder
+    public function scopeOfLayoutPosition(Builder $query, string $layout_position): Builder
     {
-        return $builder->where('layout_position', $layout_position);
+        return $query->where('layout_position', $layout_position);
     }
 }

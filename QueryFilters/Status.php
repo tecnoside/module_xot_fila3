@@ -17,16 +17,16 @@ class Status
     /**
      * Undocumented function.
      */
-    public function handle(Builder $builder, \Closure $next): \Closure
+    public function handle(Builder $query, \Closure $next): \Closure
     {
         if (request()->has('status')) {
-            $builder->where('status', request('status'));
+            $query->where('status', request('status'));
         }
 
-        // $next($builder);
+        // $next($query);
         // Here you perform the task and return the updated $content
         // to the next pipe
-        return $next($builder);
+        return $next($query);
     }
 }
 
