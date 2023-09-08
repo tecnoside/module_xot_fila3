@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers\Filament;
 
-use Filament\Pages\Dashboard;
-use Filament\Widgets\AccountWidget;
 use Filament\Facades\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Navigation\NavigationItem;
-use Filament\Pages;
+use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Widgets;
+use Filament\Widgets\AccountWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -31,13 +30,12 @@ abstract class XotBasePanelProvider extends PanelProvider
 
     public function panel(Panel $panel): Panel
     {
-
         $moduleNamespace = $this->getModuleNamespace();
         $moduleLow = Str::lower($this->module);
 
-        //if (! in_array($moduleLow,['chart','xot'])) {
+        // if (! in_array($moduleLow,['chart','xot'])) {
         //    dddx([$moduleNamespace, $moduleLow]);
-        //}
+        // }
 
         $panel = $panel
             ->id($moduleLow.'::admin')
@@ -46,11 +44,11 @@ abstract class XotBasePanelProvider extends PanelProvider
                 'primary' => Color::Teal,
             ])
             ->discoverResources(in: base_path('Modules/'.$this->module.'/Filament/Resources'), for: sprintf('%s\Filament\Resources', $moduleNamespace))
-            ->discoverPages(in: base_path('Modules/'.$this->module.'/Filament/Admin/Pages'), for: sprintf('%s\Filament\Admin\Pages', $moduleNamespace))
+            ->discoverPages(in: base_path('Modules/'.$this->module.'/Filament/Pages'), for: sprintf('%s\Filament\Pages', $moduleNamespace))
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: base_path('Modules/'.$this->module.'/Filament/Admin/Widgets'), for: sprintf('%s\Filament\Admin\Widgets', $moduleNamespace))
+            ->discoverWidgets(in: base_path('Modules/'.$this->module.'/Filament/Widgets'), for: sprintf('%s\Filament\Widgets', $moduleNamespace))
             ->widgets([
                 AccountWidget::class,
                 // Widgets\FilamentInfoWidget::class,
@@ -82,7 +80,6 @@ abstract class XotBasePanelProvider extends PanelProvider
                  ->sort(3),
          ]);
         */
-
 
         return $panel;
     }
