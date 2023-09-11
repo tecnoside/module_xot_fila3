@@ -18,11 +18,19 @@ class XlsByModelClassAction
     public function execute(string $modelClass, array $where = [], array $includes = [],
         array $excludes = [], callable $callback = null)
     {
+        $with = $this->getWithByIncludes($includes);
+
         $rows = app($modelClass)
             ->with($with)
             ->where($where);
 
-        $rows = count($includes) > 0 ? $rows->get($includes) : $rows->get();
+        // $rows = count($includes) > 0 ? $rows->get($includes) : $rows->get();
+        $rows = $rows->get();
+        if (count($includes) > 0) {
+            $rows = $rows->map(function ($item) use ($includes) {
+                return $item->only($includes);
+            });
+        }
 
         if (count($excludes) > 0) {
             $rows = $rows->makeHidden($excludes);
@@ -31,11 +39,24 @@ class XlsByModelClassAction
         if (null != $callback) {
             $rows = $rows->map($callback);
         }
-
-        $collectionExport = new CollectionExport($rows, $headings);
+        $transKey = app(\Modules\Xot\Actions\Model\GetTransKeyByModelClassAction::class)->execute($modelClass);
+        $collectionExport = new CollectionExport($rows, $transKey);
         $filename = $this->getExportName($modelClass);
 
         return Excel::download($collectionExport, $filename);
+    }
+
+    private function getWithByIncludes(array $includes): array
+    {
+        $with = [];
+        foreach ($includes as $include) {
+            $tmp = explode('.', $include);
+            if (isset($tmp[0]) && Str::contains($include, '.')) {
+                $with[] = $tmp[0];
+            }
+        }
+
+        return $with;
     }
 
     private function getExportName(string $modelClass): string
