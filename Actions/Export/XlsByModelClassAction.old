@@ -15,8 +15,8 @@ class XlsByModelClassAction
 {
     use QueueableAction;
 
-    public function execute(string $modelClass, array $where = [], array $includes = [],
-        array $excludes = [], callable $callback = null)
+    public function execute(string $modelClass, array $with = [], array $where = [], array $includes = [],
+        array $excludes = [], array $headings = [], callable $callback = null)
     {
         $rows = app($modelClass)
             ->with($with)
