@@ -13,10 +13,10 @@ class CollectionExport implements FromCollection, WithHeadings
     public Collection $collection;
     public array $headings;
 
-    public function __construct(Collection $collection)
+    public function __construct(Collection $collection, array $headings = [])
     {
         $this->collection = $collection;
-        $this->headings = collect($collection->first())->keys()->toArray();
+        $this->headings = count($headings) > 0 ? $headings : collect($collection->first())->keys()->toArray();
     }
 
     public function headings(): array
