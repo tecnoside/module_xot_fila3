@@ -27,7 +27,7 @@ class CollectionExport implements FromCollection, WithHeadings
                 if ($trans != $key) {
                     return $trans;
                 }
-                $key = $transKey.'.fields.'.Str::replace($item, '.', '_');
+                $key = $transKey.'.fields.'.Str::replace('.', '_', $item);
                 $trans = trans($key);
                 if ($trans != $key) {
                     return $trans;
