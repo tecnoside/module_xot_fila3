@@ -28,7 +28,13 @@ class XlsByModelClassAction
         $rows = $rows->get();
         if (count($includes) > 0) {
             $rows = $rows->map(function ($item) use ($includes) {
-                return $item->only($includes);
+                // return $item->only($includes);
+                $data = [];
+                foreach ($includes as $include) {
+                    $data[$include] = data_get($item, $include);
+                }
+
+                return $data;
             });
         }
 
