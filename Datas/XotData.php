@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Datas;
 
-use Illuminate\Database\Eloquent\Model;
-use Modules\User\Models\Membership;
-use Modules\User\Models\Team;
 use Spatie\LaravelData\Data;
 use Webmozart\Assert\Assert;
+use Modules\User\Models\Team;
+use Modules\User\Models\Membership;
+use Illuminate\Support\Facades\File;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Undocumented class.
@@ -49,9 +50,9 @@ class XotData extends Data
 
     public bool $register_collective = false;
 
-    public string $team_class = '\\'.Team::class;
+    public string $team_class = Team::class;
 
-    public string $membership_class = '\\'.Membership::class;
+    public string $membership_class = Membership::class;
 
     public ?string $super_admin = null;
 
@@ -60,7 +61,12 @@ class XotData extends Data
         $xot = config('xra');
 
         if (! is_array($xot)) {
-            dddx($xot);
+
+            $path=\Modules\Tenant\Services\TenantService::filePath('xra.php');
+            $xot=File::getRequire($path);
+            if(!is_array($xot)){
+                $xot=[];
+            }
         }
 
         return self::from($xot);
