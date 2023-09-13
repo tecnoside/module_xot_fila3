@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Filament\Pages\Dashboard;
 use Filament\Facades\Filament;
 use Modules\Xot\Datas\XotData;
+use Filament\Navigation\MenuItem;
 use Filament\Support\Colors\Color;
 use Filament\Navigation\NavigationItem;
 use Filament\Http\Middleware\Authenticate;
@@ -23,6 +24,8 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Filament\Support\Facades\FilamentView;
+use Illuminate\Support\Facades\Blade;
 
 abstract class XotBasePanelProvider extends PanelProvider
 {
@@ -34,8 +37,15 @@ abstract class XotBasePanelProvider extends PanelProvider
         $moduleNamespace = $this->getModuleNamespace();
         $moduleLow = Str::lower($this->module);
         $xot=XotData::make();
-        $teamClass=$xot->getTeamClass();
+        //$teamClass=$xot->getTeamClass();
         //$teamClass=\Modules\User\Models\Team::class;
+        /*
+        FilamentView::registerRenderHook(
+            'panels::user-menu.before',
+            fn (): string =>  Blade::render('@livewire(\'team.change\')'),
+        );
+        */
+
 
         $panel = $panel
             ->default()
@@ -44,14 +54,39 @@ abstract class XotBasePanelProvider extends PanelProvider
             //->passwordReset()
             //->emailVerification()
             //->profile()
+            //->sidebarFullyCollapsibleOnDesktop()
             ->maxContentWidth('full')
             ->topNavigation($this->topNavigation)
-            ->tenant($teamClass)
+            //->navigation(false)
+            //->tenant($teamClass)
+            //->tenant($teamClass,ownershipRelationship:'users')
+            //->tenant($teamClass)
             ->id($moduleLow.'::admin')
             ->path($moduleLow.'/admin')
             ->colors([
                 //'primary' => Color::Teal,
             ])
+            /*
+            ->userMenuItems([
+                MenuItem::make()
+                    ->label('Settings')
+                    //->url(fn (): string => Settings::getUrl())
+                    ->icon('heroicon-o-cog-6-tooth'),
+                // ...
+            ])
+            ->navigationItems([
+                NavigationItem::make('Analytics')
+                    ->url('https://filament.pirsch.io', shouldOpenInNewTab: true)
+                    ->icon('heroicon-o-presentation-chart-line')
+                    ->group('Reports')
+                    ->sort(3),
+                NavigationItem::make('dashboard')
+                    ->label(fn (): string => __('filament-panels::pages/dashboard.title'))
+                    ->url(fn (): string => Dashboard::getUrl())
+                    ->isActiveWhen(fn () => request()->routeIs('filament.admin.pages.dashboard')),
+                // ...
+            ])
+            */
             ->discoverResources(in: base_path('Modules/'.$this->module.'/Filament/Resources'), for: sprintf('%s\Filament\Resources', $moduleNamespace))
             ->discoverPages(in: base_path('Modules/'.$this->module.'/Filament/Pages'), for: sprintf('%s\Filament\Pages', $moduleNamespace))
             ->pages([

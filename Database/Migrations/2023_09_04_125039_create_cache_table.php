@@ -17,10 +17,10 @@ class CreateCacheTable extends XotBaseMigration
     {
         // -- CREATE --
         $this->tableCreate(
-            static function (Blueprint $blueprint): void {
-                $blueprint->string('key')->primary();
-                $blueprint->mediumText('value');
-                $blueprint->integer('expiration');
+            static function (Blueprint $table): void {
+                $table->string('key')->primary();
+                $table->mediumText('value');
+                $table->integer('expiration');
             }
         );
     }
