@@ -4,18 +4,22 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Datas;
 
+use Livewire\Wireable;
 use Spatie\LaravelData\Data;
 use Webmozart\Assert\Assert;
 use Modules\User\Models\Team;
 use Modules\User\Models\Membership;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\LaravelData\Concerns\WireableData;
 
 /**
  * Undocumented class.
  */
-class XotData extends Data
+class XotData extends Data implements Wireable
 {
+    use WireableData;
+
     public string $main_module;
     // => 'Blog'
     public string $param_name = 'noset';
