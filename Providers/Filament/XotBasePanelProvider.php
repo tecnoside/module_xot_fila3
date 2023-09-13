@@ -44,6 +44,7 @@ abstract class XotBasePanelProvider extends PanelProvider
             //->passwordReset()
             //->emailVerification()
             //->profile()
+            ->maxContentWidth('full')
             ->topNavigation($this->topNavigation)
             //->tenant($teamClass)
             ->id($moduleLow.'::admin')
