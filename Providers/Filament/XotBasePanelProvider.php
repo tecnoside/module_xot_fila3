@@ -46,7 +46,7 @@ abstract class XotBasePanelProvider extends PanelProvider
             //->profile()
             ->maxContentWidth('full')
             ->topNavigation($this->topNavigation)
-            //->tenant($teamClass)
+            ->tenant($teamClass)
             ->id($moduleLow.'::admin')
             ->path($moduleLow.'/admin')
             ->colors([
