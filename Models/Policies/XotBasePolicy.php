@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Models\Policies;
 
-use Illuminate\Auth\Access\HandlesAuthorization;
 use Modules\User\Models\Role;
 use Modules\User\Models\User;
 use Modules\Xot\Datas\XotData;
+use Illuminate\Database\QueryException;
+use Illuminate\Auth\Access\HandlesAuthorization;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
 
 // use Modules\Xot\Datas\XotData;
@@ -22,7 +23,7 @@ abstract class XotBasePolicy
         if ($user->hasRole('super-admin')) {
             return true;
         }
-        
+
         if ($user->email == $xotData->super_admin && null != $xotData->super_admin) {
             try {
                 $user->assignRole('super-admin');
@@ -30,6 +31,14 @@ abstract class XotBasePolicy
                 $role = Role::firstOrCreate(['name' => 'super-admin', 'team_id' => null]);
                 $user->assignRole($role);
             }
+            /* --- WIP ---
+            catch(QueryException $e){
+                dddx([
+                    'message'=>$e->getMessage(),
+                    'e'=>$e,
+                ]);
+            }
+            */
 
             return true;
         }
