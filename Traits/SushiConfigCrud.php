@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Traits;
 
+use Modules\Tenant\Services\TenantService;
 use function Safe\file_put_contents;
 
 trait SushiConfigCrud
@@ -28,8 +29,8 @@ trait SushiConfigCrud
                 $data = array_merge($data, $model->toArray());
 
                 $config_name = $model->config_name;
-                if (class_exists('\\'.\Modules\Tenant\Services\TenantService::class)) {
-                    $config_name = \Modules\Tenant\Services\TenantService::getName().'/'.$config_name;
+                if (class_exists('\\'.TenantService::class)) {
+                    $config_name = TenantService::getName().'/'.$config_name;
                 }
                 $config_path = config_path($config_name.'.php');
 
@@ -65,8 +66,8 @@ trait SushiConfigCrud
                 $data = $model->toArray();
 
                 $config_name = $model->config_name;
-                if (class_exists('\\'.\Modules\Tenant\Services\TenantService::class)) {
-                    $config_name = \Modules\Tenant\Services\TenantService::getName().'/'.$config_name;
+                if (class_exists('\\'.TenantService::class)) {
+                    $config_name = TenantService::getName().'/'.$config_name;
                 }
                 $config_path = config_path($config_name.'.php');
 
@@ -94,8 +95,8 @@ trait SushiConfigCrud
             $data = $model->toArray();
 
             $config_name = $model->config_name;
-            if (class_exists('\\'.\Modules\Tenant\Services\TenantService::class)) {
-                $config_name = \Modules\Tenant\Services\TenantService::getName().'/'.$config_name;
+            if (class_exists('\\'.TenantService::class)) {
+                $config_name = TenantService::getName().'/'.$config_name;
             }
             $config_path = config_path($config_name.'.php');
 

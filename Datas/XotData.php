@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Datas;
 
+use Modules\Tenant\Services\TenantService;
 use Livewire\Wireable;
 use Spatie\LaravelData\Data;
 use Webmozart\Assert\Assert;
@@ -66,7 +67,7 @@ class XotData extends Data implements Wireable
 
         if (! is_array($xot)) {
 
-            $path=\Modules\Tenant\Services\TenantService::filePath('xra.php');
+            $path=TenantService::filePath('xra.php');
             $xot=File::getRequire($path);
             if(!is_array($xot)){
                 $xot=[];

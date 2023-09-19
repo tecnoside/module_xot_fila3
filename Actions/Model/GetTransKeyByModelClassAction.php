@@ -15,8 +15,7 @@ class GetTransKeyByModelClassAction
     {
         $moduleName = Str::between($modelClass, 'Modules\\', '\Models');
         $modelName = Str::after($modelClass, '\Models\\');
-        $transKey = Str::lower($moduleName).'::'.Str::kebab($modelName);
 
-        return $transKey;
+        return Str::lower($moduleName).'::'.Str::kebab($modelName);
     }
 }

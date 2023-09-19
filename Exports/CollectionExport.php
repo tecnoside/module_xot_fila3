@@ -11,13 +11,11 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class CollectionExport implements FromCollection, WithHeadings
 {
-    public Collection $collection;
     public array $headings;
     public string $transKey;
 
-    public function __construct(Collection $collection, string $transKey = null)
+    public function __construct(public Collection $collection, string $transKey = null)
     {
-        $this->collection = $collection;
         // $this->headings = count($headings) > 0 ? $headings : collect($collection->first())->keys()->toArray();
         $headings = collect($collection->first())->keys();
         if (null != $transKey) {
@@ -45,7 +43,7 @@ class CollectionExport implements FromCollection, WithHeadings
     }
 
     /**
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function collection()
     {

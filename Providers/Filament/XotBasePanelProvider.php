@@ -36,7 +36,7 @@ abstract class XotBasePanelProvider extends PanelProvider
     {
         $moduleNamespace = $this->getModuleNamespace();
         $moduleLow = Str::lower($this->module);
-        $xot=XotData::make();
+        XotData::make();
         //$teamClass=$xot->getTeamClass();
         //$teamClass=\Modules\User\Models\Team::class;
         /*

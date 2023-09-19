@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Jurosh\PDFMerge\PDFMerger;
@@ -44,7 +45,7 @@ class PdfService
         include __DIR__.'/vendor/autoload.php';
         // $path = $this->get('path');
         if (! class_exists(PDFMerger::class)) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         $pdfMerger = new PDFMerger();

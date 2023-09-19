@@ -92,7 +92,7 @@ class DocxService
         $filename_out_path = storage_path($filename_out);
         try {
             $tpl->saveAs($filename_out_path);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             // handle exception
             dddx([$exception]);
         }
@@ -126,7 +126,7 @@ class DocxService
                 if (isJson($row->$key)) {
                     // dddx($row->$key);
                     // $tmp = (array) json_decode((string) $row->$key, null, 512, JSON_THROW_ON_ERROR);
-                    $tmp = (array) json_decode($row->$key);
+                    $tmp = (array) json_decode((string) $row->$key, null, 512, JSON_THROW_ON_ERROR);
                     $data = [];
                     foreach ($tmp as $k => $v) {
                         if (\is_array($v)) {
@@ -205,7 +205,7 @@ class DocxService
                 if (isJson($row->$key)) {
                     // dddx($row->$key);
                     // $tmp = (array) json_decode((string) $row->$key, null, 512, JSON_THROW_ON_ERROR);
-                    $tmp = (array) json_decode($row->$key);
+                    $tmp = (array) json_decode((string) $row->$key, null, 512, JSON_THROW_ON_ERROR);
                     $data = [];
                     foreach ($tmp as $k => $v) {
                         if (\is_array($v)) {

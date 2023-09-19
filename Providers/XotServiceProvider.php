@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers;
 
+use Modules\Cms\Services\PanelService;
 use Illuminate\Database\Events\MigrationsEnded;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Artisan;
@@ -62,7 +63,7 @@ class XotServiceProvider extends XotBaseServiceProvider
     {
         // $this->loadHelpersFrom(__DIR__.'/../Helpers'); //non serve piu
         $aliasLoader = AliasLoader::getInstance();
-        $aliasLoader->alias('Panel', 'Modules\Cms\Services\PanelService');
+        $aliasLoader->alias('Panel', PanelService::class);
 
         // $loader->alias(\Modules\Xot\Facades\Profile::class,
         // $this->registerPresenter();

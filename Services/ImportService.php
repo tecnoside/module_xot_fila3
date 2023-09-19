@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use Exception;
+use stdClass;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Cookie\CookieJar;
@@ -149,9 +151,6 @@ class ImportService
             $this->cookieJar = $this->initCookieJar();
         }
 
-        /**
-         * @var \Illuminate\Contracts\Support\Arrayable
-         */
         $url_info = parse_url((string) $this->client_options['base_uri']);
 
         // $domain = $url_info['host'];
@@ -230,9 +229,6 @@ class ImportService
         }
 
         if (! isset($this->client_options['base_uri'])) {
-            /**
-             * @var array
-             */
             $url_info = parse_url($url);
             $this->client_options['base_uri'] = collect($url_info)->get('scheme').'://'.collect($url_info)->get('host');
 
@@ -330,7 +326,7 @@ class ImportService
         );
         $this->client_options['headers']['referer'] = $url;
         if (! \is_string($value)) {
-            throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
+            throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
         }
 
         return $value;
@@ -343,9 +339,6 @@ class ImportService
     {
         // --- uguale ma al posto di usare il sistema cache usa i file
         if (! isset($this->client_options['base_uri'])) {
-            /**
-             * @var array
-             */
             $parse_url = parse_url($url);
             $url_info = collect($parse_url);
             if (null !== $url_info->get('scheme') && null !== $url_info->get('host')) {
@@ -380,7 +373,7 @@ class ImportService
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAddressFields(array $params): array
     {
@@ -391,12 +384,12 @@ class ImportService
             return [];
         }
 
-        $linked = new \stdClass();
+        $linked = new stdClass();
         $location_url = config('services.google.url_location_api').'?address='.urlencode((string) $address).'&key='.config('services.google.maps_key');
         $loc_json = $this->cacheRequest('GET', $location_url);
 
         // $loc_obj = (object) json_decode($loc_json, null, 512, JSON_THROW_ON_ERROR);
-        $loc_obj = (object) json_decode($loc_json);
+        $loc_obj = (object) json_decode($loc_json, null, 512, JSON_THROW_ON_ERROR);
 
         if (isset($loc_obj->results[0])) {
             $loc_obj = $loc_obj->results[0];
@@ -417,7 +410,7 @@ class ImportService
                 'address' => $address,
                 'obj' => $loc_obj,
             ];
-            throw new \Exception('address not valide');
+            throw new Exception('address not valide');
             // dddx($msg);
         }
 
@@ -477,7 +470,7 @@ class ImportService
 
         $resource = fopen($filename, 'w');
         if (false === $resource) {
-            throw new \Exception('can open '.$filename);
+            throw new Exception('can open '.$filename);
         }
 
         $stream = Utils::streamFor($resource);
@@ -535,7 +528,7 @@ class ImportService
          * @var object
          */
         // $json = json_decode($json, null, 512, JSON_THROW_ON_ERROR);
-        $json = json_decode($json);
+        $json = json_decode($json, null, 512, JSON_THROW_ON_ERROR);
         if (! isset($json->hits)) {
             return null;
         }
@@ -644,9 +637,6 @@ class ImportService
             ]
         );
         foreach ($forms as $k => $v) {
-            /**
-             * @var array
-             */
             $v_fields = $v['fields'];
             $forms[$k]['fields'] = collect($v_fields)->collapse()->all();
         }

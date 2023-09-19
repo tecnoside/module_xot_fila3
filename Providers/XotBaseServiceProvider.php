@@ -183,7 +183,7 @@ abstract class XotBaseServiceProvider extends ServiceProvider
             //    $filenames = [];
             // }
             foreach ($filenames as $filename) {
-                $info = pathinfo($filename);
+                $info = pathinfo((string) $filename);
 
                 // $tmp->namespace='\\'.$vendor.'\\'.$pack.'\\Events\\'.$info['filename'];
                 $event_name = $info['filename'];

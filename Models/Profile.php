@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Xot\Models;
 
 // use Illuminate\Database\Eloquent\Relations\HasOne;
+use Spatie\Tags\Tag;
 use ArrayAccess;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -47,7 +48,7 @@ use Spatie\Tags\HasTags;
  * @property int|null                          $permissions_count
  * @property Collection<int, Role>             $roles
  * @property int|null                          $roles_count
- * @property Collection<int, \Spatie\Tags\Tag> $tags
+ * @property Collection<int, Tag> $tags
  * @property int|null                          $tags_count
  * @property User|null                         $user
  *
@@ -78,11 +79,11 @@ use Spatie\Tags\HasTags;
  * @method static Builder|Profile whereUpdatedAt($value)
  * @method static Builder|Profile whereUpdatedBy($value)
  * @method static Builder|Profile whereUserId($value)
- * @method static Builder|Profile withAllTags((ArrayAccess | \Spatie\Tags\Tag | array | string) $tags, ?string $type = null)
+ * @method static Builder|Profile withAllTags((ArrayAccess | Tag | array | string) $tags, ?string $type = null)
  * @method static Builder|Profile withAllTagsOfAnyType($tags)
- * @method static Builder|Profile withAnyTags((ArrayAccess | \Spatie\Tags\Tag | array | string) $tags, ?string $type = null)
+ * @method static Builder|Profile withAnyTags((ArrayAccess | Tag | array | string) $tags, ?string $type = null)
  * @method static Builder|Profile withAnyTagsOfAnyType($tags)
- * @method static Builder|Profile withoutTags((ArrayAccess | \Spatie\Tags\Tag | array | string) $tags, ?string $type = null)
+ * @method static Builder|Profile withoutTags((ArrayAccess | Tag | array | string) $tags, ?string $type = null)
  *
  * @mixin IdeHelperProfile
  *

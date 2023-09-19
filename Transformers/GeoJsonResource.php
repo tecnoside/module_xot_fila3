@@ -8,7 +8,9 @@ namespace Modules\Xot\Transformers;
 *  GEOJSON e' uno standard
 * https://it.wikipedia.org/wiki/GeoJSON
 */
-
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use ReflectionException;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource as ResCollection;
 
 /**
@@ -29,12 +31,12 @@ use Illuminate\Http\Resources\Json\JsonResource as ResCollection;
 class GeoJsonResource extends ResCollection
 {
     /**
-     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
-     * @throws \ReflectionException
+     * @throws FileNotFoundException
+     * @throws ReflectionException
      *
      * @return array<string, mixed>
      */
-    public function toArray(\Illuminate\Http\Request $request): array
+    public function toArray(Request $request): array
     {
         app()->getLocale();
         // 34     Parameter #1 $model of static method Modules\Cms\Services\PanelService::make()->get() expects Illuminate\Database\Eloquent\Model, $this(Modules\Xot\Transformers\GeoJsonResource) given.

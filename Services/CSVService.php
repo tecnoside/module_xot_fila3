@@ -53,7 +53,7 @@ class CSVService
         // }
         $csv = [];
         foreach ($lines as $key => $value) {
-            $csv[$key] = str_getcsv($value);
+            $csv[$key] = str_getcsv((string) $value);
         }
 
         return $csv;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Export;
 
+use Modules\Xot\Actions\Model\GetTransKeyByModelClassAction;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 // use Modules\Xot\Services\ArrayService;
@@ -25,7 +26,7 @@ class XlsByModelClassAction
             ->where($where);
 
         $rows = $rows->get();
-        if (count($includes) > 0) {
+        if ($includes !== []) {
             $rows = $rows->map(function ($item) use ($includes) {
                 $data = [];
                 foreach ($includes as $include) {
@@ -36,14 +37,14 @@ class XlsByModelClassAction
             });
         }
 
-        if (count($excludes) > 0) {
+        if ($excludes !== []) {
             $rows = $rows->makeHidden($excludes);
         }
 
         if (null != $callback) {
             $rows = $rows->map($callback);
         }
-        $transKey = app(\Modules\Xot\Actions\Model\GetTransKeyByModelClassAction::class)->execute($modelClass);
+        $transKey = app(GetTransKeyByModelClassAction::class)->execute($modelClass);
         $collectionExport = new CollectionExport($rows, $transKey);
         $filename = $this->getExportName($modelClass);
 
@@ -54,7 +55,7 @@ class XlsByModelClassAction
     {
         $with = [];
         foreach ($includes as $include) {
-            $tmp = explode('.', $include);
+            $tmp = explode('.', (string) $include);
             if (isset($tmp[0]) && Str::contains($include, '.')) {
                 $with[] = $tmp[0];
             }

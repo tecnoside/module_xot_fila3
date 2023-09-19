@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Traits;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 /**
  * Trait Updater.
  * https://dev.to/hasanmn/automatically-update-createdby-and-updatedby-in-laravel-using-bootable-traits-28g9.
@@ -41,7 +42,7 @@ trait Updater
          */
         static::creating(
             function ($model): void {
-                if (auth()->user() instanceof \Illuminate\Contracts\Auth\Authenticatable) {
+                if (auth()->user() instanceof Authenticatable) {
                     $model->created_by = auth()->user()->handle ?? '';
                     $model->updated_by = auth()->user()->handle ?? '';
                 }

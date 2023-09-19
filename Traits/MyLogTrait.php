@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Traits;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 // /laravel/app/Updater.php
 // Str::camel() 'foo_bar' fooBar
 // kebab_case() 'fooBar'  foo-bar
 // snake_case() 'fooBar' foo_bar
 // Str::studly() 'foo_bar' FooBar
 // title_case() 'a nice title uses the correct case'
-
 /**
  * Trait MyLogTrait.
  */
@@ -31,7 +31,7 @@ trait MyLogTrait
             function ($model): void {
                 // dddx(static::$logModel);
                 $user = auth()->user();
-                if ($user instanceof \Illuminate\Contracts\Auth\Authenticatable) {
+                if ($user instanceof Authenticatable) {
                     $model->created_by = $user->handle;
                     $model->updated_by = $user->handle.'';
                 }
@@ -65,7 +65,7 @@ trait MyLogTrait
 
                 if (auth()->check()) {
                     $user = auth()->user();
-                    if ($user instanceof \Illuminate\Contracts\Auth\Authenticatable) {
+                    if ($user instanceof Authenticatable) {
                         $model->updated_by = $user->handle.'';
                     }
                 }

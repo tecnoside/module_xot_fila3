@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Xot\Models;
 
 // ------ ext models---
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -124,7 +125,7 @@ class Widget extends BaseModel
 
         try {
             return view($view, $view_params);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             dddx([$exception]);
         }
 

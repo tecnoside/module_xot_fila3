@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -153,7 +154,7 @@ class ArrayService
             ->map(
                 static function ($item) {
                     if (! is_array($item)) {
-                        throw new \Exception('['.__LINE__.']['.__FILE__.']');
+                        throw new Exception('['.__LINE__.']['.__FILE__.']');
                     }
 
                     return collect($item)
@@ -184,7 +185,7 @@ class ArrayService
             static function ($value, $key) use ($arr_2) {
                 try {
                     return ! \in_array($value, $arr_2, true);
-                } catch (\Exception $exception) {
+                } catch (Exception $exception) {
                     dddx(['err' => $exception->getMessage(), 'value' => $value, 'key' => $key, 'arr_2' => $arr_2]);
                 }
             }
@@ -252,9 +253,7 @@ class ArrayService
             return self::toXLS_phpoffice();
         }
         $msg = 'unknown export_processor ['.$this->export_processor.']';
-        throw new \Exception($msg.'['.__LINE__.']['.__FILE__.']');
-        $msg = 'unknown export_processor ['.$this->export_processor.']';
-        throw new \Exception($msg.'['.__LINE__.']['.__FILE__.']');
+        throw new Exception($msg.'['.__LINE__.']['.__FILE__.']');
     }
 
     public function toHtml(): Renderable
@@ -336,7 +335,7 @@ class ArrayService
                 if (filter_var($cell->getValue(), FILTER_VALIDATE_URL)) {
                     $cell_value = $cell->getValue();
                     if (! is_string($cell_value)) {
-                        throw new \Exception('['.__LINE__.']['.__FILE__.']');
+                        throw new Exception('['.__LINE__.']['.__FILE__.']');
                     }
 
                     $worksheet->getCell($cell->getCoordinate())->getHyperlink()->setUrl($cell_value);
@@ -417,7 +416,7 @@ class ArrayService
             'link' => view()->make('ui::download_icon', $view_params),
             'download' => response()->download($pathToFile),
             'link_file' => view()->make('ui::download_icon', $view_params),
-            default => throw new \Exception('['.__LINE__.']['.__FILE__.']'),
+            default => throw new Exception('['.__LINE__.']['.__FILE__.']'),
         };
     }
 }

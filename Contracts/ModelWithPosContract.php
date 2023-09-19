@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Contracts;
 
+use Spatie\ModelStatus\Status;
 use Illuminate\Support\Carbon;
 use Modules\User\Models\User;
 use Illuminate\Database\Eloquent\Collection;
@@ -24,7 +25,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string                                                                $tennant_name
  * @property User|null $user
  * @property string                                                                $status
- * @property Collection|\Spatie\ModelStatus\Status[] $statuses
+ * @property Collection|Status[] $statuses
  * @property int|null                                                              $statuses_count
  * @property int|null                                                              $pos
  *

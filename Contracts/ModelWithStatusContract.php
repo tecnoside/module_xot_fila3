@@ -26,7 +26,7 @@ use Spatie\ModelStatus\Status;
  * @property string                                                                     $tennant_name
  * @property User|null $user
  * @property string                                                                     $status
- * @property Collection|array<\Spatie\ModelStatus\Status> $statuses
+ * @property Collection|array<Status> $statuses
  * @property int|null                                                                   $statuses_count
  *
  * @method mixed     getKey()

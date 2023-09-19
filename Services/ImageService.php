@@ -188,7 +188,7 @@ class ImageService
     public function src(): string
     {
         if (null === $this->filename) {
-            throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
+            throw new Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
 
         $src = '/'.str_replace(public_path('/'), '', $this->filename);
