@@ -30,15 +30,13 @@ abstract class XotBasePolicy
             } catch (RoleDoesNotExist) {
                 $role = Role::firstOrCreate(['name' => 'super-admin', 'team_id' => null]);
                 $user->assignRole($role);
-            }
-            /* --- WIP ---
-            catch(QueryException $e){
+            } catch(QueryException $e){
                 dddx([
                     'message'=>$e->getMessage(),
                     'e'=>$e,
                 ]);
             }
-            */
+            
 
             return true;
         }
