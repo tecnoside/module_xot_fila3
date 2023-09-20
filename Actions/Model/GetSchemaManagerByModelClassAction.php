@@ -20,11 +20,13 @@ class GetSchemaManagerByModelClassAction
         $connectionName = $model->getConnectionName();
 
         
-        $a= Schema::connection($connectionName);
+        $a= Schema::connection($connectionName); //Illuminate\Database\Schema\MySqlBuilder 
 
 
-        $b=($model->getConnection());
-        dddx(['a'=>$a,'b'=>$b]);
+        $b=($model->getConnection()); //Illuminate\Database\MySqlConnection 
+        dddx(['a'=>$a->getConnection()
+        ->getDoctrineSchemaManager()
+        ,'b'=>$b->getDoctrineSchemaManager()]);
         /*
         $table=$model->getTable();
         $schemaManager=app(GetSchemaManagerByModelClassAction::class)->execute($modelClass);
