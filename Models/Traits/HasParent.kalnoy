@@ -373,11 +373,11 @@ trait HasParent
      */
     public function newNestedSetQuery($table = null): QueryBuilder
     {
-        $builder = $this->usesSoftDelete()
+        $query = $this->usesSoftDelete()
             ? $this->withTrashed()
             : $this->newQuery();
 
-        return $this->applyNestedSetScope($builder, $table);
+        return $this->applyNestedSetScope($query, $table);
     }
 
     public function newScopedQuery(string $table = null): QueryBuilder

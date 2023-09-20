@@ -26,13 +26,13 @@ class Trend
 
     public string $dateAlias = 'date';
 
-    public function __construct(public Builder $builder)
+    public function __construct(public Builder $query)
     {
     }
 
-    public static function query(Builder $builder): self
+    public static function query(Builder $query): self
     {
-        return new self($builder);
+        return new self($query);
     }
 
     public static function model(string $model): self
