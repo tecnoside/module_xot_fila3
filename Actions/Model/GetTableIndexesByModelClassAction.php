@@ -12,7 +12,7 @@ class GetTableIndexesByModelClassAction
 {
     use QueueableAction;
 
-    public function execute(string $modelClass): string
+    public function execute(string $modelClass): array
     {
         $model=app($modelClass);
         $table=$model->getTable();
