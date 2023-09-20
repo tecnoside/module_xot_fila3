@@ -44,9 +44,10 @@ abstract class XotBasePolicy
                 //}
                 $user->assignRole($role);
             } catch(QueryException $e){
+                /* --- WIP
                 $indexes=app(GetTableIndexesByModelClassAction::class)->execute(ModelHasRole::class);
                 
-
+                
                 foreach($indexes as $index){
                     dddx([
                         'getName'=>$index->getName(),
@@ -61,6 +62,7 @@ abstract class XotBasePolicy
                     'indexes'=>$indexes,
                     'e'=>$e,
                 ]);
+                */
             }catch(\Illuminate\Database\UniqueConstraintViolationException $e){
                 app(DeleteTableIndexByModelClassIndexName::class)->execute(Role::class,'roles_name_guard_name_unique');
                 dddx($e);
