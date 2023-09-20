@@ -13,6 +13,7 @@ use Modules\Xot\Datas\XotData;
 use Illuminate\Database\QueryException;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
+use Modules\Xot\Actions\Model\GetTableIndexesByModelClassAction;
 
 // use Modules\Xot\Datas\XotData;
 
@@ -36,6 +37,7 @@ abstract class XotBasePolicy
             } catch(QueryException $e){
                 dddx([
                     'message'=>$e->getMessage(),
+                    'indexes'=>app(GetTableIndexesByModelClassAction::class)->execute(ModelHasRole::class),
                     'e'=>$e,
                 ]);
             }
