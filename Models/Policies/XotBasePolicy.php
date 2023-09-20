@@ -40,7 +40,7 @@ abstract class XotBasePolicy
                 foreach($indexes as $index){
                     dddx([
                         'getName'=>$index->getName(),
-                        'getQuotedName'=>$index->getQuotedName(),
+                        //'getQuotedName'=>$index->getQuotedName(), Too few arguments to function 
                         'methods'=>get_class_methods($index)
                     ]);
                 }
