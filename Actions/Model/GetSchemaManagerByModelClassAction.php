@@ -15,7 +15,7 @@ class GetSchemaManagerByModelClassAction
     public function execute(string $modelClass)
     {
         $model=app($modelClass);
-        dddx('qui');
+        dddx($model->getConnection());
         /*
         $table=$model->getTable();
         $schemaManager=app(GetSchemaManagerByModelClassAction::class)->execute($modelClass);
