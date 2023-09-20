@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Models\Policies;
 
+use Exception;
 use Modules\User\Models\Role;
 use Modules\User\Models\User;
 use Modules\Xot\Datas\XotData;
@@ -15,6 +16,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
 use Modules\Xot\Actions\Model\GetTableIndexesByModelClassAction;
+use Modules\Xot\Actions\Model\DeleteTableIndexByModelClassIndexNameAction;
 
 // use Modules\Xot\Datas\XotData;
 
@@ -33,10 +35,18 @@ abstract class XotBasePolicy
             try {
                 $user->assignRole('super-admin');
             } catch (RoleDoesNotExist) {
-                $role = Role::firstOrCreate(['name' => 'super-admin', 'team_id' => null]);
+                //try{
+                    $role = Role::firstOrCreate(['name' => 'super-admin', 'team_id' => null]);
+                //}catch(\Illuminate\Database\UniqueConstraintViolationException $e){
+                    //app(DeleteTableIndexByModelClassIndexNameAction::class)->execute(Role::class,'roles_name_guard_name_unique');
+                    //$indexes=app(GetTableIndexesByModelClassAction::class)->execute(Role::class);
+                    //dddx(['indexes'=>$indexes,'e'=>$e]);
+                //}
                 $user->assignRole($role);
             } catch(QueryException $e){
                 $indexes=app(GetTableIndexesByModelClassAction::class)->execute(ModelHasRole::class);
+                
+
                 foreach($indexes as $index){
                     dddx([
                         'getName'=>$index->getName(),
@@ -50,6 +60,11 @@ abstract class XotBasePolicy
                     'indexes'=>$indexes,
                     'e'=>$e,
                 ]);
+            }catch(\Illuminate\Database\UniqueConstraintViolationException $e){
+                app(DeleteTableIndexByModelClassIndexName::class)->execute(Role::class,'roles_name_guard_name_unique');
+                dddx($e);
+            }catch(Exception $e){
+                dddx($e);
             }
             
 
