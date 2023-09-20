@@ -38,7 +38,11 @@ abstract class XotBasePolicy
             } catch(QueryException $e){
                 $indexes=app(GetTableIndexesByModelClassAction::class)->execute(ModelHasRole::class);
                 foreach($indexes as $index){
-                    dddx(['methods'=>get_class_methods($index)]);
+                    dddx([
+                        'getName'=>$index->getName(),
+                        'getQuotedName'=>$index->getQuotedName(),
+                        'methods'=>get_class_methods($index)
+                    ]);
                 }
 
                 dddx([
