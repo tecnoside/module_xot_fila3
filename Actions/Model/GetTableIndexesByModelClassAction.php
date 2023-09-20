@@ -12,6 +12,9 @@ class GetTableIndexesByModelClassAction
 {
     use QueueableAction;
 
+    /**
+     * @return array<\Doctrine\DBAL\Schema\Index>
+     */
     public function execute(string $modelClass): array
     {
         $model=app($modelClass);

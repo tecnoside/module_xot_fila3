@@ -36,9 +36,14 @@ abstract class XotBasePolicy
                 $role = Role::firstOrCreate(['name' => 'super-admin', 'team_id' => null]);
                 $user->assignRole($role);
             } catch(QueryException $e){
+                $indexes=app(GetTableIndexesByModelClassAction::class)->execute(ModelHasRole::class);
+                foreach($indexes as $index){
+                    dddx(['methods'=>get_class_methods($index)]);
+                }
+
                 dddx([
                     'message'=>$e->getMessage(),
-                    'indexes'=>app(GetTableIndexesByModelClassAction::class)->execute(ModelHasRole::class),
+                    'indexes'=>$indexes,
                     'e'=>$e,
                 ]);
             }
