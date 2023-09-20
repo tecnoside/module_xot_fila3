@@ -10,6 +10,7 @@ namespace Modules\Xot\Models\Policies;
 use Modules\User\Models\Role;
 use Modules\User\Models\User;
 use Modules\Xot\Datas\XotData;
+use Modules\User\Models\ModelHasRole;
 use Illuminate\Database\QueryException;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
