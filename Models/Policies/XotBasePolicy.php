@@ -63,12 +63,12 @@ abstract class XotBasePolicy
                     'e'=>$e,
                 ]);
                 */
-            }catch(\Illuminate\Database\UniqueConstraintViolationException $e){
-                app(DeleteTableIndexByModelClassIndexName::class)->execute(Role::class,'roles_name_guard_name_unique');
-                dddx($e);
-            }catch(Exception $e){
-                dddx($e);
-            }
+            }//catch(\Illuminate\Database\UniqueConstraintViolationException $e){
+                //app(DeleteTableIndexByModelClassIndexName::class)->execute(Role::class,'roles_name_guard_name_unique');
+                //dddx($e);
+            //}//catch(Exception $e){
+                //dddx($e);
+            //}
             
 
             return true;
