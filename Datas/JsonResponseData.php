@@ -30,6 +30,7 @@ class JsonResponseData extends Data
             'message' => $this->message,
             'code' => $this->code,
             'data' => $this->data,
+            'now' => now(),
         ];
 
         return response()->json($data, $this->status);
