@@ -42,7 +42,8 @@ class GetModulesNavigationItems
                     ->icon($icon)
                     ->group('Modules')
                     ->sort(3)
-                    ->visible(fn () => Filament::auth()->user()->hasRole($module_low.'::admin'));
+                    // ->visible(fn () => Filament::auth()->user()->hasRole($module_low.'::admin'))
+            ;
 
             $navs[] = $nav;
         }
