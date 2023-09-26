@@ -57,6 +57,7 @@ abstract class XotBasePanelProvider extends PanelProvider
             //->sidebarFullyCollapsibleOnDesktop()
             ->maxContentWidth('full')
             ->topNavigation($this->topNavigation)
+            ->readOnlyRelationManagersOnResourceViewPagesByDefault(false) // 
             //->navigation(false)
             //->tenant($teamClass)
             //->tenant($teamClass,ownershipRelationship:'users')
