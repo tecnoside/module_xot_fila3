@@ -10,17 +10,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Modules\Tenant\Services\TenantService;
+use Modules\User\Models\Role;
 use Spatie\QueueableAction\QueueableAction;
 
-class GetModulesNavigationItems
-{
+class GetModulesNavigationItems {
     use QueueableAction;
 
     /**
      * Undocumented function.
      */
-    public function execute(): array
-    {
+    public function execute(): array {
         $navs = [];
         $modules = TenantService::allModules(); // app('modules') da errore su container Cache
         foreach ($modules as $module) {
@@ -43,6 +42,15 @@ class GetModulesNavigationItems
                     ->group('Modules')
                     ->sort(3)
                     // ->visible(fn () => Filament::auth()->user()->hasRole($module_low.'::admin'))
+                    ->visible(function () use ($module_low) {
+                        $user = Filament::auth()->user();
+                        if ($user->hasRole('super-admin')) {
+                            $role = Role::firstOrCreate(['name' => $module_low.'::admin']);
+                            // dddx('a');
+                        }
+
+                        return $user->hasRole($module_low.'::admin');
+                    })
             ;
 
             $navs[] = $nav;
