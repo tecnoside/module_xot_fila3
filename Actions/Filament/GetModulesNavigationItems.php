@@ -13,13 +13,15 @@ use Modules\Tenant\Services\TenantService;
 use Modules\User\Models\Role;
 use Spatie\QueueableAction\QueueableAction;
 
-class GetModulesNavigationItems {
+class GetModulesNavigationItems
+{
     use QueueableAction;
 
     /**
      * Undocumented function.
      */
-    public function execute(): array {
+    public function execute(): array
+    {
         $navs = [];
         $modules = TenantService::allModules(); // app('modules') da errore su container Cache
         foreach ($modules as $module) {
@@ -35,21 +37,20 @@ class GetModulesNavigationItems {
 
             $config = File::getRequire(base_path('Modules/'.$module.'/Config/config.php'));
             $icon = $config['icon'] ?? 'heroicon-o-question-mark-circle';
-
+            $role = $module_low.'::admin';
             $nav = NavigationItem::make($module)
                     ->url('/'.$module_low.'/admin')
                     ->icon($icon)
                     ->group('Modules')
                     ->sort(3)
-                    // ->visible(fn () => Filament::auth()->user()->hasRole($module_low.'::admin'))
-                    ->visible(function () use ($module_low) {
+                    ->visible(function () use ($role) {
                         $user = Filament::auth()->user();
                         if ($user->hasRole('super-admin')) {
-                            $role = Role::firstOrCreate(['name' => $module_low.'::admin']);
-                            // dddx('a');
+                            $role = Role::firstOrCreate(['name' => $role]);
+                            // $user->assignRole($role);
                         }
 
-                        return $user->hasRole($module_low.'::admin');
+                        return $user->hasRole($role);
                     })
             ;
 
