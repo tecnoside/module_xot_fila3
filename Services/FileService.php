@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use ReflectionClass;
 use const DIRECTORY_SEPARATOR;
 
 use Exception;
@@ -88,8 +89,8 @@ class FileService
 
                 try {
                     File::copy($filename_from, $filename_to);
-                } catch (\Exception $e) {
-                    throw new \Exception('message:['.$e->getMessage().']
+                } catch (Exception $e) {
+                    throw new Exception('message:['.$e->getMessage().']
                         path :['.$path.']
                         file from ['.$filename_from.']
                         file to ['.$filename_to.']', $e->getCode(), $e);
@@ -111,7 +112,7 @@ class FileService
         $filename_to = self::fixPath(public_path($asset));
         $asset = Str::replace(url(''), '', asset($asset));
         if (! File::exists($filename_from)) {
-            throw new \Exception('file ['.$filename_from.'] not Exists , path ['.$path.']');
+            throw new Exception('file ['.$filename_from.'] not Exists , path ['.$path.']');
         }
 
         // dddx(app()->environment());// local
@@ -150,7 +151,7 @@ class FileService
     {
         $ns = Str::before($view, '::');
         // dddx(Str::after($view, '::'));
-        $relative_path = str_replace('.', '/', (string) Str::after($view, '::'));
+        $relative_path = str_replace('.', '/', Str::after($view, '::'));
         $pack_dir = self::getViewNameSpacePath($ns);
         $view_dir = $pack_dir.'/'.$relative_path;
 
@@ -234,7 +235,7 @@ class FileService
         if (! File::exists(\dirname($filename_pub))) {
             try {
                 File::makeDirectory(\dirname($filename_pub), 0755, true, true);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 dd('Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']');
             }
         }
@@ -243,7 +244,7 @@ class FileService
             try {
                 // echo '<hr>'.$filename.' >>>>  '.$filename_pub; //4 debug
                 File::copy($filename, $filename_pub);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 dd('Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']');
             }
         } else {
@@ -283,7 +284,7 @@ class FileService
         if (! File::exists(\dirname($filename_pub))) {
             try {
                 File::makeDirectory(\dirname($filename_pub), 0755, true, true);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 dd('Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']');
             }
         }
@@ -292,7 +293,7 @@ class FileService
             try {
                 // echo '<hr>'.$filename.' >>>>  '.$filename_pub; //4 debug
                 File::copy($filename, $filename_pub);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 dd('Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']');
             }
         } else {
@@ -334,7 +335,7 @@ class FileService
         if (! File::exists(\dirname($filename_pub))) {
             try {
                 File::makeDirectory(\dirname($filename_pub), 0755, true, true);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 dd('Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']');
             }
         }
@@ -343,7 +344,7 @@ class FileService
             try {
                 // echo '<hr>'.$filename.' >>>>  '.$filename_pub; //4 debug
                 File::copy($filename, $filename_pub);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 dd('Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']');
             }
         }
@@ -380,7 +381,7 @@ class FileService
         if (! File::exists($dir_to)) {
             try {
                 File::makeDirectory($dir_to, 0755, true, true);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 dddx(['Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']']);
             }
         }
@@ -394,7 +395,7 @@ class FileService
         if (! File::exists($filename_to)) {
             try {
                 File::copy($filename_from, $filename_to);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 dddx(['Caught exception: '.$e->getMessage()]);
             }
         }
@@ -460,7 +461,7 @@ class FileService
         if (! File::exists($dir_to)) {
             try {
                 File::makeDirectory($dir_to, 0755, true, true);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 dd('Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']');
             }
         }
@@ -475,7 +476,7 @@ class FileService
         if (File::exists($filename_from) && ! File::exists($filename_to)) {
             try {
                 File::copy($filename_from, $filename_to);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 dddx(
                     [
                         'message' => $e->getMessage(),
@@ -581,7 +582,7 @@ class FileService
                     $tmp = str_replace(\DIRECTORY_SEPARATOR, '/', $tmp);
                     $pos = mb_strpos($filename, '/');
                     if (false === $pos) {
-                        throw new \Exception('not found / on filename');
+                        throw new Exception('not found / on filename');
                     }
 
                     $filename0 = mb_substr($filename, 0, $pos);
@@ -599,7 +600,7 @@ class FileService
                     if (! File::exists(\dirname($new_path))) {
                         try {
                             File::makeDirectory(\dirname($new_path), 0755, true, true);
-                        } catch (\Exception $e) {
+                        } catch (Exception $e) {
                             dd('Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']');
                         }
                     }
@@ -607,7 +608,7 @@ class FileService
                     if (File::exists($old_path)) {
                         try {
                             File::copy($old_path, $new_path);
-                        } catch (\Exception $e) {
+                        } catch (Exception $e) {
                             dd('Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']');
                         }
                     }
@@ -722,7 +723,7 @@ class FileService
 
         $data = File::getRequire($path);
         if (! \is_array($data)) {
-            throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
+            throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
         }
 
         $value = Arr::get($data, $item);
@@ -742,7 +743,7 @@ class FileService
         if (null === $value) {
             return $value;
         }
-        throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
+        throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
     }
 
     public static function viewPath(string $key): string
@@ -775,7 +776,7 @@ class FileService
         if (! File::exists(\dirname($to))) {
             try {
                 File::makeDirectory(\dirname($to), 0755, true, true);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 dd('Caught exception: ', $e->getMessage(), '\n['.__LINE__.']['.__FILE__.']');
             }
         }
@@ -788,8 +789,8 @@ class FileService
         // not rewite
         try {
             File::copy($from, $to);
-        } catch (\Exception $exception) {
-            throw new \Exception('Unable to copy
+        } catch (Exception $exception) {
+            throw new Exception('Unable to copy
                     from ['.$from.']
                     to ['.$to.']
                     message ['.$exception->getMessage().']', $exception->getCode(), $exception);
@@ -838,7 +839,7 @@ class FileService
 
         $data = File::getRequire($to_path);
         if (! \is_array($data)) {
-            throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
+            throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
         }
 
         $key = self::getConfigKey($to);
@@ -883,7 +884,7 @@ class FileService
             Assert::string($content = File::get($components_json));
 
             // return (array) json_decode((string) $content, null, 512, JSON_THROW_ON_ERROR);
-            return (array) json_decode((string) $content, false, 512, JSON_THROW_ON_ERROR);
+            return (array) json_decode($content, false, 512, JSON_THROW_ON_ERROR);
         }
 
         $files = File::allFiles($path);
@@ -905,7 +906,7 @@ class FileService
 
                 if ('' !== $relative_path) {
                     $tmp->comp_name = '';
-                    $piece = collect(explode('\\', (string) $relative_path))
+                    $piece = collect(explode('\\', $relative_path))
                         ->map(
                             static fn ($item) => Str::slug(Str::snake($item))
                         )
@@ -972,7 +973,7 @@ class FileService
         }
 
         // try {
-        $reflectionClass = new \ReflectionClass($class_name);
+        $reflectionClass = new ReflectionClass($class_name);
         // 856    Dead catch - Exception is never thrown in the try block.
 
         // } catch (\Exception $e) {

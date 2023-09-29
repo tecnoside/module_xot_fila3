@@ -195,8 +195,8 @@ class DocxService
                     // Carbon::setLocale('it');
                     return [
                         $prefix.'.'.$key => $item,
-                        $prefix.'.'.$key.'_locale' => ucfirst((string) $row->$key->translatedFormat('d F Y')),
-                        $prefix.'.'.$key.'_dm' => ucfirst((string) $row->$key->translatedFormat('d F')),
+                        $prefix.'.'.$key.'_locale' => ucfirst($row->$key->translatedFormat('d F Y')),
+                        $prefix.'.'.$key.'_dm' => ucfirst($row->$key->translatedFormat('d F')),
                         $prefix.'.'.$key.'_year' => $row->$key->format('Y'),
                     ];
                 }

@@ -43,7 +43,7 @@ abstract class XotBasePolicy
                 // dddx(['indexes'=>$indexes,'e'=>$e]);
                 // }
                 $user->assignRole($role);
-            } catch (QueryException $e) {
+            } catch (QueryException) {
                 /* --- WIP
                 $indexes=app(GetTableIndexesByModelClassAction::class)->execute(ModelHasRole::class);
 

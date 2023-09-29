@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model;
 
+use Doctrine\DBAL\Schema\Index;
 use Illuminate\Support\Str;
 
 use Spatie\QueueableAction\QueueableAction;
@@ -13,14 +14,13 @@ class GetTableIndexesByModelClassAction
     use QueueableAction;
 
     /**
-     * @return array<\Doctrine\DBAL\Schema\Index>
+     * @return array<Index>
      */
     public function execute(string $modelClass): array
     {
         $model=app($modelClass);
         $table=$model->getTable();
         $schemaManager=app(GetSchemaManagerByModelClassAction::class)->execute($modelClass);
-        $indexes= $schemaManager->listTableIndexes($table);
-        return $indexes;
+        return $schemaManager->listTableIndexes($table);
     }
 }
