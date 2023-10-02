@@ -366,6 +366,7 @@ if (! function_exists('getModelByName')) {
                 $info = pathinfo((string) $file);
                 // Offset 'filename' on array{dirname?: string, basename: string, extension?: string, filename: string} on left side of ?? always exists and is not nullable.
                 $filename = $info['filename'];
+
                 // ?? '';
                 return Str::snake($filename) === $name;
             }
@@ -1082,9 +1083,10 @@ if (! function_exists('secondsToHms')) {
 if (! function_exists('rowsToSql')) {
     /**
      * Undocumented function.
+     *
      * @param HasOne|Builder|Illuminate\Database\Eloquent\Builder $rows
      */
-    function rowsToSql( $rows): string
+    function rowsToSql($rows): string
     {
         // $sql = str_replace('?', $rows->getBindings(), $rows->toSql());
         /**

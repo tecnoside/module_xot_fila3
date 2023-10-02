@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Xot\Models;
 
 // use Illuminate\Database\Eloquent\Relations\HasOne;
-use Spatie\Tags\Tag;
 use ArrayAccess;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -19,38 +18,39 @@ use Modules\Xot\Contracts\ModelWithUserContract;
 use Modules\Xot\Database\Factories\ProfileFactory;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Tags\HasTags;
+use Spatie\Tags\Tag;
 
 /**
  * Modules\Xot\Models\Profile.
  *
- * @property int                               $id
- * @property string|null                       $post_type
- * @property Carbon|null                       $created_at
- * @property Carbon|null                       $updated_at
- * @property string|null                       $created_by
- * @property string|null                       $updated_by
- * @property string|null                       $deleted_by
- * @property string|null                       $first_name
- * @property string|null                       $last_name
- * @property string|null                       $email
- * @property string|null                       $phone
- * @property string|null                       $address
- * @property int|null                          $user_id
- * @property string|null                       $bio
- * @property string|null                       $emails
- * @property string|null                       $mobiles
- * @property string|null                       $envelope_id
- * @property int|null                          $is_signed
- * @property int                               $company_selected_id
- * @property string                            $company_data_requests
- * @property string|null                       $nexi_transaction_code
- * @property Collection<int, Permission>       $permissions
- * @property int|null                          $permissions_count
- * @property Collection<int, Role>             $roles
- * @property int|null                          $roles_count
- * @property Collection<int, Tag> $tags
- * @property int|null                          $tags_count
- * @property User|null                         $user
+ * @property int                         $id
+ * @property string|null                 $post_type
+ * @property Carbon|null                 $created_at
+ * @property Carbon|null                 $updated_at
+ * @property string|null                 $created_by
+ * @property string|null                 $updated_by
+ * @property string|null                 $deleted_by
+ * @property string|null                 $first_name
+ * @property string|null                 $last_name
+ * @property string|null                 $email
+ * @property string|null                 $phone
+ * @property string|null                 $address
+ * @property int|null                    $user_id
+ * @property string|null                 $bio
+ * @property string|null                 $emails
+ * @property string|null                 $mobiles
+ * @property string|null                 $envelope_id
+ * @property int|null                    $is_signed
+ * @property int                         $company_selected_id
+ * @property string                      $company_data_requests
+ * @property string|null                 $nexi_transaction_code
+ * @property Collection<int, Permission> $permissions
+ * @property int|null                    $permissions_count
+ * @property Collection<int, Role>       $roles
+ * @property int|null                    $roles_count
+ * @property Collection<int, Tag>        $tags
+ * @property int|null                    $tags_count
+ * @property User|null                   $user
  *
  * @method static ProfileFactory  factory($count = null, $state = [])
  * @method static Builder|Profile newModelQuery()

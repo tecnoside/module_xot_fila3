@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
-use ReflectionClass;
-use stdClass;
 use Doctrine\DBAL\Schema\Column;
-use Exception;
 
 use function get_class;
 
@@ -127,7 +124,7 @@ class StubService
 
         try {
             $this->generate();
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             dddx(
                 [
                     'e' => $exception,
@@ -247,7 +244,7 @@ class StubService
                 // function (Column $column) {
                 function ($column): array {
                     if (! $column instanceof Column) {
-                        throw new Exception('['.__LINE__.']['.__FILE__.']');
+                        throw new \Exception('['.__LINE__.']['.__FILE__.']');
                     }
 
                     return $this->mapTableProperties($column);
@@ -302,11 +299,11 @@ class StubService
                 try {
                     $table_name = $connection->getTablePrefix().$model->getTable();
                     if (! \is_string($input_name)) {
-                        throw new Exception('['.__LINE__.']['.__FILE__.']');
+                        throw new \Exception('['.__LINE__.']['.__FILE__.']');
                     }
 
                     return $connection->getDoctrineColumn($table_name, $input_name);
-                } catch (Exception $exception) {
+                } catch (\Exception $exception) {
                     $msg = 'message:['.$exception->getMessage().']
                         file:['.$exception->getFile().']
                         line:['.$exception->getLine().']
@@ -363,12 +360,12 @@ class StubService
 
         try {
             File::put($file, $stub);
-        } catch (Exception $exception) {
+        } catch (\Exception $exception) {
             $msg = '['.$file.'] '.$exception->getMessage().'
                 ['.__LINE__.']
                 ['.class_basename(self::class).']
                 ';
-            throw new Exception($msg, $exception->getCode(), $exception);
+            throw new \Exception($msg, $exception->getCode(), $exception);
         }
 
         $msg = ' ['.$file.'] is under creating , refresh page';
@@ -386,11 +383,11 @@ class StubService
     public function getDirModel(): string
     {
         if (class_exists($this->model_class)) {
-            $reflectionClass = new ReflectionClass($this->model_class);
+            $reflectionClass = new \ReflectionClass($this->model_class);
             // dddx($autoloader_reflector);
             $class_file_name = $reflectionClass->getFileName();
             if (false === $class_file_name) {
-                throw new Exception('autoloader_reflector false');
+                throw new \Exception('autoloader_reflector false');
             }
 
             return \dirname($class_file_name);
@@ -436,7 +433,7 @@ class StubService
             default:
                 $msg = '['.$this->name.'] Unkwon !['.__LINE__.']['.basename(__FILE__).']';
                 // dddx($msg);
-                throw new Exception($msg);
+                throw new \Exception($msg);
         }
     }
 
@@ -476,7 +473,7 @@ class StubService
                 return $dirModel.'/'.$className.'.php';
             default:
                 $msg = '['.$this->name.'] Unkwon !['.__LINE__.']['.basename(__FILE__).']';
-                throw new Exception($msg);
+                throw new \Exception($msg);
         }
     }
 
@@ -501,10 +498,10 @@ class StubService
                     'deleted_ip', 'created_ip', 'updated_ip',
                 ]
             )->all();
-            $reflectionClass = new ReflectionClass($model);
+            $reflectionClass = new \ReflectionClass($model);
             $class_filename = $reflectionClass->getFileName();
             if (false === $class_filename) {
-                throw new Exception('autoloader_reflector err');
+                throw new \Exception('autoloader_reflector err');
             }
 
             $fillables_str = \chr(13).\chr(10).'    protected $fillable=[\''.implode("','", $fillables)."'];".\chr(13).\chr(10);
@@ -517,7 +514,7 @@ class StubService
 
         $fields = [];
         foreach ($fillables as $fillable) {
-            $tmp = new stdClass();
+            $tmp = new \stdClass();
             try {
                 $col = $model->getConnection()->getDoctrineColumn($model->getTable(), $fillable); // ->getType();//->getName();
                 // dddx(get_class_methods($col->getType()));
@@ -546,7 +543,7 @@ class StubService
                 }
 
                 $tmp->comment = $col->getComment();
-            } catch (Exception) {
+            } catch (\Exception) {
                 // $input_type='Text';
                 // $tmp=new \stdClass();
                 $tmp->type = 'Text';
@@ -612,7 +609,7 @@ class StubService
             static fn (SplFileInfo $file): bool => 'php' === $file->getExtension()
         );
         if (! $brother_file instanceof SplFileInfo) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         $brother_class = $this->getModelNamespace().'\\'.$brother_file->getFilenameWithoutExtension();
@@ -656,7 +653,7 @@ class StubService
         // dddx(get_class_methods($brother_file));
         // dddx($brother_file->getFilenameWithoutExtension());
         if (! $brother_file instanceof SplFileInfo) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         $brother_class = $this->getModelNamespace().'\\'.$brother_file->getFilenameWithoutExtension();

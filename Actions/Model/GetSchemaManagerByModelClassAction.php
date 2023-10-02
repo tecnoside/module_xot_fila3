@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Schema;
-
 use Spatie\QueueableAction\QueueableAction;
 
 class GetSchemaManagerByModelClassAction
@@ -15,8 +12,9 @@ class GetSchemaManagerByModelClassAction
 
     public function execute(string $modelClass)
     {
-        $model=app($modelClass);
-        $connection=$model->getConnection();
+        $model = app($modelClass);
+        $connection = $model->getConnection();
+
         return $connection->getDoctrineSchemaManager();
     }
 }

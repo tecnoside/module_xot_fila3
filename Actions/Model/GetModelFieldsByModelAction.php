@@ -6,7 +6,6 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model;
 
-use Webmozart\Assert\Assert;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\QueueableAction\QueueableAction;
 

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Xot\Traits;
 
 use Illuminate\Support\Str;
+
 /**
  * Trait FormRequestTrait.
  */
@@ -20,7 +21,7 @@ trait FormRequestTrait
         // dddx($pieces);
         $pieces = \array_slice($pieces, 3);
         $pieces = collect($pieces)->map(
-            static fn($item): string => Str::snake($item)
+            static fn ($item): string => Str::snake($item)
         )->all();
         $trad_name = $pack.'::'.implode('.', $pieces);
         $trad = trans($trad_name);
@@ -28,7 +29,7 @@ trait FormRequestTrait
             //    dddx($trad_name.' is not an array');
             $trad = [];
         }
-        
+
         $tradGeneric = trans('ui::generic'); // deve funzionare anche senza il pacchetto "food", invece "extend" e' un pacchetto primario
         if (! \is_array($tradGeneric)) {
             $tradGeneric = [];

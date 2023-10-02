@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers;
 
-use Modules\Cms\Services\PanelService;
 use Illuminate\Database\Events\MigrationsEnded;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Facades\Artisan;
@@ -12,6 +11,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
+use Modules\Cms\Services\PanelService;
 use Modules\Xot\Console\Commands\DatabaseBackUpCommand;
 use Modules\Xot\Providers\Traits\TranslatorTrait;
 use Modules\Xot\Services\ProfileTest;

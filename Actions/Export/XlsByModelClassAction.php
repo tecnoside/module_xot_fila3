@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Export;
 
-use Modules\Xot\Actions\Model\GetTransKeyByModelClassAction;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-// use Modules\Xot\Services\ArrayService;
 use Maatwebsite\Excel\Facades\Excel;
+// use Modules\Xot\Services\ArrayService;
+use Modules\Xot\Actions\Model\GetTransKeyByModelClassAction;
 use Modules\Xot\Exports\CollectionExport;
 use Spatie\QueueableAction\QueueableAction;
 
@@ -26,7 +26,7 @@ class XlsByModelClassAction
             ->where($where);
 
         $rows = $rows->get();
-        if ($includes !== []) {
+        if ([] !== $includes) {
             $rows = $rows->map(function ($item) use ($includes) {
                 $data = [];
                 foreach ($includes as $include) {
@@ -37,7 +37,7 @@ class XlsByModelClassAction
             });
         }
 
-        if ($excludes !== []) {
+        if ([] !== $excludes) {
             $rows = $rows->makeHidden($excludes);
         }
 

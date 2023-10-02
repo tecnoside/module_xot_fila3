@@ -6,10 +6,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model;
 
-use Webmozart\Assert\Assert;
 use Nwidart\Modules\Facades\Module;
 use Spatie\QueueableAction\QueueableAction;
-use Modules\Xot\Actions\Model\GetAllModelsByModuleNameAction;
 
 class GetAllModelsAction
 {
@@ -28,6 +26,5 @@ class GetAllModelsAction
         }
 
         return $res;
-
     }
 }

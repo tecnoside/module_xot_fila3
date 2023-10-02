@@ -6,9 +6,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model;
 
-use Webmozart\Assert\Assert;
 use Spatie\QueueableAction\QueueableAction;
-use Modules\Xot\Actions\Model\GetAllModelsAction;
+use Webmozart\Assert\Assert;
 
 class GetFirstModelClassByModelNameAction
 {
@@ -19,9 +18,10 @@ class GetFirstModelClassByModelNameAction
      */
     public function execute(string $modelName): string
     {
-        $models=app(GetAllModelsAction::class)->execute();
+        $models = app(GetAllModelsAction::class)->execute();
 
-        Assert::string($modelClass=collect($models)->get($modelName));
+        Assert::string($modelClass = collect($models)->get($modelName));
+
         return $modelClass;
     }
 }

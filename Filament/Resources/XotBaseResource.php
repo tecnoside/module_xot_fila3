@@ -10,7 +10,8 @@ use Filament\Resources\Resource;
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
 
-abstract class XotBaseResource extends Resource {
+abstract class XotBaseResource extends Resource
+{
     protected static ?string $model = null;
 
     // protected static ?string $navigationIcon = 'heroicon-o-bell';
@@ -20,11 +21,13 @@ abstract class XotBaseResource extends Resource {
     // protected static ?string $navigationGroup = 'Parametri di Sistema';
     protected static ?int $navigationSort = 3;
 
-    public static function getModuleName(): string {
+    public static function getModuleName(): string
+    {
         return Str::between(static::class, 'Modules\\', '\Filament');
     }
 
-    public static function trans(string $key): string {
+    public static function trans(string $key): string
+    {
         $moduleNameLow = Str::lower(static::getModuleName());
         Assert::notNull(static::$model);
         $modelNameSlug = Str::kebab(class_basename(static::$model));
@@ -33,7 +36,8 @@ abstract class XotBaseResource extends Resource {
         return __($res);
     }
 
-    public static function getModel(): string {
+    public static function getModel(): string
+    {
         // if (null != static::$model) {
         //    return static::$model;
         // }
@@ -45,16 +49,19 @@ abstract class XotBaseResource extends Resource {
         return $res;
     }
 
-    public static function getPluralModelLabel(): string {
+    public static function getPluralModelLabel(): string
+    {
         return static::trans('navigation.plural');
     }
 
-    public static function getNavigationLabel(): string {
+    public static function getNavigationLabel(): string
+    {
         return static::trans('navigation.name');
         // return static::trans('navigation.plural');
     }
 
-    public static function getNavigationGroup(): string {
+    public static function getNavigationGroup(): string
+    {
         return static::trans('navigation.group.name');
     }
 }

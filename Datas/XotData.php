@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Datas;
 
-use Modules\Tenant\Services\TenantService;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 use Livewire\Wireable;
+use Modules\Tenant\Services\TenantService;
+use Modules\User\Models\Membership;
+use Modules\User\Models\Team;
+use Spatie\LaravelData\Concerns\WireableData;
 use Spatie\LaravelData\Data;
 use Webmozart\Assert\Assert;
-use Modules\User\Models\Team;
-use Modules\User\Models\Membership;
-use Illuminate\Support\Facades\File;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\LaravelData\Concerns\WireableData;
 
 /**
  * Undocumented class.
@@ -66,11 +66,10 @@ class XotData extends Data implements Wireable
         $xot = config('xra');
 
         if (! is_array($xot)) {
-
-            $path=TenantService::filePath('xra.php');
-            $xot=File::getRequire($path);
-            if(!is_array($xot)){
-                $xot=[];
+            $path = TenantService::filePath('xra.php');
+            $xot = File::getRequire($path);
+            if (! is_array($xot)) {
+                $xot = [];
             }
         }
 

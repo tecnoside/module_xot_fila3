@@ -4,41 +4,41 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers\Filament;
 
-use Filament\Panel;
-use Filament\Widgets;
-use Filament\PanelProvider;
-use Illuminate\Support\Str;
-use Filament\Pages\Dashboard;
 use Filament\Facades\Filament;
-use Modules\Xot\Datas\XotData;
-use Filament\Navigation\MenuItem;
-use Filament\Support\Colors\Color;
-use Filament\Navigation\NavigationItem;
 use Filament\Http\Middleware\Authenticate;
-use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Cookie\Middleware\EncryptCookies;
-use Illuminate\Routing\Middleware\SubstituteBindings;
-use Illuminate\Session\Middleware\AuthenticateSession;
-use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
-use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Filament\Navigation\MenuItem;
+use Filament\Navigation\NavigationItem;
+use Filament\Pages\Dashboard;
+use Filament\Panel;
+use Filament\PanelProvider;
+use Filament\Support\Colors\Color;
 use Filament\Support\Facades\FilamentView;
+use Filament\Widgets;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Cookie\Middleware\EncryptCookies;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Session\Middleware\AuthenticateSession;
+use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Str;
+use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Modules\Xot\Datas\XotData;
 
 abstract class XotBasePanelProvider extends PanelProvider
 {
     protected string $module;
-    protected bool $topNavigation= false;
+    protected bool $topNavigation = false;
 
     public function panel(Panel $panel): Panel
     {
         $moduleNamespace = $this->getModuleNamespace();
         $moduleLow = Str::lower($this->module);
         XotData::make();
-        //$teamClass=$xot->getTeamClass();
-        //$teamClass=\Modules\User\Models\Team::class;
+        // $teamClass=$xot->getTeamClass();
+        // $teamClass=\Modules\User\Models\Team::class;
         /*
         FilamentView::registerRenderHook(
             'panels::user-menu.before',
@@ -46,26 +46,25 @@ abstract class XotBasePanelProvider extends PanelProvider
         );
         */
 
-
         $panel = $panel
             ->default()
             ->login()
-            //->registration()
-            //->passwordReset()
-            //->emailVerification()
-            //->profile()
-            //->sidebarFullyCollapsibleOnDesktop()
+            // ->registration()
+            // ->passwordReset()
+            // ->emailVerification()
+            // ->profile()
+            // ->sidebarFullyCollapsibleOnDesktop()
             ->maxContentWidth('full')
             ->topNavigation($this->topNavigation)
-            ->readOnlyRelationManagersOnResourceViewPagesByDefault(false) // 
-            //->navigation(false)
-            //->tenant($teamClass)
-            //->tenant($teamClass,ownershipRelationship:'users')
-            //->tenant($teamClass)
+            ->readOnlyRelationManagersOnResourceViewPagesByDefault(false) //
+            // ->navigation(false)
+            // ->tenant($teamClass)
+            // ->tenant($teamClass,ownershipRelationship:'users')
+            // ->tenant($teamClass)
             ->id($moduleLow.'::admin')
             ->path($moduleLow.'/admin')
             ->colors([
-                //'primary' => Color::Teal,
+                // 'primary' => Color::Teal,
             ])
             /*
             ->userMenuItems([
@@ -125,10 +124,6 @@ abstract class XotBasePanelProvider extends PanelProvider
                  ->sort(3),
          ]);
         */
-
-
-
-
 
         return $panel;
     }
