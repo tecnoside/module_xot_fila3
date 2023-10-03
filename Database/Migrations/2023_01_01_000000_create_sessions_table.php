@@ -27,8 +27,8 @@ class CreateSessionsTable extends XotBaseMigration
                 $table->text('payload');
                 $table->integer('last_activity')->index();
                 $table->timestamps();
-                $table->string('created_at')->nullable();
-                $table->string('updated_at')->nullable();
+                $table->string('created_by')->nullable();
+                $table->string('updated_by')->nullable();
             }
         );
     }
