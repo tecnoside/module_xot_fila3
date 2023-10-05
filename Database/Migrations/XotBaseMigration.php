@@ -337,4 +337,35 @@ abstract class XotBaseMigration extends Migration
             }
         );
     }
+
+    public function timestamps(Blueprint $table, bool $hasSoftDeletes = false)
+    {
+        $table->timestamps();
+        $table->foreignIdFor(
+            model: User::class,
+            column: 'user_id',
+        )
+        ->nullable()
+        ->nullOnDelete()
+        ->cascadeOnUpdate();
+
+        $table->foreignIdFor(
+            model: User::class,
+            column: 'updated_by',
+        )
+        ->nullable()
+        ->nullOnDelete()
+        ->cascadeOnUpdate();
+        $table->foreignIdFor(
+            model: User::class,
+            column: 'created_by',
+        )
+        ->nullable()
+        ->nullOnDelete()
+        ->cascadeOnUpdate();
+
+        if ($hasSoftDeletes) {
+            $table->softDeletes();
+        }
+    }
 }// end XotBaseMigration
