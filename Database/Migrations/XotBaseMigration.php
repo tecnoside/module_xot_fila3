@@ -368,4 +368,22 @@ abstract class XotBaseMigration extends Migration
             $table->softDeletes();
         }
     }
+
+    public function updateUser(Blueprint $table)
+    {
+        if (! $this->hasColumn('id')) {
+            $table->uuid('id')->primary()->first();
+        }
+        if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['bigint'], true)) {
+            $table->uuid('id')->change();
+        }
+
+        if ($this->hasColumn('model_id') && \in_array($this->getColumnType('model_id'), ['bigint'], true)) {
+            $table->string('model_id', 36)->index()->change();
+        }
+
+        if ($this->hasColumn('user_id') && \in_array($this->getColumnType('user_id'), ['bigint'], true)) {
+            $table->uuid('user_id')->change(); // da vedere come mettere index ->index()
+        }
+    }
 }// end XotBaseMigration
