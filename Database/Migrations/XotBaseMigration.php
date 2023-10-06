@@ -371,7 +371,7 @@ abstract class XotBaseMigration extends Migration
 
     public function updateTimestamps(Blueprint $table)
     {
-        if (! $this->hasColumn('updated_at') && !$this->hasColumn('created_at')) {
+        if (! $this->hasColumn('updated_at') && ! $this->hasColumn('created_at')) {
             $table->timestamps();
         }
         /*

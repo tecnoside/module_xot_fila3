@@ -49,7 +49,7 @@ class GetModulesNavigationItems
                         if ($user->hasRole('super-admin')) {
                             $role = Role::firstOrCreate(['name' => $role]);
 
-                            //$res = $user->assignRole($role);
+                            // $res = $user->assignRole($role);
                         }
 
                         return $user->hasRole($role);
