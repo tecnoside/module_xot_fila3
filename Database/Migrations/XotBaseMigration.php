@@ -382,6 +382,10 @@ abstract class XotBaseMigration extends Migration
             $table->string('model_id', 36)->index()->change();
         }
 
+        if ($this->hasColumn('team_id') && \in_array($this->getColumnType('team_id'), ['bigint'], true)) {
+            $table->uuid('team_id')->nullable()->change(); // da vedere come mettere index ->index()
+        }
+
         if ($this->hasColumn('user_id') && \in_array($this->getColumnType('user_id'), ['bigint'], true)) {
             $table->uuid('user_id')->change(); // da vedere come mettere index ->index()
         }
