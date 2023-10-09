@@ -337,4 +337,93 @@ abstract class XotBaseMigration extends Migration
             }
         );
     }
+
+    public function timestamps(Blueprint $table, bool $hasSoftDeletes = false)
+    {
+        $table->timestamps();
+        $table->foreignIdFor(
+            model: User::class,
+            column: 'user_id',
+        )
+        ->nullable()
+        ->nullOnDelete()
+        ->cascadeOnUpdate();
+
+        $table->foreignIdFor(
+            model: User::class,
+            column: 'updated_by',
+        )
+        ->nullable()
+        ->nullOnDelete()
+        ->cascadeOnUpdate();
+        $table->foreignIdFor(
+            model: User::class,
+            column: 'created_by',
+        )
+        ->nullable()
+        ->nullOnDelete()
+        ->cascadeOnUpdate();
+
+        if ($hasSoftDeletes) {
+            $table->softDeletes();
+        }
+    }
+
+    public function updateTimestamps(Blueprint $table)
+    {
+        if (! $this->hasColumn('updated_at') && ! $this->hasColumn('created_at')) {
+            $table->timestamps();
+        }
+        /*
+        if (! $this->hasColumn('user_id')) {
+            $table->foreignIdFor(
+                model: User::class,
+                column: 'user_id',
+            )
+            ->nullable()
+            ->nullOnDelete()
+            ->cascadeOnUpdate();
+        }
+        */
+        if (! $this->hasColumn('updated_by')) {
+            $table->foreignIdFor(
+                model: User::class,
+                column: 'updated_by',
+            )
+            ->nullable()
+            ->nullOnDelete()
+            ->cascadeOnUpdate();
+        }
+        if (! $this->hasColumn('created_by')) {
+            $table->foreignIdFor(
+                model: User::class,
+                column: 'created_by',
+            )
+            ->nullable()
+            ->nullOnDelete()
+            ->cascadeOnUpdate();
+        }
+    }
+
+    public function updateUser(Blueprint $table)
+    {
+        if (! $this->hasColumn('id')) {
+            $table->uuid('id')->primary()->first();
+        }
+        if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['bigint'], true)) {
+            $table->uuid('id')->change();
+        }
+
+        if ($this->hasColumn('model_id') && \in_array($this->getColumnType('model_id'), ['bigint'], true)) {
+            $table->string('model_id', 36)->index()->change();
+        }
+
+        if ($this->hasColumn('team_id') && \in_array($this->getColumnType('team_id'), ['bigint'], true)) {
+            $table->uuid('team_id')->nullable()->change(); // da vedere come mettere index ->index()
+        }
+
+        if ($this->hasColumn('user_id') && \in_array($this->getColumnType('user_id'), ['bigint'], true)) {
+            $table->uuid('user_id')->change(); // da vedere come mettere index ->index()
+        }
+    }
 }// end XotBaseMigration
