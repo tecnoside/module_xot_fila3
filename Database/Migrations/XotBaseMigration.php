@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Schema\Builder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Modules\User\Models\User;
@@ -408,10 +409,11 @@ abstract class XotBaseMigration extends Migration
     public function updateUser(Blueprint $table)
     {
         if (! $this->hasColumn('id')) {
-            $table->uuid('id')->primary()->first();
+            $table->uuid('id')->primary()->first()->default(DB::raw('(UUID())'));
         }
+
         if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['bigint'], true)) {
-            $table->uuid('id')->change();
+            $table->uuid('id')->default(DB::raw('(UUID())'))->change();
         }
 
         if ($this->hasColumn('model_id') && \in_array($this->getColumnType('model_id'), ['bigint'], true)) {
