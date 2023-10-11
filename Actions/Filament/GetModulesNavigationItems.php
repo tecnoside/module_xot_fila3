@@ -46,11 +46,11 @@ class GetModulesNavigationItems
                     ->visible(function () use ($role) {
                         $user = Filament::auth()->user();
                         // $user->assignRole('super-admin');
-                        if ($user->hasRole('super-admin')) {
-                            $role = Role::firstOrCreate(['name' => $role]);
+                        //if ($user->hasRole('super-admin')) {
+                        //    $role = Role::firstOrCreate(['name' => $role] /*,['id'=>Str::uuid() ]*/);
 
-                            // $res = $user->assignRole($role);
-                        }
+                            //$res = $user->assignRole($role);
+                        //}
 
                         return $user->hasRole($role);
                     })
