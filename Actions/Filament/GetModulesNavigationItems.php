@@ -13,13 +13,15 @@ use Modules\Tenant\Services\TenantService;
 use Modules\User\Models\Role;
 use Spatie\QueueableAction\QueueableAction;
 
-class GetModulesNavigationItems {
+class GetModulesNavigationItems
+{
     use QueueableAction;
 
     /**
      * Undocumented function.
      */
-    public function execute(): array {
+    public function execute(): array
+    {
         $navs = [];
         $modules = TenantService::allModules(); // app('modules') da errore su container Cache
         foreach ($modules as $module) {
