@@ -23,13 +23,15 @@ use Nwidart\Modules\Facades\Module;
 /**
  * Class XotBaseMigration.
  */
-abstract class XotBaseMigration extends Migration {
+abstract class XotBaseMigration extends Migration
+{
     protected ?Model $model = null;
 
     protected ?string $model_class = null;
 
     // *
-    public function __construct() {
+    public function __construct()
+    {
         $this->registerLaravelBlueprintMacros();
 
         if (! $this->model instanceof Model) {
@@ -48,7 +50,8 @@ abstract class XotBaseMigration extends Migration {
 
     // */
 
-    public function getModel(): string {
+    public function getModel(): string
+    {
         if (null !== $this->model_class) {
             return $this->model_class;
         }
@@ -71,7 +74,8 @@ abstract class XotBaseMigration extends Migration {
         return $model_ns;
     }
 
-    public function getTable(): string {
+    public function getTable(): string
+    {
         if (! $this->model instanceof Model) {
             return '';
         }
@@ -79,7 +83,8 @@ abstract class XotBaseMigration extends Migration {
         return $this->model->getTable();
     }
 
-    public function getConn(): Builder {
+    public function getConn(): Builder
+    {
         // $conn_name=with(new MyModel())->getConnectionName();
         // \DB::reconnect('mysql');
         // dddx(config('database'));
@@ -95,7 +100,8 @@ abstract class XotBaseMigration extends Migration {
         return Schema::connection($connectionName);
     }
 
-    public function getSchemaManager(): AbstractSchemaManager {
+    public function getSchemaManager(): AbstractSchemaManager
+    {
         return $this->getConn()
             ->getConnection()
             ->getDoctrineSchemaManager();
@@ -104,7 +110,8 @@ abstract class XotBaseMigration extends Migration {
     /**
      * @throws \Doctrine\DBAL\Exception
      */
-    public function getTableDetails(): Table {
+    public function getTableDetails(): Table
+    {
         return $this->getSchemaManager()
             ->listTableDetails($this->getTable());
     }
@@ -114,7 +121,8 @@ abstract class XotBaseMigration extends Migration {
      *
      * @return array<Index>
      */
-    public function getTableIndexes(): array {
+    public function getTableIndexes(): array
+    {
         return $this->getSchemaManager()
             ->listTableIndexes($this->getTable());
     }
@@ -122,7 +130,8 @@ abstract class XotBaseMigration extends Migration {
     /**
      * ---.
      */
-    public function tableExists(string $table = null): bool {
+    public function tableExists(string $table = null): bool
+    {
         if (null === $table) {
             $table = $this->getTable();
         }
@@ -130,21 +139,24 @@ abstract class XotBaseMigration extends Migration {
         return $this->getConn()->hasTable($table);
     }
 
-    public function hasColumn(string $col): bool {
+    public function hasColumn(string $col): bool
+    {
         return $this->getConn()->hasColumn($this->getTable(), $col);
     }
 
     /**
      * Get the data type for the given column name.
      */
-    public function getColumnType(string $column): string {
+    public function getColumnType(string $column): string
+    {
         return $this->getConn()->getColumnType($this->getTable(), $column);
     }
 
     /**
      * Undocumented function.
      */
-    public function isColumnType(string $column, string $type): bool {
+    public function isColumnType(string $column, string $type): bool
+    {
         if (! $this->hasColumn($column)) {
             return false;
         }
@@ -155,11 +167,13 @@ abstract class XotBaseMigration extends Migration {
     /**
      * ---.
      */
-    public function query(string $sql): void {
+    public function query(string $sql): void
+    {
         $this->getConn()->getConnection()->statement($sql);
     }
 
-    public function hasIndex(string $index, string $type = 'index'): bool {
+    public function hasIndex(string $index, string $type = 'index'): bool
+    {
         /*
         $tbl = $this->getTable();
         $conn = $this->getConn()->getConnection();
@@ -173,7 +187,8 @@ abstract class XotBaseMigration extends Migration {
         return $doctrineTable->hasIndex($table.'_'.$index.'_'.$type);
     }
 
-    public function dropIndex(string $index): void {
+    public function dropIndex(string $index): void
+    {
         $table = $this->getTable();
         $doctrineTable = $this->getTableDetails();
         $exists = $doctrineTable->hasIndex($table.'_'.$index);
@@ -182,7 +197,8 @@ abstract class XotBaseMigration extends Migration {
         }
     }
 
-    public function hasIndexName(string $name): bool {
+    public function hasIndexName(string $name): bool
+    {
         $doctrineTable = $this->getTableDetails();
 
         return $doctrineTable->hasIndex($name);
@@ -191,13 +207,15 @@ abstract class XotBaseMigration extends Migration {
     /**
      * ---.
      */
-    public function hasPrimaryKey(): bool {
+    public function hasPrimaryKey(): bool
+    {
         $table_details = $this->getTableDetails();
 
         return $table_details->hasPrimaryKey();
     }
 
-    public function dropPrimaryKey(): void {
+    public function dropPrimaryKey(): void
+    {
         $table_details = $this->getTableDetails();
         $table_details->dropPrimaryKey();
 
@@ -208,26 +226,31 @@ abstract class XotBaseMigration extends Migration {
     /**
      * Reverse the migrations.
      */
-    public function down(): void {
+    public function down(): void
+    {
         $this->getConn()->dropIfExists($this->getTable());
     }
 
-    public function tableDrop(string $table): void {
+    public function tableDrop(string $table): void
+    {
         $this->getConn()->dropIfExists($table);
     }
 
-    public function rename(string $from, string $to): void {
+    public function rename(string $from, string $to): void
+    {
         $this->getConn()->rename($from, $to);
     }
 
-    public function renameTable(string $from, string $to): void {
+    public function renameTable(string $from, string $to): void
+    {
         if ($this->tableExists($from)) {
             $this->getConn()->rename($from, $to);
         }
     }
 
     // da rivedere
-    public function renameColumn(string $from, string $to): void {
+    public function renameColumn(string $from, string $to): void
+    {
         // Call to an undefined method Illuminate\Database\Schema\Builder::renameColumn().
         /**
          * @var Blueprint
@@ -239,7 +262,8 @@ abstract class XotBaseMigration extends Migration {
     /**
      * Undocumented function.
      */
-    public function tableCreate(\Closure $next): void {
+    public function tableCreate(\Closure $next): void
+    {
         if (! $this->tableExists()) {
             $this->getConn()->create(
                 $this->getTable(),
@@ -251,7 +275,8 @@ abstract class XotBaseMigration extends Migration {
     /**
      * Undocumented function.
      */
-    public function tableUpdate(\Closure $next): void {
+    public function tableUpdate(\Closure $next): void
+    {
         $this->getConn()->table(
             $this->getTable(),
             $next
@@ -261,7 +286,8 @@ abstract class XotBaseMigration extends Migration {
     /**
      * Adds some macros to base Laravel Schema class.
      */
-    private function registerLaravelBlueprintMacros(): void {
+    private function registerLaravelBlueprintMacros(): void
+    {
         /*
          *  Registers `created_by`, `updated_by` and `deleted_by` entries for
          *  a table, in order to track who performed the last CRUD operation
@@ -313,7 +339,8 @@ abstract class XotBaseMigration extends Migration {
         );
     }
 
-    public function timestamps(Blueprint $table, bool $hasSoftDeletes = false) {
+    public function timestamps(Blueprint $table, bool $hasSoftDeletes = false)
+    {
         $table->timestamps();
         $table->foreignIdFor(
             model: User::class,
@@ -343,7 +370,8 @@ abstract class XotBaseMigration extends Migration {
         }
     }
 
-    public function updateTimestamps(Blueprint $table) {
+    public function updateTimestamps(Blueprint $table)
+    {
         if (! $this->hasColumn('updated_at') && ! $this->hasColumn('created_at')) {
             $table->timestamps();
         }
@@ -378,7 +406,8 @@ abstract class XotBaseMigration extends Migration {
         }
     }
 
-    public function updateUser(Blueprint $table) {
+    public function updateUser(Blueprint $table)
+    {
         if (! $this->hasColumn('id')) {
             $table->uuid('id')->primary()->first(); // ->default(DB::raw('(UUID())'));
         }
