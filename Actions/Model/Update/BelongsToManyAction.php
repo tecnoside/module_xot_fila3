@@ -27,6 +27,29 @@ class BelongsToManyAction
             return;
         }
 
-        $model->{$relationDTO->name}()->sync($relationDTO->data);
+        $ids=[];
+        $keyName=$relationDTO->related->getKeyName();
+
+        foreach($relationDTO->data as $data){
+            if(in_array($keyName,array_keys($data))){
+                $related_id=$data[$keyName];
+                $row=$relationDTO->related->firstOrCreate([$keyName=>$related_id]);
+                $res=app(\Modules\Xot\Actions\Model\UpdateAction::class)->execute($row,$data,[]);
+                $ids[]=$related_id;
+            }
+        }
+
+        dddx($ids);
+        /*
+        try{
+            $model->{$relationDTO->name}()->sync($relationDTO->data);
+        }catch(\Exception $e){
+            dddx([
+                'message'=>$e->getMessage(),
+                'model'=>$model,
+                'relationDTO'=>$relationDTO,
+            ]);
+        }
+        */
     }
 }
