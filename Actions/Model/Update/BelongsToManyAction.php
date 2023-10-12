@@ -27,15 +27,15 @@ class BelongsToManyAction
             return;
         }
 
-        $ids=[];
-        $keyName=$relationDTO->related->getKeyName();
+        $ids = [];
+        $keyName = $relationDTO->related->getKeyName();
 
-        foreach($relationDTO->data as $data){
-            if(in_array($keyName,array_keys($data))){
-                $related_id=$data[$keyName];
-                $row=$relationDTO->related->firstOrCreate([$keyName=>$related_id]);
-                $res=app(\Modules\Xot\Actions\Model\UpdateAction::class)->execute($row,$data,[]);
-                $ids[]=$related_id;
+        foreach ($relationDTO->data as $data) {
+            if (in_array($keyName, array_keys($data))) {
+                $related_id = $data[$keyName];
+                $row = $relationDTO->related->firstOrCreate([$keyName => $related_id]);
+                $res = app(\Modules\Xot\Actions\Model\UpdateAction::class)->execute($row, $data, []);
+                $ids[] = $related_id;
             }
         }
 
