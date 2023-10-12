@@ -61,7 +61,7 @@ class BelongsToManyAction
 
         if (\count($ids) > 0) {
             try {
-                $model->{$relationDTO->name}()->sync($ids);
+                $model->{$relationDTO->name}()->syncWithoutDetaching($ids);
             } catch (\Exception $e) {
                 dddx([
                     'message' => $e->getMessage(),
