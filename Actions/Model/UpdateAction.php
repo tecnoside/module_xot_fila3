@@ -22,12 +22,12 @@ class UpdateAction
         if (null === $model->getKey()) {
             $keyName = $model->getKeyName();
             $key = $data[$keyName];
+            $data = collect($data)->except($keyName)->toArray();
             $model = $model->firstOrCreate([$keyName => $key], $data);
             if ($model->{$keyName} !== $key) {
                 $model->{$keyName} = $key;
                 $model->save();
             }
-            $data = collect($data)->except($keyName)->toArray();
         }
 
         try {
