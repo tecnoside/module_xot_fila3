@@ -23,7 +23,8 @@ class UpdateAction
             $keyName = $model->getKeyName();
             $key = $data[$keyName];
 
-            $row = $model->firstWhere([$keyName => $key]);
+            $row = $model->where($keyName, $key)->first();
+
             if (null === $row) {
                 $row = $model->create($data);
                 dddx([
