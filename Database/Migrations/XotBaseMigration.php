@@ -408,13 +408,21 @@ abstract class XotBaseMigration extends Migration
 
     public function updateUser(Blueprint $table)
     {
+        /*
         if (! $this->hasColumn('id')) {
             $table->uuid('id')->primary()->first(); // ->default(DB::raw('(UUID())'));
         }
 
         if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['bigint'], true)) {
-            // $table->uuid('id')->default(DB::raw('(UUID())'))->change();
-            $table->uuid('id')->change();
+            $table->uuid('id')->default(DB::raw('(UUID())'))->change();
+        }
+        */
+        if (! $this->hasColumn('id')) {
+            $table->id('id');
+        }
+
+        if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['string'], true)) {
+            $table->increments('id')->change();
         }
 
         if ($this->hasColumn('model_id') && \in_array($this->getColumnType('model_id'), ['bigint'], true)) {
@@ -422,11 +430,11 @@ abstract class XotBaseMigration extends Migration
         }
 
         if ($this->hasColumn('team_id') && \in_array($this->getColumnType('team_id'), ['bigint'], true)) {
-            $table->uuid('team_id')->nullable()->change(); // da vedere come mettere index ->index()
+            $table->uuid('team_id')->nullable()->change(); //  ->index()
         }
 
         if ($this->hasColumn('user_id') && \in_array($this->getColumnType('user_id'), ['bigint'], true)) {
-            $table->uuid('user_id')->change(); // da vedere come mettere index ->index()
+            $table->uuid('user_id')->change(); //  ->index()
         }
     }
 }// end XotBaseMigration
