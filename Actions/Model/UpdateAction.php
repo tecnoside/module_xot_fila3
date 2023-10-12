@@ -27,6 +27,7 @@ class UpdateAction
                 $row = $model->firstOrCreate([$keyName => $key], $data);
             } catch (\Exception $e) {
                 $row = $model;
+                $row->{$keyName} = $key;
             }
             dddx($row);
         }
