@@ -23,7 +23,7 @@ class UpdateAction
             $keyName = $model->getKeyName();
             $key = $data[$keyName];
             $data = collect($data)->except($keyName)->toArray();
-            $row = $model->find($key);
+            $row = $model->firstWhere([$keyName => $key]);
             dddx($row);
             /*
             try {
