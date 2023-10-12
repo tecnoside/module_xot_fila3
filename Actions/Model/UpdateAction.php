@@ -23,15 +23,23 @@ class UpdateAction
             $keyName = $model->getKeyName();
             $key = $data[$keyName];
             $data = collect($data)->except($keyName)->toArray();
+            $row = $model->find($key);
+            dddx($row);
+            /*
             try {
                 $model = $model->firstOrCreate([$keyName => $key], $data);
             } catch (\Exception $e) {
-                dddx(['e' => $e->getMessage(), 'model' => $model, 'keyName' => $keyName, 'key' => $key]);
+                dddx(['e' => $e->getMessage(),
+                    'model' => $model,
+                    'keyName' => $keyName,
+                    'key' => $key,
+                ]);
             }
             if ($model->{$keyName} !== $key) {
                 $model->{$keyName} = $key;
                 $model->save();
             }
+            */
         }
 
         try {
