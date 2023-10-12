@@ -17,10 +17,9 @@ class UpdateAction
     {
         $validator = Validator::make($data, $rules);
         $validator->validate();
-
+        $keyName = $model->getKeyName();
         // dddx($data);
         if (null === $model->getKey()) {
-            $keyName = $model->getKeyName();
             $key = $data[$keyName];
             $data = collect($data)->except($keyName)->toArray();
             try {
@@ -29,7 +28,7 @@ class UpdateAction
                 $row = $model;
                 $row->{$keyName} = $key;
             }
-            dddx($row);
+            $model = $row;
         }
 
         try {
