@@ -22,34 +22,9 @@ class UpdateAction
         if (null === $model->getKey()) {
             $keyName = $model->getKeyName();
             $key = $data[$keyName];
-
-            $row = $model->where($keyName, $key)->first();
-
-            if (null === $row) {
-                $row = $model->create($data);
-                dddx([
-                    'row' => $row,
-                    'keyName' => $keyName,
-                    'key' => $key,
-                    'row id' => $row->id,
-                ]);
-            }
             $data = collect($data)->except($keyName)->toArray();
-            /*
-            try {
-                $model = $model->firstOrCreate([$keyName => $key], $data);
-            } catch (\Exception $e) {
-                dddx(['e' => $e->getMessage(),
-                    'model' => $model,
-                    'keyName' => $keyName,
-                    'key' => $key,
-                ]);
-            }
-            if ($model->{$keyName} !== $key) {
-                $model->{$keyName} = $key;
-                $model->save();
-            }
-            */
+
+            $model = $model->firstOrCreate([$keyName => $key], $data);
         }
 
         try {
