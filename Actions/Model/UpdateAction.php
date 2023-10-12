@@ -23,8 +23,12 @@ class UpdateAction
             $keyName = $model->getKeyName();
             $key = $data[$keyName];
             $data = collect($data)->except($keyName)->toArray();
-
-            $model = $model->firstOrCreate([$keyName => $key], $data);
+            try {
+                $row = $model->firstOrCreate([$keyName => $key], $data);
+            } catch (\Exception $e) {
+                $row = $model;
+            }
+            dddx($row);
         }
 
         try {
