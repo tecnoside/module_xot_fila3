@@ -7,6 +7,7 @@ namespace Modules\Xot\Actions\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Modules\Xot\DTOs\RelationDTO;
 use Spatie\LaravelData\DataCollection;
 use Spatie\QueueableAction\QueueableAction;
@@ -23,17 +24,23 @@ class FilterRelationsAction
         $methods = get_class_methods($model);
         $res = collect($data)
             ->filter(
-                static fn ($value, $item): bool => \in_array($item, $methods, true)
+                function ($value, $item) use ($methods): bool {
+                    $method = Str::camel($item);
+
+                    return \in_array($method, $methods, true);
+                }
             )
             ->filter(
-                static function ($value, $item) use ($model): bool {
-                    $rows = $model->$item();
+                function ($value, $item) use ($model): bool {
+                    $method = Str::camel($item);
+                    $rows = $model->$method();
 
                     return $rows instanceof Relation;
                 }
             )->map(
-                static function ($value, $item) use ($model): array {
-                    $rows = $model->$item();
+                function ($value, $item) use ($model): array {
+                    $method = Str::camel($item);
+                    $rows = $model->$method();
                     // $related = null;
                     // if (method_exists($rows, 'getRelated')) {
                     // Cannot call method getRelated() on class-string|object

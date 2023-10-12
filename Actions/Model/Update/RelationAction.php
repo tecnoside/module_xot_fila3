@@ -19,15 +19,15 @@ class RelationAction
     {
         $relations = app(FilterRelationsAction::class)->execute($model, $data);
         /*
-        if ('CompanyService' != class_basename($row)) {
+        if ('Operation' === class_basename($model)) {
             dddx([
-                'basename' => class_basename($row),
-                'row' => $row,
+                'basename' => class_basename($model),
+                'model' => $model,
                 'data' => $data,
                 'relations' => $relations,
             ]);
         }
-        */
+        // */
         foreach ($relations as $relation) {
             $act = __NAMESPACE__.'\\'.$relation->relationship_type.'Action';
             app($act)->execute($model, $relation);

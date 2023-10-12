@@ -27,29 +27,60 @@ class BelongsToManyAction
             return;
         }
 
+        $models = [];
         $ids = [];
+        $related = $relationDTO->related;
         $keyName = $relationDTO->related->getKeyName();
 
         foreach ($relationDTO->data as $data) {
-            if (in_array($keyName, array_keys($data))) {
-                $related_id = $data[$keyName];
-                $row = $relationDTO->related->firstOrCreate([$keyName => $related_id]);
-                $res = app(\Modules\Xot\Actions\Model\UpdateAction::class)->execute($row, $data, []);
+            if (\in_array($keyName, array_keys($data), true)) {
+                // $related_id = $data[$keyName];
+
+                // $row = $related->firstOrCreate([$keyName => $related_id]);
+
+                $res = app(\Modules\Xot\Actions\Model\UpdateAction::class)->execute($related, $data, []);
+                /*
+                dddx([
+                    'model' => $model,
+                    'relationDTO' => $relationDTO,
+                    'related' => $related,
+                    'keyName' => $keyName,
+                    'related_id' => $related_id,
+                    'row_id' => $row->{$keyName},
+                    'row' => $row,
+                    'res' => $res,
+                ]);
                 $ids[] = $related_id;
+                */
+                $ids[] = $res->getKey();
+                $models[] = $res;
+            } else {
+                dddx(['model' => $model, 'relationDTO' => $relationDTO]);
             }
         }
 
-        dddx($ids);
-        /*
-        try{
+        if (\count($ids) > 0) {
+            try {
+                $model->{$relationDTO->name}()->sync($ids);
+            } catch (\Exception $e) {
+                dddx([
+                    'message' => $e->getMessage(),
+                    'model' => $model,
+                    'relationDTO' => $relationDTO,
+                ]);
+            }
+
+            return;
+        }
+
+        try {
             $model->{$relationDTO->name}()->sync($relationDTO->data);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             dddx([
-                'message'=>$e->getMessage(),
-                'model'=>$model,
-                'relationDTO'=>$relationDTO,
+                'message' => $e->getMessage(),
+                'model' => $model,
+                'relationDTO' => $relationDTO,
             ]);
         }
-        */
     }
 }

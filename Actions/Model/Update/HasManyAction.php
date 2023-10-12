@@ -37,7 +37,55 @@ class HasManyAction
             return;
         }
 
+        $models = [];
+        $ids = [];
+        $related = $relationDTO->related;
+        $keyName = $relationDTO->related->getKeyName();
+
         $rows = $relationDTO->rows;
-        $rows->update($relationDTO->data);
+
+        /*
+         "getExistenceCompareKey" => "asset_operation.operation_id"
+        "getParentKey" => "99f91389-a3a3-4d1b-9cb0-e937e9aa8183"
+        "getQualifiedParentKeyName" => "operations.id"
+        "getForeignKeyName" => "operation_id"
+        "getQualifiedForeignKeyName" => "asset_operation.operation_id"
+        "getLocalKeyName" => "id"
+        "getRelationCountHash" => "laravel_reserved_0"
+    */
+
+        $parentKey = $rows->getParentKey();
+
+        $foreignKeyName = $rows->getForeignKeyName();
+
+        // dddx(get_class_methods($relationDTO->rows));
+
+        foreach ($relationDTO->data as $data) {
+            if (\in_array($keyName, array_keys($data), true)) {
+                $data[$foreignKeyName] = $parentKey;
+                $res = app(\Modules\Xot\Actions\Model\UpdateAction::class)->execute($related, $data, []);
+
+                /*
+                dddx([
+                    'model' => $model,
+                    'relationDTO' => $relationDTO,
+                    'related' => $related,
+                    'keyName' => $keyName,
+                    'data' => $data,
+                    'res' => $res,
+                ]);
+
+                // */
+                $ids[] = $res->getKey();
+                $models[] = $res;
+            } else {
+                dddx(['model' => $model, 'relationDTO' => $relationDTO]);
+            }
+        }
+
+        // dddx(['model' => $model, 'relationDTO' => $relationDTO]);
+
+        // $rows = $relationDTO->rows;
+        // $rows->update($relationDTO->data); //NON CANCELLARE
     }
 }

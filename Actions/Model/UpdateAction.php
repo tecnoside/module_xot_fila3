@@ -19,6 +19,16 @@ class UpdateAction
         $validator->validate();
 
         // dddx($data);
+        if (null === $model->getKey()) {
+            $keyName = $model->getKeyName();
+            $key = $data[$keyName];
+            $model = $model->firstOrCreate([$keyName => $key]);
+            if ($model->{$keyName} !== $key) {
+                $model->{$keyName} = $key;
+                $model->save();
+            }
+            $data = collect($data)->except($keyName)->toArray();
+        }
 
         try {
             $model = tap($model)->update($data);
@@ -26,6 +36,8 @@ class UpdateAction
             if ('Node must exists.' === $exception->getMessage()) {
                 app($model::class)->fixTree();
                 $model = tap($model)->update($data);
+            } else {
+                dddx(['exception' => $exception]);
             }
         }
 
