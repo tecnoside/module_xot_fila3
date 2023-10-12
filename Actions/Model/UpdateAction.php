@@ -22,9 +22,18 @@ class UpdateAction
         if (null === $model->getKey()) {
             $keyName = $model->getKeyName();
             $key = $data[$keyName];
-            $data = collect($data)->except($keyName)->toArray();
+
             $row = $model->firstWhere([$keyName => $key]);
-            dddx($row);
+            if (null === $row) {
+                $row = $model->create($data);
+                dddx([
+                    'row' => $row,
+                    'keyName' => $keyName,
+                    'key' => $key,
+                    'row id' => $row->id,
+                ]);
+            }
+            $data = collect($data)->except($keyName)->toArray();
             /*
             try {
                 $model = $model->firstOrCreate([$keyName => $key], $data);
