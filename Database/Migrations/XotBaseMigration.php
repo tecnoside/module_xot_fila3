@@ -422,7 +422,10 @@ abstract class XotBaseMigration extends Migration
         }
 
         if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['string'], true)) {
-            $table->increments('id')->change();
+            $table->dropPrimary();
+            $table->renameColumn('id', 'uuid');
+            $table->id('id');
+            // $table->increments('id')->change();
         }
 
         if ($this->hasColumn('model_id') && \in_array($this->getColumnType('model_id'), ['bigint'], true)) {
