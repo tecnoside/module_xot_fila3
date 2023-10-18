@@ -418,13 +418,15 @@ abstract class XotBaseMigration extends Migration
         }
         */
         if (! $this->hasColumn('id')) {
-            $table->id('id');
+            $table->id('id')->first();
         }
 
         if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['string', 'guid'], true)) {
             $table->dropPrimary();
             $table->renameColumn('id', 'uuid');
-            $table->id('id')->first();
+            if (! $this->hasColumn('id')) {
+                $table->id('id')->first();
+            }
             // $table->increments('id')->change();
         }
 
