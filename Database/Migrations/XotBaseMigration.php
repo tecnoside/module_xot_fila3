@@ -421,6 +421,7 @@ abstract class XotBaseMigration extends Migration
             $table->id('id');
         }
 
+        dd($this->getColumnType('id'));
         if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['string'], true)) {
             $table->dropPrimary();
             $table->renameColumn('id', 'uuid');
