@@ -25,6 +25,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Modules\Xot\Datas\MetatagData;
 use Modules\Xot\Datas\XotData;
 
 abstract class XotBasePanelProvider extends PanelProvider
@@ -36,7 +37,9 @@ abstract class XotBasePanelProvider extends PanelProvider
     {
         $moduleNamespace = $this->getModuleNamespace();
         $moduleLow = Str::lower($this->module);
-        XotData::make();
+        // XotData::make();
+        $metatag = MetatagData::make();
+
         // $teamClass=$xot->getTeamClass();
         // $teamClass=\Modules\User\Models\Team::class;
         /*
@@ -53,7 +56,11 @@ abstract class XotBasePanelProvider extends PanelProvider
             // ->passwordReset()
             // ->emailVerification()
             // ->profile()
-            // ->sidebarFullyCollapsibleOnDesktop()
+             ->sidebarFullyCollapsibleOnDesktop()
+             // ---METATAG
+             ->brandLogo($metatag->getLogoHeader())
+            ->brandName($metatag->title)
+            // ---------------------
             ->maxContentWidth('full')
             ->topNavigation($this->topNavigation)
             ->readOnlyRelationManagersOnResourceViewPagesByDefault(false) //
