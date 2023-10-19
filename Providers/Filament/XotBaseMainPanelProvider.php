@@ -38,7 +38,7 @@ abstract class XotBaseMainPanelProvider extends PanelProvider
                 'primary' => Color::Amber,
             ])
              // ---METATAG
-              // ->brandLogo($metatag->getLogoHeader())
+               ->brandLogo($metatag->getLogoHeader())
               ->brandName($metatag->title)
              // ---------------------
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')

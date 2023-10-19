@@ -25,6 +25,24 @@ use Webmozart\Assert\Assert;
  */
 class FileService
 {
+    public static function getModulePath(string $moduleName): string
+    {   
+        try{
+            $module_path = Module::getModulePath($moduleName);
+        }catch(\Exception $e){
+            $files = scandir(base_path('Modules'));
+            $module_path = collect($files)->filter(function ($item) use ($moduleName) {
+                return Str::lower($item) === Str::lower($moduleName);
+            })?->first();
+            $module_path = base_path('Modules/'.$module_path);
+        }   
+
+        
+        
+
+        return $module_path;
+    }
+
     /**
      * 18     Method Modules\Xot\Services\FileService::asset() should return string but return statement is missing.
      */
@@ -101,7 +119,8 @@ class FileService
             return $asset;
         }
 
-        $module_path = Module::getModulePath($ns);
+        $module_path = static::getModulePath($ns);
+
         if (Str::endsWith($module_path, '/')) {
             $module_path = Str::beforeLast($module_path, '/');
         }
