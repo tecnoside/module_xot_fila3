@@ -58,7 +58,7 @@ abstract class XotBasePanelProvider extends PanelProvider
             // ->profile()
              ->sidebarFullyCollapsibleOnDesktop()
              // ---METATAG
-             ->brandLogo($metatag->getLogoHeader())
+            ->brandLogo($metatag->getLogoHeader())
             ->brandName($metatag->title)
             // ---------------------
             ->maxContentWidth('full')
