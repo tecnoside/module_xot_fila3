@@ -44,8 +44,8 @@ trait Updater
         static::creating(
             function ($model): void {
                 if (auth()->user() instanceof Authenticatable) {
-                    $model->created_by = auth()->user()->handle ?? '';
-                    $model->updated_by = auth()->user()->handle ?? '';
+                    $model->created_by = auth()->id();
+                    $model->updated_by = auth()->id();
                 }
             }
         );
@@ -55,7 +55,7 @@ trait Updater
          */
         static::updating(
             function ($model): void {
-                $model->updated_by = auth()->user()->handle ?? '';
+                $model->updated_by = auth()->id();
             }
         );
         // -------------------------------------------------------------------------------------
