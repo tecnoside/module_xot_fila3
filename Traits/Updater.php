@@ -65,7 +65,7 @@ trait Updater
         */
         /*
         static::deleting(function ($model) {
-            $model->deleted_by = \Auth::user()->handle;
+            $model->deleted_by =  auth()->id();
             $model->save();
         });
         */
