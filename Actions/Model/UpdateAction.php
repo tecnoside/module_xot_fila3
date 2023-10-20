@@ -18,29 +18,14 @@ class UpdateAction
         $validator = Validator::make($data, $rules);
         $validator->validate();
         $keyName = $model->getKeyName();
-        // dddx($data);
+
         if (null === $model->getKey()) {
             $key = $data[$keyName];
             $data = collect($data)->except($keyName)->toArray();
-            try {
-                $row = $model->firstOrCreate([$keyName => $key], $data);
-            } catch (\Exception $e) {
-                $row = $model;
-                $row->{$keyName} = $key;
-            }
-            $model = $row;
+            $model = $model->withTrashed()->firstOrCreate([$keyName => $key], $data);
         }
 
-        try {
-            $model = tap($model)->update($data);
-        } catch (\Exception $exception) {
-            if ('Node must exists.' === $exception->getMessage()) {
-                app($model::class)->fixTree();
-                $model = tap($model)->update($data);
-            } else {
-                dddx(['exception' => $exception]);
-            }
-        }
+        $model = tap($model)->update($data);
 
         app(__NAMESPACE__.'\\Update\RelationAction')->execute($model, $data);
 

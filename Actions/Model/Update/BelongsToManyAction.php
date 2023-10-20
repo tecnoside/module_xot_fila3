@@ -72,7 +72,7 @@ class BelongsToManyAction
 
             return;
         }
-
+        /* ---  controllare
         try {
             $model->{$relationDTO->name}()->sync($relationDTO->data);
         } catch (\Exception $e) {
@@ -82,5 +82,6 @@ class BelongsToManyAction
                 'relationDTO' => $relationDTO,
             ]);
         }
+        */
     }
 }
