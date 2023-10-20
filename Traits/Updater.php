@@ -43,10 +43,10 @@ trait Updater
          */
         static::creating(
             function ($model): void {
-                if (auth()->user() instanceof Authenticatable) {
-                    $model->created_by = auth()->id();
-                    $model->updated_by = auth()->id();
-                }
+                // if (auth()->user() instanceof Authenticatable) {
+                $model->created_by = auth()->id();
+                $model->updated_by = auth()->id();
+                // }
             }
         );
 
@@ -63,12 +63,14 @@ trait Updater
          * Deleting a model is slightly different than creating or deleting.
          * For deletes we need to save the model first with the deleted_by field
         */
-        /*
+        // *
         static::deleting(function ($model) {
-            $model->deleted_by =  auth()->id();
-            $model->save();
+            if (\in_array('deleted_by', $model->attributes, true)) {
+                $model->deleted_by = auth()->id();
+            }
+            // $model->save();
         });
-        */
+        // */
         // ----------------------
     }
 
