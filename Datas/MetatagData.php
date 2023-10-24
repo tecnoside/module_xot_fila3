@@ -46,6 +46,7 @@ class MetatagData extends Data implements Wireable
     public string $color_megamenu; // ' => '#d60021',
     public string $color_hamburger; // ' => '#000',
     public string $color_banner; // ' => '#000',
+    public string $favicon = '/favicon.ico';
 
     public static function make(): self
     {
@@ -62,8 +63,13 @@ class MetatagData extends Data implements Wireable
         return self::from($data);
     }
 
-    public function getLogoHeader(): string
+    public function getLogoHeader()
     {
         return FileService::asset($this->logo_header);
+    }
+
+    public function getFavicon()
+    {
+        return FileService::asset($this->favicon);
     }
 }
