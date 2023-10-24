@@ -60,6 +60,7 @@ abstract class XotBasePanelProvider extends PanelProvider
              // ---METATAG
             ->brandLogo($metatag->getLogoHeader())
             ->brandName($metatag->title)
+            ->favicon($metatag->getFavicon())
             // ---------------------
             ->maxContentWidth('full')
             ->topNavigation($this->topNavigation)
