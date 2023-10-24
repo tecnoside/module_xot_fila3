@@ -10,7 +10,7 @@ class DeleteTableIndexByModelClassIndexNameAction
 {
     use QueueableAction;
 
-    public function execute(string $modelClass, string $indexName)
+    public function execute(string $modelClass, string $indexName): void
     {
         $model = app($modelClass);
         $table = $model->getTable();

@@ -10,7 +10,7 @@ class GetSchemaManagerByModelClassAction
 {
     use QueueableAction;
 
-    public function execute(string $modelClass)
+    public function execute(string $modelClass): string
     {
         $model = app($modelClass);
         $connection = $model->getConnection();

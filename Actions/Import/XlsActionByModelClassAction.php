@@ -13,7 +13,7 @@ class XlsActionByModelClassAction
 {
     use QueueableAction;
 
-    public function execute(string $modelClass)
+    public function execute(string $modelClass): \Konnco\FilamentImport\Actions\ImportAction
     {
         $model = app($modelClass);
         $fields = [];
