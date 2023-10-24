@@ -63,12 +63,12 @@ class MetatagData extends Data implements Wireable
         return self::from($data);
     }
 
-    public function getLogoHeader()
+    public function getLogoHeader(): string
     {
         return FileService::asset($this->logo_header);
     }
 
-    public function getFavicon()
+    public function getFavicon(): string
     {
         return FileService::asset($this->favicon);
     }
