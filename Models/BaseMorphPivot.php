@@ -58,5 +58,5 @@ abstract class BaseMorphPivot extends MorphPivot
     ];
 
     protected $casts = ['created_at' => 'datetime', 'updated_at' => 'datetime',
-'deleted_at' => 'datetime', 'deleted_at' => 'datetime'];
+'deleted_at' => 'datetime'];
 }

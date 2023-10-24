@@ -387,7 +387,7 @@ class ImportService
         $loc_json = $this->cacheRequest('GET', $location_url);
 
         // $loc_obj = (object) json_decode($loc_json, null, 512, JSON_THROW_ON_ERROR);
-        $loc_obj = (object) json_decode($loc_json, null, 512, JSON_THROW_ON_ERROR);
+        $loc_obj = (object) json_decode($loc_json, false, 512, JSON_THROW_ON_ERROR);
 
         if (isset($loc_obj->results[0])) {
             $loc_obj = $loc_obj->results[0];
@@ -526,7 +526,7 @@ class ImportService
          * @var object
          */
         // $json = json_decode($json, null, 512, JSON_THROW_ON_ERROR);
-        $json = json_decode($json, null, 512, JSON_THROW_ON_ERROR);
+        $json = json_decode($json, false, 512, JSON_THROW_ON_ERROR);
         if (! isset($json->hits)) {
             return null;
         }

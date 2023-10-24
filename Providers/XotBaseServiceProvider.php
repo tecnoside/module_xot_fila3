@@ -218,7 +218,8 @@ abstract class XotBaseServiceProvider extends ServiceProvider
             }
         } else {
             $events = File::get($events_file);
-            $events = (array) json_decode((string) $events, null, 512, JSON_THROW_ON_ERROR);
+            // $events = (array) json_decode((string) $events, null, 512, JSON_THROW_ON_ERROR);
+            $events = (array) json_decode((string) $events, false, 512, JSON_THROW_ON_ERROR);
         }
 
         return $events;

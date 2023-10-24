@@ -17,6 +17,7 @@ use function Safe\json_decode;
 use function Safe\json_encode;
 use function Safe\realpath;
 use function strlen;
+use function Safe\scandir;
 
 use Webmozart\Assert\Assert;
 

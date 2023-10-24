@@ -101,8 +101,9 @@ class Profile extends BaseModel implements ModelWithUserContract, ModelProfileCo
 
     /**
      * Undocumented variable.
+     * Property Modules\Xot\Models\Profile::$guard_name is never read, only written.
      */
-    private string $guard_name = 'web';
+    // private string $guard_name = 'web';
 
     /**
      * @var string[]
