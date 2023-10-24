@@ -17,7 +17,7 @@ class XlsByModelClassAction
     use QueueableAction;
 
     public function execute(string $modelClass, array $where = [], array $includes = [],
-        array $excludes = [], callable $callback = null)
+        array $excludes = [], callable $callback = null): \Symfony\Component\HttpFoundation\BinaryFileResponse
     {
         $with = $this->getWithByIncludes($includes);
 

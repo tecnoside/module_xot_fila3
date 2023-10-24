@@ -23,7 +23,7 @@ class JsonResponseData extends Data
 
     }
     */
-    public function response()
+    public function response(): \Illuminate\Http\JsonResponse
     {
         $data = [
             'success' => $this->success,
