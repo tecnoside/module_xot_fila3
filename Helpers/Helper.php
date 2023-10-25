@@ -356,7 +356,7 @@ if (! function_exists('getModelByName')) {
 
         // getFirst..
         $files_path = base_path('Modules').'/*/Models/*.php';
-        Assert::array($files = glob($files_path));
+        Assert::isArray($files = glob($files_path));
         // if (false === $files) {
         //    throw new Exception('['.__LINE__.']['.__FILE__.']');
         // }

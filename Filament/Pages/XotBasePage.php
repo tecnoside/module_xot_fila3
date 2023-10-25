@@ -10,13 +10,14 @@ use Illuminate\Support\Str;
 /**
  * Undocumented class
  *
- * @property string $model
+ * @property ?string $model
  */
 abstract class XotBasePage extends Page
 {
     protected static ?string $navigationIcon = 'heroicon-o-computer-desktop';
 
     protected static string $view = 'job::filament.pages.job-monitor';
+    protected static ?string $model; // ---
 
     // public function mount(): void {
     //     $user = auth()->user();

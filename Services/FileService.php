@@ -768,7 +768,7 @@ class FileService
     public static function viewPath(string $key): string
     {
         $ns_name = Str::before($key, '::');
-        $stringable = Str::of($key)->after('::');
+        $stringable = Str::of($key)->after('::')->toString();
         $ns_dir = self::getViewNameSpacePath($ns_name);
         Assert::string($group_dir = Str::replace('.', '/', $stringable), 'wip');
         $res = $ns_dir.'/'.$group_dir.'.blade.php';

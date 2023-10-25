@@ -32,8 +32,6 @@ abstract class XotBaseMigration extends Migration
     // *
     public function __construct()
     {
-        $this->registerLaravelBlueprintMacros();
-
         if (! $this->model instanceof Model) {
             $model = $this->getModel();
             // 37     Dead catch - Exception is never thrown in the try block.
@@ -283,7 +281,7 @@ abstract class XotBaseMigration extends Migration
         );
     }
 
-    public function timestamps(Blueprint $table, bool $hasSoftDeletes = false)
+    public function timestamps(Blueprint $table, bool $hasSoftDeletes = false): void
     {
         $table->timestamps();
         $table->foreignIdFor(
@@ -291,30 +289,33 @@ abstract class XotBaseMigration extends Migration
             column: 'user_id',
         )
         ->nullable()
-        ->nullOnDelete()
-        ->cascadeOnUpdate();
+        // ->nullOnDelete()
+        // ->cascadeOnUpdate()
+        ;
 
         $table->foreignIdFor(
             model: User::class,
             column: 'updated_by',
         )
         ->nullable()
-        ->nullOnDelete()
-        ->cascadeOnUpdate();
+        // ->nullOnDelete()
+        // ->cascadeOnUpdate()
+        ;
         $table->foreignIdFor(
             model: User::class,
             column: 'created_by',
         )
         ->nullable()
-        ->nullOnDelete()
-        ->cascadeOnUpdate();
+        // ->nullOnDelete()
+        // ->cascadeOnUpdate()
+        ;
 
         if ($hasSoftDeletes) {
             $table->softDeletes();
         }
     }
 
-    public function updateTimestamps(Blueprint $table)
+    public function updateTimestamps(Blueprint $table): void
     {
         if (! $this->hasColumn('updated_at') && ! $this->hasColumn('created_at')) {
             $table->timestamps();
@@ -336,8 +337,9 @@ abstract class XotBaseMigration extends Migration
                 column: 'updated_by',
             )
             ->nullable()
-            ->nullOnDelete()
-            ->cascadeOnUpdate();
+            // ->nullOnDelete()
+            // ->cascadeOnUpdate()
+            ;
         }
         if (! $this->hasColumn('created_by')) {
             $table->foreignIdFor(
@@ -345,12 +347,13 @@ abstract class XotBaseMigration extends Migration
                 column: 'created_by',
             )
             ->nullable()
-            ->nullOnDelete()
-            ->cascadeOnUpdate();
+            // ->nullOnDelete()
+            // ->cascadeOnUpdate()
+            ;
         }
     }
 
-    public function updateUser(Blueprint $table)
+    public function updateUser(Blueprint $table): void
     {
         /*
         if (! $this->hasColumn('id')) {
@@ -368,10 +371,7 @@ abstract class XotBaseMigration extends Migration
         if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['string', 'guid'], true)) {
             $table->dropPrimary();
             $table->renameColumn('id', 'uuid');
-            if (! $this->hasColumn('id')) {
-                $table->id('id')->first();
-            }
-            // $table->increments('id')->change();
+            $table->id('id')->first();
         }
 
         if ($this->hasColumn('model_id') && \in_array($this->getColumnType('model_id'), ['bigint'], true)) {

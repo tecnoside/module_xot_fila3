@@ -52,7 +52,7 @@ class StubService
      */
     public static function getInstance(): self
     {
-        if (! self::$_instance instanceof \Modules\Xot\Services\StubService) {
+        if (! self::$_instance instanceof self) {
             self::$_instance = new self();
         }
 
@@ -662,13 +662,18 @@ class StubService
         $brother = app($brother_class);
         $fillables = $brother->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
         $except = [
-            'created_at', 'updated_at', 'updated_by', 'created_by', 'deleted_at', 'deleted_by',
-            'deleted_ip', 'created_ip', 'updated_ip',
+            'created_at', 'created_by', 'created_ip',
+            'updated_at', 'updated_by', 'updated_ip',
+            'deleted_at', 'deleted_by', 'deleted_ip',
         ];
 
-        return collect($fillables)
-            ->except($except)
-            ->all();
+        /*
+                return collect($fillables)
+                    ->except($except)
+                    ->all();
+                */
+
+        return array_diff_key($fillables, array_combine($except, $except));
     }
 
     /**

@@ -223,12 +223,12 @@ class ImportService
 
     public function gRequest(string $method, string $url, array $attrs = [], string $out = 'res'): ?string
     {
-        if (null === $this->client) {
-            $this->importInit();
-        }
+        // if (null === $this->client) {
+        //    $this->importInit();
+        // }
 
         if (! isset($this->client_options['base_uri'])) {
-            $url_info = parse_url($url);
+            Assert::isArray($url_info = parse_url($url));
             $this->client_options['base_uri'] = collect($url_info)->get('scheme').'://'.collect($url_info)->get('host');
 
             // $url = isset($url_info['path']) ? $url_info['path'] : '';
@@ -338,7 +338,7 @@ class ImportService
     {
         // --- uguale ma al posto di usare il sistema cache usa i file
         if (! isset($this->client_options['base_uri'])) {
-            $parse_url = parse_url($url);
+            Assert::isArray($parse_url = parse_url($url));
             $url_info = collect($parse_url);
             if (null !== $url_info->get('scheme') && null !== $url_info->get('host')) {
                 $this->client_options['base_uri'] = $url_info->get('scheme').'://'.$url_info->get('host');
@@ -636,7 +636,7 @@ class ImportService
             ]
         );
         foreach ($forms as $k => $v) {
-            $v_fields = $v['fields'];
+            Assert::isArray($v_fields = $v['fields']);
             $forms[$k]['fields'] = collect($v_fields)->collapse()->all();
         }
 

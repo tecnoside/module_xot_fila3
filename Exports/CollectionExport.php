@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Webmozart\Assert\Assert;
 
 class CollectionExport implements FromCollection, WithHeadings
 {
@@ -17,6 +18,9 @@ class CollectionExport implements FromCollection, WithHeadings
     public function __construct(public Collection $collection, string $transKey = null)
     {
         // $this->headings = count($headings) > 0 ? $headings : collect($collection->first())->keys()->toArray();
+        /**
+         * @var array
+         */
         $head = $collection->first();
         $headings = collect($head)->keys();
         if (null !== $transKey) {
@@ -26,7 +30,8 @@ class CollectionExport implements FromCollection, WithHeadings
                 if ($trans !== $key) {
                     return $trans;
                 }
-                $key = $transKey.'.fields.'.Str::replace('.', '_', $item);
+                Assert::string($item1 = Str::replace('.', '_', $item));
+                $key = $transKey.'.fields.'.$item1;
                 $trans = trans($key);
                 if ($trans !== $key) {
                     return $trans;

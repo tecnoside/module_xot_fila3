@@ -10,7 +10,7 @@ class GetSchemaManagerByModelClassAction
 {
     use QueueableAction;
 
-    public function execute(string $modelClass): string
+    public function execute(string $modelClass): \Doctrine\DBAL\Schema\AbstractSchemaManager
     {
         $model = app($modelClass);
         $connection = $model->getConnection();
