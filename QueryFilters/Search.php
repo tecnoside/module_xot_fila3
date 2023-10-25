@@ -11,6 +11,7 @@ namespace Modules\Xot\QueryFilters;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use Webmozart\Assert\Assert;
 
 /**
  * Undocumented class.
@@ -24,11 +25,11 @@ class Search
     {
         $search_fields = [];
         $model = $query->getModel();
-        $q = request('q', '');
+        Assert::string($q = request('q', ''));
 
         $search_fields = $model->getFillable();
         // $table = $model->getTable();
-        if (\strlen((string) $q) > 1) {
+        if (\strlen($q) > 1) {
             $query = $query->where(
                 static function ($subquery) use ($search_fields, $q): void {
                     foreach ($search_fields as $search_field) {

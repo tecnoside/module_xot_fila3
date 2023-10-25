@@ -16,8 +16,8 @@ use Nwidart\Modules\Facades\Module;
 use function Safe\json_decode;
 use function Safe\json_encode;
 use function Safe\realpath;
-use function strlen;
 use function Safe\scandir;
+use function strlen;
 
 use Webmozart\Assert\Assert;
 
@@ -27,19 +27,19 @@ use Webmozart\Assert\Assert;
 class FileService
 {
     public static function getModulePath(string $moduleName): string
-    {   
-        try{
+    {
+        try {
             $module_path = Module::getModulePath($moduleName);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             $files = scandir(base_path('Modules'));
-            $module_path = collect($files)->filter(function ($item) use ($moduleName) {
-                return Str::lower($item) === Str::lower($moduleName);
-            })?->first();
+            $module_path = collect($files)
+                ->filter(
+                    function ($item) use ($moduleName) {
+                        return Str::lower($item) === Str::lower($moduleName);
+                    }
+                )?->first();
             $module_path = base_path('Modules/'.$module_path);
-        }   
-
-        
-        
+        }
 
         return $module_path;
     }

@@ -7,6 +7,11 @@ namespace Modules\Xot\Filament\Pages;
 use Filament\Pages\Page;
 use Illuminate\Support\Str;
 
+/**
+ * Undocumented class
+ *
+ * @property string $model
+ */
 abstract class XotBasePage extends Page
 {
     protected static ?string $navigationIcon = 'heroicon-o-computer-desktop';

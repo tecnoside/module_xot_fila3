@@ -210,7 +210,7 @@ if (! function_exists('inAdmin')) {
 
         $segments = Request::segments();
 
-        return (is_countable($segments) ? \count($segments) : 0) > 0 && 'livewire' === $segments[0] && true === session('in_admin');
+        return (is_countable($segments) ? count($segments) : 0) > 0 && 'livewire' === $segments[0] && true === session('in_admin');
     }
 }
 
@@ -357,7 +357,7 @@ if (! function_exists('getModelByName')) {
         // getFirst..
         $files_path = base_path('Modules').'/*/Models/*.php';
         $files = glob($files_path);
-        if (false == $files) {
+        if (false === $files) {
             throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
 
@@ -532,142 +532,6 @@ if (! function_exists('deltaTime')) {
         echo '<h3>Time : '.(microtime(true) - LARAVEL_START).'</h3>';
     }
 }
-
-if (! function_exists('debug_getter_obj')) {
-    /*
-    function debug_getter_objOLD(array $params){
-        extract($params);
-        if (! isset($obj)) {
-            dddx(['err' => 'obj is missing']);
-            return null;
-        }
-        $methods = collect(get_class_methods($obj))->filter(function ($item) {
-            $exclude = [
-                //--Too few arguments to function
-                'getRelationExistenceQuery',
-                'getRelationExistenceQueryForSelfRelation',
-                'getRelationExistenceCountQuery',
-                'getMorphedModel',
-                'getRelationExistenceQueryForSelfJoin',
-                'getPlatformOption',
-                'getCustomSchemaOption',
-                'getShortestName',
-                'getFullQualifiedName',
-                'getQuotedName',
-                //---
-                'getAttribute',
-                'getAttributeValue',
-                'getRelationValue',
-                'getGlobalScope',
-                'getActualClassNameForMorph',
-                'getRelation',
-                //---------
-                'getDataStartAttribute',
-                'getDataAttribute',
-                'getMacro',
-                //--altri errori --
-            ];
-            return Str::startsWith($item, 'get') && ! in_array($item, $exclude);
-        })->map(
-    function ($item) use ($obj) {
-            $tmp = [];
-            $tmp['name'] = $item;
-            try {
-                $tmp['ris'] = $obj->$item();
-            } catch (\Exception $e) {
-                $tmp['ris'] = $e->getMessage();
-            }
-            return $tmp;
-        });
-        //->dd();
-        $html = '<table border="1">
-        <thead>
-        <tr>
-        <th>Name</th>
-        <th>Ris</th>
-        </tr>
-        </thead>';
-        foreach ($methods as $k => $v) {
-            $html .= '<tr>';
-            $html .= '<td>'.$v['name'].'</td>';
-            $val = $v['ris'];
-            if (is_object($val)) {
-                $val = '(Object) '.get_class($val);
-            }
-            if (is_array($val)) {
-                $val = var_export($val, true);
-            }
-            $html .= '<td>'.$val.'</td>';
-            $html .= '</tr>';
-        }
-        $html .= '</table>';
-        echo $html;
-        dddx($methods);
-    }//end function
-    */
-
-    /**
-     * @throws ReflectionException
-     */
-    function debug_getter_obj(array $params): ?array
-    {
-        extract($params);
-        if (! isset($obj)) {
-            dddx(['err' => 'obj is missing']);
-
-            return null;
-        }
-
-        $methods = get_class_methods($obj);
-        $data = [];
-        if (! is_array($methods)) {
-            return $data;
-        }
-
-        $methods = collect($methods)->filter(
-            static function ($item): bool {
-                $exclude = [
-                    'forceDelete',
-                    'forceCreate',
-                ];
-
-                return ! Str::startsWith($item, '__') && ! in_array($item, $exclude, true);
-            }
-        )->all();
-        // dddx($methods);
-        foreach ($methods as $method) {
-            $reflection = new ReflectionMethod($obj, $method);
-            $args = $reflection->getParameters();
-            if ([] !== $args) {
-                continue;
-            }
-            if ($reflection->class !== $obj::class) {
-                continue;
-            }
-            try {
-                $return = $reflection->invoke($obj);
-                // $check = ($return instanceof \Illuminate\Database\Eloquent\Relations\Relation);
-                // if ($check) {
-                // $related_model = (new \ReflectionClass($return->getRelated()))->getName();
-                $msg = [
-                    'name' => $reflection->name,
-                    'type' => class_basename($return),
-                    'ris' => $return,
-                    // 'check'=>$check,
-                    // $msg['type']=(new \ReflectionClass($return))->getShortName();
-                    // 'model' => $related_model,
-                ];
-                $data[] = $msg;
-                // }
-            } catch (ErrorException) {
-            }
-        }
-
-        dddx($data);
-
-        return $data;
-    }
-} // end exists
 
 if (! function_exists('bracketsToDotted')) {
     // privacies[111][pivot][title] => privacies.111.pivot.title

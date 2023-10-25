@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseContract;
+use Psr\Http\Message\ResponseInterface as ResponseContract;
 use Psr\Http\Message\UriInterface;
 use Request;
 
@@ -62,7 +62,7 @@ class ImportService
 
     public static function getInstance(): self
     {
-        if (! self::$instance instanceof \Modules\Xot\Services\ImportService) {
+        if (! self::$instance instanceof self) {
             self::$instance = new self();
         }
 
@@ -222,7 +222,7 @@ class ImportService
 
     public function gRequest(string $method, string $url, array $attrs = [], string $out = 'res'): ?string
     {
-        if (null == $this->client) {
+        if (null === $this->client) {
             $this->importInit();
         }
 
