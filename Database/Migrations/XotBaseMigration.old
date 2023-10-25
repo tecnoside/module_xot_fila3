@@ -283,6 +283,62 @@ abstract class XotBaseMigration extends Migration
         );
     }
 
+    /**
+     * Adds some macros to base Laravel Schema class.
+     */
+    private function registerLaravelBlueprintMacros(): void
+    {
+        /*
+         *  Registers `created_by`, `updated_by` and `deleted_by` entries for
+         *  a table, in order to track who performed the last CRUD operation
+         *  against a specific DB row.
+         *  Passing `null` for one or more parameters will skip the registration
+         *  of the associated columns.
+         */
+        Blueprint::macro(
+            'registerUserCrudMarkers',
+            function (
+                ?string $createdByColumnName = 'created_by',
+                ?string $updatedByColumnName = 'updated_by',
+                ?string $deletedByColumnName = 'deleted_by',
+            ): void {
+                /* @var Blueprint $this */
+                if ($createdByColumnName) {
+                    $this
+                        ->foreignIdFor(
+                            model: User::class,
+                            column: $createdByColumnName,
+                        )
+                        ->nullable()
+                        ->nullOnDelete()
+                        ->cascadeOnUpdate();
+                }
+
+                if ($updatedByColumnName) {
+                    $this
+                        ->foreignIdFor(
+                            model: User::class,
+                            column: $updatedByColumnName,
+                        )
+                        ->nullable()
+                        ->nullOnDelete()
+                        ->cascadeOnUpdate();
+                }
+
+                if ($deletedByColumnName) {
+                    $this
+                        ->foreignIdFor(
+                            model: User::class,
+                            column: $deletedByColumnName,
+                        )
+                        ->nullable()
+                        ->nullOnDelete()
+                        ->cascadeOnUpdate();
+                }
+            }
+        );
+    }
+
     public function timestamps(Blueprint $table, bool $hasSoftDeletes = false)
     {
         $table->timestamps();

@@ -37,7 +37,7 @@ class FileService
                     function ($item) use ($moduleName) {
                         return Str::lower($item) === Str::lower($moduleName);
                     }
-                )?->first();
+                )->first();
             $module_path = base_path('Modules/'.$module_path);
         }
 

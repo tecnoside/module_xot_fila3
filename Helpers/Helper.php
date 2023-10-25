@@ -356,10 +356,10 @@ if (! function_exists('getModelByName')) {
 
         // getFirst..
         $files_path = base_path('Modules').'/*/Models/*.php';
-        $files = glob($files_path);
-        if (false === $files) {
-            throw new Exception('['.__LINE__.']['.__FILE__.']');
-        }
+        Assert::array($files = glob($files_path));
+        // if (false === $files) {
+        //    throw new Exception('['.__LINE__.']['.__FILE__.']');
+        // }
 
         $path = collect($files)->first(
             static function ($file) use ($name): bool {

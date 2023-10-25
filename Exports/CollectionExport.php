@@ -17,17 +17,18 @@ class CollectionExport implements FromCollection, WithHeadings
     public function __construct(public Collection $collection, string $transKey = null)
     {
         // $this->headings = count($headings) > 0 ? $headings : collect($collection->first())->keys()->toArray();
-        $headings = collect($collection->first())->keys();
-        if (null != $transKey) {
+        $head = $collection->first();
+        $headings = collect($head)->keys();
+        if (null !== $transKey) {
             $headings = $headings->map(function ($item) use ($transKey) {
                 $key = $transKey.'.fields.'.$item;
                 $trans = trans($key);
-                if ($trans != $key) {
+                if ($trans !== $key) {
                     return $trans;
                 }
                 $key = $transKey.'.fields.'.Str::replace('.', '_', $item);
                 $trans = trans($key);
-                if ($trans != $key) {
+                if ($trans !== $key) {
                     return $trans;
                 }
 

@@ -37,6 +37,7 @@ use function Safe\parse_url;
 
 use Storage;
 use Symfony\Component\DomCrawler\Crawler;
+use Webmozart\Assert\Assert;
 
 // */
 
@@ -149,7 +150,7 @@ class ImportService
             $this->cookieJar = $this->initCookieJar();
         }
 
-        $url_info = parse_url((string) $this->client_options['base_uri']);
+        Assert::isArray($url_info = parse_url((string) $this->client_options['base_uri']));
 
         // $domain = $url_info['host'];
         $domain = collect($url_info)->get('host');
