@@ -65,7 +65,7 @@ abstract class XotBasePage extends Page
         $moduleName = static::getModuleName();
         $modelName = Str::before(class_basename(static::class), 'Resource');
         $res = 'Modules\\'.$moduleName.'\Models\\'.$modelName;
-        static::$model = $res;
+        self::$model = $res;
 
         return $res;
     }
