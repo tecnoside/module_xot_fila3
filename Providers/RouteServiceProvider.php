@@ -9,10 +9,6 @@ use Illuminate\Support\Str;
 
 use function is_array;
 
-<<<<<<< HEAD
-use Modules\Tenant\Services\TenantService;
-=======
->>>>>>> bb47dfc (.)
 use Modules\Xot\Http\Middleware\SetDefaultLocaleForUrlsMiddleware;
 
 // public function boot(\Illuminate\Routing\Router $router)
