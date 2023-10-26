@@ -6,7 +6,6 @@ namespace Modules\Xot\Datas;
 
 use Illuminate\Support\Facades\File;
 use Livewire\Wireable;
-use Modules\Tenant\Services\TenantService;
 use Modules\Xot\Services\FileService;
 use Spatie\LaravelData\Concerns\WireableData;
 use Spatie\LaravelData\Data;
@@ -46,7 +45,7 @@ class MetatagData extends Data implements Wireable
 
     public string $logo_square; // ' => 'ewall::img/logo.png',
 
-    public string $logo_header; // ' => 'ewall::img/logo.png',
+    public string $logo_header = 'xot::img/logo.png';
 
     public string $logo_footer; // ' => 'ewall::img/logo.png',
 
@@ -81,11 +80,15 @@ class MetatagData extends Data implements Wireable
         $data = config('metatag');
 
         if (! \is_array($data)) {
-            $path = TenantService::filePath('metatag.php');
-            $data = File::getRequire($path);
-            if (! \is_array($data)) {
-                $data = [];
-            }
+            /*     $path = TenantService::filePath('metatag.php');
+                $data = File::getRequire($path);
+                if (! \is_array($data)) {
+                    $data = [];
+                }
+                */
+            // return new MetatagData();
+            // throw new \Exception('WIP ['.class_basename(__CLASS__).']');
+            $data = [];
         }
 
         return self::from($data);

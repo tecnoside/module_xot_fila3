@@ -9,7 +9,6 @@ use Filament\Navigation\NavigationItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Modules\Tenant\Services\TenantService;
 use Modules\User\Models\Role;
 use Spatie\QueueableAction\QueueableAction;
 use Webmozart\Assert\Assert;
@@ -24,7 +23,7 @@ class GetModulesNavigationItems
     public function execute(): array
     {
         $navs = [];
-        $modules = TenantService::allModules(); // app('modules') da errore su container Cache
+        $modules = getAllModules(); // app('modules') da errore su container Cache
         foreach ($modules as $module) {
             // if (! Filament::auth()->check()) {
             //    continue;

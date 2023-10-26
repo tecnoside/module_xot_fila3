@@ -9,7 +9,10 @@ use Illuminate\Support\Str;
 
 use function is_array;
 
+<<<<<<< HEAD
 use Modules\Tenant\Services\TenantService;
+=======
+>>>>>>> bb47dfc (.)
 use Modules\Xot\Http\Middleware\SetDefaultLocaleForUrlsMiddleware;
 
 // public function boot(\Illuminate\Routing\Router $router)
@@ -88,7 +91,7 @@ class RouteServiceProvider extends XotBaseRouteServiceProvider
 
         $router->pattern('lang', $lang_pattern);
         // -------------------------------------------------------------
-        // $models = TenantService::config('morph_map');
+
         $models = config('morph_map');
         if (! \is_array($models)) {
             // throw new Exception('[' . print_r($models, true) . '][' . __LINE__ . '][' . class_basename(__CLASS__) . ']');
@@ -100,13 +103,7 @@ class RouteServiceProvider extends XotBaseRouteServiceProvider
         $models_collect->map(
             static fn ($item) => Str::plural((string) $item)
         )->implode('|');
-        /*--pattern vuoto
-        dddx([
-            'lang_pattern' => $lang_pattern,
-            'container0_pattern' => $container0_pattern,
-            'config_path' => TenantService::getConfigPath('morph_map'),
-        ]);
-        */
+
         // $router->pattern('container0', $container0_pattern);
     }
 

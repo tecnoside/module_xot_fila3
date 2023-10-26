@@ -34,8 +34,6 @@ class ArtisanService
      */
     public static function act(string $act): string
     {
-        // echo '<h3>['.TenantService::getName().']</h3>';
-        // echo '<pre>'.print_r(TenantService::config('database'), true).'</pre>';
         // da fare anche in noconsole, e magari mettere un policy
         $module_name = Request::input('module', '');
         switch ($act) {

@@ -461,6 +461,15 @@ if (! function_exists('getTransformerFromModel')) {
     }
 }
 
+if (! function_exists('getAllModules')) {
+    function getAllModules(): array
+    {
+        $modules = Module::all();
+
+        return $modules;
+    }
+}
+
 if (! function_exists('getAllModulesModels')) {
     /**
      * @throws ReflectionException
@@ -516,7 +525,6 @@ if (! function_exists('getModuleModelsMenu')) {
 if (! function_exists('xotModel')) {
     function xotModel(string $name): Model
     {
-        // return TenantService::model($name);
         $model_class = config('morph_map.'.$name);
         if (! is_string($model_class)) {
             throw new Exception('['.__LINE__.']['.__FILE__.']');
