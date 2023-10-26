@@ -8,7 +8,7 @@ use Filament\Pages\Page;
 use Illuminate\Support\Str;
 
 /**
- * Undocumented class
+ * Undocumented class.
  *
  * @property ?string $model
  */

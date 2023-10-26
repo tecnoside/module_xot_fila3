@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * --- usata ricorsivamente
+ * --- usata ricorsivamente.
  */
 
 namespace Modules\Xot\Actions\Model;

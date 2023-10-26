@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Filament;
 
-use Illuminate\Support\Str;
-use Webmozart\Assert\Assert;
-use Modules\User\Models\Role;
 use Filament\Facades\Filament;
+use Filament\Navigation\NavigationItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
-use Filament\Navigation\NavigationItem;
+use Illuminate\Support\Str;
 use Modules\Tenant\Services\TenantService;
+use Modules\User\Models\Role;
 use Spatie\QueueableAction\QueueableAction;
+use Webmozart\Assert\Assert;
 
 class GetModulesNavigationItems
 {

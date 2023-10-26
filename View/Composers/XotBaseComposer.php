@@ -40,7 +40,7 @@ abstract class XotBaseComposer
     public function call(string $func, ...$args)
     {
         $module = Module::find($this->module_name);
-        //$module = app(\Nwidart\Modules\Module::class)->find($this->module_name);
+        // $module = app(\Nwidart\Modules\Module::class)->find($this->module_name);
         if (! \is_object($module)) {
             throw new \Exception('not find ['.$this->module_name.'] on Modules ['.__LINE__.']['.__FILE__.']');
         }
