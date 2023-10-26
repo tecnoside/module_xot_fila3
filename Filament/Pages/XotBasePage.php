@@ -17,6 +17,7 @@ abstract class XotBasePage extends Page
     protected static ?string $navigationIcon = 'heroicon-o-computer-desktop';
 
     protected static string $view = 'job::filament.pages.job-monitor';
+
     protected static ?string $model; // ---
 
     // public function mount(): void {
@@ -65,7 +66,8 @@ abstract class XotBasePage extends Page
         $moduleName = static::getModuleName();
         $modelName = Str::before(class_basename(static::class), 'Resource');
         $res = 'Modules\\'.$moduleName.'\Models\\'.$modelName;
-        self::$model = $res;
+        static::$model = $res;
+        // self::$model = $res;
 
         return $res;
     }

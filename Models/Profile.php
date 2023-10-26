@@ -93,7 +93,7 @@ use Spatie\Tags\Tag;
  *
  * @mixin \Eloquent
  */
-class Profile extends BaseModel implements ModelWithUserContract, ModelProfileContract
+class Profile extends BaseModel implements ModelProfileContract, ModelWithUserContract
 {
     // spatie
     use HasRoles;

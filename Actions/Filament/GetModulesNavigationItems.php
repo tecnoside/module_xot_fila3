@@ -42,22 +42,21 @@ class GetModulesNavigationItems
             $icon = $config['icon'] ?? 'heroicon-o-question-mark-circle';
             $role = $module_low.'::admin';
             $nav = NavigationItem::make($module)
-                    ->url('/'.$module_low.'/admin')
-                    ->icon($icon)
-                    ->group('Modules')
-                    ->sort(3)
-                    ->visible(function () use ($role) {
-                        Assert::notNull($user = Filament::auth()->user());
-                        // $user->assignRole('super-admin');
-                        // if ($user->hasRole('super-admin')) {
-                        //    $role = Role::firstOrCreate(['name' => $role] /*,['id'=>Str::uuid() ]*/);
+                ->url('/'.$module_low.'/admin')
+                ->icon($icon)
+                ->group('Modules')
+                ->sort(3)
+                ->visible(function () use ($role) {
+                    Assert::notNull($user = Filament::auth()->user());
+                    // $user->assignRole('super-admin');
+                    // if ($user->hasRole('super-admin')) {
+                    //    $role = Role::firstOrCreate(['name' => $role] /*,['id'=>Str::uuid() ]*/);
 
-                        // $res = $user->assignRole($role);
-                        // }
+                    // $res = $user->assignRole($role);
+                    // }
 
-                        return $user->hasRole($role);
-                    })
-            ;
+                    return $user->hasRole($role);
+                });
 
             $navs[] = $nav;
         }

@@ -19,16 +19,15 @@ class XlsActionByModelClassAction
         $fields = [];
         foreach ($model->getFillable() as $fillable) {
             $fields[] = ImportField::make($fillable)
-                    ->label($fillable)
-                    // ->helperText('Define as project helper')
-            ;
+                ->label($fillable);
+            // ->helperText('Define as project helper')
         }
 
         $action = ImportAction::make()
-                ->fields($fields)
-                ->label('XLS')
-                ->icon('heroicon-o-arrow-up-tray')
-                ->tooltip('Import XLS');
+            ->fields($fields)
+            ->label('XLS')
+            ->icon('heroicon-o-arrow-up-tray')
+            ->tooltip('Import XLS');
 
         return $action;
     }

@@ -22,10 +22,13 @@ class UpdateAction
         $validator->validate();
         $keyName = $model->getKeyName();
 
-        if (null === $model->getKey()) {
+        if ($model->getKey() === null) {
             $key = $data[$keyName];
             $data = collect($data)->except($keyName)->toArray();
-            $model = $model->withTrashed()->firstOrCreate([$keyName => $key], $data);
+            if (method_exists($model, 'withTrashed')) {
+                $model = $model->withTrashed();
+            }
+            $model = $model->firstOrCreate([$keyName => $key], $data);
         }
 
         $model = tap($model)->update($data);

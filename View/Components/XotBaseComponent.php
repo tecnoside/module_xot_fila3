@@ -19,6 +19,7 @@ abstract class XotBaseComponent extends IlluminateComponent
      * @var array<mixed>
      */
     public array $attrs = [];
+
     protected static array $assets = [];
 
     public static function assets(): array

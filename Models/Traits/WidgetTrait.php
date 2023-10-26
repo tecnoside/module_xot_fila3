@@ -21,6 +21,11 @@ use Modules\Xot\Models\Widget;
  */
 trait WidgetTrait
 {
+    /**
+     * @return MorphMany<Widget>
+     *
+     * -- psalm-return Builder<Widget>
+     */
     public function widgets(): MorphMany
     {
         // questo sarebbe itemWidgets, ma teniamo questo nome

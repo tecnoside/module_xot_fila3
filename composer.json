@@ -16,12 +16,14 @@
     }],
     "require": {
         "php": "^8.1",
+        "coolsam/modules": "*",
         "doctrine/dbal": "*",
         "fidum/laravel-eloquent-morph-to-one": "*",
+        "filament/filament": "^3.0-stable",
         "guzzlehttp/guzzle": "*",
-        "illuminate/support": "*",
-        "filament/filament": "*",
         "illuminate/contracts": "*",
+        "illuminate/support": "*",
+        "konnco/filament-import": "^1.6",
         "livewire/livewire": "*",
         "nwidart/laravel-modules": "*",
         "spatie/laravel-data": "*",
@@ -30,16 +32,17 @@
         "spatie/laravel-permission": "*",
         "spatie/laravel-queueable-action": "*",
         "spatie/laravel-tags": "*",
-        "savannabits/filament-modules": "dev-main",
         "thecodingmachine/safe": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "*",
+        "enlightn/enlightn": "*",
         "fakerphp/faker": "*",
         "friendsofphp/php-cs-fixer": "*",
         "laravel/pint": "*",
         "nunomaduro/collision": "*",
         "nunomaduro/larastan": "*",
+        "nunomaduro/phpinsights": "*",
         "orchestra/testbench": "*",
         "pestphp/pest": "*",
         "pestphp/pest-plugin-arch": "*",
@@ -49,7 +52,8 @@
         "psalm/plugin-laravel": "^2.8",
         "spatie/laravel-ray": "*",
         "thecodingmachine/phpstan-safe-rule": "*",
-        "tightenco/duster": "^2.2"
+        "tightenco/duster": "*",
+        "vimeo/psalm": "*"
     },
     "autoload": {
         "psr-4": {
@@ -70,7 +74,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
     "extra": {

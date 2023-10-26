@@ -31,6 +31,7 @@ use Modules\Xot\Datas\XotData;
 abstract class XotBasePanelProvider extends PanelProvider
 {
     protected string $module;
+
     protected bool $topNavigation = false;
 
     public function panel(Panel $panel): Panel
@@ -56,7 +57,7 @@ abstract class XotBasePanelProvider extends PanelProvider
             // ->passwordReset()
             // ->emailVerification()
             // ->profile()
-             ->sidebarFullyCollapsibleOnDesktop()
+            ->sidebarFullyCollapsibleOnDesktop()
              // ---METATAG
             ->brandLogo($metatag->getLogoHeader())
             ->brandName($metatag->title)

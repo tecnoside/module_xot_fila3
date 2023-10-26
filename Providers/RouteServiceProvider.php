@@ -6,11 +6,10 @@ namespace Modules\Xot\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\Str;
-
-use function is_array;
-
 use Modules\Tenant\Services\TenantService;
 use Modules\Xot\Http\Middleware\SetDefaultLocaleForUrlsMiddleware;
+
+use function is_array;
 
 // public function boot(\Illuminate\Routing\Router $router)
 

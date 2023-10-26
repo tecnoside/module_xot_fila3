@@ -5,9 +5,6 @@ declare(strict_types=1);
 namespace Modules\Xot\Services;
 
 use Doctrine\DBAL\Schema\Column;
-
-use function get_class;
-
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
@@ -18,11 +15,11 @@ use Illuminate\Support\Str;
 use Modules\Xot\Contracts\ModelContract;
 use Modules\Xot\Contracts\ModelProfileContract;
 use Modules\Xot\Datas\XotData;
+use Symfony\Component\Finder\SplFileInfo;
 
+use function get_class;
 use function Safe\date;
 use function Safe\shuffle;
-
-use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * Class StubService.
@@ -271,7 +268,7 @@ class StubService
         }
 
         $fillables = $model->getFillable();
-        if ([] === $fillables) {
+        if ($fillables === []) {
             $fillables = $model->getConnection()->getSchemaBuilder()->getColumnListing($model->getTable());
         }
 
@@ -386,7 +383,7 @@ class StubService
             $reflectionClass = new \ReflectionClass($this->model_class);
             // dddx($autoloader_reflector);
             $class_file_name = $reflectionClass->getFileName();
-            if (false === $class_file_name) {
+            if ($class_file_name === false) {
                 throw new \Exception('autoloader_reflector false');
             }
 
@@ -500,7 +497,7 @@ class StubService
             )->all();
             $reflectionClass = new \ReflectionClass($model);
             $class_filename = $reflectionClass->getFileName();
-            if (false === $class_filename) {
+            if ($class_filename === false) {
                 throw new \Exception('autoloader_reflector err');
             }
 
@@ -606,7 +603,7 @@ class StubService
          */
         $brother_file = Arr::first(
             $models,
-            static fn (SplFileInfo $file): bool => 'php' === $file->getExtension()
+            static fn (SplFileInfo $file): bool => $file->getExtension() === 'php'
         );
         if (! $brother_file instanceof SplFileInfo) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
@@ -648,7 +645,7 @@ class StubService
          */
         $brother_file = Arr::first(
             $models,
-            static fn (SplFileInfo $file): bool => 'php' === $file->getExtension()
+            static fn (SplFileInfo $file): bool => $file->getExtension() === 'php'
         );
         // dddx(get_class_methods($brother_file));
         // dddx($brother_file->getFilenameWithoutExtension());
@@ -696,7 +693,7 @@ class StubService
         }
         */
 
-        if ('password' === $name) {
+        if ($name === 'password') {
             return $this->mapToFactory($name, "Hash::make('password')");
         }
 
@@ -713,13 +710,13 @@ class StubService
     /**
      * Undocumented function.
      *
-     * @param string $key
-     * @param string $value
+     * @param  string  $key
+     * @param  string  $value
      */
     private function mapToFactory($key, $value = null): array
     {
         return [
-            $key => null === $value ? $value : sprintf('\'%s\' => %s', $key, $value),
+            $key => $value === null ? $value : sprintf('\'%s\' => %s', $key, $value),
         ];
     }
 

@@ -12,9 +12,13 @@ use Spatie\LaravelData\Data;
 class JsonResponseData extends Data
 {
     public bool $success = true; // => false,
+
     public string $message;
+
     public ?int $code = null;
+
     public array $data = [];
+
     public int $status = 200;
 
     /*

@@ -22,6 +22,7 @@ class XotData extends Data implements Wireable
     use WireableData;
 
     public string $main_module;
+
     // => 'Blog'
     public string $param_name = 'noset';
 
@@ -34,6 +35,7 @@ class XotData extends Data implements Wireable
 
     // 'pub_theme' => 'DirectoryBs5',
     public string $pub_theme;
+
     // ' => 'One',
     public string $search_action = 'it/videos';
 
@@ -55,9 +57,9 @@ class XotData extends Data implements Wireable
 
     public bool $register_collective = false;
 
-    public string $team_class = Team::class;
+    public string $team_class = 'Modules\User\Models\Team'; // = Team::class;
 
-    public string $membership_class = Membership::class;
+    public string $membership_class = 'Modules\User\Models\Membership'; // = Membership::class;
 
     public ?string $super_admin = null;
 
@@ -72,6 +74,9 @@ class XotData extends Data implements Wireable
                 $xot = [];
             }
         }
+        // if(!isset($xot['team_class'])){
+        //    $xot['team_class']='Modules\User\Models\Team';
+        // }
 
         return self::from($xot);
     }

@@ -16,6 +16,7 @@ abstract class XotBaseModel extends Model
 {
     // use Searchable;
     use Updater;
+
     /**
      * Indicates whether attributes are snake cased on arrays.
      *

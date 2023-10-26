@@ -61,7 +61,7 @@ class ImageService
     {
         foreach ($params as $k => $v) {
             $func = 'set'.Str::studly((string) $k);
-            if (null === $v) {
+            if ($v === null) {
                 $v = '';
             }
 
@@ -77,7 +77,7 @@ class ImageService
     public function setImg(string $val): self
     {
         $nophoto_path = public_path('img/nophoto.jpg');
-        if ('' === $val) {
+        if ($val === '') {
             $val = $nophoto_path;
         }
 
@@ -103,7 +103,7 @@ class ImageService
      */
     public function setSrc(string $val): self
     {
-        if ('' === $val) {
+        if ($val === '') {
             $val = public_path('img/nophoto.jpg');
         }
 
@@ -186,7 +186,7 @@ class ImageService
      */
     public function src(): string
     {
-        if (null === $this->filename) {
+        if ($this->filename === null) {
             throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
 

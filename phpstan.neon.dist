@@ -1,6 +1,7 @@
 includes:
     - phpstan-baseline.neon
     - ./vendor/nunomaduro/larastan/extension.neon
+    - ./vendor/thecodingmachine/phpstan-safe-rule/phpstan-safe-rule.neon
 
 parameters:
 
@@ -12,6 +13,7 @@ parameters:
     ignoreErrors:
     #    - '#Unsafe usage of new static#'
         - '#PHPDoc tag @mixin contains unknown class #'
+        - '#Static call to instance method Nwidart#'
 
     excludePaths:
         - ./build/*
@@ -21,6 +23,7 @@ parameters:
         - ./Tests/*
         - ./_ide_helper.php
         - ./Services/Trend.php
+        - ./rector.php
 
     bootstrapFiles:
         - ./Services/vendor/autoload.php

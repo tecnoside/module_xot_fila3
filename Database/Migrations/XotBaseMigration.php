@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Modules\User\Models\User;
+use Modules\Xot\Datas\XotData;
 use Nwidart\Modules\Facades\Module;
 
 // ----- models -----
@@ -50,7 +51,7 @@ abstract class XotBaseMigration extends Migration
 
     public function getModel(): string
     {
-        if (null !== $this->model_class) {
+        if ($this->model_class !== null) {
             return $this->model_class;
         }
 
@@ -115,9 +116,9 @@ abstract class XotBaseMigration extends Migration
     }
 
     /**
-     * @throws \Doctrine\DBAL\Exception
-     *
      * @return array<Index>
+     *
+     * @throws \Doctrine\DBAL\Exception
      */
     public function getTableIndexes(): array
     {
@@ -130,7 +131,7 @@ abstract class XotBaseMigration extends Migration
      */
     public function tableExists(string $table = null): bool
     {
-        if (null === $table) {
+        if ($table === null) {
             $table = $this->getTable();
         }
 
@@ -283,32 +284,31 @@ abstract class XotBaseMigration extends Migration
 
     public function timestamps(Blueprint $table, bool $hasSoftDeletes = false): void
     {
+        $xot = XotData::make();
+        $userClass = $xot->getUserClass();
         $table->timestamps();
         $table->foreignIdFor(
-            model: User::class,
+            model: $userClass,
             column: 'user_id',
         )
-        ->nullable()
+            ->nullable();
         // ->nullOnDelete()
         // ->cascadeOnUpdate()
-        ;
 
         $table->foreignIdFor(
-            model: User::class,
+            model: $userClass,
             column: 'updated_by',
         )
-        ->nullable()
+            ->nullable();
         // ->nullOnDelete()
         // ->cascadeOnUpdate()
-        ;
         $table->foreignIdFor(
-            model: User::class,
+            model: $userClass,
             column: 'created_by',
         )
-        ->nullable()
+            ->nullable();
         // ->nullOnDelete()
         // ->cascadeOnUpdate()
-        ;
 
         if ($hasSoftDeletes) {
             $table->softDeletes();
@@ -317,6 +317,8 @@ abstract class XotBaseMigration extends Migration
 
     public function updateTimestamps(Blueprint $table): void
     {
+        $xot = XotData::make();
+        $userClass = $xot->getUserClass();
         if (! $this->hasColumn('updated_at') && ! $this->hasColumn('created_at')) {
             $table->timestamps();
         }
@@ -333,23 +335,21 @@ abstract class XotBaseMigration extends Migration
         */
         if (! $this->hasColumn('updated_by')) {
             $table->foreignIdFor(
-                model: User::class,
+                model: $userClass,
                 column: 'updated_by',
             )
-            ->nullable()
+                ->nullable();
             // ->nullOnDelete()
             // ->cascadeOnUpdate()
-            ;
         }
         if (! $this->hasColumn('created_by')) {
             $table->foreignIdFor(
-                model: User::class,
+                model: $userClass,
                 column: 'created_by',
             )
-            ->nullable()
+                ->nullable();
             // ->nullOnDelete()
             // ->cascadeOnUpdate()
-            ;
         }
     }
 

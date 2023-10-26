@@ -12,7 +12,7 @@ use Webmozart\Assert\Assert;
 
 abstract class XotBaseFilamentMiddleware extends Middleware
 {
-    public static string $module = 'EWall';
+    public static string $module = 'Xot';
 
     public static string $context = 'filament';
 
@@ -32,13 +32,13 @@ abstract class XotBaseFilamentMiddleware extends Middleware
 
         $user = $guard->user();
 
-        if ($user instanceof FilamentUser) {
+        if ($user instanceof FilamentUser && method_exists($user, 'canAccessFilament')) {
             abort_if(! $user->canAccessFilament(), 403);
 
             return;
         }
 
-        abort_if('local' !== config('app.env'), 403);
+        abort_if(config('app.env') !== 'local', 403);
     }
 
     protected function redirectTo($request): string
@@ -62,7 +62,7 @@ abstract class XotBaseFilamentMiddleware extends Middleware
     private function getContextName(): string
     {
         $this->getModule();
-        if ('' === static::$context || '0' === static::$context) {
+        if (static::$context === '' || static::$context === '0') {
             throw new \Exception('Context has to be defined in your class');
         }
 
