@@ -13,21 +13,21 @@ use Spatie\ModelStatus\Status;
 /**
  * Modules\Xot\Contracts\ModelWithPosContract.
  *
- * @property int                 $id
- * @property int|null            $user_id
- * @property string|null         $post_type
- * @property Carbon|null         $created_at
- * @property Carbon|null         $updated_at
- * @property string|null         $created_by
- * @property string|null         $updated_by
- * @property string|null         $title
- * @property PivotContract|null  $pivot
- * @property string              $tennant_name
- * @property User|null           $user
- * @property string              $status
+ * @property int                      $id
+ * @property int|null                 $user_id
+ * @property string|null              $post_type
+ * @property Carbon|null              $created_at
+ * @property Carbon|null              $updated_at
+ * @property string|null              $created_by
+ * @property string|null              $updated_by
+ * @property string|null              $title
+ * @property PivotContract|null       $pivot
+ * @property string                   $tennant_name
+ * @property User|null                $user
+ * @property string                   $status
  * @property Collection|array<Status> $statuses
- * @property int|null            $statuses_count
- * @property int|null            $pos
+ * @property int|null                 $statuses_count
+ * @property int|null                 $pos
  *
  * @method mixed     getKey()
  * @method string    getRouteKey()

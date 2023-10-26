@@ -8,7 +8,9 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 use PhpOffice\PhpWord\TemplateProcessor;
+
 use function Safe\json_decode;
+
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
@@ -16,7 +18,6 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
  */
 class DocxService
 {
-
     public string $docx_input;
 
     public array $values;
@@ -167,7 +168,7 @@ class DocxService
         return collect($arr)->map(
             static function ($item, string $key) use ($row, $prefix, $arr): array {
                 // *
-                if ($arr[$key] !== '' && \is_object($row->$key) && $row->$key instanceof Carbon) {
+                if ('' !== $arr[$key] && \is_object($row->$key) && $row->$key instanceof Carbon) {
                     try {
                         $item = $row->$key->format('d/m/Y');
                     } catch (\Exception) {

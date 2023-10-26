@@ -38,7 +38,7 @@ abstract class XotBaseFilamentMiddleware extends Middleware
             return;
         }
 
-        abort_if(config('app.env') !== 'local', 403);
+        abort_if('local' !== config('app.env'), 403);
     }
 
     protected function redirectTo($request): string
@@ -62,7 +62,7 @@ abstract class XotBaseFilamentMiddleware extends Middleware
     private function getContextName(): string
     {
         $this->getModule();
-        if (static::$context === '' || static::$context === '0') {
+        if ('' === static::$context || '0' === static::$context) {
             throw new \Exception('Context has to be defined in your class');
         }
 
