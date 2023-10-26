@@ -14,8 +14,8 @@ use Illuminate\Support\Str;
 class XotPanelController extends Controller
 {
     /**
-     * @param  string  $method
-     * @param  array  $arg
+     * @param string $method
+     * @param array  $arg
      */
     public function __call($method, $arg)
     {

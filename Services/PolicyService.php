@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use function get_class;
+
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Modules\Xot\Datas\XotData;
-
-use function get_class;
 
 /**
  * Class PolicyService.
@@ -60,7 +60,7 @@ class PolicyService
         self::$in_vars['class'] = $class;
         $reflectionClass = new \ReflectionClass(self::$in_vars['class']);
         $filename = $reflectionClass->getFileName();
-        if ($filename === false) {
+        if (false === $filename) {
             throw new \Exception('autoloader_reflector error');
         }
 
@@ -129,7 +129,7 @@ class PolicyService
         }
 
         $stub_name = 'policy';
-        if (self::$in_vars['class_type'] !== '') {
+        if ('' !== self::$in_vars['class_type']) {
             $stub_name .= '/'.self::$in_vars['class_type'];
         }
 

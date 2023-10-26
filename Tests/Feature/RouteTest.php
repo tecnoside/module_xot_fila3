@@ -35,7 +35,7 @@ class RouteTest extends TestCase
 
         foreach ($urls as $url) {
             $response = $this->get($url);
-            if ($response->status() !== 200) {
+            if (200 !== $response->status()) {
                 echo $appURL.$url.' (FAILED) did not return a 200.';
                 static::assertTrue(false);
             } else {

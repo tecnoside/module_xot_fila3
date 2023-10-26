@@ -9,13 +9,13 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Relations;
 
+use function call_user_func;
+
 use Closure;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
-
-use function call_user_func;
 
 /**
  * Class CustomRelation.
@@ -34,13 +34,13 @@ class CustomRelation extends Relation
         /**
          * The baseConstraints callback.
          */
-        protected Closure $baseConstraints, /**
+        protected \Closure $baseConstraints, /**
      * The eagerConstraints callback.
      */
-        protected ?Closure $eagerConstraints, /**
+        protected ?\Closure $eagerConstraints, /**
      * The eager constraints model matcher.
      */
-        protected ?Closure $eagerMatcher)
+        protected ?\Closure $eagerMatcher)
     {
         parent::__construct($query, $model);
     }
@@ -69,7 +69,8 @@ class CustomRelation extends Relation
     /**
      * Initialize the relation on a set of models.
      *
-     * @param  string  $relation
+     * @param string $relation
+     *
      * @return array
      */
     public function initRelation(array $models, $relation)
@@ -84,7 +85,8 @@ class CustomRelation extends Relation
     /**
      * Match the eagerly loaded results to their parents.
      *
-     * @param  string  $relation
+     * @param string $relation
+     *
      * @return array
      */
     public function match(array $models, Collection $collection, $relation)
@@ -108,7 +110,8 @@ class CustomRelation extends Relation
     /**
      * Execute the query as a "select" statement.
      *
-     * @param  array  $columns
+     * @param array $columns
+     *
      * @return Collection
      */
     public function get($columns = ['*'])

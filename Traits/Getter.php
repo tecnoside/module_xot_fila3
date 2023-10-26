@@ -43,7 +43,7 @@ trait Getter
         // dd(class_basename(get_called_class()));//ThemeService
         $class = static::class;
         // *
-        if ($ris === '' && isset($class::$config_name)) {
+        if ('' === $ris && isset($class::$config_name)) {
             $config_name = $class::$config_name;
             $ris = config($config_name.'.'.$index);
         }
@@ -75,1974 +75,1974 @@ trait Getter
 
     public static function __callStatic(string $method, array $args): mixed
     {
-        if (preg_match('/^([gs]et)([A-Z])(.*)$/', $method, $match) !== 0) {
+        if (0 !== preg_match('/^([gs]et)([A-Z])(.*)$/', $method, $match)) {
             $reflectionClass = new \ReflectionClass(self::class);
             $property = mb_strtolower((string) $match[2]).$match[3];
             if ($reflectionClass->hasProperty($property)) {
                 $property = $reflectionClass->getProperty($property);
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'get') {
+                if ('get' == $match[1]) {
                     return $property->getValue();
                 }
-                if ($match[1] == 'set') {
+                if ('set' == $match[1]) {
                     return $property->setValue($args[0]);
                 }
             } else {

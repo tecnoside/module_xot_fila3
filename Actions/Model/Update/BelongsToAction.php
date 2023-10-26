@@ -31,7 +31,7 @@ class BelongsToAction
             return;
         }
 
-        if (! Arr::isAssoc($relationDTO->data) && count($relationDTO->data) == 1) {
+        if (! Arr::isAssoc($relationDTO->data) && 1 == count($relationDTO->data)) {
             $related_id = $relationDTO->data[0];
             $related = $relationDTO->related->find($related_id);
             $res = $rows->associate($related);
@@ -42,7 +42,7 @@ class BelongsToAction
 
         if (Arr::isAssoc($relationDTO->data)) {
             $sub = $rows->first();
-            if ($sub == null) {
+            if (null == $sub) {
                 throw new \Exception('['.__LINE__.']['.__FILE__.']');
             }
 
