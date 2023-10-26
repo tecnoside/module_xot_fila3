@@ -7,7 +7,7 @@ namespace Modules\Xot\Models;
 class CacheLock extends BaseModel
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
     protected $fillable = [
         'key',

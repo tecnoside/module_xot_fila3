@@ -5,26 +5,10 @@ declare(strict_types=1);
 namespace Modules\Xot\Services;
 
 use Carbon\Carbon;
-use Exception;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 use PhpOffice\PhpWord\TemplateProcessor;
-
 use function Safe\json_decode;
-
-/*
-use PhpOffice\PhpWord\PhpWord;
-use Illuminate\Support\Facades\Storage;
-
-\PhpOffice\PhpWord\TemplateProcessor($file);
-https://stackoverflow.com/questions/41296206/read-and-replace-contents-in-docx-word-file
-composer require phpoffice/phpword
-https://github.com/wrklst/docxmustache
-
-https://code-boxx.com/convert-html-to-docx-using-php/
-
-*/
-
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
@@ -32,11 +16,11 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
  */
 class DocxService
 {
-    private static ?self $instance = null;
 
     public string $docx_input;
 
     public array $values;
+    private static ?self $instance = null;
 
     public static function getInstance(): self
     {
@@ -180,10 +164,10 @@ class DocxService
 
         // $arr = $row->toArray();
         // dddx($arr);
-        $data = collect($arr)->map(
+        return collect($arr)->map(
             static function ($item, string $key) use ($row, $prefix, $arr): array {
                 // *
-                if ('' !== $arr[$key] && \is_object($row->$key) && $row->$key instanceof Carbon) {
+                if ($arr[$key] !== '' && \is_object($row->$key) && $row->$key instanceof Carbon) {
                     try {
                         $item = $row->$key->format('d/m/Y');
                     } catch (\Exception) {
@@ -229,22 +213,6 @@ class DocxService
             }
         )->collapse()
             ->all();
-        // 212    Offset non-empty-string on array<int, mixed> in isset() does not exist.
-        // if (isset($data[$prefix.'.postal_code'])) {
-        // $data[$prefix.'.zip_code'] = $data[$prefix.'.postal_code'] ?? '';
-        // }
-
-        /* -- per fare buono phpstan
-        if (isset($data[$prefix.'.route'])
-            && isset($data[$prefix.'.locality'])
-            && isset($data[$prefix.'.zip_code'])
-            // && !isset($data[$prefix.'.full_address'])
-        ) {
-            $data[$prefix.'.full_address'] = $data[$prefix.'.route'].', '.$data[$prefix.'.street_number'].' - '.$data[$prefix.'.zip_code'].' '.$data[$prefix.'.locality'].' ('.$data[$prefix.'.administrative_area_level_2_short'].')';
-        }
-        */
-
-        return $data;
     }
 }// end class
 

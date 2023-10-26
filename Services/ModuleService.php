@@ -7,7 +7,6 @@ namespace Modules\Xot\Services;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Facades\Module;
-use ReflectionClass;
 
 // ----------- Requests ----------
 
@@ -63,7 +62,7 @@ class ModuleService
         }
         */
         $mod = Module::find($this->name);
-        if (null === $mod) {
+        if ($mod === null) {
             return [];
         }
 

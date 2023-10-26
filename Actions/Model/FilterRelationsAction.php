@@ -57,7 +57,8 @@ class FilterRelationsAction
                         'rows' => $rows,
                         'data' => Arr::wrap($value),
                     ];
-                })->all();
+                }
+            )->all();
 
         return RelationDTO::collection($res);
     }

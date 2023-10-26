@@ -4,29 +4,20 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers\Filament;
 
-use Filament\Facades\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Navigation\MenuItem;
-use Filament\Navigation\NavigationItem;
-use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
-use Filament\Support\Colors\Color;
-use Filament\Support\Facades\FilamentView;
-use Filament\Widgets;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
-use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Modules\Xot\Datas\MetatagData;
-use Modules\Xot\Datas\XotData;
 
 abstract class XotBasePanelProvider extends PanelProvider
 {
@@ -50,7 +41,7 @@ abstract class XotBasePanelProvider extends PanelProvider
         );
         */
 
-        $panel = $panel
+        return $panel
             ->default()
             ->login()
             // ->registration()
@@ -133,8 +124,6 @@ abstract class XotBasePanelProvider extends PanelProvider
                  ->sort(3),
          ]);
         */
-
-        return $panel;
     }
 
     protected function getModuleNamespace(): string

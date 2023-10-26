@@ -60,10 +60,9 @@ class MorphToManyAction
 
                 $res = $model->$name()
                     ->syncWithoutDetaching([$k => $v['pivot']]);
-            } else {
-                // $res = $model->$name()
-                //   ->syncWithoutDetaching([$v]);
             }
+            // $res = $model->$name()
+            //   ->syncWithoutDetaching([$v]);
 
             // ->where('user_id',1)
             // ->syncWithoutDetaching([$k => $v['pivot']])

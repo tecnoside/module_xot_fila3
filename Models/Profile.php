@@ -17,7 +17,6 @@ use Modules\Xot\Contracts\ModelProfileContract;
 use Modules\Xot\Contracts\ModelWithUserContract;
 use Modules\Xot\Database\Factories\ProfileFactory;
 use Spatie\Permission\Traits\HasRoles;
-use Spatie\Tags\HasTags;
 use Spatie\Tags\Tag;
 
 /**
@@ -106,7 +105,7 @@ class Profile extends BaseModel implements ModelProfileContract, ModelWithUserCo
     // private string $guard_name = 'web';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
     protected $fillable = ['id', 'user_id'];
 

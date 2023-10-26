@@ -6,10 +6,8 @@ namespace Modules\Xot\Actions\Filament;
 
 use Filament\Facades\Filament;
 use Filament\Navigation\NavigationItem;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Modules\User\Models\Role;
 use Spatie\QueueableAction\QueueableAction;
 use Webmozart\Assert\Assert;
 

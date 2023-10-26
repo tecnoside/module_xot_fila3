@@ -9,7 +9,6 @@ namespace Modules\Xot\Actions\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Facades\Module;
-use ReflectionClass;
 use Spatie\QueueableAction\QueueableAction;
 
 class GetAllModelsByModuleNameAction
@@ -22,7 +21,7 @@ class GetAllModelsByModuleNameAction
     public function execute(string $moduleName): array
     {
         $mod = Module::find($moduleName);
-        if (null === $mod) {
+        if ($mod === null) {
             return [];
         }
 

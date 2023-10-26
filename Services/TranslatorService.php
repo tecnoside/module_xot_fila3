@@ -5,11 +5,8 @@ declare(strict_types=1);
 namespace Modules\Xot\Services;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Cache;
 // ---- services ---
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Translation\Translator as BaseTranslator;
@@ -239,35 +236,12 @@ class TranslatorService extends BaseTranslator
         // superdump([$key, $replace , $locale , $fallback ]);
 
         // *
-        if (null === $locale) {
+        if ($locale === null) {
             $locale = app()->getLocale();
         }
 
         // */
-        $translation = parent::get($key, $replace, $locale, $fallback);
-        /*
-        if ($key == $translation && ! Str::endsWith($key, '.')) {
-            dddx(['key' => $key, 'translation' => $translation, 'replace' => $replace, 'locale' => $locale, 'fallback' => $fallback]);
-        }
-        indennitacondizionilavoro::servizio_esterno_reps.tab.create
-        //*/
-
-        // echo '<br>['.$key.']['.$translation.']';
-        // $langs=ThemeService::__merge('langs', [$key=>$translation]);
-        // $cache_key=Str::slug(req_uri().'_langs');
-        // Cache::put($cache_key,$langs);
-        // echo '<pre>';print_r($langs);echo '</pre>';
-        /*
-        if ($translation === $key) {
-            Log::warning('Language item could not be found.', [
-                'language' => $locale ?? config('app.locale'),
-                'id' => $key,
-                'url' => config('app.url')
-            ]);
-        }
-        */
-
-        return $translation;
+        return parent::get($key, $replace, $locale, $fallback);
     }
 
     /**

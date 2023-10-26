@@ -6,7 +6,6 @@ namespace Modules\Xot\Filament\Resources\XotBaseResource\RelationManager;
 
 use Filament\Resources\RelationManagers\RelationManager;
 use Illuminate\Support\Str;
-use Webmozart\Assert\Assert;
 
 abstract class XotBaseRelationManager extends RelationManager
 {
@@ -42,11 +41,6 @@ abstract class XotBaseRelationManager extends RelationManager
         return __($res);
     }
 
-    protected static function getPluralModelLabel(): string
-    {
-        return static::trans('navigation.plural');
-    }
-
     public static function getNavigationLabel(): string
     {
         return static::trans('navigation.name');
@@ -56,5 +50,10 @@ abstract class XotBaseRelationManager extends RelationManager
     public static function getNavigationGroup(): string
     {
         return static::trans('navigation.group.name');
+    }
+
+    protected static function getPluralModelLabel(): string
+    {
+        return static::trans('navigation.plural');
     }
 }

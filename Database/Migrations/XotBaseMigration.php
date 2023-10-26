@@ -7,15 +7,12 @@ namespace Modules\Xot\Database\Migrations;
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
 use Doctrine\DBAL\Schema\Index;
 use Doctrine\DBAL\Schema\Table;
-use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Schema\Builder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use Modules\User\Models\User;
 use Modules\Xot\Datas\XotData;
 use Nwidart\Modules\Facades\Module;
 
@@ -51,7 +48,7 @@ abstract class XotBaseMigration extends Migration
 
     public function getModel(): string
     {
-        if (null !== $this->model_class) {
+        if ($this->model_class !== null) {
             return $this->model_class;
         }
 
@@ -129,9 +126,9 @@ abstract class XotBaseMigration extends Migration
     /**
      * ---.
      */
-    public function tableExists(string $table = null): bool
+    public function tableExists(?string $table = null): bool
     {
-        if (null === $table) {
+        if ($table === null) {
             $table = $this->getTable();
         }
 

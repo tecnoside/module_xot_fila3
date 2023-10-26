@@ -23,12 +23,10 @@ class XlsActionByModelClassAction
             // ->helperText('Define as project helper')
         }
 
-        $action = ImportAction::make()
+        return ImportAction::make()
             ->fields($fields)
             ->label('XLS')
             ->icon('heroicon-o-arrow-up-tray')
             ->tooltip('Import XLS');
-
-        return $action;
     }
 }

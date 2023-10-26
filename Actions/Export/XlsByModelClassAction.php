@@ -16,9 +16,13 @@ class XlsByModelClassAction
 {
     use QueueableAction;
 
-    public function execute(string $modelClass, array $where = [], array $includes = [],
-        array $excludes = [], callable $callback = null): \Symfony\Component\HttpFoundation\BinaryFileResponse
-    {
+    public function execute(
+        string $modelClass,
+        array $where = [],
+        array $includes = [],
+        array $excludes = [],
+        ?callable $callback = null
+    ): \Symfony\Component\HttpFoundation\BinaryFileResponse {
         $with = $this->getWithByIncludes($includes);
 
         $rows = app($modelClass)
@@ -26,7 +30,7 @@ class XlsByModelClassAction
             ->where($where);
 
         $rows = $rows->get();
-        if ([] !== $includes) {
+        if ($includes !== []) {
             $rows = $rows->map(function ($item) use ($includes) {
                 $data = [];
                 foreach ($includes as $include) {
@@ -37,11 +41,11 @@ class XlsByModelClassAction
             });
         }
 
-        if ([] !== $excludes) {
+        if ($excludes !== []) {
             $rows = $rows->makeHidden($excludes);
         }
 
-        if (null != $callback) {
+        if ($callback !== null) {
             $rows = $rows->map($callback);
         }
         $transKey = app(GetTransKeyByModelClassAction::class)->execute($modelClass);

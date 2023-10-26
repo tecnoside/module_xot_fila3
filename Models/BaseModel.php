@@ -65,7 +65,7 @@ abstract class BaseModel extends Model
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
     protected $dates = ['published_at', 'created_at', 'updated_at', 'deleted_at'];
 

@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string|null                            $full_name
  * @property string|null                            $phone
  * @property string|null                            $email
- * @property Collection|\Modules\User\Models\Area[] $areas
+ * @property Collection|array<\Modules\User\Models\Area> $areas
  * @property \Modules\User\Models\PermUser|null     $perm
  *
  * @mixin    \Eloquent

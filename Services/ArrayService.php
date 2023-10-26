@@ -10,11 +10,9 @@ use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-
 use function Safe\fclose;
 use function Safe\fopen;
 use function Safe\fputcsv;
-
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -23,11 +21,11 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
  */
 class ArrayService
 {
-    private static ?self $instance = null;
 
     public array $array;
 
     public ?string $filename = null;
+    private static ?self $instance = null;
 
     private int $export_processor = 1;
 
@@ -215,7 +213,7 @@ class ArrayService
     public function getFilename(): string
     {
         $filename = $this->filename;
-        if (null !== $filename) {
+        if ($filename !== null) {
             return $filename;
         }
 
@@ -232,7 +230,7 @@ class ArrayService
      */
     public function toXLS(): BinaryFileResponse|Renderable
     {
-        if (1 === request('debug', 0) * 1) {
+        if (request('debug', 0) * 1 === 1) {
             return self::toHtml();
         }
 
@@ -248,7 +246,7 @@ class ArrayService
         }
 
         $this->array = $res;
-        if (1 == $this->export_processor) {
+        if ($this->export_processor === 1) {
             return self::toXLS_phpoffice();
         }
         $msg = 'unknown export_processor ['.$this->export_processor.']';

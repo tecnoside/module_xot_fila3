@@ -32,7 +32,7 @@ use Illuminate\Support\Carbon;
 class Settings extends Model
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
     public $fillable = [
         'id', 'appname', 'description', 'keywords', 'author',
