@@ -14,6 +14,7 @@ use Jurosh\PDFMerge\PDFMerger;
 class PdfService
 {
     public array $filenames = [];
+
     private static ?self $instance = null;
 
     public function __construct()
@@ -25,7 +26,7 @@ class PdfService
     public static function getInstance(): self
     {
         if (! self::$instance instanceof \Modules\Xot\Services\PdfService) {
-            self::$instance = new self();
+            self::$instance = new self;
         }
 
         return self::$instance;
@@ -46,7 +47,7 @@ class PdfService
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
-        $pdfMerger = new PDFMerger();
+        $pdfMerger = new PDFMerger;
         $pdf_files = collect(File::files($path))->filter(
             static fn ($file, $key): bool => $file->getExtension() === 'pdf' && ! Str::startsWith($file->getBasename(), '_')
         );

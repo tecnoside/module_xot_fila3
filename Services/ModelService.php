@@ -37,7 +37,7 @@ class ModelService
     public static function getInstance(): self
     {
         if (! self::$_instance instanceof \Modules\Xot\Services\ModelService) {
-            self::$_instance = new self();
+            self::$_instance = new self;
         }
 
         return self::$_instance;
@@ -183,7 +183,7 @@ class ModelService
             if (! empty($reflectionMethod->getParameters())) {
                 continue;
             }
-            if (__FUNCTION__ === $reflectionMethod->getName()) {
+            if ($reflectionMethod->getName() === __FUNCTION__) {
                 continue;
             }
             try {

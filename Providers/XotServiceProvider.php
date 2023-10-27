@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\View;
 use Modules\Xot\Console\Commands\DatabaseBackUpCommand;
 use Modules\Xot\Providers\Traits\TranslatorTrait;
 use Modules\Xot\View\Composers\XotComposer;
+
 use function Safe\realpath;
 
 /**

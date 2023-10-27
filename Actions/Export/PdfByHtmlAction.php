@@ -6,8 +6,9 @@ namespace Modules\Xot\Actions\Export;
 
 // use Modules\Xot\Services\ArrayService;
 use Illuminate\Support\Facades\Storage;
-use function Safe\realpath;
 use Spatie\QueueableAction\QueueableAction;
+
+use function Safe\realpath;
 
 class PdfByHtmlAction
 {

@@ -15,9 +15,10 @@ use Illuminate\Support\Str;
 use Modules\Xot\Contracts\ModelContract;
 use Modules\Xot\Contracts\ModelProfileContract;
 use Modules\Xot\Datas\XotData;
+use Symfony\Component\Finder\SplFileInfo;
+
 use function Safe\date;
 use function Safe\shuffle;
-use Symfony\Component\Finder\SplFileInfo;
 
 /**
  * Class StubService.
@@ -48,7 +49,7 @@ class StubService
     public static function getInstance(): self
     {
         if (! self::$_instance instanceof self) {
-            self::$_instance = new self();
+            self::$_instance = new self;
         }
 
         return self::$_instance;
@@ -306,7 +307,7 @@ class StubService
                         ';
 
                     // throw new \Exception($msg);
-                    return null;
+                    return;
                     /*
                     dddx([
                         'message' => $e->getMessage(),
@@ -509,7 +510,7 @@ class StubService
 
         $fields = [];
         foreach ($fillables as $fillable) {
-            $tmp = new \stdClass();
+            $tmp = new \stdClass;
             try {
                 $col = $model->getConnection()->getDoctrineColumn($model->getTable(), $fillable); // ->getType();//->getName();
                 // dddx(get_class_methods($col->getType()));
@@ -708,8 +709,8 @@ class StubService
     /**
      * Undocumented function.
      *
-     * @param string $key
-     * @param string $value
+     * @param  string  $key
+     * @param  string  $value
      */
     private function mapToFactory($key, $value = null): array
     {

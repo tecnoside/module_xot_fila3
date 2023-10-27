@@ -40,7 +40,7 @@ class ImageService
     public static function getInstance(): self
     {
         if (! self::$_instance instanceof \Modules\Xot\Services\ImageService) {
-            self::$_instance = new self();
+            self::$_instance = new self;
         }
 
         return self::$_instance;

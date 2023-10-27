@@ -17,12 +17,13 @@ use Modules\Xot\Services\ArrayService;
 use Modules\Xot\Services\FileService;
 use Modules\Xot\Services\ModuleService;
 use Nwidart\Modules\Facades\Module;
+use Webmozart\Assert\Assert;
+
 use function Safe\define;
 use function Safe\glob;
 use function Safe\json_decode;
 use function Safe\parse_url;
 use function Safe\preg_match;
-use Webmozart\Assert\Assert;
 
 // ------------------------------------------------
 
@@ -305,7 +306,7 @@ if (! function_exists('params2ContainerItem')) {
     /**
      * @return array<array>
      */
-    function params2ContainerItem(?array $params = null): array
+    function params2ContainerItem(array $params = null): array
     {
         if ($params === null) {
             // Call to static method current() on an unknown class Route.
@@ -591,12 +592,11 @@ if (! function_exists('url_queries')) {
     /**
      * Modifies the query strings in a given (or the current) URL.
      *
-     * @param array       $queries Indexed array of query parameters
-     * @param string|null $url     URL to use parse. If none is supplied, the current URL of the page load will be used
-     *
+     * @param  array  $queries Indexed array of query parameters
+     * @param  string|null  $url     URL to use parse. If none is supplied, the current URL of the page load will be used
      * @return string The updated query string
      */
-    function url_queries(array $queries, ?string $url = null): string
+    function url_queries(array $queries, string $url = null): string
     {
         // If a URL isn't supplied, use the current one
         if (! $url) {
@@ -636,8 +636,7 @@ if (! function_exists('build_url')) {
     /**
      * Rebuilds the URL parameters into a string from the native parse_url() function.
      *
-     * @param array $parts The parts of a URL
-     *
+     * @param  array  $parts The parts of a URL
      * @return string The constructed URL
      */
     function build_url(array $parts): string
@@ -952,7 +951,7 @@ if (! function_exists('rowsToSql')) {
     /**
      * Undocumented function.
      *
-     * @param HasOne|Builder|Illuminate\Database\Eloquent\Builder $rows
+     * @param  HasOne|Builder|Illuminate\Database\Eloquent\Builder  $rows
      */
     function rowsToSql($rows): string
     {

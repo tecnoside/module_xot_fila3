@@ -16,7 +16,7 @@ class CollectionExport implements FromCollection, WithHeadings
 
     public string $transKey;
 
-    public function __construct(public Collection $collection, ?string $transKey = null)
+    public function __construct(public Collection $collection, string $transKey = null)
     {
         // $this->headings = count($headings) > 0 ? $headings : collect($collection->first())->keys()->toArray();
         /**

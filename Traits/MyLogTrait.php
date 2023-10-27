@@ -27,7 +27,7 @@ trait MyLogTrait
         */
         static::creating(
             /**
-             * @param Model $model
+             * @param  Model  $model
              */
             function ($model): void {
                 // dddx(static::$logModel);
@@ -42,7 +42,7 @@ trait MyLogTrait
 
         static::updating(
             /**
-             * @param Model $model
+             * @param  Model  $model
              */
             function ($model): void {
                 // $tmp = ;

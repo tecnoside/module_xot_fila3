@@ -97,7 +97,7 @@ class Widget extends BaseModel
         return self::max('pos') + 1;
     }
 
-    public function toHtml(?array $params = null): Application|Factory|View
+    public function toHtml(array $params = null): Application|Factory|View
     {
         /**
          * @phpstan-var view-string

@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Modules\Xot\Services;
 
 use Illuminate\Support\Str;
-use function Safe\preg_replace;
 use Webmozart\Assert\Assert;
+
+use function Safe\preg_replace;
 
 /**
  * Class RouteDynService.
@@ -241,7 +242,7 @@ class RouteDynService
         return ['as' => $as, 'uses' => $uses];
     }
 
-    public static function dynamic_route(array $array, ?string $namespace = null, ?string $namespace_start = null, ?string $curr = null): void
+    public static function dynamic_route(array $array, string $namespace = null, string $namespace_start = null, string $curr = null): void
     {
         if ($namespace_start !== null) {
             self::$namespace_start = $namespace_start;

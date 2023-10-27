@@ -23,7 +23,7 @@ class PolicyService
     public static function getInstance(): self
     {
         if (! self::$policyService instanceof \Modules\Xot\Services\PolicyService) {
-            self::$policyService = new self();
+            self::$policyService = new self;
         }
 
         /*
@@ -126,7 +126,7 @@ class PolicyService
         }
 
         $stub_name = 'policy';
-        if ('' !== self::$in_vars['class_type']) {
+        if (self::$in_vars['class_type'] !== '') {
             $stub_name .= '/'.self::$in_vars['class_type'];
         }
 

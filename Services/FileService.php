@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Facades\Module;
+use Webmozart\Assert\Assert;
+
 use function Safe\json_decode;
 use function Safe\json_encode;
 use function Safe\realpath;
 use function Safe\scandir;
-use Webmozart\Assert\Assert;
 
 /**
  * Class FileService.
@@ -581,7 +582,7 @@ class FileService
     // *
 
     /**
-     * @param array<string> $files
+     * @param  array<string>  $files
      */
     public static function viewNamespaceToUrl(array $files): array
     {
@@ -987,7 +988,7 @@ class FileService
     /**
      * Undocumented function.
      *
-     * @param class-string $class_name
+     * @param  class-string  $class_name
      */
     public static function getFileNameByClassName(string $class_name): ?string
     {

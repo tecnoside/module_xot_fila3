@@ -12,6 +12,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Modules\Xot\Services\BladeService;
 use Modules\Xot\Services\LivewireService;
+
 use function Safe\glob;
 use function Safe\json_decode;
 use function Safe\json_encode;
@@ -198,7 +199,7 @@ abstract class XotBaseServiceProvider extends ServiceProvider
                     ];
                     if (class_exists($event) && class_exists($listener)) {
                         // \Event::listen($event, $listener);
-                        $tmp = new \stdClass();
+                        $tmp = new \stdClass;
                         $tmp->event = $event;
                         $tmp->listener = $listener;
                         $events[] = $tmp;

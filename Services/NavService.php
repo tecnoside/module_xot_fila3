@@ -6,6 +6,7 @@ namespace Modules\Xot\Services;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
+
 use function Safe\date;
 
 /**
@@ -28,9 +29,9 @@ class NavService
         }
 
         $year = $request->input('year', date('Y'));
-        --$year;
+        $year--;
         $nav = [];
-        for ($i = 0; $i < 3; ++$i) {
+        for ($i = 0; $i < 3; $i++) {
             $tmp = [];
             $params['year'] = $year;
             $tmp['title'] = $year;
@@ -48,7 +49,7 @@ class NavService
 
             $tmp['url'] = route($routename, $params);
             $nav[] = (object) $tmp;
-            ++$year;
+            $year++;
         }
 
         /**
@@ -85,7 +86,7 @@ class NavService
 
         $d = $date->subMonths($q);
         $nav = [];
-        for ($i = 0; $i < ($q * 2) + 1; ++$i) {
+        for ($i = 0; $i < ($q * 2) + 1; $i++) {
             $tmp = [];
             $params['month'] = (int) $d->format('m');
             $params['year'] = (int) $d->format('Y');

@@ -223,10 +223,9 @@ class TranslatorService extends BaseTranslator
     /**
      * get.
      *
-     * @param string      $key
-     * @param string|null $locale
-     * @param bool        $fallback
-     *
+     * @param  string  $key
+     * @param  string|null  $locale
+     * @param  bool  $fallback
      * @return array|string
      */
     public function get($key, array $replace = [], $locale = null, $fallback = true)
@@ -247,9 +246,8 @@ class TranslatorService extends BaseTranslator
     /**
      * getFromJson.
      *
-     * @param string      $key
-     * @param string|null $locale
-     *
+     * @param  string  $key
+     * @param  string|null  $locale
      * @return array|string
      */
     public function getFromJson($key, array $replace = [], $locale = null)

@@ -120,7 +120,7 @@ trait Cacheable
     /**
      * Return the time until expires in minutes.
      */
-    protected function getCacheExpiresTime(?int $time = null): int
+    protected function getCacheExpiresTime(int $time = null): int
     {
         if ($time === self::EXPIRES_END_OF_DAY) {
             return class_exists(Carbon::class)

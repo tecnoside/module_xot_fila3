@@ -21,9 +21,9 @@ class TypeGuesser
     }
 
     /**
-     * @param int|null $size Length of field, if known
+     * @param  int|null  $size Length of field, if known
      */
-    public function guess(string $name, Type $type, ?int $size = null): string
+    public function guess(string $name, Type $type, int $size = null): string
     {
         $name = Str::of($name)->lower();
 
@@ -47,7 +47,7 @@ class TypeGuesser
     /**
      * Check if faker instance has a native resolver for the given property.
      *
-     * @param string $property
+     * @param  string  $property
      */
     private function hasNativeResolverFor($property): bool
     {
@@ -121,11 +121,10 @@ class TypeGuesser
     /**
      * Get type guess.
      *
-     * @param string $name
-     *
+     * @param  string  $name
      * @return string
      */
-    private function guessBasedOnName($name, ?int $size = null)
+    private function guessBasedOnName($name, int $size = null)
     {
         return match ($name) {
             'login' => 'userName',
