@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Modules\Xot\Datas;
 
 use Livewire\Wireable;
+use Modules\Tenant\Services\TenantService;
 use Modules\Xot\Services\FileService;
 use Spatie\LaravelData\Concerns\WireableData;
 use Spatie\LaravelData\Data;
@@ -79,15 +80,16 @@ class MetatagData extends Data implements Wireable
         $data = config('metatag');
 
         if (! \is_array($data)) {
-            /*     $path = TenantService::filePath('metatag.php');
-                $data = File::getRequire($path);
-                if (! \is_array($data)) {
-                    $data = [];
-                }
-                */
+            // /*
+            $path = TenantService::filePath('metatag.php');
+            $data = File::getRequire($path);
+            if (! \is_array($data)) {
+                $data = [];
+            }
+            // */
             // return new MetatagData();
             // throw new \Exception('WIP ['.class_basename(__CLASS__).']');
-            $data = [];
+            // $data = [];
         }
 
         return self::from($data);

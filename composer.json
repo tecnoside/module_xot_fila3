@@ -16,6 +16,7 @@
     }],
     "require": {
         "php": "^8.1",
+        "laraxot/module_tenant_fila3": "dev-master",
         "coolsam/modules": "*",
         "doctrine/dbal": "*",
         "fidum/laravel-eloquent-morph-to-one": "*",
@@ -50,7 +51,9 @@
         "phpstan/phpstan-deprecation-rules": "*",
         "phpstan/phpstan-phpunit": "*",
         "psalm/plugin-laravel": "^2.8",
+        "rector/phpstan-rules": "^0.7.1",
         "spatie/laravel-ray": "*",
+        "symplify/phpstan-rules": "^12.4",
         "thecodingmachine/phpstan-safe-rule": "*",
         "tightenco/duster": "*",
         "vimeo/psalm": "*"

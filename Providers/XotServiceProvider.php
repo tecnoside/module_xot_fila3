@@ -38,6 +38,7 @@ class XotServiceProvider extends XotBaseServiceProvider
 
     public function bootCallback(): void
     {
+        // $this->registerConfigs();
         $this->registerCommands();
 
         $this->redirectSSL();
@@ -58,10 +59,16 @@ class XotServiceProvider extends XotBaseServiceProvider
 
     // end bootCallback
 
+    public function registerConfigs(): void
+    {
+        $config_file = realpath(__DIR__.'/../Config/metatag.php');
+        $this->mergeConfigFrom($config_file, 'metatag');
+    }
+
     public function registerCallback(): void
     {
         // $this->loadHelpersFrom(__DIR__.'/../Helpers'); //non serve piu
-        $aliasLoader = AliasLoader::getInstance();
+        // $aliasLoader = AliasLoader::getInstance();
         // $aliasLoader->alias('Panel', PanelService::class);
 
         // $loader->alias(\Modules\Xot\Facades\Profile::class,
@@ -74,10 +81,11 @@ class XotServiceProvider extends XotBaseServiceProvider
         // });
         // $this->app->bind('profile', \Modules\Xot\Services\ProfileTest::class);
 
-        $this->app->bind(
-            'profile',
-            static fn (): ProfileTest => new ProfileTest()
-        );
+        // $this->app->bind(
+        //    'profile',
+        //    static fn (): ProfileTest => new ProfileTest()
+        // );
+        $this->registerConfigs();
     }
 
     /*
