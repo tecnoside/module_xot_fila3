@@ -6,6 +6,7 @@ namespace Modules\Xot\Services;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
+
 use function Safe\date;
 
 /**
@@ -42,7 +43,7 @@ class NavService
 
             $tmp['active'] = $year === $params['year'] ? 1 : 0;
 
-            if ($routename === null) {
+            if (null === $routename) {
                 throw new \Exception('routename is null');
             }
 
@@ -79,7 +80,7 @@ class NavService
 
         $q = 2;
         $date = Carbon::create($year, $month, 1);
-        if ($date === false) {
+        if (false === $date) {
             throw new \Exception('carbon error');
         }
 
@@ -95,7 +96,7 @@ class NavService
             }
 
             $tmp['active'] = $year === $params['year'] && $month === $params['month'] ? 1 : 0;
-            if ($routename === null) {
+            if (null === $routename) {
                 throw new \Exception('routename is null');
             }
 

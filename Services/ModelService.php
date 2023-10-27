@@ -120,7 +120,7 @@ class ModelService
 
         $post_type = collect($models)->search($model::class);
 
-        if ($post_type === false) {
+        if (false === $post_type) {
             $post_type = Str::snake(class_basename($model));
             Relation::morphMap([$post_type => $model::class]);
         }
@@ -150,7 +150,7 @@ class ModelService
             // if (in_array(class_basename($returnType->getName()), ['HasOne', 'HasMany', 'BelongsTo', 'BelongsToMany', 'MorphToMany', 'MorphTo'])) {
             //    $relations[] = $res;
             // } elseif ($doc && false !== strpos($doc, '\\Relations\\')) {
-            if ($method->getNumberOfRequiredParameters() !== 0) {
+            if (0 !== $method->getNumberOfRequiredParameters()) {
                 continue;
             }
             if ($method->class !== $model::class) {

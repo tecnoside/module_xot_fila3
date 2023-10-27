@@ -57,7 +57,7 @@ class PolicyService
         self::$in_vars['class'] = $class;
         $reflectionClass = new \ReflectionClass(self::$in_vars['class']);
         $filename = $reflectionClass->getFileName();
-        if ($filename === false) {
+        if (false === $filename) {
             throw new \Exception('autoloader_reflector error');
         }
 

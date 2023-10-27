@@ -23,7 +23,7 @@ class TypeGuesser
     /**
      * @param int|null $size Length of field, if known
      */
-    public function guess(string $name, Type $type, ?int $size = null): string
+    public function guess(string $name, Type $type, int $size = null): string
     {
         $name = Str::of($name)->lower();
 
@@ -86,7 +86,7 @@ class TypeGuesser
      */
     private function predictCountyType(): string
     {
-        if ($this->faker->locale === 'en_US') {
+        if ('en_US' === $this->faker->locale) {
             return "sprintf('%s County', \$faker->city)";
         }
 
@@ -111,7 +111,7 @@ class TypeGuesser
      */
     private function predictTitleType(?int $size): string
     {
-        if ($size === null || $size <= 10) {
+        if (null === $size || $size <= 10) {
             return 'title';
         }
 
@@ -125,7 +125,7 @@ class TypeGuesser
      *
      * @return string
      */
-    private function guessBasedOnName($name, ?int $size = null)
+    private function guessBasedOnName($name, int $size = null)
     {
         return match ($name) {
             'login' => 'userName',

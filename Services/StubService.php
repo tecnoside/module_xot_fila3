@@ -15,8 +15,10 @@ use Illuminate\Support\Str;
 use Modules\Xot\Contracts\ModelContract;
 use Modules\Xot\Contracts\ModelProfileContract;
 use Modules\Xot\Datas\XotData;
+
 use function Safe\date;
 use function Safe\shuffle;
+
 use Symfony\Component\Finder\SplFileInfo;
 
 /**
@@ -266,7 +268,7 @@ class StubService
         }
 
         $fillables = $model->getFillable();
-        if ($fillables === []) {
+        if ([] === $fillables) {
             $fillables = $model->getConnection()->getSchemaBuilder()->getColumnListing($model->getTable());
         }
 
@@ -381,7 +383,7 @@ class StubService
             $reflectionClass = new \ReflectionClass($this->model_class);
             // dddx($autoloader_reflector);
             $class_file_name = $reflectionClass->getFileName();
-            if ($class_file_name === false) {
+            if (false === $class_file_name) {
                 throw new \Exception('autoloader_reflector false');
             }
 
@@ -495,7 +497,7 @@ class StubService
             )->all();
             $reflectionClass = new \ReflectionClass($model);
             $class_filename = $reflectionClass->getFileName();
-            if ($class_filename === false) {
+            if (false === $class_filename) {
                 throw new \Exception('autoloader_reflector err');
             }
 
@@ -601,7 +603,7 @@ class StubService
          */
         $brother_file = Arr::first(
             $models,
-            static fn (SplFileInfo $file): bool => $file->getExtension() === 'php'
+            static fn (SplFileInfo $file): bool => 'php' === $file->getExtension()
         );
         if (! $brother_file instanceof SplFileInfo) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
@@ -643,7 +645,7 @@ class StubService
          */
         $brother_file = Arr::first(
             $models,
-            static fn (SplFileInfo $file): bool => $file->getExtension() === 'php'
+            static fn (SplFileInfo $file): bool => 'php' === $file->getExtension()
         );
         // dddx(get_class_methods($brother_file));
         // dddx($brother_file->getFilenameWithoutExtension());
@@ -691,7 +693,7 @@ class StubService
         }
         */
 
-        if ($name === 'password') {
+        if ('password' === $name) {
             return $this->mapToFactory($name, "Hash::make('password')");
         }
 
@@ -714,7 +716,7 @@ class StubService
     private function mapToFactory($key, $value = null): array
     {
         return [
-            $key => $value === null ? $value : sprintf('\'%s\' => %s', $key, $value),
+            $key => null === $value ? $value : sprintf('\'%s\' => %s', $key, $value),
         ];
     }
 
