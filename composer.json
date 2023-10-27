@@ -58,6 +58,15 @@
         "tightenco/duster": "*",
         "vimeo/psalm": "^5.15"
     },
+    "repositories": [ 
+    {
+        "type": "path",
+        "url": "../module_tenant_fila3"
+    },
+    {
+        "type": "path",
+        "url": "../module_ui_fila3"
+    }],
     "autoload": {
         "psr-4": {
             "Modules\\Xot\\": ""
