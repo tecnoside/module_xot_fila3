@@ -83,7 +83,12 @@ class MetatagData extends Data implements Wireable
         if (! \is_array($data)) {
             // /*
             $path = TenantService::filePath('metatag.php');
-            $data = File::getRequire($path);
+            try{
+                $data = File::getRequire($path);
+            }catch(\Exception $e){
+                $data = File::getRequire(__DIR__.'/../Config/metatag.php');
+            }
+            
             if (! \is_array($data)) {
                 $data = [];
             }
