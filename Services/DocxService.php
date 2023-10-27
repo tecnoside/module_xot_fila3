@@ -8,9 +8,10 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
 use PhpOffice\PhpWord\TemplateProcessor;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 use function Safe\json_decode;
+
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
  * Class DocxService.
@@ -26,7 +27,7 @@ class DocxService
     public static function getInstance(): self
     {
         if (! self::$instance instanceof \Modules\Xot\Services\DocxService) {
-            self::$instance = new self;
+            self::$instance = new self();
         }
 
         return self::$instance;
@@ -56,10 +57,10 @@ class DocxService
     }
 
     /**
-     * @return BinaryFileResponse
-     *
      * @throws \PhpOffice\PhpWord\Exception\CopyFileException
      * @throws \PhpOffice\PhpWord\Exception\CreateTemporaryFileException
+     *
+     * @return BinaryFileResponse
      */
     public function out(array $params = [])
     {
@@ -86,8 +87,9 @@ class DocxService
     }
 
     /**
-     * @param  Arrayable  $row
-     * @param  string  $prefix
+     * @param Arrayable $row
+     * @param string    $prefix
+     *
      * @return array
      */
     public function rows2Data_test($row, $prefix)
@@ -140,8 +142,9 @@ class DocxService
     }
 
     /**
-     * @param  Model  $row
-     * @param  string  $prefix
+     * @param Model  $row
+     * @param string $prefix
+     *
      * @return array
      */
     public function rows2Data($row, $prefix)
@@ -166,7 +169,7 @@ class DocxService
         return collect($arr)->map(
             static function ($item, string $key) use ($row, $prefix, $arr): array {
                 // *
-                if ($arr[$key] !== '' && \is_object($row->$key) && $row->$key instanceof Carbon) {
+                if ('' !== $arr[$key] && \is_object($row->$key) && $row->$key instanceof Carbon) {
                     try {
                         $item = $row->$key->format('d/m/Y');
                     } catch (\Exception) {

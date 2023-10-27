@@ -21,7 +21,7 @@ class GetAllModelsByModuleNameAction
     public function execute(string $moduleName): array
     {
         $mod = Module::find($moduleName);
-        if ($mod === null) {
+        if (null === $mod) {
             return [];
         }
 
@@ -36,7 +36,7 @@ class GetAllModelsByModuleNameAction
             $ext = '.php';
             // dddx(['ext' => $file->getExtension(), get_class_methods($file)]);
             if (Str::endsWith($filename, $ext)) {
-                $tmp = new \stdClass;
+                $tmp = new \stdClass();
 
                 $name = substr($filename, 0, -\strlen($ext));
 

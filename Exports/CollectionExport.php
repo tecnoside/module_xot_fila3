@@ -24,7 +24,7 @@ class CollectionExport implements FromCollection, WithHeadings
          */
         $head = $collection->first();
         $headings = collect($head)->keys();
-        if ($transKey !== null) {
+        if (null !== $transKey) {
             $headings = $headings->map(function ($item) use ($transKey) {
                 $key = $transKey.'.fields.'.$item;
                 $trans = trans($key);
