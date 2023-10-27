@@ -38,7 +38,7 @@ class XotServiceProvider extends XotBaseServiceProvider
 
     public function bootCallback(): void
     {
-       //$this->registerConfigs();
+        // $this->registerConfigs();
         $this->registerCommands();
 
         $this->redirectSSL();
@@ -63,7 +63,7 @@ class XotServiceProvider extends XotBaseServiceProvider
     {
         $config_file = realpath(__DIR__.'/../Config/metatag.php');
         $this->mergeConfigFrom($config_file, 'metatag');
-        //dddx('a');
+        // dddx('a');
     }
 
     public function registerCallback(): void
