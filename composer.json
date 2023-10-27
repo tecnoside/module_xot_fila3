@@ -43,7 +43,7 @@
         "laravel/pint": "^1.13",
         "nunomaduro/collision": "*",
         "nunomaduro/larastan": "^2.6",
-        "nunomaduro/phpinsights": "^2.9",
+        "nunomaduro/phpinsights": "*",
         "orchestra/testbench": "*",
         "pestphp/pest": "*",
         "pestphp/pest-plugin-arch": "*",
