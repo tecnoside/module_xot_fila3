@@ -9,7 +9,6 @@ use Filament\Navigation\NavigationItem;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Modules\Tenant\Services\TenantService;
-use Modules\User\Models\Role;
 use Spatie\QueueableAction\QueueableAction;
 use Webmozart\Assert\Assert;
 

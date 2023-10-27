@@ -7,8 +7,6 @@ namespace Modules\Xot\Datas;
 use Illuminate\Database\Eloquent\Model;
 use Livewire\Wireable;
 use Modules\Tenant\Services\TenantService;
-use Modules\User\Models\Membership;
-use Modules\User\Models\Team;
 use Spatie\LaravelData\Concerns\WireableData;
 use Spatie\LaravelData\Data;
 use Webmozart\Assert\Assert;
