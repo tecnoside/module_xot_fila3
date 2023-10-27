@@ -22,6 +22,7 @@ class GetModulesNavigationItems
     public function execute(): array
     {
         $navs = [];
+
         // $modules = getAllModules(); // app('modules') da errore su container Cache
         $modules = TenantService::allModules();
         foreach ($modules as $module) {
