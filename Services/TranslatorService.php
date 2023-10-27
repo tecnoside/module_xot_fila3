@@ -236,7 +236,7 @@ class TranslatorService extends BaseTranslator
         // superdump([$key, $replace , $locale , $fallback ]);
 
         // *
-        if (null === $locale) {
+        if ($locale === null) {
             $locale = app()->getLocale();
         }
 

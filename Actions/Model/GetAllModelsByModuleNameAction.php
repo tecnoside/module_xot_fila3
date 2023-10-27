@@ -21,7 +21,7 @@ class GetAllModelsByModuleNameAction
     public function execute(string $moduleName): array
     {
         $mod = Module::find($moduleName);
-        if (null === $mod) {
+        if ($mod === null) {
             return [];
         }
 
