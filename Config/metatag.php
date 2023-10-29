@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 return [
-    'title' => 'EWall',
+    'title' => '',
     'sitename' => 'foodfriendfinder',
     'subtitle' => 'Find restaurants, specials, and coupons for free',
     'sottotitolo_comune' => '',
