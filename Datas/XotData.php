@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Datas;
 
+use Modules\User\Models\Team;
+use Modules\User\Models\Membership;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Livewire\Wireable;
@@ -55,9 +57,9 @@ class XotData extends Data implements Wireable
 
     public bool $register_collective = false;
 
-    public string $team_class = 'Modules\User\Models\Team'; // = Team::class;
+    public string $team_class = Team::class; // = Team::class;
 
-    public string $membership_class = 'Modules\User\Models\Membership'; // = Membership::class;
+    public string $membership_class = Membership::class; // = Membership::class;
 
     public ?string $super_admin = null;
 

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Traits;
 
+use ReflectionClass;
+use InvalidArgumentException;
 use function Safe\preg_match;
 
 /**
@@ -76,7 +78,7 @@ trait Getter
     public static function __callStatic(string $method, array $args): mixed
     {
         if (0 !== preg_match('/^([gs]et)([A-Z])(.*)$/', $method, $match)) {
-            $reflectionClass = new \ReflectionClass(self::class);
+            $reflectionClass = new ReflectionClass(self::class);
             $property = mb_strtolower((string) $match[2]).$match[3];
             if ($reflectionClass->hasProperty($property)) {
                 $property = $reflectionClass->getProperty($property);
@@ -2046,7 +2048,7 @@ trait Getter
                     return $property->setValue($args[0]);
                 }
             } else {
-                throw new \InvalidArgumentException(sprintf('Property %s doesn\'t exist', $property));
+                throw new InvalidArgumentException(sprintf('Property %s doesn\'t exist', $property));
             }
         }
     }

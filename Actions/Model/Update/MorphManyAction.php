@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model\Update;
 
+use Modules\Xot\Actions\Model\UpdateAction;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Xot\DTOs\RelationDTO;
 use Spatie\QueueableAction\QueueableAction;
@@ -35,7 +36,7 @@ class MorphManyAction
                 $row = $related->firstOrCreate([$keyName => $related_id]);
                 $res = app(\Modules\Xot\Actions\Model\UpdateAction::class)->execute($row, $data, []);
                 */
-                $res = app(\Modules\Xot\Actions\Model\UpdateAction::class)->execute($related, $data, []);
+                $res = app(UpdateAction::class)->execute($related, $data, []);
                 $ids[] = $res->getKey();
                 $models[] = $res;
             } else {

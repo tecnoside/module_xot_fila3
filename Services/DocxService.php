@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use Exception;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Database\Eloquent\Model;
@@ -78,7 +79,7 @@ class DocxService
         $filename_out_path = storage_path($filename_out);
         try {
             $tpl->saveAs($filename_out_path);
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             // handle exception
             dddx([$exception]);
         }
@@ -172,7 +173,7 @@ class DocxService
                 if ('' !== $arr[$key] && \is_object($row->$key) && $row->$key instanceof Carbon) {
                     try {
                         $item = $row->$key->format('d/m/Y');
-                    } catch (\Exception) {
+                    } catch (Exception) {
                         return [
                             $prefix.'.'.$key => $item,
                         ];

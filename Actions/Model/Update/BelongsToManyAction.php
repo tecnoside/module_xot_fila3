@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model\Update;
 
+use Modules\Xot\Actions\Model\UpdateAction;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
 use Modules\Xot\DTOs\RelationDTO;
@@ -38,7 +40,7 @@ class BelongsToManyAction
 
                 // $row = $related->firstOrCreate([$keyName => $related_id]);
 
-                $res = app(\Modules\Xot\Actions\Model\UpdateAction::class)->execute($related, $data, []);
+                $res = app(UpdateAction::class)->execute($related, $data, []);
                 /*
                 dddx([
                     'model' => $model,
@@ -62,7 +64,7 @@ class BelongsToManyAction
         if (\count($ids) > 0) {
             try {
                 $model->{$relationDTO->name}()->syncWithoutDetaching($ids);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 dddx([
                     'message' => $e->getMessage(),
                     'model' => $model,

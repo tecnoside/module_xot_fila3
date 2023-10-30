@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use Exception;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 use function Safe\preg_replace;
@@ -92,7 +94,7 @@ class RouteDynService
         }
 
         if (\is_array($namespace)) {
-            throw new \Exception('namespace is array');
+            throw new Exception('namespace is array');
         }
 
         return Str::studly($namespace);
@@ -112,7 +114,7 @@ class RouteDynService
 
         $v['act'] = str_replace('/', '_', $v['act']);
         if (! \is_string($v['act'])) {
-            throw new \Exception('act is not a string');
+            throw new Exception('act is not a string');
         }
 
         $v['act'] = Str::camel($v['act']);
@@ -161,7 +163,7 @@ class RouteDynService
         $param_name = self::getParamName($v, $namespace);
         $params_name = self::getParamsName($v, $namespace);
         if (! \is_array($params_name)) {
-            throw new \Exception('params_name is not an array');
+            throw new Exception('params_name is not an array');
         }
 
         $opts = [
@@ -197,7 +199,7 @@ class RouteDynService
         $v['controller'] = str_replace('{', '', $v['controller']);
         $v['controller'] = str_replace('}', '', $v['controller']);
         if (! \is_string($v['controller'])) {
-            throw new \Exception('controller is not a string');
+            throw new Exception('controller is not a string');
         }
 
         $v['controller'] = Str::studly($v['controller']);
@@ -256,7 +258,7 @@ class RouteDynService
             $group_opts = self::getGroupOpts($v, $namespace);
             $v['group_opts'] = $group_opts;
             self::createRouteResource($v, $namespace);
-            \Illuminate\Support\Facades\Route::group(
+            Route::group(
                 $group_opts,
                 static function () use ($v, $namespace, $curr): void {
                     self::createRouteActs($v, $namespace, $curr);
@@ -279,7 +281,7 @@ class RouteDynService
         $opts = self::getResourceOpts($v, $namespace);
         $controller = self::getController($v, $namespace);
         $name = mb_strtolower((string) $v['name']);
-        \Illuminate\Support\Facades\Route::resource($name, $controller, $opts);
+        Route::resource($name, $controller, $opts);
         // ->where(['container1' => "^((?!create|edit).)*$"])  //BadMethodCallException Method Illuminate\Routing\PendingResourceRegistration::where does not exist.
         //  ->middleware('manageContainer','container1')// ->where(['id_'.$v['name'] => '[0-9]+']);
     }
@@ -347,7 +349,7 @@ class RouteDynService
                 Route::$method($uri, $callback);
             }
             */
-            \Illuminate\Support\Facades\Route::match($method, $uri, $callback);
+            Route::match($method, $uri, $callback);
         } // endforeach
     }
 

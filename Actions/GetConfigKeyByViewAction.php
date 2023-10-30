@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions;
 
+use Exception;
 use Illuminate\Support\Str;
 use Modules\Xot\Services\FileService;
 use Spatie\QueueableAction\QueueableAction;
@@ -32,6 +33,6 @@ class GetConfigKeyByViewAction
             return $res;
         }
 
-        throw new \Exception('create config ['.$key.'] or ['.$key1.']');
+        throw new Exception('create config ['.$key.'] or ['.$key1.']');
     }
 }

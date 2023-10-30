@@ -18,7 +18,7 @@ abstract class XotBasePage extends Page
 
     protected static string $view = 'job::filament.pages.job-monitor';
 
-    protected static ?string $model; // ---
+    protected static ?string $model = null; // ---
 
     // public function mount(): void {
     //     $user = auth()->user();
@@ -50,9 +50,7 @@ abstract class XotBasePage extends Page
 
         // $modelNameSlug = Str::kebab(class_basename(static::class));
 
-        $slug = collect($p_arr)->map(function ($item) {
-            return Str::kebab($item);
-        })->implode('.');
+        $slug = collect($p_arr)->map(fn($item) => Str::kebab($item))->implode('.');
         $res = $moduleNameLow.'::'.$slug.'.'.$key;
 
         return __($res);

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use Exception;
+use stdClass;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Cookie\CookieJar;
@@ -325,7 +327,7 @@ class ImportService
         );
         $this->client_options['headers']['referer'] = $url;
         if (! \is_string($value)) {
-            throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
+            throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
         }
 
         return $value;
@@ -372,7 +374,7 @@ class ImportService
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAddressFields(array $params): array
     {
@@ -383,7 +385,7 @@ class ImportService
             return [];
         }
 
-        $linked = new \stdClass();
+        $linked = new stdClass();
         $location_url = config('services.google.url_location_api').'?address='.urlencode((string) $address).'&key='.config('services.google.maps_key');
         $loc_json = $this->cacheRequest('GET', $location_url);
 
@@ -409,7 +411,7 @@ class ImportService
                 'address' => $address,
                 'obj' => $loc_obj,
             ];
-            throw new \Exception('address not valide');
+            throw new Exception('address not valide');
             // dddx($msg);
         }
 
@@ -469,7 +471,7 @@ class ImportService
 
         $resource = fopen($filename, 'w');
         if (false === $resource) {
-            throw new \Exception('can open '.$filename);
+            throw new Exception('can open '.$filename);
         }
 
         $stream = Utils::streamFor($resource);

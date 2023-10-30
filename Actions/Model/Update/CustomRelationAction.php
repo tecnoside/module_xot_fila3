@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model\Update;
 
+use Modules\Xot\Actions\Model\UpdateAction;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Xot\DTOs\RelationDTO;
 use Spatie\QueueableAction\QueueableAction;
@@ -26,7 +27,7 @@ class CustomRelationAction
         $keyName = $relationDTO->related->getKeyName();
         foreach ($relationDTO->data as $data) {
             if (\in_array($keyName, array_keys($data), true)) {
-                $res = app(\Modules\Xot\Actions\Model\UpdateAction::class)->execute($related, $data, []);
+                $res = app(UpdateAction::class)->execute($related, $data, []);
                 $ids[] = $res->getKey();
                 $models[] = $res;
             } else {

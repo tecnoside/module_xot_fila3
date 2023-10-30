@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use Exception;
 use Illuminate\Support\Arr;
 // ---- services ---
 use Illuminate\Support\Facades\File;
@@ -122,7 +123,7 @@ class TranslatorService extends BaseTranslator
         $str = '$rows'.$item_keys.'="'.$value.'";';
         try {
             eval($str); // fa schifo ma funziona
-        } catch (\Exception) {
+        } catch (Exception) {
         }
 
         ArrayService::save(['data' => $rows, 'filename' => $filename]);
@@ -176,7 +177,7 @@ class TranslatorService extends BaseTranslator
                     'data' => $data,
                 ]
             );
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         $merged = collect($original)

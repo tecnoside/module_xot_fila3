@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use Exception;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -59,7 +60,7 @@ class RouteService
         $routename = ''; // Request::route()->getName();
         $old_act_route = last(explode('.', $routename));
         if (! \is_string($old_act_route)) {
-            throw new \Exception('['.__LINE__.']['.class_basename(self::class).']');
+            throw new Exception('['.__LINE__.']['.class_basename(self::class).']');
         }
 
         $routename_act = Str::before($routename, $old_act_route).''.$act;
@@ -358,13 +359,13 @@ class RouteService
     /**
      * Function getAct.
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public static function getAct(): string
     {
         $route_action = Route::currentRouteAction();
         if (null === $route_action) {
-            throw new \Exception('$route_action is null');
+            throw new Exception('$route_action is null');
         }
 
         $act = Str::after($route_action, '@');
@@ -384,13 +385,13 @@ class RouteService
     /**
      * Function.
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public static function getModuleName(): string
     {
         $route_action = Route::currentRouteAction();
         if (null === $route_action) {
-            throw new \Exception('$route_action is null');
+            throw new Exception('$route_action is null');
         }
 
         return Str::between($route_action, 'Modules\\', '\Http');
@@ -399,13 +400,13 @@ class RouteService
     /**
      * Function.
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public static function getControllerName(): string
     {
         $route_action = Route::currentRouteAction();
         if (null === $route_action) {
-            throw new \Exception('$route_action is null');
+            throw new Exception('$route_action is null');
         }
 
         return Str::between($route_action, 'Http\Controllers\\', 'Controller');

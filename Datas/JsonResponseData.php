@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Datas;
 
+use Illuminate\Http\JsonResponse;
 use Spatie\LaravelData\Data;
 
 /**
@@ -27,7 +28,7 @@ class JsonResponseData extends Data
 
     }
     */
-    public function response(): \Illuminate\Http\JsonResponse
+    public function response(): JsonResponse
     {
         $data = [
             'success' => $this->success,

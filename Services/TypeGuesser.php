@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use InvalidArgumentException;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Types\Types;
 use Faker\Generator as Faker;
@@ -53,7 +54,7 @@ class TypeGuesser
     {
         try {
             $this->faker->getFormatter($property);
-        } catch (\InvalidArgumentException) {
+        } catch (InvalidArgumentException) {
             return false;
         }
 
@@ -65,7 +66,7 @@ class TypeGuesser
      *
      * @return string
      */
-    private function guessBasedOnType(Type $type, ?int $size)
+    private function guessBasedOnType(Type $type, ?int $size): string
     {
         $typeName = $type->getName();
 
@@ -125,7 +126,7 @@ class TypeGuesser
      *
      * @return string
      */
-    private function guessBasedOnName($name, int $size = null)
+    private function guessBasedOnName($name, int $size = null): string
     {
         return match ($name) {
             'login' => 'userName',

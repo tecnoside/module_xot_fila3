@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Modules\Xot\Actions\Export;
 
 // use Modules\Xot\Services\ArrayService;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Spipu\Html2Pdf\Html2Pdf;
 use Illuminate\Support\Facades\Storage;
 
 use function Safe\realpath;
@@ -20,9 +22,9 @@ class PdfByHtmlAction
         string $filename = 'my_doc.pdf',
         string $disk = 'cache',
         string $out = 'download'
-    ): string|\Symfony\Component\HttpFoundation\BinaryFileResponse {
+    ): string|BinaryFileResponse {
         include_once realpath(__DIR__.'/../../Services/vendor/autoload.php');
-        $html2pdf = new \Spipu\Html2Pdf\Html2Pdf('L', 'A4', 'it');
+        $html2pdf = new Html2Pdf('L', 'A4', 'it');
         $html2pdf->writeHTML($html);
         // $filename = 'my_doc.pdf';
         $path = Storage::disk($disk)->path($filename);
@@ -33,11 +35,9 @@ class PdfByHtmlAction
         $headers = [
             'Content-Type' => 'application/pdf',
         ];
-        switch ($out) {
-            case 'download':
-                return response()->download($path, $filename, $headers);
-        }
-
-        return $path;
+        return match ($out) {
+            'download' => response()->download($path, $filename, $headers),
+            default => $path,
+        };
     }
 }

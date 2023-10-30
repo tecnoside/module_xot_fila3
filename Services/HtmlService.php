@@ -8,8 +8,8 @@ namespace Modules\Xot\Services;
 // use PHPExcel;
 // use PhpOffice\PhpSpreadsheet\Spreadsheet;
 // use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-
 // use Mpdf\Mpdf;
+use Exception;
 use Illuminate\Support\Facades\Storage;
 use Spipu\Html2Pdf\Exception\ExceptionFormatter;
 use Spipu\Html2Pdf\Exception\Html2PdfException;
@@ -39,7 +39,7 @@ class HtmlService
         $filename = Storage::disk('local')->path('test.pdf');
         extract($params);
         if (! isset($html)) {
-            throw new \Exception('err html is missing');
+            throw new Exception('err html is missing');
         }
 
         if (request('debug', false)) {

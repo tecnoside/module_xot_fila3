@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Export;
 
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
@@ -22,7 +23,7 @@ class XlsByModelClassAction
         array $includes = [],
         array $excludes = [],
         callable $callback = null
-    ): \Symfony\Component\HttpFoundation\BinaryFileResponse {
+    ): BinaryFileResponse {
         $with = $this->getWithByIncludes($includes);
 
         $rows = app($modelClass)

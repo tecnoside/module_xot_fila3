@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers;
 
+use stdClass;
+use Exception;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
@@ -199,7 +201,7 @@ abstract class XotBaseServiceProvider extends ServiceProvider
                     ];
                     if (class_exists($event) && class_exists($listener)) {
                         // \Event::listen($event, $listener);
-                        $tmp = new \stdClass();
+                        $tmp = new stdClass();
                         $tmp->event = $event;
                         $tmp->listener = $listener;
                         $events[] = $tmp;
@@ -213,7 +215,7 @@ abstract class XotBaseServiceProvider extends ServiceProvider
                 //    throw new \Exception('can not encode json');
                 // }
                 File::put($events_file, $events_content);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 dd($e);
             }
         } else {

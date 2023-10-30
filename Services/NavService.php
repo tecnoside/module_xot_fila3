@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Route;
+use Exception;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 
@@ -16,13 +19,13 @@ class NavService
 {
     public static function yearNav(): Renderable
     {
-        $request = \Illuminate\Support\Facades\Request::capture();
-        $routename = \Illuminate\Support\Facades\Route::currentRouteName();
+        $request = Request::capture();
+        $routename = Route::currentRouteName();
         // $request->route('parameter_name')
         // $request->route()->paremeters()
         // 20     Cannot call method parameters() on mixed
         // $paz = request()->route()->parameters();
-        $route_current = \Illuminate\Support\Facades\Route::current();
+        $route_current = Route::current();
         $params = [];
         if ($route_current instanceof \Illuminate\Routing\Route) {
             $params = $route_current->parameters();
@@ -44,7 +47,7 @@ class NavService
             $tmp['active'] = $year === $params['year'] ? 1 : 0;
 
             if (null === $routename) {
-                throw new \Exception('routename is null');
+                throw new Exception('routename is null');
             }
 
             $tmp['url'] = route($routename, $params);
@@ -66,10 +69,10 @@ class NavService
     public static function monthYearNav(): Renderable
     {
         // possiamo trasformarlo in una macro
-        $request = \Illuminate\Support\Facades\Request::capture();
-        $routename = \Illuminate\Support\Facades\Route::currentRouteName();
+        $request = Request::capture();
+        $routename = Route::currentRouteName();
 
-        $route_current = \Illuminate\Support\Facades\Route::current();
+        $route_current = Route::current();
         $params = [];
         if ($route_current instanceof \Illuminate\Routing\Route) {
             $params = $route_current->parameters();
@@ -81,7 +84,7 @@ class NavService
         $q = 2;
         $date = Carbon::create($year, $month, 1);
         if (false === $date) {
-            throw new \Exception('carbon error');
+            throw new Exception('carbon error');
         }
 
         $d = $date->subMonths($q);
@@ -97,7 +100,7 @@ class NavService
 
             $tmp['active'] = $year === $params['year'] && $month === $params['month'] ? 1 : 0;
             if (null === $routename) {
-                throw new \Exception('routename is null');
+                throw new Exception('routename is null');
             }
 
             $tmp['url'] = route($routename, $params);

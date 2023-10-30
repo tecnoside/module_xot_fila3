@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Contracts;
 
+use Spatie\Permission\Contracts\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -70,7 +71,7 @@ interface UserContract extends MustVerifyEmail
     /**
      * Determine if the model has (one of) the given role(s).
      *
-     * @param string|int|array|\Spatie\Permission\Contracts\Role|\Illuminate\Support\Collection $roles
+     * @param string|int|array|Role|\Illuminate\Support\Collection $roles
      */
     public function hasRole($roles, string $guard = null): bool;
 }
