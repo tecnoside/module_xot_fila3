@@ -40,7 +40,7 @@ class ArrayService
     public static function getInstance(): self
     {
         if (! self::$instance instanceof \Modules\Xot\Services\ArrayService) {
-            self::$instance = new self();
+            self::$instance = new self;
         }
 
         return self::$instance;
@@ -373,7 +373,7 @@ class ArrayService
      */
     public function toXLS_phpoffice(?string $out = 'download'): BinaryFileResponse|Renderable
     {
-        $spreadsheet = new Spreadsheet();
+        $spreadsheet = new Spreadsheet;
         // ----
         $ltr = 'A1';
         // ----

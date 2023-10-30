@@ -50,7 +50,7 @@ class StubService
     public static function getInstance(): self
     {
         if (! self::$_instance instanceof self) {
-            self::$_instance = new self();
+            self::$_instance = new self;
         }
 
         return self::$_instance;
@@ -511,7 +511,7 @@ class StubService
 
         $fields = [];
         foreach ($fillables as $fillable) {
-            $tmp = new \stdClass();
+            $tmp = new \stdClass;
             try {
                 $col = $model->getConnection()->getDoctrineColumn($model->getTable(), $fillable); // ->getType();//->getName();
                 // dddx(get_class_methods($col->getType()));
