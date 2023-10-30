@@ -61,11 +61,11 @@
     "repositories": [ 
     {
         "type": "path",
-        "url": "../module_tenant_fila3"
+        "url": "../Tenant"
     },
     {
         "type": "path",
-        "url": "../module_ui_fila3"
+        "url": "../UI"
     }],
     "autoload": {
         "psr-4": {
