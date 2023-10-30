@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Database\Migrations;
 
-use ReflectionClass;
-use Exception;
-use Closure;
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
 use Doctrine\DBAL\Schema\Index;
 use Doctrine\DBAL\Schema\Table;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -59,7 +57,7 @@ abstract class XotBaseMigration extends Migration
         $name = Str::before(Str::after($name, 'Create'), 'Table');
         $name = Str::singular($name);
 
-        $reflectionClass = new ReflectionClass($this);
+        $reflectionClass = new \ReflectionClass($this);
         $filename = (string) $reflectionClass->getFilename();
         $mod_path = Module::getPath();
 
@@ -90,7 +88,7 @@ abstract class XotBaseMigration extends Migration
         // \DB::purge('mysql');
         // \DB::reconnect('mysql');
         if (! $this->model instanceof Model) {
-            throw new Exception('model is null');
+            throw new \Exception('model is null');
         }
 
         $connectionName = $this->model->getConnectionName();
@@ -261,7 +259,7 @@ abstract class XotBaseMigration extends Migration
     /**
      * Undocumented function.
      */
-    public function tableCreate(Closure $next): void
+    public function tableCreate(\Closure $next): void
     {
         if (! $this->tableExists()) {
             $this->getConn()->create(
@@ -274,7 +272,7 @@ abstract class XotBaseMigration extends Migration
     /**
      * Undocumented function.
      */
-    public function tableUpdate(Closure $next): void
+    public function tableUpdate(\Closure $next): void
     {
         $this->getConn()->table(
             $this->getTable(),

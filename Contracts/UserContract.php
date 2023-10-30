@@ -6,11 +6,11 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Contracts;
 
-use Spatie\Permission\Contracts\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Spatie\Permission\Contracts\Role;
 
 /**
  * Modules\User\Contracts\UserContract.

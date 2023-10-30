@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
-use Exception;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -94,7 +93,7 @@ class RouteDynService
         }
 
         if (\is_array($namespace)) {
-            throw new Exception('namespace is array');
+            throw new \Exception('namespace is array');
         }
 
         return Str::studly($namespace);
@@ -114,7 +113,7 @@ class RouteDynService
 
         $v['act'] = str_replace('/', '_', $v['act']);
         if (! \is_string($v['act'])) {
-            throw new Exception('act is not a string');
+            throw new \Exception('act is not a string');
         }
 
         $v['act'] = Str::camel($v['act']);
@@ -163,7 +162,7 @@ class RouteDynService
         $param_name = self::getParamName($v, $namespace);
         $params_name = self::getParamsName($v, $namespace);
         if (! \is_array($params_name)) {
-            throw new Exception('params_name is not an array');
+            throw new \Exception('params_name is not an array');
         }
 
         $opts = [
@@ -199,7 +198,7 @@ class RouteDynService
         $v['controller'] = str_replace('{', '', $v['controller']);
         $v['controller'] = str_replace('}', '', $v['controller']);
         if (! \is_string($v['controller'])) {
-            throw new Exception('controller is not a string');
+            throw new \Exception('controller is not a string');
         }
 
         $v['controller'] = Str::studly($v['controller']);

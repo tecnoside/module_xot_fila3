@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Modules\Xot\Actions\Export;
 
 // use Modules\Xot\Services\ArrayService;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Spipu\Html2Pdf\Html2Pdf;
 use Illuminate\Support\Facades\Storage;
 
 use function Safe\realpath;
 
 use Spatie\QueueableAction\QueueableAction;
+use Spipu\Html2Pdf\Html2Pdf;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class PdfByHtmlAction
 {
@@ -35,6 +35,7 @@ class PdfByHtmlAction
         $headers = [
             'Content-Type' => 'application/pdf',
         ];
+
         return match ($out) {
             'download' => response()->download($path, $filename, $headers),
             default => $path,

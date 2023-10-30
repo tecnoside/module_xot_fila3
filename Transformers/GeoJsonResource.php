@@ -8,7 +8,6 @@ namespace Modules\Xot\Transformers;
 *  GEOJSON e' uno standard
 * https://it.wikipedia.org/wiki/GeoJSON
 */
-use ReflectionException;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource as ResCollection;
@@ -32,7 +31,7 @@ class GeoJsonResource extends ResCollection
 {
     /**
      * @throws FileNotFoundException
-     * @throws ReflectionException
+     * @throws \ReflectionException
      *
      * @return array<string, mixed>
      */

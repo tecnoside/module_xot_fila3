@@ -7,7 +7,6 @@ namespace Modules\Xot\Http\Middleware;
 /*
  * https://laravel.com/docs/8.x/urls#default-values
  */
-use Closure;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -21,7 +20,7 @@ class SetDefaultLocaleForUrlsMiddleware
     /**
      * Handle the incoming request.
      */
-    public function handle(Request $request, Closure $next): Response|JsonResponse|\Symfony\Component\HttpFoundation\Response
+    public function handle(Request $request, \Closure $next): Response|JsonResponse|\Symfony\Component\HttpFoundation\Response
     {
         URL::defaults(
             [
