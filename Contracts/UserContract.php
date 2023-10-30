@@ -67,10 +67,10 @@ interface UserContract extends MustVerifyEmail
      */
     public function getKey();
 
-     /**
+    /**
      * Determine if the model has (one of) the given role(s).
      *
-     * @param  string|int|array|\Spatie\Permission\Contracts\Role|\Illuminate\Support\Collection  $roles
+     * @param string|int|array|\Spatie\Permission\Contracts\Role|\Illuminate\Support\Collection $roles
      */
     public function hasRole($roles, string $guard = null): bool;
 }
