@@ -20,7 +20,7 @@ class GetModelClassByModelNameAction
     {
         Assert::isArray($morph_map = config('morph_map'));
         $modelClass = collect($morph_map)->get($modelName);
-        if ($modelClass === null) {
+        if (null === $modelClass) {
             $modelClass = app(GetFirstModelClassByModelNameAction::class)->execute($modelName);
         }
 
