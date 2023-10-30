@@ -26,7 +26,7 @@ class ConfigService
     public static function getInstance(): self
     {
         if (! self::$instance instanceof \Modules\Xot\Services\ConfigService) {
-            self::$instance = new self;
+            self::$instance = new self();
         }
 
         return self::$instance;

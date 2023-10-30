@@ -34,7 +34,7 @@ class XLSService
     public static function getInstance(): self
     {
         if (! self::$instance instanceof \Modules\Xot\Services\XLSService) {
-            self::$instance = new self;
+            self::$instance = new self();
         }
 
         return self::$instance;

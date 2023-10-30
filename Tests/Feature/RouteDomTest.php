@@ -96,7 +96,7 @@ class RouteDomTest extends TestCase
     */
     private function dom(string $html): Crawler
     {
-        $crawler = new Crawler;
+        $crawler = new Crawler();
         $crawler->addHTMLContent($html, 'UTF-8');
 
         return $crawler;

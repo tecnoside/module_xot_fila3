@@ -64,7 +64,7 @@ class ImportService
     public static function getInstance(): self
     {
         if (! self::$instance instanceof self) {
-            self::$instance = new self;
+            self::$instance = new self();
         }
 
         return self::$instance;
@@ -383,7 +383,7 @@ class ImportService
             return [];
         }
 
-        $linked = new \stdClass;
+        $linked = new \stdClass();
         $location_url = config('services.google.url_location_api').'?address='.urlencode((string) $address).'&key='.config('services.google.maps_key');
         $loc_json = $this->cacheRequest('GET', $location_url);
 
