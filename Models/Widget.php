@@ -90,7 +90,7 @@ class Widget extends BaseModel
      */
     public function getPosAttribute(?int $value): ?int
     {
-        if (null !== $value) {
+        if ($value !== null) {
             return $value;
         }
 
@@ -103,7 +103,7 @@ class Widget extends BaseModel
          * @phpstan-var view-string
          */
         $view = 'pub_theme::layouts.widgets';
-        if (null !== $this->layout_position) {
+        if ($this->layout_position !== null) {
             $view .= '.'.$this->layout_position;
         }
 
@@ -114,7 +114,7 @@ class Widget extends BaseModel
             'row' => $this->linked,
             'widget' => $this,
         ];
-        if (null !== $params) {
+        if ($params !== null) {
             $view_params['params'] = $params;
         }
 
