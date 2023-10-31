@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\QueryFilters;
 
+use Closure;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
@@ -21,7 +22,7 @@ class Search
     /**
      * Undocumented function.
      */
-    public function handle(Builder $query, \Closure $next, array $args = []): \Closure
+    public function handle(Builder $query, Closure $next, array $args = []): Closure
     {
         $search_fields = [];
         $model = $query->getModel();
