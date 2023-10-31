@@ -50,7 +50,7 @@ abstract class BaseModel extends Model
     protected $connection = 'mysql'; // this will use the specified database connection
 
     /**
-     * @var array<string>
+     * @var array<int, string>
      */
     protected $fillable = ['id'];
 

@@ -30,6 +30,11 @@ protected $perPage = 30;
         'deleted_at',
        // 'published_at',
     ];
+     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
     protected $appends = [];
     protected $primaryKey = 'id';
     public $incrementing = true;

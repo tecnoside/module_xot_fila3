@@ -37,7 +37,7 @@ use Modules\Xot\Database\Factories\FeedFactory;
 class Feed extends BaseModel
 {
     /**
-     * @var array<string>
+     * @var array<int, string>
      */
     protected $fillable = ['id', 'created_at', 'updated_at'];
 }

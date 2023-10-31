@@ -38,7 +38,12 @@ function getFullNameAttribute() {
     return sprintf('%s %s', $this->first_name, $this->last_name);
 }
 
-protected $appends = ['full_name'];
+ /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['full_name'];
 
 
 class Video extends Model

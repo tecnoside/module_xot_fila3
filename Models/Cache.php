@@ -9,7 +9,7 @@ class Cache extends BaseModel
     protected $table = 'cache';
 
     /**
-     * @var array<string>
+     * @var array<int, string>
      */
     protected $fillable = [
         'key',

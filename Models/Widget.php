@@ -69,7 +69,7 @@ class Widget extends BaseModel
     use WidgetTrait;
 
     /**
-     * @var array<string>
+     * @var array<int, string>
      */
     protected $fillable = [
         'id',
