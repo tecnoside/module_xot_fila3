@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Datas;
 
-use Exception;
 use Illuminate\Support\Facades\File;
 use Livewire\Wireable;
 use Modules\Tenant\Services\TenantService;
@@ -86,7 +85,7 @@ class MetatagData extends Data implements Wireable
             $path = TenantService::filePath('metatag.php');
             try {
                 $data = File::getRequire($path);
-            } catch (Exception) {
+            } catch (\Exception) {
                 $data = File::getRequire(__DIR__.'/../Config/metatag.php');
             }
 

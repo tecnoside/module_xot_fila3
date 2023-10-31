@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Xot\View\Composers;
 
-use Exception;
 use Illuminate\Support\Arr;
 use Nwidart\Modules\Facades\Module;
 use Webmozart\Assert\Assert;
@@ -37,7 +36,7 @@ abstract class XotBaseComposer
             }
         );
         if (! \is_object($module)) {
-            throw new Exception('create a View\Composers\ThemeComposer.php inside a module with ['.$name.'] method');
+            throw new \Exception('create a View\Composers\ThemeComposer.php inside a module with ['.$name.'] method');
         }
         Assert::isInstanceOf($module, \Nwidart\Modules\Module::class);
         $class = '\Modules\\'.$module->getName().'\View\Composers\ThemeComposer';
@@ -71,12 +70,12 @@ abstract class XotBaseComposer
         $module = Module::find($this->module_name);
         // $module = app(\Nwidart\Modules\Module::class)->find($this->module_name);
         if (! \is_object($module)) {
-            throw new Exception('not find ['.$this->module_name.'] on Modules ['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('not find ['.$this->module_name.'] on Modules ['.__LINE__.']['.__FILE__.']');
         }
 
         $view_composer_class = 'Modules\\'.$module->getName().'\\View\Composers\\'.$module->getName().'Composer';
         if (! class_exists($view_composer_class)) {
-            throw new Exception('['.$view_composer_class.']['.__LINE__.']['.__FILE__.']');
+            throw new \Exception('['.$view_composer_class.']['.__LINE__.']['.__FILE__.']');
         }
         $view_composer = app($view_composer_class);
 
