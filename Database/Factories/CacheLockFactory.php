@@ -26,7 +26,7 @@ class CacheLockFactory extends Factory
         return [
             'key' => $this->faker->word,
             'owner' => $this->faker->word,
-            'expiration' => $this->faker->randomNumber,
+            'expiration' => $this->faker->randomNumber(5),
         ];
     }
 }

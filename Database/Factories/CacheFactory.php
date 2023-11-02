@@ -26,7 +26,7 @@ class CacheFactory extends Factory
         return [
             'key' => $this->faker->word,
             'value' => $this->faker->text,
-            'expiration' => $this->faker->randomNumber,
+            'expiration' => $this->faker->randomNumber(5),
         ];
     }
 }
