@@ -74,4 +74,13 @@ interface UserContract extends MustVerifyEmail
      * @param string|int|array|Role|\Illuminate\Support\Collection $roles
      */
     public function hasRole($roles, string $guard = null): bool;
+
+    /**
+     * Assign the given role to the model.
+     *
+     * @param array|string|int|\Spatie\Permission\Contracts\Role|\Illuminate\Support\Collection ...$roles
+     *
+     * @return $this
+     */
+    public function assignRole(...$roles);
 }
