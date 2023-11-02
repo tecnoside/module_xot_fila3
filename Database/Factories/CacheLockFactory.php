@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Modules\Xot\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-
 use Modules\Xot\Models\CacheLock;
 
-class CacheLockFactory extends Factory {
+class CacheLockFactory extends Factory
+{
     /**
      * The name of the factory's corresponding model.
      *
@@ -22,13 +21,12 @@ class CacheLockFactory extends Factory {
      *
      * @return array
      */
-    public function definition() {
-
-
+    public function definition()
+    {
         return [
             'key' => $this->faker->word,
             'owner' => $this->faker->word,
-            'expiration' => $this->faker->randomNumber
+            'expiration' => $this->faker->randomNumber,
         ];
     }
 }

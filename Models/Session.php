@@ -16,6 +16,7 @@ use Modules\Xot\Database\Factories\SessionFactory;
  * @property string|null $user_agent
  * @property string      $payload
  * @property int         $last_activity
+ *
  * @method static SessionFactory  factory($count = null, $state = [])
  * @method static Builder|Session newModelQuery()
  * @method static Builder|Session newQuery()
@@ -26,6 +27,7 @@ use Modules\Xot\Database\Factories\SessionFactory;
  * @method static Builder|Session wherePayload($value)
  * @method static Builder|Session whereUserAgent($value)
  * @method static Builder|Session whereUserId($value)
+ *
  * @mixin IdeHelperSession
  * @mixin \Eloquent
  */
