@@ -6,11 +6,12 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Contracts;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Spatie\Permission\Contracts\Role;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
+use Modules\User\Contracts\HasTeamsContract;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Modules\User\Contracts\UserContract.
@@ -28,7 +29,7 @@ use Spatie\Permission\Contracts\Role;
  *
  * @mixin    \Eloquent
  */
-interface UserContract extends MustVerifyEmail
+interface UserContract extends MustVerifyEmail,HasTeamsContract,ModelContract,CanResetPassword, PassportHasApiTokensContract
 {
     /*
     public function isSuperAdmin();
