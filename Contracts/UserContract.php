@@ -83,4 +83,11 @@ interface UserContract extends MustVerifyEmail
      * @return $this
      */
     public function assignRole(...$roles);
+
+    /**
+     * Get the current access token being used by the user.
+     *
+     * @return \Laravel\Passport\Token|\Laravel\Passport\TransientToken|null
+     */
+    public function token();
 }
