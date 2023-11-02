@@ -16,7 +16,6 @@ use Illuminate\Support\Carbon;
  * @property Carbon|null $updated_at
  * @property string      $name
  * @property string|null $value
- *
  * @method static Builder|Settings newModelQuery()
  * @method static Builder|Settings newQuery()
  * @method static Builder|Settings query()
@@ -25,7 +24,6 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Settings whereName($value)
  * @method static Builder|Settings whereUpdatedAt($value)
  * @method static Builder|Settings whereValue($value)
- *
  * @mixin IdeHelperSettings
  * @mixin \Eloquent
  */

@@ -50,7 +50,6 @@ use Spatie\Tags\Tag;
  * @property Collection<int, Tag>        $tags
  * @property int|null                    $tags_count
  * @property User|null                   $user
- *
  * @method static ProfileFactory  factory($count = null, $state = [])
  * @method static Builder|Profile newModelQuery()
  * @method static Builder|Profile newQuery()
@@ -83,13 +82,9 @@ use Spatie\Tags\Tag;
  * @method static Builder|Profile withAnyTags((ArrayAccess | Tag | array | string) $tags, ?string $type = null)
  * @method static Builder|Profile withAnyTagsOfAnyType($tags)
  * @method static Builder|Profile withoutTags((ArrayAccess | Tag | array | string) $tags, ?string $type = null)
- *
  * @mixin IdeHelperProfile
- *
  * @property string|null $surname
- *
  * @method static Builder|Profile whereSurname($value)
- *
  * @mixin \Eloquent
  */
 class Profile extends BaseModel implements ModelProfileContract, ModelWithUserContract
