@@ -12,25 +12,25 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
-use Modules\Xot\Database\Factories\WidgetFactory;
 use Modules\Xot\Models\Traits\WidgetTrait;
 
 /**
  * Modules\Xot\Models\Widget.
  *
- * @property-read Collection<int, Widget> $containerWidgets
- * @property-read int|null $container_widgets_count
- * @property-read int|null $pos
- * @property-read Model|\Eloquent $linked
- * @property-read Collection<int, Widget> $widgets
- * @property-read int|null $widgets_count
+ * @property Collection<int, Widget> $containerWidgets
+ * @property int|null                $container_widgets_count
+ * @property int|null                $pos
+ * @property Model|\Eloquent         $linked
+ * @property Collection<int, Widget> $widgets
+ * @property int|null                $widgets_count
+ *
  * @method static \Modules\Xot\Database\Factories\WidgetFactory factory($count = null, $state = [])
- * @method static Builder|Widget newModelQuery()
- * @method static Builder|Widget newQuery()
- * @method static Builder|Widget ofLayoutPosition(string $layout_position)
- * @method static Builder|Widget query()
+ * @method static Builder|Widget                                newModelQuery()
+ * @method static Builder|Widget                                newQuery()
+ * @method static Builder|Widget                                ofLayoutPosition(string $layout_position)
+ * @method static Builder|Widget                                query()
+ *
  * @mixin \Eloquent
  */
 class Widget extends BaseModel

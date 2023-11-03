@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Modules\Xot\Models;
 
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Carbon;
-use Modules\Xot\Database\Factories\FeedFactory;
 
 // --- services
 // --- TRAITS ---
@@ -14,9 +12,10 @@ use Modules\Xot\Database\Factories\FeedFactory;
  * Modules\Xot\Models\Feed.
  *
  * @method static \Modules\Xot\Database\Factories\FeedFactory factory($count = null, $state = [])
- * @method static Builder|Feed newModelQuery()
- * @method static Builder|Feed newQuery()
- * @method static Builder|Feed query()
+ * @method static Builder|Feed                                newModelQuery()
+ * @method static Builder|Feed                                newQuery()
+ * @method static Builder|Feed                                query()
+ *
  * @mixin \Eloquent
  */
 class Feed extends BaseModel

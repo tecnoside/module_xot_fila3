@@ -5,34 +5,32 @@ declare(strict_types=1);
 namespace Modules\Xot\Models;
 
 // use Illuminate\Database\Eloquent\Relations\HasOne;
-use ArrayAccess;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Carbon;
 use Modules\User\Models\Permission;
 use Modules\User\Models\Role;
 use Modules\User\Models\User;
 use Modules\Xot\Contracts\ModelProfileContract;
 use Modules\Xot\Contracts\ModelWithUserContract;
-use Modules\Xot\Database\Factories\ProfileFactory;
 use Spatie\Permission\Traits\HasRoles;
-use Spatie\Tags\Tag;
 
 /**
  * Modules\Xot\Models\Profile.
  *
- * @property-read Collection<int, Permission> $permissions
- * @property-read int|null $permissions_count
- * @property-read Collection<int, Role> $roles
- * @property-read int|null $roles_count
- * @property-read User|null $user
+ * @property Collection<int, Permission> $permissions
+ * @property int|null                    $permissions_count
+ * @property Collection<int, Role>       $roles
+ * @property int|null                    $roles_count
+ * @property User|null                   $user
+ *
  * @method static \Modules\Xot\Database\Factories\ProfileFactory factory($count = null, $state = [])
- * @method static Builder|Profile newModelQuery()
- * @method static Builder|Profile newQuery()
- * @method static Builder|Profile permission($permissions)
- * @method static Builder|Profile query()
- * @method static Builder|Profile role($roles, $guard = null)
+ * @method static Builder|Profile                                newModelQuery()
+ * @method static Builder|Profile                                newQuery()
+ * @method static Builder|Profile                                permission($permissions)
+ * @method static Builder|Profile                                query()
+ * @method static Builder|Profile                                role($roles, $guard = null)
+ *
  * @mixin \Eloquent
  */
 class Profile extends BaseModel implements ModelProfileContract, ModelWithUserContract

@@ -353,8 +353,8 @@ abstract class XotBaseMigration extends Migration
 
     public function updateUser(Blueprint $table): void
     {
-        $model=$this->getModel();
-        $func='updateUserKey'.Str::studly(app($model)->getKeyType());
+        $model = $this->getModel();
+        $func = 'updateUserKey'.Str::studly(app($model)->getKeyType());
         $this->{$func}($table);
 
         if ($this->hasColumn('model_id') && \in_array($this->getColumnType('model_id'), ['bigint'], true)) {
@@ -364,11 +364,10 @@ abstract class XotBaseMigration extends Migration
         if ($this->hasColumn('team_id') && \in_array($this->getColumnType('team_id'), ['bigint'], true)) {
             $table->uuid('team_id')->nullable()->change(); //  ->index()
         }
-
-        
     }
 
-    public function updateUserKeyString(Blueprint $table): void{
+    public function updateUserKeyString(Blueprint $table): void
+    {
         if (! $this->hasColumn('id')) {
             $table->uuid('id')->primary()->first(); // ->default(DB::raw('(UUID())'));
         }
@@ -382,18 +381,18 @@ abstract class XotBaseMigration extends Migration
         }
     }
 
-    public function updateUserKeyInteger(Blueprint $table): void{
+    public function updateUserKeyInteger(Blueprint $table): void
+    {
         if (! $this->hasColumn('id')) {
             $table->id('id')->first();
         }
 
         if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['string', 'guid'], true)) {
-            if($this->hasIndexName('PRIMARY')){
+            if ($this->hasIndexName('PRIMARY')) {
                 $table->dropPrimary();
             }
             $table->renameColumn('id', 'uuid');
-            //$table->id('id')->first();
+            // $table->id('id')->first();
         }
     }
-
 }// end XotBaseMigration

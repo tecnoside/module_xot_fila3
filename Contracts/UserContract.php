@@ -6,23 +6,17 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Contracts;
 
+use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Laravel\Passport\Token;
 use Modules\User\Contracts\HasTeamsContract;
 use Spatie\Permission\Contracts\Role;
-use Illuminate\Contracts\Auth\CanResetPassword;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Notifications\DatabaseNotificationCollection;
-use Illuminate\Support\Carbon;
-use Laravel\Passport\Client;
-use Laravel\Passport\Token;
-use Spatie\Permission\Models\Permission;
-use Filament\Models\Contracts\FilamentUser;
-//use Filament\Models\Contracts\HasTenants;
 
+// use Filament\Models\Contracts\HasTenants;
 
 /**
  * Modules\User\Contracts\UserContract.
@@ -40,7 +34,7 @@ use Filament\Models\Contracts\FilamentUser;
  *
  * @mixin    \Eloquent
  */
-interface UserContract extends MustVerifyEmail, HasTeamsContract, ModelContract, CanResetPassword, PassportHasApiTokensContract,FilamentUser
+interface UserContract extends MustVerifyEmail, HasTeamsContract, ModelContract, CanResetPassword, PassportHasApiTokensContract, FilamentUser
 {
     /*
     public function isSuperAdmin();
