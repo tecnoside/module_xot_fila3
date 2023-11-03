@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Database\Migrations;
 
-use Doctrine\DBAL\Schema\AbstractSchemaManager;
-use Doctrine\DBAL\Schema\Index;
-use Doctrine\DBAL\Schema\Table;
 use Exception;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Database\Schema\Builder;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Modules\Xot\Datas\XotData;
+use Doctrine\DBAL\Schema\Index;
+use Doctrine\DBAL\Schema\Table;
+use Illuminate\Support\Facades\DB;
 use Nwidart\Modules\Facades\Module;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Schema\Builder;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+use Doctrine\DBAL\Schema\AbstractSchemaManager;
 
 // ----- models -----
 
