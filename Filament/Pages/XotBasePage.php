@@ -56,7 +56,7 @@ abstract class XotBasePage extends Page
         return __($res);
     }
 
-    public static function getModel(): string
+    public function getModel(): string
     {
         // if (null != static::$model) {
         //    return static::$model;
@@ -64,7 +64,7 @@ abstract class XotBasePage extends Page
         $moduleName = static::getModuleName();
         $modelName = Str::before(class_basename(static::class), 'Resource');
         $res = 'Modules\\'.$moduleName.'\Models\\'.$modelName;
-        static::$model = $res;
+        $this->model = $res;
         // self::$model = $res;
 
         return $res;
