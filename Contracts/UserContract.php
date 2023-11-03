@@ -12,6 +12,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Modules\User\Contracts\HasTeamsContract;
 use Spatie\Permission\Contracts\Role;
+use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\DatabaseNotificationCollection;
+use Illuminate\Support\Carbon;
+use Laravel\Passport\Client;
+use Laravel\Passport\Token;
+use Spatie\Permission\Models\Permission;
+
 
 /**
  * Modules\User\Contracts\UserContract.
