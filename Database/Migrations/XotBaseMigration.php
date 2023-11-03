@@ -374,7 +374,7 @@ abstract class XotBaseMigration extends Migration
         }
 
         if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['bigint'], true)) {
-            //$table->uuid('id')->default(DB::raw('(UUID())'))->change();
+            // $table->uuid('id')->default(DB::raw('(UUID())'))->change();
             $table->uuid('id')->change();
         }
 
