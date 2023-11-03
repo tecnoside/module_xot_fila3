@@ -35,7 +35,6 @@ use Illuminate\Support\Carbon;
  * @method mixed     delete()
  * @method mixed     detach($params)
  * @method mixed     attach($params)
- * @method mixed     save($params)
  * @method array     treeLabel()
  * @method array     treeSons()
  * @method int       treeSonsCount()
