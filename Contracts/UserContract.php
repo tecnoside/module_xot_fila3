@@ -20,6 +20,8 @@ use Illuminate\Support\Carbon;
 use Laravel\Passport\Client;
 use Laravel\Passport\Token;
 use Spatie\Permission\Models\Permission;
+use Filament\Models\Contracts\FilamentUser;
+//use Filament\Models\Contracts\HasTenants;
 
 
 /**
@@ -38,7 +40,7 @@ use Spatie\Permission\Models\Permission;
  *
  * @mixin    \Eloquent
  */
-interface UserContract extends MustVerifyEmail, HasTeamsContract, ModelContract, CanResetPassword, PassportHasApiTokensContract
+interface UserContract extends MustVerifyEmail, HasTeamsContract, ModelContract, CanResetPassword, PassportHasApiTokensContract,FilamentUser
 {
     /*
     public function isSuperAdmin();
