@@ -353,24 +353,9 @@ abstract class XotBaseMigration extends Migration
 
     public function updateUser(Blueprint $table): void
     {
-        /*
-        if (! $this->hasColumn('id')) {
-            $table->uuid('id')->primary()->first(); // ->default(DB::raw('(UUID())'));
-        }
-
-        if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['bigint'], true)) {
-            $table->uuid('id')->default(DB::raw('(UUID())'))->change();
-        }
-        */
-        if (! $this->hasColumn('id')) {
-            $table->id('id')->first();
-        }
-
-        if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['string', 'guid'], true)) {
-            $table->dropPrimary();
-            $table->renameColumn('id', 'uuid');
-            $table->id('id')->first();
-        }
+        $model=$this->getModel();
+        $func='updateUserKey'.Str::studly(app($model)->getKeyType());
+        $this->{$func}($table);
 
         if ($this->hasColumn('model_id') && \in_array($this->getColumnType('model_id'), ['bigint'], true)) {
             $table->string('model_id', 36)->index()->change();
@@ -380,8 +365,35 @@ abstract class XotBaseMigration extends Migration
             $table->uuid('team_id')->nullable()->change(); //  ->index()
         }
 
+        
+    }
+
+    public function updateUserKeyString(Blueprint $table): void{
+        if (! $this->hasColumn('id')) {
+            $table->uuid('id')->primary()->first(); // ->default(DB::raw('(UUID())'));
+        }
+
+        if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['bigint'], true)) {
+            $table->uuid('id')->default(DB::raw('(UUID())'))->change();
+        }
+
         if ($this->hasColumn('user_id') && \in_array($this->getColumnType('user_id'), ['bigint'], true)) {
             $table->uuid('user_id')->change(); //  ->index()
         }
     }
+
+    public function updateUserKeyInteger(Blueprint $table): void{
+        if (! $this->hasColumn('id')) {
+            $table->id('id')->first();
+        }
+
+        if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['string', 'guid'], true)) {
+            if($this->hasIndexName('PRIMARY')){
+                $table->dropPrimary();
+            }
+            $table->renameColumn('id', 'uuid');
+            //$table->id('id')->first();
+        }
+    }
+
 }// end XotBaseMigration
