@@ -91,6 +91,17 @@ class XotData extends Data implements Wireable
         return $class;
     }
 
+    /**
+     * @return class-string
+     */
+    public static function resolveUserClass(): string
+    {
+        // Assert class can be created
+        $instance = static::make();
+
+        return $instance->getUserClass();
+    }
+
     public function getTeamClass(): string
     {
         return $this->team_class;
