@@ -67,11 +67,11 @@ class XotData extends Data implements Wireable
     {
         $xot = config('xra');
 
-        if (! is_array($xot)) {
+        if (! \is_array($xot)) {
             // *
             $path = TenantService::filePath('xra.php');
             $xot = File::getRequire($path);
-            if (! is_array($xot)) {
+            if (! \is_array($xot)) {
                 $xot = [];
             }
             // */
@@ -99,7 +99,9 @@ class XotData extends Data implements Wireable
         // Assert class can be created
         $instance = static::make();
 
-        return $instance->getUserClass();
+        Assert::classExists($res = $instance->getUserClass());
+
+        return $res;
     }
 
     public function getTeamClass(): string
