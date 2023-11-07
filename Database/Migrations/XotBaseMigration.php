@@ -382,6 +382,9 @@ abstract class XotBaseMigration extends Migration
             $table->uuid('user_id')->change(); //  ->index()
         }
     }
+    public function updateUserKeyInt(Blueprint $table): void{
+        $this->updateUserKeyInteger($table);
+    }
 
     public function updateUserKeyInteger(Blueprint $table): void
     {
