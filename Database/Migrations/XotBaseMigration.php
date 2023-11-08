@@ -384,14 +384,11 @@ abstract class XotBaseMigration extends Migration
     }
 
     public function updateUserKeyInt(Blueprint $table): void
-<<<<<<< HEAD
     {
         $this->updateUserKeyInteger($table);
     }
 
     public function updateUserKeyInteger(Blueprint $table): void
-=======
->>>>>>> ecf0202 (up)
     {
         if (! $this->hasColumn('id')) {
             $table->id('id')->first();
