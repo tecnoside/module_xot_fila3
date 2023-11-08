@@ -76,7 +76,7 @@ class XLSService
                     $col_row[] = ['col' => $col_key, 'int_col' => $int_col_key, 'row' => $row_key, 'url' => $column];
                 }
 
-                ++$int_col_key;
+                $int_col_key++;
             }
         }
 
@@ -89,7 +89,7 @@ class XLSService
     public function fromInputFileName(string $name): self
     {
         $file = request()->file('file');
-        if (null === $file) {
+        if ($file === null) {
             throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
 
@@ -99,7 +99,7 @@ class XLSService
     /**
      * Undocumented function.
      *
-     * @param array<int, UploadedFile>|UploadedFile $file
+     * @param  array<int, UploadedFile>|UploadedFile  $file
      *
      * @throws ValidationException
      * @throws \PhpOffice\PhpSpreadsheet\Exception
@@ -116,7 +116,7 @@ class XLSService
 
         $realPath = $file->getRealPath();
 
-        if (false === $realPath) {
+        if ($realPath === false) {
             throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
 

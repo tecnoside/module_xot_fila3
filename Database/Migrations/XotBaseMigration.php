@@ -50,7 +50,7 @@ abstract class XotBaseMigration extends Migration
 
     public function getModel(): string
     {
-        if (null !== $this->model_class) {
+        if ($this->model_class !== null) {
             return $this->model_class;
         }
 
@@ -115,9 +115,9 @@ abstract class XotBaseMigration extends Migration
     }
 
     /**
-     * @throws \Doctrine\DBAL\Exception
-     *
      * @return array<Index>
+     *
+     * @throws \Doctrine\DBAL\Exception
      */
     public function getTableIndexes(): array
     {
@@ -130,7 +130,7 @@ abstract class XotBaseMigration extends Migration
      */
     public function tableExists(string $table = null): bool
     {
-        if (null === $table) {
+        if ($table === null) {
             $table = $this->getTable();
         }
 

@@ -63,7 +63,7 @@ class ModuleService
         }
         */
         $mod = Module::find($this->name);
-        if (null === $mod) {
+        if ($mod === null) {
             return [];
         }
 

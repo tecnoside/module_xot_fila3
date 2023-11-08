@@ -7,12 +7,11 @@ namespace Modules\Xot\Datas;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-
-use function Safe\realpath;
-
 use Spatie\LaravelData\Data;
 use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+
+use function Safe\realpath;
 
 /**
  * Undocumented class.
@@ -20,16 +19,24 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 class PdfData extends Data
 {
     public string $filename = 'my_doc.pdf';
+
     public string $disk = 'cache';
+
     public string $out = 'download';
 
     // -- per costruttore
     public string $orientation = 'P';
+
     public string $format = 'A4';
+
     public string $lang = 'it';
+
     public bool $unicode = true;
+
     public string $encoding = 'UTF-8';
+
     public array $margins = [5, 5, 5, 8];
+
     public bool $pdfa = false;
 
     public string $dest = 'F';
