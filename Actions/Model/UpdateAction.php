@@ -31,7 +31,7 @@ class UpdateAction
             $model = $model->firstOrCreate([$keyName => $key], $data);
         }
         /**
-         * --phpstan-ignore-next-line.
+         * @phpstan-ignore-next-line.
          */
         $model = tap($model)->update($data);
 

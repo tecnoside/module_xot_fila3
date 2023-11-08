@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Spatie\LaravelData\Data;
 use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use function Safe\realpath;
 
 /**
  * Undocumented class.
