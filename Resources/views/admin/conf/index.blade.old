@@ -1,7 +1,7 @@
 @extends('adm_theme::layouts.app')
 @section('page_heading', 'package Settings')
 @section('content')
-    <x-flash-message />
+    <x-filament::badge> flash-message </x-filament::badge>
 
 
     @php

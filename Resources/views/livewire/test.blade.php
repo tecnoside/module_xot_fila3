@@ -1,12 +1,12 @@
 <div>
     <div class="btn-group group-toggle">
-        <label class="btn btn-danger">
+        <x-filament-forms::field-wrapper.label class="btn btn-danger">
             <input wire:model="animal" name="animal" type="radio" value="cats" /> Cats
         </label>
-        <label class="btn btn-danger">
+        <x-filament-forms::field-wrapper.label class="btn btn-danger">
             <input wire:model="animal" name="animal" type="radio" value="dogs" /> Dogs
         </label>
-        <label class="btn btn-danger">
+        <x-filament-forms::field-wrapper.label class="btn btn-danger">
             <input wire:model="animal" name="animal" type="radio" value="both" /> Both
         </label>
     </div>
@@ -19,7 +19,7 @@
     <div class="mb-4">
         @foreach ($options as $key => $option)
             <div>
-                <label class="inline-flex items-center">
+                <x-filament-forms::field-wrapper.label class="inline-flex items-center">
                     <input wire:model="options.{{ $key }}" name="options[{{ $key }}]" value="1" type="checkbox">
                     <span class="ml-2">{{ $key }}</span>
                 </label>
@@ -34,15 +34,15 @@
     @for ($i = 0; $i < 3; $i++)
         <h3>{{ $i }}</h3>
         <div class="btn-group btn-group-toggle">
-            <label class="btn btn-danger">
+            <x-filament-forms::field-wrapper.label class="btn btn-danger">
                 <input type="radio" wire:model="qty1.{{ $i }}" name="qty1[{{ $i }}]" value="-1" />
                 <span>-</span>
             </label>
-            <label class="btn btn-secondary">
+            <x-filament-forms::field-wrapper.label class="btn btn-secondary">
                 <input type="radio" wire:model="qty1.{{ $i }}" name="qty1[{{ $i }}]" value="0" />
                 <span>&nbsp;</span>
             </label>
-            <label class="btn btn-primary">
+            <x-filament-forms::field-wrapper.label class="btn btn-primary">
                 <input type="radio" wire:model="qty1.{{ $i }}" name="qty1[{{ $i }}]" value="1" />
                 <span>+</span>
             </label>
@@ -62,7 +62,7 @@
 
 
                 <div class="btn-group btn-group-toggle">
-                    <label class="btn btn-danger">
+                    <x-filament-forms::field-wrapper.label class="btn btn-danger">
                         <input type="radio" wire:model="qty.{{ $change_cat->id }}.{{ $change->id }}"
                             name="qty[{{ $change_cat->id }}][{{ $change->id }}]" autocomplete="off" value="-1">
                         @if (isset($qty[$change_cat->id][$change->id]) && $qty[$change_cat->id][$change->id] == -1)
@@ -71,7 +71,7 @@
                             -
                         @endif
                     </label>
-                    <label class="btn btn-secondary">
+                    <x-filament-forms::field-wrapper.label class="btn btn-secondary">
                         <input type="radio" wire:model="qty.{{ $change_cat->id }}.{{ $change->id }}"
                             name="qty[{{ $change_cat->id }}][{{ $change->id }}]" autocomplete="off" value="0">
                         @if (isset($qty[$change_cat->id][$change->id]) && $qty[$change_cat->id][$change->id] == 0)
@@ -80,7 +80,7 @@
                             &nbsp;
                         @endif
                     </label>
-                    <label class="btn btn-primary active">
+                    <x-filament-forms::field-wrapper.label class="btn btn-primary active">
                         <input type="radio" wire:model="qty.{{ $change_cat->id }}.{{ $change->id }}"
                             name="qty[{{ $change_cat->id }}][{{ $change->id }}]" autocomplete="off" value="1">
                         @if (isset($qty[$change_cat->id][$change->id]) && $qty[$change_cat->id][$change->id] == 1)

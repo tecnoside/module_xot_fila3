@@ -1,7 +1,7 @@
 @extends('adm_theme::layouts.app')
 @section('page_heading', $params['module'])
 @section('content')
-    <x-flash-message />
+    <x-filament::badge> flash-message </x-filament::badge>
     @include('ui::modal_ajax')
 
     <div class="page-wrapper">
