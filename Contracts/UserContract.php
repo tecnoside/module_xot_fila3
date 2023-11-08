@@ -6,15 +6,16 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Contracts;
 
-use Filament\Models\Contracts\FilamentUser;
-use Illuminate\Contracts\Auth\CanResetPassword;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Passport\Token;
-use Modules\User\Contracts\HasTeamsContract;
 use Spatie\Permission\Contracts\Role;
+use Illuminate\Database\Eloquent\Model;
+use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Database\Eloquent\Collection;
+use Modules\User\Contracts\HasTeamsContract;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 // use Filament\Models\Contracts\HasTenants;
 
@@ -27,6 +28,7 @@ use Spatie\Permission\Contracts\Role;
  * @property string|null                                 $first_name
  * @property string|null                                 $last_name
  * @property string|null                                 $full_name
+ * @property string|null                                 $current_team_id
  * @property string|null                                 $phone
  * @property string|null                                 $email
  * @property Collection|array<\Modules\User\Models\Area> $areas
@@ -96,4 +98,9 @@ interface UserContract extends MustVerifyEmail, HasTeamsContract, ModelContract,
      * @return \Laravel\Passport\Token|\Laravel\Passport\TransientToken|null
      */
     public function token();
+
+    /**
+     * A model may have multiple roles.
+     */
+    public function roles(): BelongsToMany;
 }
