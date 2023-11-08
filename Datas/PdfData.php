@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Datas;
 
-use Pest\Support\Str;
-use Spatie\LaravelData\Data;
-use Spipu\Html2Pdf\Html2Pdf;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Spatie\LaravelData\Data;
+use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
@@ -16,12 +16,11 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
  */
 class PdfData extends Data
 {
+    public string $filename = 'my_doc.pdf';
+    public string $disk = 'cache';
+    public string $out = 'download';
 
-    public string $filename = 'my_doc.pdf',
-    public string $disk = 'cache',
-    public string $out = 'download'
-
-    //-- per costruttore
+    // -- per costruttore
     public string $orientation = 'P';
     public string $format = 'A4';
     public string $lang = 'it';
@@ -30,39 +29,52 @@ class PdfData extends Data
     public array $margins = [5, 5, 5, 8];
     public bool $pdfa = false;
 
-    public string $dest ='F';
+    public string $dest = 'F';
     /*
-    Dest can be : 
-    I : send the file inline to the browser (default). The plug-in is used if available. The name given by name is used when one selects the "Save as" option on the link generating the PDF. 
-    D : send to the browser and force a file download with the name given by name. 
-    F : save to a local server file with the name given by name. 
-    S : return the document as a string (name is ignored). 
-    FI: equivalent to F + I option 
-    FD: equivalent to F + D option 
-    E : return the document as base64 mime multi-part email attachment 
+    Dest can be :
+    I : send the file inline to the browser (default). The plug-in is used if available. The name given by name is used when one selects the "Save as" option on the link generating the PDF.
+    D : send to the browser and force a file download with the name given by name.
+    F : save to a local server file with the name given by name.
+    S : return the document as a string (name is ignored).
+    FI: equivalent to F + I option
+    FD: equivalent to F + D option
+    E : return the document as base64 mime multi-part email attachment
     */
-    public function getPath():string{
+
+    // public static function make(Model $model = null, string $html = null): self
+    public static function make(): self
+    {
+        return self::from([]);
+    }
+
+    public function getPath(): string
+    {
         $path = Storage::disk($this->disk)->path($this->filename);
+
         return $path;
     }
 
-    public function download():BinaryFileResponse {
+    public function download(): BinaryFileResponse
+    {
         $headers = [
             'Content-Type' => 'application/pdf',
         ];
+
         return response()->download($this->getPath(), $this->filename, $headers);
     }
 
-    public function fromHtml(string $html):self{
+    public function fromHtml(string $html): self
+    {
         include_once realpath(__DIR__.'/../Services/vendor/autoload.php');
         $html2pdf = new Html2Pdf($this->orientation, $this->format, $this->lang);
         $html2pdf->writeHTML($html);
         $html2pdf->output($this->getPath(), $this->dest);
+
         return $this;
     }
 
-
-    public function fromModel(Model $model):self{
+    public function fromModel(Model $model): self
+    {
         $model_class = get_class($model);
         $model_name = class_basename($model_class);
         $module = Str::between($model_class, '\Modules\\', '\Models');
@@ -73,7 +85,14 @@ class PdfData extends Data
         ];
         $view = view($view_name, $view_params);
         $html = $view->render();
+
         return $this->fromHtml($html);
-        
+    }
+
+    public function getContent(): string
+    {
+        $res = Storage::disk($this->disk)->get($this->filename);
+
+        return $res;
     }
 }

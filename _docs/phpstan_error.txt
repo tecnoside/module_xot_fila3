@@ -1,6 +1,6 @@
 modulo Geo
 
-  Line   Models\Panels\Actions\GetLatitudeLongitudeAction.php
+  Line   \Actions\GetLatitudeLongitudeAction.php
  ------ ------------------------------------------------------
   34     Call to an undefined method
          Illuminate\Database\Eloquent\Model::getAddress().
