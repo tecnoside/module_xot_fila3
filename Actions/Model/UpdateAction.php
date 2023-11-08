@@ -22,7 +22,7 @@ class UpdateAction
         $validator->validate();
         $keyName = $model->getKeyName();
 
-        if ($model->getKey() === null) {
+        if (null === $model->getKey()) {
             $key = $data[$keyName];
             $data = collect($data)->except($keyName)->toArray();
             if (method_exists($model, 'withTrashed')) {

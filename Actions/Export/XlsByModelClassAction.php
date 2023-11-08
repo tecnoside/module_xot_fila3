@@ -31,7 +31,7 @@ class XlsByModelClassAction
             ->where($where);
 
         $rows = $rows->get();
-        if ($includes !== []) {
+        if ([] !== $includes) {
             $rows = $rows->map(function ($item) use ($includes) {
                 $data = [];
                 foreach ($includes as $include) {
@@ -42,11 +42,11 @@ class XlsByModelClassAction
             });
         }
 
-        if ($excludes !== []) {
+        if ([] !== $excludes) {
             $rows = $rows->makeHidden($excludes);
         }
 
-        if ($callback !== null) {
+        if (null !== $callback) {
             $rows = $rows->map($callback);
         }
         $transKey = app(GetTransKeyByModelClassAction::class)->execute($modelClass);

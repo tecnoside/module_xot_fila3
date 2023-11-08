@@ -10,12 +10,13 @@ use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 
 use function Safe\fclose;
 use function Safe\fopen;
 use function Safe\fputcsv;
+
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Class ArrayService.
@@ -79,8 +80,8 @@ class ArrayService
     /**
      * Undocumented function.
      *
-     * @param  array|object  $arrObjData
-     * @param  array  $arrSkipIndices
+     * @param array|object $arrObjData
+     * @param array        $arrSkipIndices
      */
     public static function fromObjects($arrObjData, $arrSkipIndices = []): array
     {
@@ -111,10 +112,10 @@ class ArrayService
     /**
      * Undocumented function.
      *
-     * @param  int  $a0
-     * @param  int  $b0
-     * @param  int  $a1
-     * @param  int  $b1
+     * @param int $a0
+     * @param int $b0
+     * @param int $a1
+     * @param int $b1
      */
     public static function rangeIntersect($a0, $b0, $a1, $b1): array|bool
     {
@@ -214,7 +215,7 @@ class ArrayService
     public function getFilename(): string
     {
         $filename = $this->filename;
-        if ($filename !== null) {
+        if (null !== $filename) {
             return $filename;
         }
 
@@ -231,7 +232,7 @@ class ArrayService
      */
     public function toXLS(): BinaryFileResponse|Renderable
     {
-        if (request('debug', 0) * 1 === 1) {
+        if (1 === request('debug', 0) * 1) {
             return self::toHtml();
         }
 
@@ -247,7 +248,7 @@ class ArrayService
         }
 
         $this->array = $res;
-        if ($this->export_processor === 1) {
+        if (1 === $this->export_processor) {
             return self::toXLS_phpoffice();
         }
         $msg = 'unknown export_processor ['.$this->export_processor.']';

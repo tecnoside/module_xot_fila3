@@ -46,7 +46,7 @@ class RouteDomTest extends TestCase
             }
             */
             $url = str_replace('index.php', '', (string) $url);
-            if ($url === null) {
+            if (null === $url) {
                 throw new \Exception('url is null');
             }
 
@@ -56,7 +56,7 @@ class RouteDomTest extends TestCase
 
             $response = $this->get($url);
             $html = $response->getContent();
-            if ($html === false) {
+            if (false === $html) {
                 throw new \Exception('cannot get content');
             }
 
