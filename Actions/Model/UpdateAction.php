@@ -31,11 +31,11 @@ class UpdateAction
             $model = $model->firstOrCreate([$keyName => $key], $data);
         }
         /**
-<<<<<<< HEAD
+         * <<<<<<< HEAD
          * --phpstan-ignore-next-line.
-=======
+         * =======
          *  --phpstan-ignore-next-line.
->>>>>>> 1564ae3 (up)
+         * >>>>>>> 1564ae3 (up).
          */
         $model = tap($model)->update($data);
 
