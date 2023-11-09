@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Datas;
 
+use function Safe\realpath;
+use Illuminate\Support\Str;
+use Spatie\LaravelData\Data;
+
+use Spipu\Html2Pdf\Html2Pdf;
+
+use Webmozart\Assert\Assert;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-
-use function Safe\realpath;
-
-use Spatie\LaravelData\Data;
-use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
@@ -102,7 +103,7 @@ class PdfData extends Data
 
     public function getContent(): string
     {
-        $res = Storage::disk($this->disk)->get($this->filename);
+        Assert::notNull($res = Storage::disk($this->disk)->get($this->filename));
 
         return $res;
     }
