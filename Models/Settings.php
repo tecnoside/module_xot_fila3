@@ -18,7 +18,6 @@ use Illuminate\Support\Carbon;
  * @property mixed       $payload
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
- *
  * @method static Builder|Settings newModelQuery()
  * @method static Builder|Settings newQuery()
  * @method static Builder|Settings query()
@@ -29,7 +28,6 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Settings whereName($value)
  * @method static Builder|Settings wherePayload($value)
  * @method static Builder|Settings whereUpdatedAt($value)
- *
  * @mixin \Eloquent
  */
 class Settings extends Model

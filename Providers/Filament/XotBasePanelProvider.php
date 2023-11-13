@@ -42,7 +42,7 @@ abstract class XotBasePanelProvider extends PanelProvider
         */
 
         return $panel
-            ->default()
+            // ->default()
             ->login()
             // ->registration()
             // ->passwordReset()
