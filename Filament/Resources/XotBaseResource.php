@@ -29,8 +29,9 @@ abstract class XotBaseResource extends Resource
     public static function trans(string $key): string
     {
         $moduleNameLow = Str::lower(static::getModuleName());
-        Assert::notNull(static::$model);
-        $modelNameSlug = Str::kebab(class_basename(static::$model));
+        $modelClass = static::$model ?? static::getModel();
+        Assert::notNull($modelClass);
+        $modelNameSlug = Str::kebab(class_basename($modelClass));
         $res = $moduleNameLow.'::'.$modelNameSlug.'.'.$key;
 
         return __($res);
