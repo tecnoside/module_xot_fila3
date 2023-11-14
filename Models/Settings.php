@@ -11,13 +11,14 @@ use Illuminate\Support\Carbon;
 /**
  * Modules\Xot\Models\Settings.
  *
- * @property int $id
- * @property string $group
- * @property string $name
- * @property int $locked
- * @property mixed $payload
+ * @property int         $id
+ * @property string      $group
+ * @property string      $name
+ * @property int         $locked
+ * @property mixed       $payload
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ *
  * @method static Builder|Settings newModelQuery()
  * @method static Builder|Settings newQuery()
  * @method static Builder|Settings query()
@@ -28,6 +29,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Settings whereName($value)
  * @method static Builder|Settings wherePayload($value)
  * @method static Builder|Settings whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Settings extends Model
