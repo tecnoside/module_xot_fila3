@@ -18,11 +18,9 @@ class GetAllModelsByModuleNameAction
 {
     use QueueableAction;
 
-/**
+    /**
      * Execute the action.
      */
-
-
     public function execute(string $moduleName): array
     {
         $mod = Module::find($moduleName);
@@ -35,15 +33,15 @@ class GetAllModelsByModuleNameAction
         $files = File::files($mod_path);
         $data = [];
         $ns = 'Modules\\'.$mod->getName().'\\Models';
-    // con la barra davanti non va il search ?
+        // con la barra davanti non va il search ?
         foreach ($files as $file) {
             $filename = $file->getRelativePathname();
             $ext = '.php';
-    // dddx(['ext' => $file->getExtension(), get_class_methods($file)]);
+            // dddx(['ext' => $file->getExtension(), get_class_methods($file)]);
             if (Str::endsWith($filename, $ext)) {
                 $tmp = new \stdClass();
                 $name = substr($filename, 0, -\strlen($ext));
-    // dddx(['name' => $name, 'name1' => $file->getFilenameWithoutExtension()]);
+                // dddx(['name' => $name, 'name1' => $file->getFilenameWithoutExtension()]);
                 /**
                  * @var class-string
                  */
@@ -51,7 +49,7 @@ class GetAllModelsByModuleNameAction
                 $tmp->class = $class;
                 $name = Str::snake($name);
                 $tmp->name = $name;
-    // 434    Parameter #1 $argument of class ReflectionClass constructor expects class-string<T of object>|T of object, string given.
+                // 434    Parameter #1 $argument of class ReflectionClass constructor expects class-string<T of object>|T of object, string given.
                 try {
                     $reflection_class = new \ReflectionClass($tmp->class);
                     if (! $reflection_class->isAbstract()) {

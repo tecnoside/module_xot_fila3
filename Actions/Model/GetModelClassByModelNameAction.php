@@ -15,11 +15,9 @@ class GetModelClassByModelNameAction
 {
     use QueueableAction;
 
-/**
+    /**
      * Execute the action.
      */
-
-
     public function execute(string $modelName): string
     {
         Assert::isArray($morph_map = config('morph_map'));

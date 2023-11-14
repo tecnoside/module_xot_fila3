@@ -15,6 +15,7 @@ namespace Modules\Xot\Services;
 class UrlService
 {
     private static ?self $instance = null;
+
     public function __construct()
     {
         // ---

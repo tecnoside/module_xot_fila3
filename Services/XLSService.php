@@ -21,6 +21,7 @@ class XLSService
 {
     private static ?self $instance = null;
     private Collection $collection;
+
     public function __construct()
     {
         // ---
@@ -152,6 +153,7 @@ class XLSService
         }
 
         $this->collection = $data;
+
         return $this;
     }
 

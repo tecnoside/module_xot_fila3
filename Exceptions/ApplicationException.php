@@ -14,11 +14,15 @@ use Illuminate\Http\Response;
 abstract class ApplicationException extends \Exception
 {
     abstract public function status(): int;
+
     abstract public function help(): string;
+
     abstract public function error(): string;
+
     public function render(Request $request): Response
     {
         $applicationError = new ApplicationError($this->help(), $this->error());
+
         return response($applicationError->toArray(), $this->status());
     }
 }

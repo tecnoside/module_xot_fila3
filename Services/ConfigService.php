@@ -14,6 +14,7 @@ namespace Modules\Xot\Services;
 class ConfigService
 {
     private static ?self $instance = null;
+
     public function __construct()
     {
         // ---

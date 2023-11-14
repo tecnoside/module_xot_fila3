@@ -15,11 +15,9 @@ class GetModelFieldsByModelAction
 {
     use QueueableAction;
 
-/**
+    /**
      * Execute the action.
      */
-
-
     public function execute(Model $model): array
     {
         return $model->getConnection()

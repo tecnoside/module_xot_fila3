@@ -36,6 +36,7 @@ class ApplicationError implements \JsonSerializable, Arrayable, Jsonable
     {
         $jsonEncoded = json_encode($this->jsonSerialize(), $options);
         throw_unless($jsonEncoded, JsonEncodeException::class);
+
         return $jsonEncoded;
     }
 }

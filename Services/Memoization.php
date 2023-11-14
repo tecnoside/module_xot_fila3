@@ -12,7 +12,8 @@ class Memoization
 {
     private array $memoized = [];
     private static ?self $_instance = null;
-/**
+
+    /**
      * getInstance.
      *
      * this method will return instance of the class

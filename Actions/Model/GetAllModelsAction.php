@@ -15,11 +15,9 @@ class GetAllModelsAction
 {
     use QueueableAction;
 
-/**
+    /**
      * Execute the action.
      */
-
-
     public function execute(): array
     {
         $res = [];

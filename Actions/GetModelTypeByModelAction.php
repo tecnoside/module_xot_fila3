@@ -16,11 +16,9 @@ class GetModelTypeByModelAction
 {
     use QueueableAction;
 
-/**
+    /**
      * Execute the action.
      */
-
-
     public function execute(ModelContract $modelContract): string
     {
         return Str::snake(class_basename($modelContract));
