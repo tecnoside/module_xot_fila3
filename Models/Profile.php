@@ -37,6 +37,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Collection<int, Role>           $roles
  * @property int|null                        $roles_count
  * @property User|null                       $user
+ *
  * @method static \Modules\Xot\Database\Factories\ProfileFactory factory($count = null, $state = [])
  * @method static Builder|Profile                                newModelQuery()
  * @method static Builder|Profile                                newQuery()
@@ -57,16 +58,19 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static Builder|Profile                                whereUpdatedAt($value)
  * @method static Builder|Profile                                whereUpdatedBy($value)
  * @method static Builder|Profile                                whereUserId($value)
+ *
  * @property string|null $post_type
  * @property string|null $bio
  * @property string|null $surname
  * @property string|null $phone
  * @property string|null $address
+ *
  * @method static Builder|Profile whereAddress($value)
  * @method static Builder|Profile whereBio($value)
  * @method static Builder|Profile wherePhone($value)
  * @method static Builder|Profile wherePostType($value)
  * @method static Builder|Profile whereSurname($value)
+ *
  * @mixin \Eloquent
  */
 class Profile extends BaseModel implements ModelProfileContract, ModelWithUserContract
