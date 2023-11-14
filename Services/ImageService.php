@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ImageService.
  *
@@ -23,15 +24,10 @@ class ImageService
     private static ?self $_instance = null;
 
     private \Intervention\Image\Image $image;
-
     private int $width;
-
     private int $height;
-
     private string $src;
-
     private string $dirname;
-
     private ?string $filename = null;
 
     /**
@@ -107,7 +103,8 @@ class ImageService
             $val = public_path('img/nophoto.jpg');
         }
 
-        if (Str::startsWith($val, url(''))) { // se e' una immagine locale
+        if (Str::startsWith($val, url(''))) {
+            // se e' una immagine locale
             $val = public_path(substr($val, \strlen(url(''))));
         }
 
@@ -117,7 +114,6 @@ class ImageService
         }
 
         $this->src = $val;
-
         $this->setImg($val);
 
         return $this;
@@ -141,7 +137,6 @@ class ImageService
         }
 
         $basename = Str::slug($info['filename']).'.'.$info['extension'];
-
         $this->filename = $this->dirname.'/'.$this->width.'x'.$this->height.'/'.$basename;
 
         return $this->filename;
@@ -156,7 +151,8 @@ class ImageService
         try {
             // Storage::disk('photos')->put($this->filename, $this->out());
             $this->image->save($filename);
-        } catch (\Exception) {// ftp_mkdir(): Can't create directory: File exists
+        } catch (\Exception) {
+            // ftp_mkdir(): Can't create directory: File exists
             // $r = $this->img->save(self::$filename, 75);
         }
 

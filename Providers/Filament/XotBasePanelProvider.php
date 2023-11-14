@@ -24,12 +24,12 @@ abstract class XotBasePanelProvider extends PanelProvider
     protected string $module;
 
     protected bool $topNavigation = false;
+    protected bool $globalSearch = false;
 
     public function panel(Panel $panel): Panel
     {
         $moduleNamespace = $this->getModuleNamespace();
         $moduleLow = Str::lower($this->module);
-        // XotData::make();
         $metatag = MetatagData::make();
 
         // $teamClass=$xot->getTeamClass();
@@ -42,7 +42,7 @@ abstract class XotBasePanelProvider extends PanelProvider
         */
 
         return $panel
-            ->default()
+            // ->default()
             ->login()
             // ->registration()
             // ->passwordReset()
@@ -56,6 +56,7 @@ abstract class XotBasePanelProvider extends PanelProvider
             // ---------------------
             ->maxContentWidth('full')
             ->topNavigation($this->topNavigation)
+            ->globalSearch($this->globalSearch)
             ->readOnlyRelationManagersOnResourceViewPagesByDefault(false) //
             // ->navigation(false)
             // ->tenant($teamClass)

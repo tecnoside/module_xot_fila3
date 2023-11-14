@@ -314,7 +314,7 @@ abstract class XotBaseMigration extends Migration
         }
     }
 
-    public function updateTimestamps(Blueprint $table): void
+    public function updateTimestamps(Blueprint $table, bool $hasSoftDeletes = false): void
     {
         $xot = XotData::make();
         $userClass = $xot->getUserClass();
@@ -345,6 +345,29 @@ abstract class XotBaseMigration extends Migration
             $table->foreignIdFor(
                 model: $userClass,
                 column: 'created_by',
+            )
+                ->nullable();
+            // ->nullOnDelete()
+            // ->cascadeOnUpdate()
+        }
+
+        if ($hasSoftDeletes && ! $this->hasColumn('deleted_at')) {
+            $table->softDeletes();
+            if (! $this->hasColumn('deleted_by')) {
+                $table->foreignIdFor(
+                    model: $userClass,
+                    column: 'deleted_by',
+                )
+                    ->nullable();
+                // ->nullOnDelete()
+                // ->cascadeOnUpdate()
+            }
+        }
+
+        if ($this->hasColumn('deleted_at') && ! $this->hasColumn('deleted_by')) {
+            $table->foreignIdFor(
+                model: $userClass,
+                column: 'deleted_by',
             )
                 ->nullable();
             // ->nullOnDelete()

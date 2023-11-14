@@ -1,7 +1,9 @@
 <?php
+
 /**
  * ---.
  */
+
 declare(strict_types=1);
 
 namespace Modules\Xot\Filament\Resources;
@@ -13,7 +15,6 @@ use Webmozart\Assert\Assert;
 abstract class XotBaseResource extends Resource
 {
     protected static ?string $model = null;
-
     // protected static ?string $navigationIcon = 'heroicon-o-bell';
     // protected static ?string $navigationLabel = 'Custom Navigation Label';
     // protected static ?string $activeNavigationIcon = 'heroicon-s-document-text';
@@ -29,8 +30,9 @@ abstract class XotBaseResource extends Resource
     public static function trans(string $key): string
     {
         $moduleNameLow = Str::lower(static::getModuleName());
-        Assert::notNull(static::$model);
-        $modelNameSlug = Str::kebab(class_basename(static::$model));
+        $modelClass = static::$model ?? static::getModel();
+        Assert::notNull($modelClass);
+        $modelNameSlug = Str::kebab(class_basename($modelClass));
         $res = $moduleNameLow.'::'.$modelNameSlug.'.'.$key;
 
         return __($res);
@@ -49,6 +51,11 @@ abstract class XotBaseResource extends Resource
         return $res;
     }
 
+    public static function getModelLabel(): string
+    {
+        return static::trans('navigation.name');
+    }
+
     public static function getPluralModelLabel(): string
     {
         return static::trans('navigation.plural');
@@ -59,6 +66,16 @@ abstract class XotBaseResource extends Resource
         return static::trans('navigation.name');
         // return static::trans('navigation.plural');
     }
+
+    // public static function getNavigationIcon(): ?string
+    // {
+    //    return 'heroicon-o-user-group';
+    // }
+
+    // public static function getNavigationSort(): ?int
+    // {
+    //    return 2;
+    // }
 
     public static function getNavigationGroup(): string
     {

@@ -65,8 +65,8 @@ trait Updater
         static::deleting(function ($model) {
             if (\in_array('deleted_by', array_keys($model->attributes), true)) {
                 $model->deleted_by = auth()->id();
+                $model->save();
             }
-            // $model->save();
         });
         // */
         // ----------------------

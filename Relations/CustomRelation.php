@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ---.
  *
@@ -28,18 +29,23 @@ class CustomRelation extends Relation
     /**
      * Create a new belongs to relationship instance.
      */
-    public function __construct(Builder $query, Model $model, /* implements BuilderContract */
+    public function __construct(
+        Builder $query,
+        Model $model,
+        /* implements BuilderContract */
         /**
          * The baseConstraints callback.
          */
-        protected \Closure $baseConstraints, /**
-     * The eagerConstraints callback.
-     */
-        protected ?\Closure $eagerConstraints, /**
-     * The eager constraints model matcher.
-     */
-        protected ?\Closure $eagerMatcher)
-    {
+        protected \Closure $baseConstraints,
+        /**
+         * The eagerConstraints callback.
+         */
+        protected ?\Closure $eagerConstraints,
+        /**
+         * The eager constraints model matcher.
+         */
+        protected ?\Closure $eagerMatcher
+    ) {
         parent::__construct($query, $model);
     }
 
@@ -118,15 +124,12 @@ class CustomRelation extends Relation
         // the proper columns. Then, we will get the results and hydrate out pivot
         // models with the result of those columns as a separate model relation.
         $columns = $this->query->getQuery()->columns ? [] : $columns;
-
         if ($columns === ['*']) {
             $columns = [$this->related->getTable().'.*'];
         }
 
         $query = $this->query->applyScopes();
-
         $models = $query->addSelect($columns)->getModels();
-
         // If we actually found models we will also eager load any relationships that
         // have been specified as needing to be eager loaded. This will solve the
         // n + 1 query problem for the developer and also increase performance.
