@@ -1,7 +1,9 @@
 <?php
+
 /**
  * @see https://github.com/protonemedia/laravel-ffmpeg
  */
+
 declare(strict_types=1);
 
 namespace Modules\Xot\Actions;
@@ -12,9 +14,11 @@ class GetModelClassByModelTypeAction
 {
     use QueueableAction;
 
-    /**
+/**
      * Execute the action.
      */
+
+
     public function execute(string $model_type): string
     {
         $morph_map = config('morph_map');

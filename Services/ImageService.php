@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ImageService.
  *
@@ -21,20 +22,13 @@ use Intervention\Image\Facades\Image;
 class ImageService
 {
     private static ?self $_instance = null;
-
     private \Intervention\Image\Image $image;
-
     private int $width;
-
     private int $height;
-
     private string $src;
-
     private string $dirname;
-
     private ?string $filename = null;
-
-    /**
+/**
      * Undocumented function.
      */
     public static function getInstance(): self
@@ -107,7 +101,8 @@ class ImageService
             $val = public_path('img/nophoto.jpg');
         }
 
-        if (Str::startsWith($val, url(''))) { // se e' una immagine locale
+        if (Str::startsWith($val, url(''))) {
+// se e' una immagine locale
             $val = public_path(substr($val, \strlen(url(''))));
         }
 
@@ -117,9 +112,7 @@ class ImageService
         }
 
         $this->src = $val;
-
         $this->setImg($val);
-
         return $this;
     }
 
@@ -129,7 +122,6 @@ class ImageService
     public function fit(): self
     {
         $this->image->fit($this->width, $this->height);
-
         return $this;
     }
 
@@ -141,9 +133,7 @@ class ImageService
         }
 
         $basename = Str::slug($info['filename']).'.'.$info['extension'];
-
         $this->filename = $this->dirname.'/'.$this->width.'x'.$this->height.'/'.$basename;
-
         return $this->filename;
     }
 
@@ -154,9 +144,10 @@ class ImageService
     {
         $filename = $this->getFilename();
         try {
-            // Storage::disk('photos')->put($this->filename, $this->out());
+        // Storage::disk('photos')->put($this->filename, $this->out());
             $this->image->save($filename);
-        } catch (\Exception) {// ftp_mkdir(): Can't create directory: File exists
+        } catch (\Exception) {
+        // ftp_mkdir(): Can't create directory: File exists
             // $r = $this->img->save(self::$filename, 75);
         }
 
@@ -169,7 +160,6 @@ class ImageService
     public function url(): string
     {
         $filename = $this->getFilename();
-
         return Storage::disk('photos')->url($filename);
     }
 
@@ -191,7 +181,6 @@ class ImageService
         }
 
         $src = '/'.str_replace(public_path('/'), '', $this->filename);
-
         return str_replace('//', '/', $src);
     }
 
@@ -201,7 +190,6 @@ class ImageService
     public function setWidth(int $val): self
     {
         $this->width = $val;
-
         return $this;
     }
 
@@ -211,7 +199,6 @@ class ImageService
     public function setHeight(int $val): self
     {
         $this->height = $val;
-
         return $this;
     }
 
@@ -221,7 +208,6 @@ class ImageService
     public function setDirname(string $dirname): self
     {
         $this->dirname = $dirname;
-
         return $this;
     }
 }

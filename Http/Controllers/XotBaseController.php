@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ---.
  */
@@ -16,12 +17,14 @@ use Illuminate\Routing\Controller as RoutingController;
 class XotBaseController extends RoutingController
 {
     use AuthorizesRequests;
-    use DispatchesJobs;
-    use ValidatesRequests;
+                                                                                                                                                                                                                                                                                                                                                                                                       use DispatchesJobs;
+                                                                                                                                                                                                                                                                                                                                                                                                       use ValidatesRequests;
 
-    /**
+/**
      * success response method.
      */
+
+
     public function sendResponse(string $message, array $result): JsonResponse
     {
         $response = [
@@ -29,7 +32,6 @@ class XotBaseController extends RoutingController
             'message' => $message,
             'data' => $result,
         ];
-
         return response()->json($response, 200);
     }
 
@@ -43,8 +45,7 @@ class XotBaseController extends RoutingController
             'message' => $error,
             'data' => $errorMessages,
         ];
-
-        // if (! empty($errorMessages)) {
+// if (! empty($errorMessages)) {
         //    $response['data'] = $errorMessages;
         // }
 

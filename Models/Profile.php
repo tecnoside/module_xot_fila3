@@ -65,6 +65,7 @@ class Profile extends BaseModel implements ModelProfileContract, ModelWithUserCo
 {
     // spatie
     use HasRoles;
+
     // use HasTags; //non serve
 
     /**

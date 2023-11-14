@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @see https://medium.com/@parvej.code/how-to-create-simple-memoization-helper-in-php-1eb3cdbfde7c
  */
@@ -10,10 +11,8 @@ namespace Modules\Xot\Services;
 class Memoization
 {
     private array $memoized = [];
-
     private static ?self $_instance = null;
-
-    /**
+/**
      * getInstance.
      *
      * this method will return instance of the class

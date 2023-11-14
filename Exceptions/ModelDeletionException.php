@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @see https://dev.to/jackmiras/laravel-delete-actions-simplified-4h8b
  */
@@ -13,7 +14,6 @@ use Illuminate\Support\Str;
 class ModelDeletionException extends ApplicationException
 {
     private readonly string $model;
-
     public function __construct(private readonly int $id, string $model)
     {
         $this->model = Str::afterLast($model, '\\');
@@ -36,13 +36,10 @@ class ModelDeletionException extends ApplicationException
 
     public function error(): string
     {
-        $res = trans(
-            'exception.model_not_deleted.error',
-            [
+        $res = trans('exception.model_not_deleted.error', [
                 'id' => $this->id,
                 'model' => $this->model,
-            ]
-        );
+            ]);
         if (! \is_string($res)) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }

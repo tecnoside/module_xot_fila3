@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @see https://dev.to/jackmiras/laravels-exceptions-part-2-custom-exceptions-1367
  */
@@ -35,7 +36,6 @@ class ApplicationError implements \JsonSerializable, Arrayable, Jsonable
     {
         $jsonEncoded = json_encode($this->jsonSerialize(), $options);
         throw_unless($jsonEncoded, JsonEncodeException::class);
-
         return $jsonEncoded;
     }
 }
