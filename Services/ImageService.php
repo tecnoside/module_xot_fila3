@@ -22,6 +22,7 @@ use Intervention\Image\Facades\Image;
 class ImageService
 {
     private static ?self $_instance = null;
+
     private \Intervention\Image\Image $image;
     private int $width;
     private int $height;

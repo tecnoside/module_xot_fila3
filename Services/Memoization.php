@@ -11,6 +11,7 @@ namespace Modules\Xot\Services;
 class Memoization
 {
     private array $memoized = [];
+
     private static ?self $_instance = null;
 
     /**

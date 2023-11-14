@@ -20,6 +20,7 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 class XLSService
 {
     private static ?self $instance = null;
+
     private Collection $collection;
 
     public function __construct()
