@@ -18,59 +18,47 @@ use Spatie\Permission\Traits\HasRoles;
 /**
  * Modules\Xot\Models\Profile.
  *
- * @property int                             $id
- * @property string|null                     $user_id
- * @property string|null                     $type
- * @property int                             $is_active
- * @property string|null                     $first_name
- * @property string|null                     $last_name
- * @property string|null                     $email
- * @property string|null                     $note
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null                     $updated_by
- * @property string|null                     $created_by
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property string|null                     $deleted_by
- * @property Collection<int, Permission>     $permissions
- * @property int|null                        $permissions_count
- * @property Collection<int, Role>           $roles
- * @property int|null                        $roles_count
- * @property User|null                       $user
- *
- * @method static \Modules\Xot\Database\Factories\ProfileFactory factory($count = null, $state = [])
- * @method static Builder|Profile                                newModelQuery()
- * @method static Builder|Profile                                newQuery()
- * @method static Builder|Profile                                permission($permissions)
- * @method static Builder|Profile                                query()
- * @method static Builder|Profile                                role($roles, $guard = null)
- * @method static Builder|Profile                                whereCreatedAt($value)
- * @method static Builder|Profile                                whereCreatedBy($value)
- * @method static Builder|Profile                                whereDeletedAt($value)
- * @method static Builder|Profile                                whereDeletedBy($value)
- * @method static Builder|Profile                                whereEmail($value)
- * @method static Builder|Profile                                whereFirstName($value)
- * @method static Builder|Profile                                whereId($value)
- * @method static Builder|Profile                                whereIsActive($value)
- * @method static Builder|Profile                                whereLastName($value)
- * @method static Builder|Profile                                whereNote($value)
- * @method static Builder|Profile                                whereType($value)
- * @method static Builder|Profile                                whereUpdatedAt($value)
- * @method static Builder|Profile                                whereUpdatedBy($value)
- * @method static Builder|Profile                                whereUserId($value)
- *
+ * @property int $id
  * @property string|null $post_type
  * @property string|null $bio
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $created_by
+ * @property string|null $updated_by
+ * @property string|null $deleted_by
+ * @property string|null $first_name
  * @property string|null $surname
+ * @property string|null $email
  * @property string|null $phone
  * @property string|null $address
- *
+ * @property int|null $user_id
+ * @property string|null $last_name
+ * @property-read Collection<int, Permission> $permissions
+ * @property-read int|null $permissions_count
+ * @property-read Collection<int, Role> $roles
+ * @property-read int|null $roles_count
+ * @property-read User|null $user
+ * @method static \Modules\Xot\Database\Factories\ProfileFactory factory($count = null, $state = [])
+ * @method static Builder|Profile newModelQuery()
+ * @method static Builder|Profile newQuery()
+ * @method static Builder|Profile permission($permissions)
+ * @method static Builder|Profile query()
+ * @method static Builder|Profile role($roles, $guard = null)
  * @method static Builder|Profile whereAddress($value)
  * @method static Builder|Profile whereBio($value)
+ * @method static Builder|Profile whereCreatedAt($value)
+ * @method static Builder|Profile whereCreatedBy($value)
+ * @method static Builder|Profile whereDeletedBy($value)
+ * @method static Builder|Profile whereEmail($value)
+ * @method static Builder|Profile whereFirstName($value)
+ * @method static Builder|Profile whereId($value)
+ * @method static Builder|Profile whereLastName($value)
  * @method static Builder|Profile wherePhone($value)
  * @method static Builder|Profile wherePostType($value)
  * @method static Builder|Profile whereSurname($value)
- *
+ * @method static Builder|Profile whereUpdatedAt($value)
+ * @method static Builder|Profile whereUpdatedBy($value)
+ * @method static Builder|Profile whereUserId($value)
  * @mixin \Eloquent
  */
 class Profile extends BaseModel implements ModelProfileContract, ModelWithUserContract
