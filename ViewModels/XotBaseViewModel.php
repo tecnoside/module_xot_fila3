@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @see https://martinjoo.dev/how-to-use-data-transfer-objects-and-actions-in-laravel
  */
@@ -18,16 +19,8 @@ abstract class XotBaseViewModel implements Arrayable
     public function toArray(): array
     {
         return collect((new \ReflectionClass($this))->getMethods())
-            ->reject(
-                fn (\ReflectionMethod $reflectionMethod): bool => \in_array($reflectionMethod->getName(), ['__construct', 'toArray'], true)
-            )
-            ->filter(
-                fn (\ReflectionMethod $reflectionMethod): bool => \in_array(
-                    'public',
-                    \Reflection::getModifierNames($reflectionMethod->getModifiers()),
-                    true
-                )
-            )
+            ->reject(fn (\ReflectionMethod $reflectionMethod): bool => \in_array($reflectionMethod->getName(), ['__construct', 'toArray'], true))
+            ->filter(fn (\ReflectionMethod $reflectionMethod): bool => \in_array('public', \Reflection::getModifierNames($reflectionMethod->getModifiers()), true))
             ->mapWithKeys(fn (\ReflectionMethod $reflectionMethod): array => [
                 Str::snake($reflectionMethod->getName()) => $this->{$reflectionMethod->getName()}(),
             ])

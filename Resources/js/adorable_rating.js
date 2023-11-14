@@ -1,4 +1,4 @@
-$('.rating ul li').on('click', function() {
+$('.rating ul li').on('click', function () {
 
     let li = $(this),
         ul = li.parent(),
@@ -6,11 +6,10 @@ $('.rating ul li').on('click', function() {
         last = ul.find('.current');
     let val=li.index()*1+1;
 
-    if(!rating.hasClass('animate-left') && !rating.hasClass('animate-right')) {
-
+    if (!rating.hasClass('animate-left') && !rating.hasClass('animate-right')) {
         last.removeClass('current');
 
-        ul.children('li').each(function() {
+        ul.children('li').each(function () {
             let current = $(this);
             current.toggleClass('active', li.index() > current.index());
         });
@@ -28,7 +27,6 @@ $('.rating ul li').on('click', function() {
             last.removeClass('move-from');
             rating.removeClass('animate-left animate-right');
         }, 800);
-
     }
 
 })

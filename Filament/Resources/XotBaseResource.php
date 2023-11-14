@@ -1,7 +1,9 @@
 <?php
+
 /**
  * ---.
  */
+
 declare(strict_types=1);
 
 namespace Modules\Xot\Filament\Resources;
@@ -13,7 +15,6 @@ use Webmozart\Assert\Assert;
 abstract class XotBaseResource extends Resource
 {
     protected static ?string $model = null;
-
     // protected static ?string $navigationIcon = 'heroicon-o-bell';
     // protected static ?string $navigationLabel = 'Custom Navigation Label';
     // protected static ?string $activeNavigationIcon = 'heroicon-s-document-text';

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @see https://www.webslesson.info/2019/02/import-excel-file-in-laravel.html
  * @see https://sweetcode.io/import-and-export-excel-files-data-using-in-laravel/
@@ -115,7 +116,6 @@ class XLSService
         }
 
         $realPath = $file->getRealPath();
-
         if (false === $realPath) {
             throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
@@ -142,7 +142,6 @@ class XLSService
         $column_limit = $worksheet->getHighestDataColumn();
         $row_range = range(1, $highestDataRow);
         $column_range = range('A', $column_limit);
-
         $data = collect([]);
         foreach ($row_range as $row) {
             $tmp = [];

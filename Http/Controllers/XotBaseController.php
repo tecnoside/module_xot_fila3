@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ---.
  */
@@ -43,7 +44,6 @@ class XotBaseController extends RoutingController
             'message' => $error,
             'data' => $errorMessages,
         ];
-
         // if (! empty($errorMessages)) {
         //    $response['data'] = $errorMessages;
         // }
