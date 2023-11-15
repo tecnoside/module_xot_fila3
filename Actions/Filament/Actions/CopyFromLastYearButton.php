@@ -1,24 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Xot\Actions\Filament\Actions;
+
 use Filament\Actions\Action;
-
-use Spatie\QueueableAction\QueueableAction;
 use Modules\Xot\Actions\ModelClass\CopyFromLastYearAction;
+use Spatie\QueueableAction\QueueableAction;
 
+class CopyFromLastYearButton
+{
+    use QueueableAction;
 
-class CopyFromLastYearButton{
-     use QueueableAction;
-
-    public function execute(string $modelClass, string $fieldName,?string $year)
+    public function execute(string $modelClass, string $fieldName, ?string $year)
     {
         return Action::make('copy_from_last_year')
             ->label('')
             ->tooltip('copy from last year')
             ->icon('heroicon-o-document-duplicate')
-            ->visible($year!=null)
-            ->action(fn()
-                =>app(CopyFromLastYearAction::class)->execute($modelClass,$fieldName,$year))
-            ;
+            ->visible(null != $year)
+            ->action(fn () => app(CopyFromLastYearAction::class)->execute($modelClass, $fieldName, $year))
+        ;
     }
 }
