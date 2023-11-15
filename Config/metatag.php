@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 return [
     'title' => '',
-    'sitename' => 'foodfriendfinder',
-    'subtitle' => 'Find restaurants, specials, and coupons for free',
+    'sitename' => 'xot sitename',
+    'subtitle' => 'xot subtitle',
     'sottotitolo_comune' => '',
     'generator' => '',
     'charset' => 'UTF-8',

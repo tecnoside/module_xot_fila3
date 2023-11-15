@@ -26,23 +26,19 @@ abstract class XotBasePanelProvider extends PanelProvider
 
     protected bool $topNavigation = false;
     protected bool $globalSearch = false;
+    protected bool $navigation = true;
 
     public function panel(Panel $panel): Panel
     {
         $moduleNamespace = $this->getModuleNamespace();
         $moduleLow = Str::lower($this->module);
         $metatag = MetatagData::make();
+
         $main_module = Str::lower(XotData::make()->main_module);
         $default = ($main_module == $moduleLow);
-
-        // $teamClass=$xot->getTeamClass();
-        // $teamClass=\Modules\User\Models\Team::class;
-        /*
-        FilamentView::registerRenderHook(
-            'panels::user-menu.before',
-            fn (): string =>  Blade::render('@livewire(\'team.change\')'),
-        );
-        */
+        $brandLogo = $metatag->getLogoHeader();
+        $brandName = $metatag->title;
+        $favicon = $metatag->getFavicon();
 
         return $panel
             ->default($default)
@@ -53,15 +49,15 @@ abstract class XotBasePanelProvider extends PanelProvider
             // ->profile()
             ->sidebarFullyCollapsibleOnDesktop()
              // ---METATAG
-            ->brandLogo($metatag->getLogoHeader())
-            ->brandName($metatag->title)
-            ->favicon($metatag->getFavicon())
+            ->brandLogo($brandLogo)
+            ->brandName($brandName)
+            ->favicon($favicon)
             // ---------------------
             ->maxContentWidth('full')
             ->topNavigation($this->topNavigation)
             ->globalSearch($this->globalSearch)
             ->readOnlyRelationManagersOnResourceViewPagesByDefault(false)
-             // ->navigation(false)
+             ->navigation($this->navigation)
             // ->tenant($teamClass)
             // ->tenant($teamClass,ownershipRelationship:'users')
             // ->tenant($teamClass)
