@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers;
 
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Database\Events\MigrationsEnded;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Event;
@@ -87,7 +88,19 @@ class XotServiceProvider extends XotBaseServiceProvider
         //    static fn (): ProfileTest => new ProfileTest()
         // );
         $this->registerConfigs();
+        // $this->extendExceptionHandler();
     }
+
+    //  Extend the Laravel default exception handler.
+
+    //  @return void
+
+    // private function extendExceptionHandler()
+    // {
+    //    $this->app->extend(ExceptionHandler::class, function (ExceptionHandler $handler, $app) {
+    //        return new HandlerDecorator($handler, $app[HandlersRepository::class]);
+    //    });
+    // }
 
     /*
     public function mergeConfigs(): void {
