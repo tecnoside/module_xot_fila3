@@ -21,7 +21,7 @@ class XotData extends Data implements Wireable
 {
     use WireableData;
 
-    public string $main_module;
+    public string $main_module = '';
 
     // => 'Blog'
     public string $param_name = 'noset';
@@ -67,7 +67,7 @@ class XotData extends Data implements Wireable
     {
         $xot = config('xra');
 
-        if (! \is_array($xot)) {
+        if (! \is_array($xot) || count($xot) < 3) {
             // *
             $path = TenantService::filePath('xra.php');
             $xot = File::getRequire($path);

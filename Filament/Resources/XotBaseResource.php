@@ -63,8 +63,8 @@ abstract class XotBaseResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return static::trans('navigation.name');
-        // return static::trans('navigation.plural');
+        // return static::trans('navigation.name');
+        return static::trans('navigation.plural');
     }
 
     // public static function getNavigationIcon(): ?string
