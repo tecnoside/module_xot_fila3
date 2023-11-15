@@ -30,7 +30,7 @@ abstract class XotBaseMainPanelProvider extends PanelProvider
         $metatag = MetatagData::make();
 
         $panel = $panel
-            ->default()
+            // ->default()
             ->id('admin')
             ->path('admin')
             ->login()

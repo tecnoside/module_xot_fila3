@@ -18,6 +18,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Str;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Modules\Xot\Datas\MetatagData;
+use Modules\Xot\Datas\XotData;
 
 abstract class XotBasePanelProvider extends PanelProvider
 {
@@ -31,6 +32,8 @@ abstract class XotBasePanelProvider extends PanelProvider
         $moduleNamespace = $this->getModuleNamespace();
         $moduleLow = Str::lower($this->module);
         $metatag = MetatagData::make();
+        $main_module = Str::lower(XotData::make()->main_module);
+        $default = ($main_module == $moduleLow);
 
         // $teamClass=$xot->getTeamClass();
         // $teamClass=\Modules\User\Models\Team::class;
@@ -42,7 +45,7 @@ abstract class XotBasePanelProvider extends PanelProvider
         */
 
         return $panel
-            // ->default()
+            ->default($default)
             ->login()
             // ->registration()
             // ->passwordReset()
@@ -57,8 +60,8 @@ abstract class XotBasePanelProvider extends PanelProvider
             ->maxContentWidth('full')
             ->topNavigation($this->topNavigation)
             ->globalSearch($this->globalSearch)
-            ->readOnlyRelationManagersOnResourceViewPagesByDefault(false) //
-            // ->navigation(false)
+            ->readOnlyRelationManagersOnResourceViewPagesByDefault(false)
+             // ->navigation(false)
             // ->tenant($teamClass)
             // ->tenant($teamClass,ownershipRelationship:'users')
             // ->tenant($teamClass)

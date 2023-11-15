@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
  * Modules\Xot\Models\Session.
  *
  * @property int         $id
- * @property int|null    $user_id
+ * @property string|null $user_id
  * @property string|null $ip_address
  * @property string|null $user_agent
  * @property string      $payload
