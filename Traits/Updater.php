@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Modules\Xot\Traits;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Trait Updater.
@@ -10,31 +11,12 @@ namespace Modules\Xot\Traits;
  */
 trait Updater
 {
-    /**
-     * Undocumented function.
-     * move to modelservice.
-     */
-    /*
-
-     * move to modelservice.
-     */
-    /*
-    public function getTableColumns(): array {
-        return $this->getConnection()
-            ->getSchemaBuilder()
-            ->getColumnListing($this->getTable());
-    }
-
-    /**
-     * bootUpdater function.
-    */
 
     /**
      * bootUpdater function.
      */
     protected static function bootUpdater(): void
     {
-        // parent::boot();
         /*
          * During a model create Eloquent will also update the updated_at field so
          * need to have the updated_by field here as well.
@@ -73,4 +55,7 @@ trait Updater
     }
 
     // end function boot
+
+
+
 }// end trait Updater
