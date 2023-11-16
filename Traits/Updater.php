@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 namespace Modules\Xot\Traits;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Trait Updater.
@@ -11,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 trait Updater
 {
-
     /**
      * bootUpdater function.
      */
@@ -55,7 +53,4 @@ trait Updater
     }
 
     // end function boot
-
-
-
 }// end trait Updater
