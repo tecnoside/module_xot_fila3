@@ -20,7 +20,6 @@ return [
         'children' => [
             'Installazione' => 'docs/base/installation',
             'Struttura' => 'docs/base/structure',
-
         ],
     ],
     'Errori Comuni' => [

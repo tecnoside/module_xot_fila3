@@ -6,7 +6,6 @@ namespace Modules\Xot\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
 
 /**
  * Modules\Xot\Models\Settings.
@@ -14,6 +13,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Settings newModelQuery()
  * @method static Builder|Settings newQuery()
  * @method static Builder|Settings query()
+ *
  * @mixin \Eloquent
  */
 class Settings extends Model
