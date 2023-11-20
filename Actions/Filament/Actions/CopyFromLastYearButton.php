@@ -12,7 +12,7 @@ class CopyFromLastYearButton
 {
     use QueueableAction;
 
-    public function execute(string $modelClass, string $fieldName, ?string $year)
+    public function execute(string $modelClass, string $fieldName, ?string $year): Action
     {
         return Action::make('copy_from_last_year')
             ->label('')
