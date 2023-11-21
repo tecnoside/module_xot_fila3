@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Models;
 
+use Modules\Xot\Database\Factories\CacheFactory;
+use Illuminate\Database\Eloquent\Builder;
 /**
  * Modules\Xot\Models\Cache.
  *
@@ -11,13 +13,13 @@ namespace Modules\Xot\Models;
  * @property string $value
  * @property int    $expiration
  *
- * @method static \Modules\Xot\Database\Factories\CacheFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Cache  newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Cache  newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Cache  query()
- * @method static \Illuminate\Database\Eloquent\Builder|Cache  whereExpiration($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Cache  whereKey($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Cache  whereValue($value)
+ * @method static CacheFactory factory($count = null, $state = [])
+ * @method static Builder|Cache newModelQuery()
+ * @method static Builder|Cache newQuery()
+ * @method static Builder|Cache query()
+ * @method static Builder|Cache whereExpiration($value)
+ * @method static Builder|Cache whereKey($value)
+ * @method static Builder|Cache whereValue($value)
  *
  * @mixin \Eloquent
  */

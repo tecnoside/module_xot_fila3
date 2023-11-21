@@ -18,13 +18,14 @@ class MorphManyAction
      */
     public function execute(Model $model, RelationDTO $relationDTO): void
     {
-        if (0 === \count($relationDTO->data)) {
+        if ([] === $relationDTO->data) {
             // dddx(['model'=>$model,'relationDTO'=>$relationDTO]);
             // save Model
             $model->{$relationDTO->name}()->saveMany($relationDTO->data);
 
             return;
         }
+        
         $related = $relationDTO->related;
         $keyName = $related->getKeyName();
         $models = [];

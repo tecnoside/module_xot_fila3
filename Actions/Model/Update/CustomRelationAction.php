@@ -18,7 +18,7 @@ class CustomRelationAction
      *
      * @return void
      */
-    public function execute(Model $model, RelationDTO $relationDTO)
+    public function execute(Model $model, RelationDTO $relationDTO): void
     {
         // dddx(['model' => $model, 'relationDTO' => $relationDTO]);
         $models = [];

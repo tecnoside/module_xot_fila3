@@ -37,6 +37,7 @@ abstract class XotBaseComponent extends IlluminateComponent
         $comp_name = Str::after($class, '\View\Components\\');
         $comp_name = str_replace('\\', '.', $comp_name);
         $comp_name = Str::snake($comp_name);
+        
         $view = $module_name_low.'::components.'.$comp_name;
         $view = str_replace('._', '.', $view);
 

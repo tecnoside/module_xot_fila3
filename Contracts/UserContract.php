@@ -6,6 +6,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Contracts;
 
+use Laravel\Passport\TransientToken;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -86,16 +87,16 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
     /**
      * Assign the given role to the model.
      *
-     * @param array|string|int|\Spatie\Permission\Contracts\Role|\Illuminate\Support\Collection ...$roles
+     * @param array|string|int|Role|\Illuminate\Support\Collection ...$roles
      *
      * @return $this
      */
-    public function assignRole(...$roles);
+    public function assignRole(array $roles = []);
 
     /**
      * Get the current access token being used by the user.
      *
-     * @return \Laravel\Passport\Token|\Laravel\Passport\TransientToken|null
+     * @return Token|TransientToken|null
      */
     public function token();
 

@@ -25,22 +25,23 @@ class CollectionExport implements FromCollection, WithHeadings
         $head = $collection->first();
         $headings = collect($head)->keys();
         if (null !== $transKey) {
-            $headings = $headings->map(function ($item) use ($transKey) {
+            $headings = $headings->map(static function (string $item) use ($transKey) {
                 $key = $transKey.'.fields.'.$item;
                 $trans = trans($key);
                 if ($trans !== $key) {
                     return $trans;
                 }
+
                 Assert::string($item1 = Str::replace('.', '_', $item));
                 $key = $transKey.'.fields.'.$item1;
                 $trans = trans($key);
                 if ($trans !== $key) {
                     return $trans;
                 }
-
                 return $item;
             });
         }
+        
         $this->headings = $headings->toArray();
     }
 
@@ -52,7 +53,7 @@ class CollectionExport implements FromCollection, WithHeadings
     /**
      * @return Collection
      */
-    public function collection()
+    public function collection(): Collection
     {
         return $this->collection;
     }

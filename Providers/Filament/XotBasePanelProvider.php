@@ -25,7 +25,9 @@ abstract class XotBasePanelProvider extends PanelProvider
     protected string $module;
 
     protected bool $topNavigation = false;
+    
     protected bool $globalSearch = false;
+    
     protected bool $navigation = true;
 
     public function panel(Panel $panel): Panel

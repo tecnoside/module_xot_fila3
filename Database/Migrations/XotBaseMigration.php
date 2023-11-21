@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Database\Migrations;
 
+use ReflectionClass;
+use Closure;
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
 use Doctrine\DBAL\Schema\Index;
 use Doctrine\DBAL\Schema\Table;
@@ -58,7 +60,7 @@ abstract class XotBaseMigration extends Migration
         $name = Str::before(Str::after($name, 'Create'), 'Table');
         $name = Str::singular($name);
 
-        $reflectionClass = new \ReflectionClass($this);
+        $reflectionClass = new ReflectionClass($this);
         $filename = (string) $reflectionClass->getFilename();
         $mod_path = Module::getPath();
 
@@ -89,7 +91,7 @@ abstract class XotBaseMigration extends Migration
         // \DB::purge('mysql');
         // \DB::reconnect('mysql');
         if (! $this->model instanceof Model) {
-            throw new \Exception('model is null');
+            throw new Exception('model is null');
         }
 
         $connectionName = $this->model->getConnectionName();
@@ -260,7 +262,7 @@ abstract class XotBaseMigration extends Migration
     /**
      * Undocumented function.
      */
-    public function tableCreate(\Closure $next): void
+    public function tableCreate(Closure $next): void
     {
         if (! $this->tableExists()) {
             $this->getConn()->create(
@@ -273,7 +275,7 @@ abstract class XotBaseMigration extends Migration
     /**
      * Undocumented function.
      */
-    public function tableUpdate(\Closure $next): void
+    public function tableUpdate(Closure $next): void
     {
         $this->getConn()->table(
             $this->getTable(),
@@ -321,6 +323,7 @@ abstract class XotBaseMigration extends Migration
         if (! $this->hasColumn('updated_at') && ! $this->hasColumn('created_at')) {
             $table->timestamps();
         }
+        
         /*
         if (! $this->hasColumn('user_id')) {
             $table->foreignIdFor(
@@ -341,6 +344,7 @@ abstract class XotBaseMigration extends Migration
             // ->nullOnDelete()
             // ->cascadeOnUpdate()
         }
+        
         if (! $this->hasColumn('created_by')) {
             $table->foreignIdFor(
                 model: $userClass,
@@ -381,11 +385,11 @@ abstract class XotBaseMigration extends Migration
         $func = 'updateUserKey'.Str::studly(app($model)->getKeyType());
         $this->{$func}($table);
 
-        if ($this->hasColumn('model_id') && \in_array($this->getColumnType('model_id'), ['bigint'], true)) {
+        if ($this->hasColumn('model_id') && $this->getColumnType('model_id') === 'bigint') {
             $table->string('model_id', 36)->index()->change();
         }
 
-        if ($this->hasColumn('team_id') && \in_array($this->getColumnType('team_id'), ['bigint'], true)) {
+        if ($this->hasColumn('team_id') && $this->getColumnType('team_id') === 'bigint') {
             $table->uuid('team_id')->nullable()->change(); //  ->index()
         }
     }
@@ -396,12 +400,12 @@ abstract class XotBaseMigration extends Migration
             $table->uuid('id')->primary()->first(); // ->default(DB::raw('(UUID())'));
         }
 
-        if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['bigint'], true)) {
+        if ($this->hasColumn('id') && $this->getColumnType('id') === 'bigint') {
             // $table->uuid('id')->default(DB::raw('(UUID())'))->change();
             $table->uuid('id')->change();
         }
 
-        if ($this->hasColumn('user_id') && \in_array($this->getColumnType('user_id'), ['bigint'], true)) {
+        if ($this->hasColumn('user_id') && $this->getColumnType('user_id') === 'bigint') {
             $table->uuid('user_id')->change(); //  ->index()
         }
     }
@@ -421,6 +425,7 @@ abstract class XotBaseMigration extends Migration
             if ($this->hasIndexName('PRIMARY')) {
                 $table->dropPrimary();
             }
+            
             $table->renameColumn('id', 'uuid');
             // $table->id('id')->first();
         }

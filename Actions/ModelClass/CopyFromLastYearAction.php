@@ -13,13 +13,14 @@ class CopyFromLastYearAction
     /**
      * @return void
      */
-    public function execute(string $modelClass, string $fieldName, ?string $year)
+    public function execute(string $modelClass, string $fieldName, ?string $year): void
     {
-        $rows_year = $modelClass::where([$fieldName => intval($year)])->get();
-        $rows_last_year = $modelClass::where([$fieldName => intval($year) - 1])->get();
+        $rows_year = $modelClass::where([$fieldName => (int) $year])->get();
+        $rows_last_year = $modelClass::where([$fieldName => (int) $year - 1])->get();
         if ($rows_year->count() > 0) {
             return;
         }
+        
         foreach ($rows_last_year as $row) {
             $data = collect($row->toArray())
                 ->except($row->getKeyName())

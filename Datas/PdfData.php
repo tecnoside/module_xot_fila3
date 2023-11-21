@@ -42,6 +42,7 @@ class PdfData extends Data
     public bool $pdfa = false;
 
     public string $dest = 'F';
+    
     /*
     Dest can be :
     I : send the file inline to the browser (default). The plug-in is used if available. The name given by name is used when one selects the "Save as" option on the link generating the PDF.
@@ -61,9 +62,7 @@ class PdfData extends Data
 
     public function getPath(): string
     {
-        $path = Storage::disk($this->disk)->path($this->filename);
-
-        return $path;
+        return Storage::disk($this->disk)->path($this->filename);
     }
 
     public function download(): BinaryFileResponse
@@ -87,7 +86,7 @@ class PdfData extends Data
 
     public function fromModel(Model $model): self
     {
-        $model_class = get_class($model);
+        $model_class = $model::class;
         $model_name = class_basename($model_class);
         $module = Str::between($model_class, '\Modules\\', '\Models');
         $view_name = strtolower($module).'::'.Str::kebab($model_name).'.show.pdf';

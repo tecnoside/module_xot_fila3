@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Modules\Xot\Models;
 
 // use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Carbon;
+use Modules\Xot\Database\Factories\ProfileFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,12 +23,12 @@ use Spatie\Permission\Traits\HasRoles;
  * @property int                             $id
  * @property string|null                     $first_name
  * @property string|null                     $last_name
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string|null                     $user_id
  * @property string|null                     $updated_by
  * @property string|null                     $created_by
- * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property Carbon|null $deleted_at
  * @property string|null                     $deleted_by
  * @property string|null                     $type
  * @property int                             $is_active
@@ -36,7 +38,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property int|null                        $roles_count
  * @property User|null                       $user
  *
- * @method static \Modules\Xot\Database\Factories\ProfileFactory factory($count = null, $state = [])
+ * @method static ProfileFactory factory($count = null, $state = [])
  * @method static Builder|Profile                                newModelQuery()
  * @method static Builder|Profile                                newQuery()
  * @method static Builder|Profile                                permission($permissions)

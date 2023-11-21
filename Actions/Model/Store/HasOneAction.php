@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model\Store;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Arr;
@@ -18,7 +19,7 @@ class HasOneAction
     {
         // dddx(['row' => $row, 'relation' => $relation]);
         if (! $relationDTO->rows instanceof HasOne) {
-            throw new \Exception('['.__LINE__.']['.__FILE__.']');
+            throw new Exception('['.__LINE__.']['.__FILE__.']');
         }
 
         $rows = $relationDTO->rows;
@@ -27,7 +28,7 @@ class HasOneAction
             $related_id = $relationDTO->data[0];
             $related = $relationDTO->related->find($related_id);
             if (! $related instanceof Model) {
-                throw new \Exception('['.__LINE__.']['.__FILE__.']');
+                throw new Exception('['.__LINE__.']['.__FILE__.']');
             }
 
             $rows->save($related);

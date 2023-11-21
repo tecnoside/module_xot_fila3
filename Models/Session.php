@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Models;
 
+use Illuminate\Support\Carbon;
+use Modules\Xot\Database\Factories\SessionFactory;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -15,12 +17,12 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string|null                     $user_agent
  * @property string                          $payload
  * @property int                             $last_activity
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string|null                     $created_by
  * @property string|null                     $updated_by
  *
- * @method static \Modules\Xot\Database\Factories\SessionFactory factory($count = null, $state = [])
+ * @method static SessionFactory factory($count = null, $state = [])
  * @method static Builder|Session                                newModelQuery()
  * @method static Builder|Session                                newQuery()
  * @method static Builder|Session                                query()

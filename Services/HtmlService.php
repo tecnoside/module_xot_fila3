@@ -39,7 +39,7 @@ class HtmlService
         $filename = Storage::disk('local')->path('test.pdf');
         extract($params);
         if (! isset($html)) {
-            throw new \Exception('err html is missing');
+            throw new Exception('err html is missing');
         }
 
         if (request('debug', false)) {
@@ -50,26 +50,1134 @@ class HtmlService
             $html2pdf = new Html2Pdf($pdforientation, 'A4', 'it');
             $html2pdf->setTestTdInOnePage(false);
             $html2pdf->WriteHTML($html);
-            // if ('content_PDF' == $out) {
-            //     return $html2pdf->Output($filename.'.pdf', 'S');
-            // }
-            // if ('content_PDF' == $out) {
-            //     return $html2pdf->Output($filename.'.pdf', 'S');
-            // }
-            // if ('file' == $out) {
-            //     $html2pdf->Output($filename, 'F');
-
-            //     return $filename;
-            // }
-
-            switch ($out) {
-                case 'content_PDF':
-                    return $html2pdf->Output($filename.'.pdf', 'S');
-
-                case 'file':
-                    $html2pdf->Output($filename, 'F');
-
-                    return $filename;
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'file') {
+                $html2pdf->Output($filename, 'F');
+                return $filename;
             }
 
             return $html2pdf->Output();

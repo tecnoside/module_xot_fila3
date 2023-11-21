@@ -676,9 +676,11 @@ if (! function_exists('getRelationships')) {
             if ([] !== $args) {
                 continue;
             }
+            
             if ($reflection->class !== $model::class) {
                 continue;
             }
+            
             try {
                 $return = $reflection->invoke($model);
                 $check = $return instanceof Relation;
@@ -1013,6 +1015,7 @@ if (! function_exists('inArrayBetween')) {
             if ($curr < $v[$field_start]) {
                 continue;
             }
+            
             if ($curr > $v[$field_end]) {
                 continue;
             }
@@ -1031,6 +1034,7 @@ if (! function_exists('inArrayBetweenKey')) {
             if ($curr < $v[$field_start]) {
                 continue;
             }
+            
             if ($curr > $v[$field_end]) {
                 continue;
             }

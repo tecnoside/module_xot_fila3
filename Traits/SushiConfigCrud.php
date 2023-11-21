@@ -24,7 +24,7 @@ trait SushiConfigCrud
          * During a model create Eloquent will also update the updated_at field so
          * need to have the updated_by field here as well.
          */
-        static::creating(function ($model): void {
+        static::creating(static function ($model) : void {
             $data = [];
             $data['id'] = $model->max('id') + 1;
             $data = array_merge($data, $model->toArray());
@@ -32,20 +32,21 @@ trait SushiConfigCrud
             if (class_exists('\\'.TenantService::class)) {
                 $config_name = TenantService::getName().'/'.$config_name;
             }
+
             $config_path = config_path($config_name.'.php');
             $original = config($model->config_name);
             if (! \is_array($original)) {
                 $original = [];
             }
+
             $new = array_merge($original, [$data]);
             $fillable = $model->getFillable();
-            $new = collect($new)->map(function (array $item) use ($fillable): array {
+            $new = collect($new)->map(static function (array $item) use ($fillable) : array {
                 foreach ($fillable as $v) {
                     if (! isset($item[$v])) {
                         $item[$v] = null;
                     }
                 }
-
                 return $item;
             })->all();
             file_put_contents($config_path, '<?php
@@ -55,18 +56,20 @@ trait SushiConfigCrud
         /*
                  * updating.
                  */
-        static::updating(function ($model): void {
+        static::updating(static function ($model) : void {
             $data = $model->toArray();
             $config_name = $model->config_name;
             if (class_exists('\\'.TenantService::class)) {
                 $config_name = TenantService::getName().'/'.$config_name;
             }
+
             $config_path = config_path($config_name.'.php');
             $original = config($model->config_name);
             if (! \is_array($original)) {
                 $original = [];
             }
-            $up = collect($original)->groupBy('id')->map(fn ($item) => $item->first())->all();
+
+            $up = collect($original)->groupBy('id')->map(static fn($item) => $item->first())->all();
             $id = $data['id'];
             $up[$id] = $data;
             file_put_contents($config_path, '<?php
@@ -78,18 +81,20 @@ trait SushiConfigCrud
          * For deletes we need to save the model first with the deleted_by field
         */
 
-        static::deleting(function ($model): void {
+        static::deleting(static function ($model) : void {
             $data = $model->toArray();
             $config_name = $model->config_name;
             if (class_exists('\\'.TenantService::class)) {
                 $config_name = TenantService::getName().'/'.$config_name;
             }
+
             $config_path = config_path($config_name.'.php');
             $original = config($model->config_name);
             if (! \is_array($original)) {
                 $original = [];
             }
-            $up = collect($original)->groupBy('id')->map(fn ($item) => $item->first())->all();
+
+            $up = collect($original)->groupBy('id')->map(static fn($item) => $item->first())->all();
             $id = $data['id'];
             unset($up['id']);
             file_put_contents($config_path, '<?php

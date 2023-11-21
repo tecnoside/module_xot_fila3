@@ -24,28 +24,25 @@ class FilterRelationsAction
         $methods = get_class_methods($model);
         $res = collect($data)
             ->filter(
-                function ($value, $item) use ($methods): bool {
+                static function ($value, $item) use ($methods) : bool {
                     $method = Str::camel($item);
-
                     return \in_array($method, $methods, true);
                 }
             )
             ->filter(
-                function ($value, $item) use ($model): bool {
+                static function ($value, $item) use ($model) : bool {
                     $method = Str::camel($item);
                     $rows = $model->$method();
-
                     return $rows instanceof Relation;
                 }
             )->map(
-                function ($value, $item) use ($model): array {
+                static function ($value, $item) use ($model) : array {
                     $method = Str::camel($item);
                     $rows = $model->$method();
                     // $related = null;
                     // if (method_exists($rows, 'getRelated')) {
                     // Cannot call method getRelated() on class-string|object
                     $related = $rows->getRelated();
-
                     // }
                     // if(!is_array($value)){
                     //    dddx(['item'=>$item,'value'=>$value]);

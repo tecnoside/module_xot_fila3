@@ -29,13 +29,14 @@ trait MyLogTrait
             /**
              * @param Model $model
              */
-            function ($model): void {
+            static function ($model) : void {
                 // dddx(static::$logModel);
                 $user = auth()->user();
                 if ($user instanceof Authenticatable) {
                     $model->created_by = $user->handle;
                     $model->updated_by = $user->handle.'';
                 }
+                
                 // $model->uuid = (string)Uuid::generate();
             }
         );
@@ -44,26 +45,25 @@ trait MyLogTrait
             /**
              * @param Model $model
              */
-            function ($model): void {
+            static function ($model) : void {
                 // $tmp = ;
                 // dddx(debug_backtrace());
                 $parz = [];
-                $parz['tbl'] = $model->getTable(); // work
-                $parz['id_tbl'] = $model->getKey(); // work
+                $parz['tbl'] = $model->getTable();
+                // work
+                $parz['id_tbl'] = $model->getKey();
+                // work
                 if (\is_object($model)) {
                     $data = collect((array) $model)->filter(
-                        function ($value, $key): bool {
-                            $key = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '', $key);
-
+                        static function ($value, $key) : bool {
+                            $key = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '', (string) $key);
                             return '*attributes' === $key;
                         }
                     )->values()[0];
                     $parz['data'] = json_encode($data, JSON_THROW_ON_ERROR);
                 }
-
                 $log = static::$logModel;
                 $res = $log::create($parz);
-
                 if (auth()->check()) {
                     $user = auth()->user();
                     if ($user instanceof Authenticatable) {

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Models;
 
+use Modules\Xot\Database\Factories\CacheLockFactory;
+use Illuminate\Database\Eloquent\Builder;
 /**
  * Modules\Xot\Models\CacheLock.
  *
@@ -11,13 +13,13 @@ namespace Modules\Xot\Models;
  * @property string $owner
  * @property int    $expiration
  *
- * @method static \Modules\Xot\Database\Factories\CacheLockFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|CacheLock  newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|CacheLock  newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|CacheLock  query()
- * @method static \Illuminate\Database\Eloquent\Builder|CacheLock  whereExpiration($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CacheLock  whereKey($value)
- * @method static \Illuminate\Database\Eloquent\Builder|CacheLock  whereOwner($value)
+ * @method static CacheLockFactory factory($count = null, $state = [])
+ * @method static Builder|CacheLock newModelQuery()
+ * @method static Builder|CacheLock newQuery()
+ * @method static Builder|CacheLock query()
+ * @method static Builder|CacheLock whereExpiration($value)
+ * @method static Builder|CacheLock whereKey($value)
+ * @method static Builder|CacheLock whereOwner($value)
  *
  * @mixin \Eloquent
  */

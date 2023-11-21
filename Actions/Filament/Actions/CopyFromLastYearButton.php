@@ -19,7 +19,7 @@ class CopyFromLastYearButton
             ->tooltip('copy from last year')
             ->icon('heroicon-o-document-duplicate')
             ->visible(null != $year)
-            ->action(fn () => app(CopyFromLastYearAction::class)->execute($modelClass, $fieldName, $year))
+            ->action(static fn() => app(CopyFromLastYearAction::class)->execute($modelClass, $fieldName, $year))
         ;
     }
 }
