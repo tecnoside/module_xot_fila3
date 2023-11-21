@@ -19,11 +19,17 @@ class CopyFromLastYearAction
         }
 
         foreach ($rows_last_year as $row) {
+            /*
             $data = collect($row->toArray())
                 ->except($row->getKeyName())
                 ->toArray();
             $data[$fieldName] = $year;
             $up = $modelClass::create($data);
+            */
+            $up = $row->replicate()->fill([
+                $fieldName => $year,
+            ]);
+            $up->save();
         }
     }
 }
