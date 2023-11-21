@@ -183,7 +183,7 @@ class ArrayService
         $arr_2 = self::fixType($arr_2);
 
         $ris = $coll_1->filter(
-            static function ($value, $key) use ($arr_2) {
+            function ($value, $key) use ($arr_2) {
                 try {
                     return ! \in_array($value, $arr_2, true);
                 } catch (\Exception $exception) {

@@ -132,7 +132,7 @@ if (! function_exists('debug_methods')) {
         $methods_get = collect($methods)->filter(
             static fn ($item) => Str::startsWith($item, 'get')
         )->map(
-            static function ($item) use ($rows) {
+            function ($item) use ($rows) {
                 $value = 'Undefined';
                 try {
                     $value = $rows->{$item}();
@@ -362,7 +362,7 @@ if (! function_exists('getModelByName')) {
         // }
 
         $path = collect($files)->first(
-            static function ($file) use ($name): bool {
+            function ($file) use ($name): bool {
                 $info = pathinfo((string) $file);
                 // Offset 'filename' on array{dirname?: string, basename: string, extension?: string, filename: string} on left side of ?? always exists and is not nullable.
                 $filename = $info['filename'];
@@ -401,7 +401,7 @@ if (! function_exists('getUserClass')) {
 }
 
 if (! function_exists('getModuleFromModel')) {
-    function getModuleFromModel(object $model): ?Nwidart\Modules\Module
+    function getModuleFromModel(object $model): Nwidart\Modules\Module
     {
         $class = $model::class;
         $module_name = Str::before(Str::after($class, 'Modules\\'), '\\Models\\');

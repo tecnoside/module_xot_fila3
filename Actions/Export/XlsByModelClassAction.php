@@ -32,7 +32,7 @@ class XlsByModelClassAction
 
         $rows = $rows->get();
         if ([] !== $includes) {
-            $rows = $rows->map(static function ($item) use ($includes) {
+            $rows = $rows->map(function ($item) use ($includes) {
                 $data = [];
                 foreach ($includes as $include) {
                     $data[$include] = data_get($item, $include);

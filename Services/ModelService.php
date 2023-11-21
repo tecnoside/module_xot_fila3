@@ -10,6 +10,9 @@ declare(strict_types=1);
 namespace Modules\Xot\Services;
 
 // ----------- Requests ----------
+use ReflectionClass;
+use ReflectionMethod;
+use ErrorException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Collection;
@@ -77,7 +80,7 @@ class ModelService
         $data = collect($data)->filter(
             static fn ($item, $key): bool => \in_array($key, $methods, true)
         )->map(
-            static function ($v, $k) use ($model, $data) {
+            function ($v, $k) use ($model, $data) {
                 if (! \is_string($k)) {
                     dddx([$k, $v, $data]);
                 }
@@ -134,7 +137,7 @@ class ModelService
     public function getRelations(): array
     {
         $model = $this->model;
-        $reflectionClass = new \ReflectionClass($model);
+        $reflectionClass = new ReflectionClass($model);
         $relations = [];
         $methods = $reflectionClass->getMethods();
 
@@ -152,12 +155,15 @@ class ModelService
             if (0 !== $method->getNumberOfRequiredParameters()) {
                 continue;
             }
+            
             if ($method->class !== $model::class) {
                 continue;
             }
+            
             if (! ($doc && str_contains($doc, '\\Relations\\'))) {
                 continue;
             }
+            
             $relations[] = $res;
         }
 
@@ -175,27 +181,30 @@ class ModelService
         $model = $this->model;
         $relationships = [];
 
-        foreach ((new \ReflectionClass($model))->getMethods(\ReflectionMethod::IS_PUBLIC) as $reflectionMethod) {
+        foreach ((new ReflectionClass($model))->getMethods(ReflectionMethod::IS_PUBLIC) as $reflectionMethod) {
             if ($reflectionMethod->class !== $model::class) {
                 continue;
             }
+            
             if (! empty($reflectionMethod->getParameters())) {
                 continue;
             }
+            
             if (__FUNCTION__ === $reflectionMethod->getName()) {
                 continue;
             }
+            
             try {
                 $return = $reflectionMethod->invoke($model);
 
                 if ($return instanceof Relation) {
                     $relationships[$reflectionMethod->getName()] = [
                         'name' => $reflectionMethod->getName(),
-                        'type' => (new \ReflectionClass($return))->getShortName(),
-                        'model' => (new \ReflectionClass($return->getRelated()))->getName(),
+                        'type' => (new ReflectionClass($return))->getShortName(),
+                        'model' => (new ReflectionClass($return->getRelated()))->getName(),
                     ];
                 }
-            } catch (\ErrorException) {
+            } catch (ErrorException) {
             }
         }
 
@@ -291,7 +300,7 @@ class ModelService
         $table_names = $dbSchemaManager->listTableNames();
 
         return collect($table_names)->map(
-            static function ($table_name) use ($dbSchemaManager): array {
+            function ($table_name) use ($dbSchemaManager): array {
                 $doctrineTable = $dbSchemaManager->listTableDetails($table_name);
                 $columns = $doctrineTable->getColumns();
                 $collection = collect($columns)->map(

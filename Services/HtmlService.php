@@ -53,6 +53,7 @@ class HtmlService
             if ('content_PDF' == $out) {
                 return $html2pdf->Output($filename.'.pdf', 'S');
             }
+<<<<<<< HEAD
             if ('content_PDF' == $out) {
                 return $html2pdf->Output($filename.'.pdf', 'S');
             }
@@ -1197,6 +1198,10 @@ class HtmlService
                 return $html2pdf->Output($filename.'.pdf', 'S');
             }
             if ('file' == $out) {
+=======
+            
+            if ($out == 'file') {
+>>>>>>> 6501a31 (up)
                 $html2pdf->Output($filename, 'F');
 
                 return $filename;

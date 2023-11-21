@@ -100,7 +100,7 @@ class DocxService
         }
 
         return collect($row)->map(
-            static function ($item, string $key) use ($prefix, $row): array {
+            function ($item, string $key) use ($prefix, $row): array {
                 if ($row->$key instanceof Carbon) {
                     $item = $row->$key->format('d/m/Y');
                     $item_year = $row->$key->format('Y');
@@ -168,7 +168,7 @@ class DocxService
         // $arr = $row->toArray();
         // dddx($arr);
         return collect($arr)->map(
-            static function ($item, string $key) use ($row, $prefix, $arr): array {
+            function ($item, string $key) use ($row, $prefix, $arr): array {
                 // *
                 if ('' !== $arr[$key] && \is_object($row->$key) && $row->$key instanceof Carbon) {
                     try {

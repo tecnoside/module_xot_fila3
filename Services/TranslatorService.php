@@ -57,7 +57,7 @@ class TranslatorService extends BaseTranslator
     public static function store(array $data): void
     {
         $data = collect($data)->map(
-            static function ($v, $k) {
+            function ($v, $k) {
                 $item = self::parse(['key' => $k]);
                 $item['value'] = $v;
 
@@ -212,7 +212,7 @@ class TranslatorService extends BaseTranslator
         self::addMissing($key, $data);
 
         return collect($data)->map(
-            static function (string $item) use ($key) {
+            function (string $item) use ($key) {
                 $k = $key.'.'.$item;
 
                 return trans($k);

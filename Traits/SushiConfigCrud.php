@@ -24,7 +24,11 @@ trait SushiConfigCrud
          * During a model create Eloquent will also update the updated_at field so
          * need to have the updated_by field here as well.
          */
+<<<<<<< HEAD
         static::creating(static function ($model): void {
+=======
+        static::creating(function ($model) : void {
+>>>>>>> 6501a31 (up)
             $data = [];
             $data['id'] = $model->max('id') + 1;
             $data = array_merge($data, $model->toArray());
@@ -41,7 +45,11 @@ trait SushiConfigCrud
 
             $new = array_merge($original, [$data]);
             $fillable = $model->getFillable();
+<<<<<<< HEAD
             $new = collect($new)->map(static function (array $item) use ($fillable): array {
+=======
+            $new = collect($new)->map(function (array $item) use ($fillable) : array {
+>>>>>>> 6501a31 (up)
                 foreach ($fillable as $v) {
                     if (! isset($item[$v])) {
                         $item[$v] = null;
@@ -57,7 +65,11 @@ trait SushiConfigCrud
         /*
                  * updating.
                  */
+<<<<<<< HEAD
         static::updating(static function ($model): void {
+=======
+        static::updating(function ($model) : void {
+>>>>>>> 6501a31 (up)
             $data = $model->toArray();
             $config_name = $model->config_name;
             if (class_exists('\\'.TenantService::class)) {
@@ -82,7 +94,11 @@ trait SushiConfigCrud
          * For deletes we need to save the model first with the deleted_by field
         */
 
+<<<<<<< HEAD
         static::deleting(static function ($model): void {
+=======
+        static::deleting(function ($model) : void {
+>>>>>>> 6501a31 (up)
             $data = $model->toArray();
             $config_name = $model->config_name;
             if (class_exists('\\'.TenantService::class)) {

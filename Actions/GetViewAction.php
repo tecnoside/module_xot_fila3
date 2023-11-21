@@ -35,7 +35,7 @@ class GetViewAction
         $tmp = array_slice($arr, 3);
 
         $tmp = collect($tmp)->map(
-            static function ($item) {
+            function ($item) {
                 $item = str_replace('.php', '', $item);
 
                 return Str::slug(Str::snake($item));

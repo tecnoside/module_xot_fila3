@@ -30,7 +30,7 @@ class Search
         $search_fields = $model->getFillable();
         // $table = $model->getTable();
         if (\strlen($q) > 1) {
-            $query = $query->where(static function ($subquery) use ($search_fields, $q): void {
+            $query = $query->where(function ($subquery) use ($search_fields, $q): void {
                 foreach ($search_fields as $search_field) {
                     if (Str::contains($search_field, '.')) {
                         [$rel, $rel_field] = explode('.', (string) $search_field);

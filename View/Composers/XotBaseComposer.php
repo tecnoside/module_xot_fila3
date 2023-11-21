@@ -66,7 +66,7 @@ abstract class XotBaseComposer
      *
      * @return mixed|void
      */
-    public function call(string $func, array $args = [])
+    public function call(string $func, $args = [])
     {
         $module = Module::find($this->module_name);
         // $module = app(\Nwidart\Modules\Module::class)->find($this->module_name);

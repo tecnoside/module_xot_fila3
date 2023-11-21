@@ -91,7 +91,7 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
      *
      * @return $this
      */
-    public function assignRole(array $roles = []);
+    public function assignRole($roles = []);
 
     /**
      * Get the current access token being used by the user.

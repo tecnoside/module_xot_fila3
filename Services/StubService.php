@@ -292,7 +292,7 @@ class StubService
         $platform->registerDoctrineTypeMapping('enum', 'string');
 
         return $this->getFillable()->map(
-            static function ($input_name) use ($connection, $model) {
+            function ($input_name) use ($connection, $model) {
                 try {
                     $table_name = $connection->getTablePrefix().$model->getTable();
                     if (! \is_string($input_name)) {
