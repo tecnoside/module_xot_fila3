@@ -8,20 +8,14 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  * Undocumented class.
  */
-class CreateSessionsTable extends XotBaseMigration
-{
+class CreateSessionsTable extends XotBaseMigration {
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
+    public function up(): void {
         // -- CREATE --
         $this->tableCreate(
-<<<<<<< HEAD
-            static function (Blueprint $table): void {
-=======
-            function (Blueprint $table) : void {
->>>>>>> 6501a31 (up)
+            function (Blueprint $table): void {
                 $table->string('id')->primary();
                 $table->foreignId('user_id')->nullable()->index();
                 $table->string('ip_address', 45)->nullable();

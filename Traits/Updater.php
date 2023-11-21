@@ -20,11 +20,7 @@ trait Updater
          * need to have the updated_by field here as well.
          */
         static::creating(
-<<<<<<< HEAD
-            static function ($model): void {
-=======
             function ($model) : void {
->>>>>>> 6501a31 (up)
                 // if (auth()->user() instanceof Authenticatable) {
                 $model->created_by = auth()->id();
                 $model->updated_by = auth()->id();
@@ -36,11 +32,7 @@ trait Updater
          * updating.
          */
         static::updating(
-<<<<<<< HEAD
-            static function ($model): void {
-=======
             function ($model) : void {
->>>>>>> 6501a31 (up)
                 $model->updated_by = auth()->id();
             }
         );
@@ -50,11 +42,7 @@ trait Updater
          * For deletes we need to save the model first with the deleted_by field
         */
         // *
-<<<<<<< HEAD
-        static::deleting(static function ($model): void {
-=======
         static::deleting(function ($model) : void {
->>>>>>> 6501a31 (up)
             if (\in_array('deleted_by', array_keys($model->attributes), true)) {
                 $model->deleted_by = auth()->id();
                 $model->save();

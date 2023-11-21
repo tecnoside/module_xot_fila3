@@ -12,15 +12,13 @@ use Modules\Tenant\Services\TenantService;
 use Spatie\QueueableAction\QueueableAction;
 use Webmozart\Assert\Assert;
 
-class GetModulesNavigationItems
-{
+class GetModulesNavigationItems {
     use QueueableAction;
 
     /**
      * Undocumented function.
      */
-    public function execute(): array
-    {
+    public function execute(): array {
         $navs = [];
 
         // $modules = getAllModules(); // app('modules') da errore su container Cache
@@ -48,15 +46,7 @@ class GetModulesNavigationItems
                 ->sort(3)
                 ->visible(function () use ($role) {
                     Assert::notNull($user = Filament::auth()->user());
-<<<<<<< HEAD
 
-                    // $user->assignRole('super-admin');
-                    // if ($user->hasRole('super-admin')) {
-                    //    $role = Role::firstOrCreate(['name' => $role] /*,['id'=>Str::uuid() ]*/);
-                    // $res = $user->assignRole($role);
-                    // }
-=======
->>>>>>> 6501a31 (up)
                     return $user->hasRole($role);
                 });
 
