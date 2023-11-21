@@ -27,8 +27,10 @@ TableException
 /**
  * Class HtmlService.
  */
-class HtmlService {
-    public static function toPdf(array $params): string {
+class HtmlService
+{
+    public static function toPdf(array $params): string
+    {
         // dddx($params);
 
         include_once __DIR__.'/vendor/autoload.php';

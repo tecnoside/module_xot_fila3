@@ -12,11 +12,13 @@ use Modules\Tenant\Services\TenantService;
 
 use function Safe\file_put_contents;
 
-trait SushiConfigCrud {
+trait SushiConfigCrud
+{
     /**
      * bootUpdater function.
      */
-    protected static function bootSushiConfigCrud(): void {
+    protected static function bootSushiConfigCrud(): void
+    {
         // parent::boot();
         /*
          * During a model create Eloquent will also update the updated_at field so

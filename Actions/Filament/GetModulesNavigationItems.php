@@ -12,13 +12,15 @@ use Modules\Tenant\Services\TenantService;
 use Spatie\QueueableAction\QueueableAction;
 use Webmozart\Assert\Assert;
 
-class GetModulesNavigationItems {
+class GetModulesNavigationItems
+{
     use QueueableAction;
 
     /**
      * Undocumented function.
      */
-    public function execute(): array {
+    public function execute(): array
+    {
         $navs = [];
 
         // $modules = getAllModules(); // app('modules') da errore su container Cache

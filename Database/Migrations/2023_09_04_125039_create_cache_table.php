@@ -8,11 +8,13 @@ use Modules\Xot\Database\Migrations\XotBaseMigration;
 /**
  * Undocumented class.
  */
-class CreateCacheTable extends XotBaseMigration {
+class CreateCacheTable extends XotBaseMigration
+{
     /**
      * Run the migrations.
      */
-    public function up(): void {
+    public function up(): void
+    {
         // -- CREATE --
         $this->tableCreate(
             function (Blueprint $table): void {
