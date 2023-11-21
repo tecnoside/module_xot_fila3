@@ -22,6 +22,7 @@ return [
             'Struttura' => 'docs/base/structure',
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 <<<<<<< HEAD
@@ -32,6 +33,8 @@ return [
 =======
 
 >>>>>>> 5af6dd4 (.)
+=======
+>>>>>>> 29845fa (up)
         ],
     ],
     'Errori Comuni' => [
