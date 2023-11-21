@@ -20,6 +20,10 @@ return [
         'children' => [
             'Installazione' => 'docs/base/installation',
             'Struttura' => 'docs/base/structure',
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5888387 (up)
         ],
     ],
     'Errori Comuni' => [
