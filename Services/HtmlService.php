@@ -1187,6 +1187,15 @@ class HtmlService
             if ($out == 'content_PDF') {
                 return $html2pdf->Output($filename.'.pdf', 'S');
             }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+            if ($out == 'content_PDF') {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
             if ($out == 'file') {
                 $html2pdf->Output($filename, 'F');
                 return $filename;
