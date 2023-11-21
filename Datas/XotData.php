@@ -65,6 +65,7 @@ class XotData extends Data implements Wireable
 
     public static function make(): self
     {
+        /*
         $xot = config('xra');
 
         if (! \is_array($xot) || count($xot) < 3) {
@@ -74,14 +75,11 @@ class XotData extends Data implements Wireable
             if (! \is_array($xot)) {
                 $xot = [];
             }
-            // */
-            // throw new \Exception('WIP ['.class_basename($this).']');
         }
-        // if(!isset($xot['team_class'])){
-        //    $xot['team_class']='Modules\User\Models\Team';
-        // }
+        */
+        $data = TenantService::getConfig('xra');
 
-        return self::from($xot);
+        return self::from($data);
     }
 
     public function getUserClass(): string

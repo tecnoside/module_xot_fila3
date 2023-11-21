@@ -11,30 +11,10 @@ namespace Modules\Xot\Traits;
 trait Updater
 {
     /**
-     * Undocumented function.
-     * move to modelservice.
-     */
-    /*
-
-     * move to modelservice.
-     */
-    /*
-    public function getTableColumns(): array {
-        return $this->getConnection()
-            ->getSchemaBuilder()
-            ->getColumnListing($this->getTable());
-    }
-
-    /**
-     * bootUpdater function.
-    */
-
-    /**
      * bootUpdater function.
      */
     protected static function bootUpdater(): void
     {
-        // parent::boot();
         /*
          * During a model create Eloquent will also update the updated_at field so
          * need to have the updated_by field here as well.
