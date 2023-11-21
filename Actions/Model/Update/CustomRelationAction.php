@@ -15,8 +15,6 @@ class CustomRelationAction
 
     /**
      * Undocumented function.
-     *
-     * @return void
      */
     public function execute(Model $model, RelationDTO $relationDTO): void
     {

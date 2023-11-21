@@ -37,6 +37,7 @@ class XlsByModelClassAction
                 foreach ($includes as $include) {
                     $data[$include] = data_get($item, $include);
                 }
+
                 return $data;
             });
         }
@@ -48,7 +49,7 @@ class XlsByModelClassAction
         if (null !== $callback) {
             $rows = $rows->map($callback);
         }
-        
+
         $transKey = app(GetTransKeyByModelClassAction::class)->execute($modelClass);
         $collectionExport = new CollectionExport($rows, $transKey);
         $filename = $this->getExportName($modelClass);
@@ -61,10 +62,10 @@ class XlsByModelClassAction
         $with = [];
         foreach ($includes as $include) {
             $tmp = explode('.', (string) $include);
-            if (!isset($tmp[0])) {
+            if (! isset($tmp[0])) {
                 continue;
             }
-            if (!Str::contains($include, '.')) {
+            if (! Str::contains($include, '.')) {
                 continue;
             }
             $with[] = $tmp[0];

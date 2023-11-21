@@ -38,10 +38,11 @@ class CollectionExport implements FromCollection, WithHeadings
                 if ($trans !== $key) {
                     return $trans;
                 }
+
                 return $item;
             });
         }
-        
+
         $this->headings = $headings->toArray();
     }
 
@@ -50,9 +51,6 @@ class CollectionExport implements FromCollection, WithHeadings
         return $this->headings;
     }
 
-    /**
-     * @return Collection
-     */
     public function collection(): Collection
     {
         return $this->collection;

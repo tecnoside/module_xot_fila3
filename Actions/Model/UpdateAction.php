@@ -21,7 +21,7 @@ class UpdateAction
     {
         $validator = Validator::make($data, $rules);
         $validator->validate();
-        
+
         $keyName = $model->getKeyName();
 
         if (null === $model->getKey()) {
@@ -30,10 +30,10 @@ class UpdateAction
             if (method_exists($model, 'withTrashed')) {
                 $model = $model->withTrashed();
             }
-            
+
             $model = $model->firstOrCreate([$keyName => $key], $data);
         }
-        
+
         /**
          * @phpstan-ignore-next-line.
          */

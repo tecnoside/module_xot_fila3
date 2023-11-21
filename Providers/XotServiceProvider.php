@@ -123,11 +123,11 @@ class XotServiceProvider extends XotBaseServiceProvider
             if ('php' !== $file->getExtension()) {
                 continue;
             }
-            
+
             if (false === $file->getRealPath()) {
                 continue;
             }
-            
+
             include_once $file->getRealPath();
         }
     }

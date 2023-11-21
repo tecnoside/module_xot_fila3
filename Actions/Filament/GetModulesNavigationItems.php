@@ -48,6 +48,7 @@ class GetModulesNavigationItems
                 ->sort(3)
                 ->visible(static function () use ($role) {
                     Assert::notNull($user = Filament::auth()->user());
+
                     // $user->assignRole('super-admin');
                     // if ($user->hasRole('super-admin')) {
                     //    $role = Role::firstOrCreate(['name' => $role] /*,['id'=>Str::uuid() ]*/);

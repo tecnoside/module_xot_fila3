@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Models;
 
-use Modules\Xot\Database\Factories\CacheLockFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Modules\Xot\Database\Factories\CacheLockFactory;
+
 /**
  * Modules\Xot\Models\CacheLock.
  *
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string $owner
  * @property int    $expiration
  *
- * @method static CacheLockFactory factory($count = null, $state = [])
+ * @method static CacheLockFactory  factory($count = null, $state = [])
  * @method static Builder|CacheLock newModelQuery()
  * @method static Builder|CacheLock newQuery()
  * @method static Builder|CacheLock query()

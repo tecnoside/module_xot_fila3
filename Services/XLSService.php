@@ -9,7 +9,6 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
-use Exception;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
@@ -92,7 +91,7 @@ class XLSService
     {
         $file = request()->file('file');
         if (null === $file) {
-            throw new Exception('[.__LINE__.]['.class_basename(self::class).']');
+            throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
 
         return $this->fromRequestFile($file);
@@ -109,16 +108,16 @@ class XLSService
     public function fromRequestFile(array|UploadedFile $file): self
     {
         if (! \is_object($file)) {
-            throw new Exception('[.__LINE__.]['.class_basename(self::class).']');
+            throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
 
         if (! method_exists($file, 'getRealPath')) {
-            throw new Exception('[.__LINE__.]['.class_basename(self::class).']');
+            throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
 
         $realPath = $file->getRealPath();
         if (false === $realPath) {
-            throw new Exception('[.__LINE__.]['.class_basename(self::class).']');
+            throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
 
         return $this->fromFilePath($realPath);

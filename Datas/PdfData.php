@@ -42,7 +42,7 @@ class PdfData extends Data
     public bool $pdfa = false;
 
     public string $dest = 'F';
-    
+
     /*
     Dest can be :
     I : send the file inline to the browser (default). The plug-in is used if available. The name given by name is used when one selects the "Save as" option on the link generating the PDF.

@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Models;
 
-use Modules\Xot\Database\Factories\FeedFactory;
 use Illuminate\Database\Eloquent\Builder;
+use Modules\Xot\Database\Factories\FeedFactory;
 
 // --- services
 // --- TRAITS ---
 /**
  * Modules\Xot\Models\Feed.
  *
- * @method static FeedFactory factory($count = null, $state = [])
- * @method static Builder|Feed                                newModelQuery()
- * @method static Builder|Feed                                newQuery()
- * @method static Builder|Feed                                query()
+ * @method static FeedFactory  factory($count = null, $state = [])
+ * @method static Builder|Feed newModelQuery()
+ * @method static Builder|Feed newQuery()
+ * @method static Builder|Feed query()
  *
  * @mixin \Eloquent
  */

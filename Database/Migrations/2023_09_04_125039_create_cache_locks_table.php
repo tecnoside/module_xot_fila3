@@ -17,7 +17,7 @@ class CreateCacheLocksTable extends XotBaseMigration
     {
         // -- CREATE --
         $this->tableCreate(
-            static function (Blueprint $table) : void {
+            static function (Blueprint $table): void {
                 $table->string('key')->primary();
                 $table->string('owner');
                 $table->integer('expiration');

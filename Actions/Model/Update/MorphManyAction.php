@@ -25,7 +25,7 @@ class MorphManyAction
 
             return;
         }
-        
+
         $related = $relationDTO->related;
         $keyName = $related->getKeyName();
         $models = [];

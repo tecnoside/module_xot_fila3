@@ -17,7 +17,7 @@ class CreateCacheTable extends XotBaseMigration
     {
         // -- CREATE --
         $this->tableCreate(
-            static function (Blueprint $table) : void {
+            static function (Blueprint $table): void {
                 $table->string('key')->primary();
                 $table->mediumText('value');
                 $table->integer('expiration');

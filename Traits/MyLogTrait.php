@@ -29,14 +29,14 @@ trait MyLogTrait
             /**
              * @param Model $model
              */
-            static function ($model) : void {
+            static function ($model): void {
                 // dddx(static::$logModel);
                 $user = auth()->user();
                 if ($user instanceof Authenticatable) {
                     $model->created_by = $user->handle;
                     $model->updated_by = $user->handle.'';
                 }
-                
+
                 // $model->uuid = (string)Uuid::generate();
             }
         );
@@ -45,7 +45,7 @@ trait MyLogTrait
             /**
              * @param Model $model
              */
-            static function ($model) : void {
+            static function ($model): void {
                 // $tmp = ;
                 // dddx(debug_backtrace());
                 $parz = [];
@@ -55,8 +55,9 @@ trait MyLogTrait
                 // work
                 if (\is_object($model)) {
                     $data = collect((array) $model)->filter(
-                        static function ($value, $key) : bool {
+                        static function ($value, $key): bool {
                             $key = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '', (string) $key);
+
                             return '*attributes' === $key;
                         }
                     )->values()[0];

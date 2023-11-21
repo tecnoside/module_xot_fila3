@@ -10,9 +10,6 @@ class CopyFromLastYearAction
 {
     use QueueableAction;
 
-    /**
-     * @return void
-     */
     public function execute(string $modelClass, string $fieldName, ?string $year): void
     {
         $rows_year = $modelClass::where([$fieldName => (int) $year])->get();
@@ -20,7 +17,7 @@ class CopyFromLastYearAction
         if ($rows_year->count() > 0) {
             return;
         }
-        
+
         foreach ($rows_last_year as $row) {
             $data = collect($row->toArray())
                 ->except($row->getKeyName())

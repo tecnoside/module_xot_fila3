@@ -17,59 +17,59 @@ class MetatagData extends Data implements Wireable
 {
     use WireableData;
     public string $title;
-     // ' => 'EWall',
+    // ' => 'EWall',
     public string $sitename;
-     // ' => 'the best place',
+    // ' => 'the best place',
     public string $subtitle;
-     // ' => 'Find restaurants, specials, and coupons for free',
+    // ' => 'Find restaurants, specials, and coupons for free',
     public string $generator;
-     // ' => '',
+    // ' => '',
     public string $charset = 'UTF-8';
-    
+
     public string $author;
-     // ' => '',
+    // ' => '',
     public string $description;
-     // ' => '',
+    // ' => '',
     public string $keywords;
-     // ' => '',
+    // ' => '',
     public string $nome_regione;
-     // ' => '',
+    // ' => '',
     public string $nome_comune;
-     // ' => '',
+    // ' => '',
     public string $site_title;
-     // ' => '',
+    // ' => '',
     public string $logo;
-     // ' => 'ewall::img/logo.png',
+    // ' => 'ewall::img/logo.png',
     public string $logo_square;
-     // ' => 'ewall::img/logo.png',
+    // ' => 'ewall::img/logo.png',
     public string $logo_header;
-     // = 'xot::img/logo.png';
+    // = 'xot::img/logo.png';
     public string $logo_footer;
-     // ' => 'ewall::img/logo.png',
+    // ' => 'ewall::img/logo.png',
     public string $logo_alt;
-     // ' => 'Logo',
+    // ' => 'Logo',
     public string $hide_megamenu;
-     // ' => false,
+    // ' => false,
     public string $hero_type;
-     // ' => 'with_megamenu_bottom',
+    // ' => 'with_megamenu_bottom',
     public string $facebook_href;
-     // ' => 'aa',
+    // ' => 'aa',
     public string $twitter_href;
-     // ' => '',
+    // ' => '',
     public string $youtube_href;
-     // ' => '',
+    // ' => '',
     public string $fastlink;
-     // ' => false,
+    // ' => false,
     public string $color_primary;
-     // ' => '#0071b0',
+    // ' => '#0071b0',
     public string $color_title;
-     // ' => 'white',
+    // ' => 'white',
     public string $color_megamenu;
-     // ' => '#d60021',
+    // ' => '#d60021',
     public string $color_hamburger;
-     // ' => '#000',
+    // ' => '#000',
     public string $color_banner;
-     // ' => '#000',
+    // ' => '#000',
     public string $favicon = '/favicon.ico';
 
     public static function make(): self
