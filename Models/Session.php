@@ -11,18 +11,17 @@ use Modules\Xot\Database\Factories\SessionFactory;
 /**
  * Modules\Xot\Models\Session.
  *
- * @property int         $id
- * @property int|null    $user_id
+ * @property int $id
+ * @property int|null $user_id
  * @property string|null $ip_address
  * @property string|null $user_agent
- * @property string      $payload
- * @property int         $last_activity
+ * @property string $payload
+ * @property int $last_activity
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property string|null $created_by
  * @property string|null $updated_by
- *
- * @method static SessionFactory  factory($count = null, $state = [])
+ * @method static \Modules\Xot\Database\Factories\SessionFactory factory($count = null, $state = [])
  * @method static Builder|Session newModelQuery()
  * @method static Builder|Session newQuery()
  * @method static Builder|Session query()
@@ -36,7 +35,6 @@ use Modules\Xot\Database\Factories\SessionFactory;
  * @method static Builder|Session whereUpdatedBy($value)
  * @method static Builder|Session whereUserAgent($value)
  * @method static Builder|Session whereUserId($value)
- *
  * @mixin \Eloquent
  */
 class Session extends BaseModel
