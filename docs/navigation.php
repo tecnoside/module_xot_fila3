@@ -30,11 +30,10 @@ return [
         ],
     ],
     'Tools controllo codice' => [
-        'url' => 'docs/tools/code-check',
-        // 'children' => [
-        //     '419 page expired' => 'docs/errors/page-expired',
-        //     'Url Not Found' => 'docs/errors/url-not-found',
-        // ],
+        // 'url' => 'docs/tools/code-check',
+        'children' => [
+            'Duplicazione del codice' => 'docs/tools/code-duplication',
+        ],
     ],
     'Config' => [
         // 'url' => 'docs/config',
