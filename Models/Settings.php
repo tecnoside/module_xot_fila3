@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Settings newModelQuery()
  * @method static Builder|Settings newQuery()
  * @method static Builder|Settings query()
+ *
  * @mixin \Eloquent
  */
 class Settings extends Model
