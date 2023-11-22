@@ -29,6 +29,13 @@ return [
             'Url Not Found' => 'docs/errors/url-not-found',
         ],
     ],
+    'Tools controllo codice' => [
+        'url' => 'docs/tools/code-check',
+        // 'children' => [
+        //     '419 page expired' => 'docs/errors/page-expired',
+        //     'Url Not Found' => 'docs/errors/url-not-found',
+        // ],
+    ],
     'Config' => [
         // 'url' => 'docs/config',
         'children' => [
