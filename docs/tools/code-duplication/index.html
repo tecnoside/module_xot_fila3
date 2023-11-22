@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="Controllo codice">
+    <meta name="description" content="Duplicazione del codice">
 
     <meta property="og:site_name" content="Modulo Xot" />
-    <meta property="og:title" content="Controllo codice | Modulo Xot" />
-    <meta property="og:description" content="Controllo codice" />
-    <meta property="og:url" content="https://laraxot.github.io/doc_xot/docs/tools/code-check" />
+    <meta property="og:title" content="Duplicazione del codice | Modulo Xot" />
+    <meta property="og:description" content="Duplicazione del codice" />
+    <meta property="og:url" content="https://laraxot.github.io/doc_xot/docs/tools/code-duplication" />
     <meta property="og:image" content="https://laraxot.github.io/doc_xot/assets/img/logo.png" />
     <meta property="og:type" content="website" />
 
@@ -18,7 +18,7 @@
     <meta name="twitter:card" content="summary_large_image">
 
     
-    <title>Modulo Xot | Controllo codice</title>
+    <title>Modulo Xot | Duplicazione del codice</title>
 
     <link rel="home" href="https://laraxot.github.io/doc_xot/">
     <link rel="icon" href="/favicon.ico">
@@ -132,12 +132,20 @@
     </li>
             <li class="pl-4">
             
-        <a href="https://laraxot.github.io/doc_xot/docs/tools/code-check"
-            class="lvl0  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
+        <p class="nav-menu__item text-gray-600">Tools controllo codice</p>
+    
+            
+        <ul class="my-0">
+            <li class="pl-4">
+            
+        <a href="https://laraxot.github.io/doc_xot/docs/tools/code-duplication"
+            class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
         >
-            Tools controllo codice
+            Duplicazione del codice
         </a>
     
+    </li>
+    </ul>
     </li>
             <li class="pl-4">
             
@@ -344,7 +352,18 @@
         </nav>
 
         <div class="DocSearch-content w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
-            <h1 id="code-check">Controllo codice</h1>
+            <h1 id="code-duplication">Duplicazione del codice, phpcpd.phar</h1>
+
+<p>phpcpd.phar, per controllare il codice duplicato</p>
+
+<p>scaricare il file in questione dal seguente link https://phar.phpunit.de/phpcpd.phar<br />
+url che si trova in questo link https://phpqa.io/projects/phpcpd.html</p>
+
+<p>rinominare il file, eliminando il riferimento della versione</p>
+
+<p>copiare il file dentro la cartella laravel
+eseguire 
+php phpcpd.phar --fuzzy Modules/NomeModulo</p>
         </div>
     </div>
 </section>
