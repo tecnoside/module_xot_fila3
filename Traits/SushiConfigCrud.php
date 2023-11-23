@@ -70,7 +70,7 @@ trait SushiConfigCrud
                 $original = [];
             }
 
-            $up = collect($original)->groupBy('id')->map(static fn ($item) => $item->first())->all();
+            $up = collect($original)->groupBy('id')->map(fn ($item) => $item->first())->all();
             $id = $data['id'];
             $up[$id] = $data;
             file_put_contents($config_path, '<?php
@@ -95,7 +95,7 @@ trait SushiConfigCrud
                 $original = [];
             }
 
-            $up = collect($original)->groupBy('id')->map(static fn ($item) => $item->first())->all();
+            $up = collect($original)->groupBy('id')->map(fn ($item) => $item->first())->all();
             $id = $data['id'];
             unset($up['id']);
             file_put_contents($config_path, '<?php
