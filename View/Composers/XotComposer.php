@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Xot\View\Composers;
 
-// use App\Repositories\UserRepository;
 use Illuminate\View\View;
 use Modules\Xot\Services\FileService;
 use Nwidart\Modules\Facades\Module;
+use Illuminate\Support\Arr;
+use Webmozart\Assert\Assert;
 
 /**
  * Class XotComposer.
@@ -26,26 +27,39 @@ class XotComposer
 
     public function asset(string $str): string
     {
-        Module::asset($str);
 
-        /*
-        dddx([
-            'str'=>$str, //ewall::js/schedule.js
-            '1'=>Module::asset($str),  //ewall-cms-dev.egeatech.it/modules/ewall
-            '2'=>Module::assetPath($str),// /var/www/vhosts/egeatech.it/ewall-cms-dev.egeatech.it/public_html/modules/ewall::js/schedule.js
-            '3'=>Module::getModulePath($str),///var/www/vhosts/egeatech.it/ewall-cms-dev.egeatech.it/laravel/Modules/Ewall::js/schedule.js/
-            //'4'=>Module::getPath($str),///var/www/vhosts/egeatech.it/ewall-cms-dev.egeatech.it/laravel/Modules
-            //'5'=>Module::getAssetsPath($str),///var/www/vhosts/egeatech.it/ewall-cms-dev.egeatech.it/public_html/modules
-        ]);
-        */
         return asset(FileService::asset($str));
-        /*
-        $from=Module::getModulePath($str);
-        $from=str_replace('::','/Resources/',$from);
-        $to=Module::assetPath($str);
-        $to=str_replace('::','/',$to);
 
-        dddx([$from,$to]);
-        */
+    }
+
+     /**
+     * Undocumented function.
+     *
+     * @param array<mixed|void> $arguments
+     */
+    public function __call(string $name, array $arguments): mixed
+    {
+        $modules = Module::getOrdered();
+
+        $module = Arr::first(
+            $modules,
+            static function ($module) use ($name): bool {
+                $class = '\Modules\\'.$module->getName().'\View\Composers\ThemeComposer';
+
+                return method_exists($class, $name);
+            }
+        );
+        if (! \is_object($module)) {
+            throw new \Exception('create a View\Composers\ThemeComposer.php inside a module with ['.$name.'] method');
+        }
+
+        Assert::isInstanceOf($module, \Nwidart\Modules\Module::class);
+        $class = '\Modules\\'.$module->getName().'\View\Composers\ThemeComposer';
+        // Parameter #1 $callback of function call_user_func_array expects callable(): mixed, array{*NEVER*, string} given.
+        $app = app($class);
+        $callback = [$app, $name];
+        Assert::isCallable($callback);
+
+        return \call_user_func_array($callback, $arguments);
     }
 }
