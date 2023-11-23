@@ -32,7 +32,7 @@ abstract class XotBaseMigration extends Migration
     // *
     public function __construct()
     {
-        if (!$this->model instanceof Model) {
+        if (! $this->model instanceof Model) {
             $model = $this->getModel();
             // 37     Dead catch - Exception is never thrown in the try block.
             // try {
@@ -65,8 +65,8 @@ abstract class XotBaseMigration extends Migration
         $mod_name = Str::after($filename, $mod_path);
         $mod_name = explode(\DIRECTORY_SEPARATOR, $mod_name)[1];
 
-        $model_ns = '\Modules\\' . $mod_name . '\Models\\' . $name;
-        $model_dir = $mod_path . '/' . $mod_name . '/Models/' . $name . '.php';
+        $model_ns = '\Modules\\'.$mod_name.'\Models\\'.$name;
+        $model_dir = $mod_path.'/'.$mod_name.'/Models/'.$name.'.php';
         Str::replace('/', \DIRECTORY_SEPARATOR, $model_dir);
 
         return $model_ns;
@@ -74,7 +74,7 @@ abstract class XotBaseMigration extends Migration
 
     public function getTable(): string
     {
-        if (!$this->model instanceof Model) {
+        if (! $this->model instanceof Model) {
             return '';
         }
 
@@ -88,7 +88,7 @@ abstract class XotBaseMigration extends Migration
         // dddx(config('database'));
         // \DB::purge('mysql');
         // \DB::reconnect('mysql');
-        if (!$this->model instanceof Model) {
+        if (! $this->model instanceof Model) {
             throw new \Exception('model is null');
         }
 
@@ -155,7 +155,7 @@ abstract class XotBaseMigration extends Migration
      */
     public function isColumnType(string $column, string $type): bool
     {
-        if (!$this->hasColumn($column)) {
+        if (! $this->hasColumn($column)) {
             return false;
         }
 
@@ -182,16 +182,16 @@ abstract class XotBaseMigration extends Migration
         $doctrineTable = $this->getTableDetails();
 
         // $indexes=$this->getTableIndexes();
-        return $doctrineTable->hasIndex($table . '_' . $index . '_' . $type);
+        return $doctrineTable->hasIndex($table.'_'.$index.'_'.$type);
     }
 
     public function dropIndex(string $index): void
     {
         $table = $this->getTable();
         $doctrineTable = $this->getTableDetails();
-        $exists = $doctrineTable->hasIndex($table . '_' . $index);
+        $exists = $doctrineTable->hasIndex($table.'_'.$index);
         if ($exists) {
-            $doctrineTable->dropIndex($table . '_' . $index);
+            $doctrineTable->dropIndex($table.'_'.$index);
         }
     }
 
@@ -217,7 +217,7 @@ abstract class XotBaseMigration extends Migration
         $table_details = $this->getTableDetails();
         $table_details->dropPrimaryKey();
 
-        $sql = 'ALTER TABLE ' . $this->getTable() . ' DROP PRIMARY KEY;';
+        $sql = 'ALTER TABLE '.$this->getTable().' DROP PRIMARY KEY;';
         $this->query($sql);
     }
 
@@ -262,7 +262,7 @@ abstract class XotBaseMigration extends Migration
      */
     public function tableCreate(\Closure $next): void
     {
-        if (!$this->tableExists()) {
+        if (! $this->tableExists()) {
             $this->getConn()->create(
                 $this->getTable(),
                 $next
@@ -318,7 +318,7 @@ abstract class XotBaseMigration extends Migration
     {
         $xot = XotData::make();
         $userClass = $xot->getUserClass();
-        if (!$this->hasColumn('updated_at') && !$this->hasColumn('created_at')) {
+        if (! $this->hasColumn('updated_at') && ! $this->hasColumn('created_at')) {
             $table->timestamps();
         }
 
@@ -333,7 +333,7 @@ abstract class XotBaseMigration extends Migration
             ->cascadeOnUpdate();
         }
         */
-        if (!$this->hasColumn('updated_by')) {
+        if (! $this->hasColumn('updated_by')) {
             $table->foreignIdFor(
                 model: $userClass,
                 column: 'updated_by',
@@ -342,7 +342,7 @@ abstract class XotBaseMigration extends Migration
             // ->nullOnDelete()
             // ->cascadeOnUpdate()
         }
-        if (!$this->hasColumn('created_by')) {
+        if (! $this->hasColumn('created_by')) {
             $table->foreignIdFor(
                 model: $userClass,
                 column: 'created_by',
@@ -352,9 +352,9 @@ abstract class XotBaseMigration extends Migration
             // ->cascadeOnUpdate()
         }
 
-        if ($hasSoftDeletes && !$this->hasColumn('deleted_at')) {
+        if ($hasSoftDeletes && ! $this->hasColumn('deleted_at')) {
             $table->softDeletes();
-            if (!$this->hasColumn('deleted_by')) {
+            if (! $this->hasColumn('deleted_by')) {
                 $table->foreignIdFor(
                     model: $userClass,
                     column: 'deleted_by',
@@ -365,7 +365,7 @@ abstract class XotBaseMigration extends Migration
             }
         }
 
-        if ($this->hasColumn('deleted_at') && !$this->hasColumn('deleted_by')) {
+        if ($this->hasColumn('deleted_at') && ! $this->hasColumn('deleted_by')) {
             $table->foreignIdFor(
                 model: $userClass,
                 column: 'deleted_by',
@@ -379,7 +379,7 @@ abstract class XotBaseMigration extends Migration
     public function updateUser(Blueprint $table): void
     {
         $model = $this->getModel();
-        $func = 'updateUserKey' . Str::studly(app($model)->getKeyType());
+        $func = 'updateUserKey'.Str::studly(app($model)->getKeyType());
         $this->{$func}($table);
 
         if ($this->hasColumn('model_id') && 'bigint' === $this->getColumnType('model_id')) {
@@ -393,7 +393,7 @@ abstract class XotBaseMigration extends Migration
 
     public function updateUserKeyString(Blueprint $table): void
     {
-        if (!$this->hasColumn('id')) {
+        if (! $this->hasColumn('id')) {
             $table->uuid('id')->primary()->first(); // ->default(DB::raw('(UUID())'));
         }
 
@@ -414,7 +414,7 @@ abstract class XotBaseMigration extends Migration
 
     public function updateUserKeyInteger(Blueprint $table): void
     {
-        if (!$this->hasColumn('id')) {
+        if (! $this->hasColumn('id')) {
             $table->id('id')->first();
         }
 
