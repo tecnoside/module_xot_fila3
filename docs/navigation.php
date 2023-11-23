@@ -16,33 +16,22 @@ return [
     'Jigsaw Docs' => 'https://jigsaw.tighten.co/docs/installation',
     */
     'Base' => [
-        // 'url' => 'docs/base',
+        'url' => 'docs/base',
         'children' => [
             'Installazione' => 'docs/base/installation',
+            'Errori Comuni' => 'docs/base/issues',
             'Struttura' => 'docs/base/structure',
-        ],
-    ],
-    'Errori Comuni' => [
-        'url' => 'docs/base/issues',
-        'children' => [
-            '419 page expired' => 'docs/errors/page-expired',
-            'Url Not Found' => 'docs/errors/url-not-found',
-        ],
-    ],
-    'Tools controllo codice' => [
-        // 'url' => 'docs/tools/code-check',
-        'children' => [
-            'Duplicazione del codice' => 'docs/tools/code-duplication',
+            'Url Not Found' => 'docs/base/url-not-found',
         ],
     ],
     'Config' => [
-        // 'url' => 'docs/config',
+        'url' => 'docs/config',
         'children' => [
             'Configurazione modules.php' => 'docs/config/modules',
         ],
     ],
     'Model Actions' => [
-        // 'url' => 'docs/model',
+        'url' => 'docs/model',
         'children' => [
             'Destroy' => 'docs/model/action/destroy',
             'Detach' => 'docs/model/action/detach',
@@ -52,7 +41,7 @@ return [
         ],
     ],
     'Services' => [
-        // 'url' => 'docs/service',
+        'url' => 'docs/service',
         'children' => [
             'Model' => 'docs/service/model',
             'Panel' => 'docs/service/panel',
@@ -61,15 +50,9 @@ return [
     ],
     'Custom Relation' => 'docs/custom-relation',
     'Links' => [
-        // 'url' => '#',
+        'url' => '#',
         'children' => [
             'Filter' => 'docs/links/filter',
-        ],
-    ],
-    'Laragon' => [
-        // 'url' => '#',
-        'children' => [
-            'Aggiornare MySql a 8.0' => 'docs/laragon/update-mysql-8-0',
         ],
     ],
     'Filament' => [
