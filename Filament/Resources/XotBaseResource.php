@@ -68,6 +68,26 @@ abstract class XotBaseResource extends Resource
         return static::trans('navigation.plural');
     }
 
+    public static function getNavigationGroup(): string
+    {
+        return static::trans('navigation.group.name');
+    }
+
+    public static function getPluralLabel(): string
+    {
+        return static::trans('navigation.plural');
+    }
+
+    public static function getLabel(): string
+    {
+        return static::trans('navigation.name');
+    }
+
+    protected function getTitle(): string
+    {
+        return static::trans('navigation.name');
+    }
+
     // public static function getNavigationIcon(): ?string
     // {
     //    return 'heroicon-o-user-group';
@@ -78,8 +98,15 @@ abstract class XotBaseResource extends Resource
     //    return 2;
     // }
 
-    public static function getNavigationGroup(): string
+    public static function extendTableCallback(): array
     {
-        return static::trans('navigation.group.name');
+        return [
+        ];
+    }
+
+    public static function extendFormCallback(): array
+    {
+        return [
+        ];
     }
 }
