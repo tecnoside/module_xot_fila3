@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Modules\Xot\View\Composers;
 
+use Illuminate\Support\Arr;
 use Illuminate\View\View;
 use Modules\Xot\Services\FileService;
 use Nwidart\Modules\Facades\Module;
-use Illuminate\Support\Arr;
 use Webmozart\Assert\Assert;
 
 /**
@@ -27,12 +27,10 @@ class XotComposer
 
     public function asset(string $str): string
     {
-
         return asset(FileService::asset($str));
-
     }
 
-     /**
+    /**
      * Undocumented function.
      *
      * @param array<mixed|void> $arguments
