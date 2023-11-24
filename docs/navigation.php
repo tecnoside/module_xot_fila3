@@ -24,6 +24,12 @@ return [
             'Url Not Found' => 'docs/base/url-not-found',
         ],
     ],
+    'Tools controllo codice' => [
+        // 'url' => 'docs/tools/code-check',
+        'children' => [
+            'Duplicazione del codice' => 'docs/tools/code-duplication',
+        ],
+    ],
     'Config' => [
         'url' => 'docs/config',
         'children' => [
