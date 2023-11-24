@@ -61,6 +61,7 @@ return [
             'Installazione' => 'docs/filament/installation',
             'Moduli' => 'docs/filament/modules',
             'Creazione di una Resource' => 'docs/filament/resource',
+            'Nested Resource' => 'docs/filament/nested-resource',
             'Creazioni Pdf da azione' => 'docs/filament/actions/pdf',
             'Ripristinare cartella vendor' => 'docs/filament/vendor',
         ],
