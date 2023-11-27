@@ -174,7 +174,7 @@ class XotServiceProvider extends XotBaseServiceProvider
         Event::listen(
             MigrationsEnded::class,
             static function (): void {
-                //Artisan::call('ide-helper:models -r -W');
+                // Artisan::call('ide-helper:models -r -W');
             }
         );
     }
