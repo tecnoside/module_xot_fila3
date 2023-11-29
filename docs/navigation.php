@@ -16,7 +16,7 @@ return [
     'Jigsaw Docs' => 'https://jigsaw.tighten.co/docs/installation',
     */
     'Base' => [
-        'url' => 'docs/base',
+        'url' => '#',
         'children' => [
             'Installazione' => 'docs/base/installation',
             'Errori Comuni' => 'docs/base/issues',
