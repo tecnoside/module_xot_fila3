@@ -30,11 +30,14 @@ class WebhookErrorFormatter
                 Auth::id(),
                 Auth::user()?->email ?? 'CLI User'
             ),
+            'ip' => request()->ip(),
+            // Request::ip();
             'thrown_while_calling' => sprintf(
                 '[%s] %s',
                 request()->getMethod(),
                 request()->fullUrl()
             ),
+            'url_previous' => url()->previous(),
             'exception_details' => sprintf(
                 "Trace:\n```json \n %s \n ```\n\n Previous: \n `%s`",
                 json_encode($this->exception->getTrace(), JSON_PRETTY_PRINT),

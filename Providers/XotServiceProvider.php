@@ -130,12 +130,13 @@ class XotServiceProvider extends XotBaseServiceProvider
                         $e->getMessage(),
                         (new WebhookErrorFormatter($e))->format()
                     );
-
+                /*
                 Log::channel('daily')
                     ->error(
                         $e->getMessage(),
                         (new WebhookErrorFormatter($e))->format()
                     );
+                */
             }
         );
 
