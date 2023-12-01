@@ -9,9 +9,14 @@ use Illuminate\Database\Events\MigrationsEnded;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Modules\Xot\Console\Commands\DatabaseBackUpCommand;
+use Modules\Xot\Exceptions\Formatters\WebhookErrorFormatter;
+use Modules\Xot\Exceptions\Handlers\HandlerDecorator;
+use Modules\Xot\Exceptions\Handlers\HandlersRepository;
 use Modules\Xot\Providers\Traits\TranslatorTrait;
 use Modules\Xot\View\Composers\XotComposer;
 
@@ -56,15 +61,8 @@ class XotServiceProvider extends XotBaseServiceProvider
         // $this->registerPanel();
         // $this->registerDropbox();// PROBLEMA DI COMPOSER
         $this->registerEvents();
-    }
 
-    // end bootCallback
-
-    public function registerConfigs(): void
-    {
-        $config_file = realpath(__DIR__.'/../Config/metatag.php');
-        $this->mergeConfigFrom($config_file, 'metatag');
-        // dddx('a');
+        $this->registerExceptionHandler();
     }
 
     public function registerCallback(): void
@@ -88,19 +86,83 @@ class XotServiceProvider extends XotBaseServiceProvider
         //    static fn (): ProfileTest => new ProfileTest()
         // );
         $this->registerConfigs();
-        // $this->extendExceptionHandler();
+        $this->registerExceptionHandlersRepository();
+        $this->extendExceptionHandler();
     }
 
-    //  Extend the Laravel default exception handler.
+    /**
+     * Register the custom exception handlers repository.
+     *
+     * @return void
+     */
+    private function registerExceptionHandlersRepository()
+    {
+        $this->app->singleton(HandlersRepository::class, HandlersRepository::class);
+    }
 
-    //  @return void
+    /**
+     * Extend the Laravel default exception handler.
+     *
+     * @see https://github.com/cerbero90/exception-handler/blob/master/src/Providers/ExceptionHandlerServiceProvider.php
+     *
+     * @return void
+     */
+    private function extendExceptionHandler()
+    {
+        $this->app->extend(ExceptionHandler::class, function (ExceptionHandler $handler, $app) {
+            // dddx('a');
+            return new HandlerDecorator($handler, $app[HandlersRepository::class]);
+        });
+    }
 
-    // private function extendExceptionHandler()
-    // {
-    //    $this->app->extend(ExceptionHandler::class, function (ExceptionHandler $handler, $app) {
-    //        return new HandlerDecorator($handler, $app[HandlersRepository::class]);
-    //    });
-    // }
+    /**
+     * @see https://github.com/cerbero90/exception-handler
+     */
+    public function registerExceptionHandler()
+    {
+        $exceptionHandler = $this->app->make(ExceptionHandler::class);
+        $exceptionHandler->reporter(
+            function (\Throwable $e) {
+                // Log::critical(Request::url());
+
+                Log::channel('slack_errors')
+                    ->error(
+                        $e->getMessage(),
+                        (new WebhookErrorFormatter($e))->format()
+                    );
+
+                Log::channel('daily')
+                    ->error(
+                        $e->getMessage(),
+                        (new WebhookErrorFormatter($e))->format()
+                    );
+            }
+        );
+
+        // $exceptionHandler->renderer(function ($e, $request) {
+        //    dddx([$e, $request]);
+        // });
+
+        /*
+        ->reporter(function ($e) {
+            // $this->app['log']->debug($e->getMessage());
+            dddx('a');
+        });
+
+        // register a custom renderer to redirect the user back and show validation errors
+        $this->app->make(ExceptionHandler::class)->renderer(function ($e, $request) {
+            // return back()->withInput()->withErrors($e->errors());
+            dddx('b');
+        });
+        */
+    }
+
+    public function registerConfigs(): void
+    {
+        $config_file = realpath(__DIR__.'/../Config/metatag.php');
+        $this->mergeConfigFrom($config_file, 'metatag');
+        // dddx('a');
+    }
 
     /*
     public function mergeConfigs(): void {
