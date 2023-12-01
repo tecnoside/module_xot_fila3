@@ -28,15 +28,21 @@ abstract class XotBaseResource extends Resource
         return Str::between(static::class, 'Modules\\', '\Filament');
     }
 
-    public static function trans(string $key): string
+    public static function transPath(string $key): string
     {
         $moduleNameLow = Str::lower(static::getModuleName());
-        $modelClass = static::$model ?? static::getModel();
+        // $modelClass = static::$model ?? static::getModel();
+        $modelClass = static::getModel();
         Assert::notNull($modelClass);
         $modelNameSlug = Str::kebab(class_basename($modelClass));
         $res = $moduleNameLow.'::'.$modelNameSlug.'.'.$key;
 
-        return __($res);
+        return $res;
+    }
+
+    public static function trans(string $key): string
+    {
+        return __(static::transPath($key));
     }
 
     public static function getModel(): string
@@ -59,6 +65,7 @@ abstract class XotBaseResource extends Resource
 
     public static function getPluralModelLabel(): string
     {
+        // return static::transPath('navigation.plural');
         return static::trans('navigation.plural');
     }
 
