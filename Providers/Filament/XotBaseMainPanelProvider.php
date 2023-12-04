@@ -7,7 +7,6 @@ namespace Modules\Xot\Providers\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Modules\Xot\Filament\Pages\MainDashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -20,6 +19,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Modules\Xot\Actions\Filament\GetModulesNavigationItems;
 use Modules\Xot\Datas\MetatagData;
+use Modules\Xot\Filament\Pages\MainDashboard;
 
 abstract class XotBaseMainPanelProvider extends PanelProvider
 {
