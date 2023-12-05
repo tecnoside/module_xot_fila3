@@ -38,11 +38,13 @@ class WebhookErrorFormatter
                 request()->fullUrl()
             ),
             'url_previous' => url()->previous(),
+            /*
             'exception_details' => sprintf(
                 "Trace:\n```json \n %s \n ```\n\n Previous: \n `%s`",
                 json_encode($this->exception->getTrace(), JSON_PRETTY_PRINT),
                 $this->exception->getPrevious() ? ('`'.get_class($this->exception->getPrevious()).'`') : 'None'
             ),
+            */
         ];
     }
 }
