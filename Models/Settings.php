@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed                           $payload
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static Builder|Settings newModelQuery()
  * @method static Builder|Settings newQuery()
  * @method static Builder|Settings query()
@@ -27,6 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Settings whereName($value)
  * @method static Builder|Settings wherePayload($value)
  * @method static Builder|Settings whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Settings extends Model
