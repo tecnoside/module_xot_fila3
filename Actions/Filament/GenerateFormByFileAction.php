@@ -7,10 +7,11 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Filament;
 
-use Illuminate\Support\Str;
-
 use function Safe\file;
 
+use Illuminate\Support\Str;
+
+use Webmozart\Assert\Assert;
 use Spatie\QueueableAction\QueueableAction;
 use Symfony\Component\Finder\SplFileInfo as File;
 
@@ -32,7 +33,7 @@ class GenerateFormByFileAction
         }
 
         $class_name = Str::replace(base_path('Modules/'), 'Modules/', $file->getPathname());
-        $class_name = Str::replace('/', '\\', $class_name);
+        Assert::string($class_name = Str::replace('/', '\\', $class_name));
         $class_name = Str::substr($class_name, 0, -4);
         $model_name = app($class_name)->getModel();
         $fillable = app($model_name)->getFillable();
