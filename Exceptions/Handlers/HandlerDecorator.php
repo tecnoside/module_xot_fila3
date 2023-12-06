@@ -21,14 +21,12 @@ class HandlerDecorator implements ExceptionHandler
     /**
      * The custom handlers repository.
      *
-     * @var \Cerbero\ExceptionHandler\HandlersRepository
+     * @var HandlersRepository
      */
     protected $repository;
 
     /**
      * Set the dependencies.
-     *
-     * @param \Cerbero\ExceptionHandler\HandlersRepository $repository
      */
     public function __construct(ExceptionHandler $defaultHandler, HandlersRepository $repository)
     {

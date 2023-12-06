@@ -1,4 +1,4 @@
-https://github.com/nunomaduro/larastan/issues/515
+https://github.com/larastan/larastan/issues/515
 
 **
  * @extends JsonResource<\App\User>
