@@ -126,7 +126,7 @@ function foo(): object
 
 
 Relazioni
-https://github.com/nunomaduro/larastan/issues/689
+https://github.com/larastan/larastan/issues/689
 
 "types have capital letter: HasOne, BelongsTo, HasMany, etc
 if using return types, remember to reference them at the beginning with:
