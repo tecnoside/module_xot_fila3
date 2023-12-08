@@ -118,7 +118,7 @@ class XotServiceProvider extends XotBaseServiceProvider
     /**
      * @see https://github.com/cerbero90/exception-handler
      */
-    public function registerExceptionHandler()
+    public function registerExceptionHandler(): void
     {
         $exceptionHandler = $this->app->make(ExceptionHandler::class);
         $exceptionHandler->reporter(
