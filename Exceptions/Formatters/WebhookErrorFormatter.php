@@ -4,27 +4,25 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Exceptions\Formatters;
 
+use Throwable;
 use Illuminate\Support\Facades\Auth;
 
 // use Symfony\Component\HttpFoundation\Request;
 
 class WebhookErrorFormatter
 {
-    private \Throwable $exception;
-
     // private Request $request;
 
-    public function __construct(\Throwable $exception)
+    public function __construct(private readonly Throwable $exception)
     {
-        $this->exception = $exception;
         // $this->request = $request;
     }
 
     public function format(): array
     {
         return [
-            'exception' => '`'.get_class($this->exception)."` (Code `{$this->exception->getCode()}`)",
-            'thrown_in' => "`{$this->exception->getFile()}`:{$this->exception->getLine()}",
+            'exception' => '`'.$this->exception::class.sprintf('` (Code `%s`)', $this->exception->getCode()),
+            'thrown_in' => sprintf('`%s`:%d', $this->exception->getFile(), $this->exception->getLine()),
             'user' => sprintf(
                 '%d <%s>',
                 Auth::id(),
