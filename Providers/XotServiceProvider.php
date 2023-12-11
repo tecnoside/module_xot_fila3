@@ -175,7 +175,7 @@ class XotServiceProvider extends XotBaseServiceProvider
             //dddx($tmp);
         }
         //DB::purge('mysql');//Call to a member function prepare() on null
-        //DB::purge('liveuser_general');
+        //DB::purge('user');
         //DB::reconnect();
     }
 
@@ -205,7 +205,7 @@ class XotServiceProvider extends XotBaseServiceProvider
             //dddx($tmp);
         }
         //DB::purge('mysql');//Call to a member function prepare() on null
-        //DB::purge('liveuser_general');
+        //DB::purge('user');
         //DB::reconnect();
     }
 
