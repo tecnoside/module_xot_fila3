@@ -29,14 +29,14 @@ TableException
  */
 class HtmlService
 {
-    public static function toPdf(string $html,string $out='show',string $pdforientation='L',string $filename=''): string
+    public static function toPdf(string $html, string $out = 'show', string $pdforientation = 'L', string $filename = ''): string
     {
         // dddx($params);
 
         include_once __DIR__.'/vendor/autoload.php';
-       // $pdforientation = 'L'; // default;
-       // $out = 'show';
-        if($filename==''){
+        // $pdforientation = 'L'; // default;
+        // $out = 'show';
+        if ('' == $filename) {
             $filename = Storage::disk('local')->path('test.pdf');
         }
         /*
