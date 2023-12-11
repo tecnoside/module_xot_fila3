@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Datas;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\File;
 use Livewire\Wireable;
-use Modules\Tenant\Services\TenantService;
-use Modules\User\Models\Membership;
-use Modules\User\Models\Team;
-use Spatie\LaravelData\Concerns\WireableData;
 use Spatie\LaravelData\Data;
 use Webmozart\Assert\Assert;
+use Modules\User\Models\Team;
+use Modules\User\Models\Membership;
+use Modules\User\Models\TenantUser;
+use Illuminate\Support\Facades\File;
+use Illuminate\Database\Eloquent\Model;
+use Modules\Tenant\Services\TenantService;
+use Spatie\LaravelData\Concerns\WireableData;
 
 /**
  * Undocumented class.
@@ -59,7 +60,11 @@ class XotData extends Data implements Wireable
 
     public string $team_class = Team::class; // = Team::class;
 
+    public string $tenant_class = Team::class; // = Team::class;
+
     public string $membership_class = Membership::class; // = Membership::class;
+
+    public string $tenant_pivot_class = TenantUser::class; // = Membership::class;
 
     public ?string $super_admin = null;
 
@@ -109,8 +114,14 @@ class XotData extends Data implements Wireable
 
     public function getTenantClass(): string
     {
-        return $this->team_class;
+        return $this->tenant_class;
     }
+
+    public function getTenantPivotClass(): string
+    {
+        return $this->tenant_pivot_class;
+    }
+
 
     public function getMembershipClass(): string
     {
