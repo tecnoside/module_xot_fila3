@@ -15,7 +15,7 @@
         "illuminate/contracts": "*",
         "intervention/image": "^2.7",
         "laravelcollective/html": "^6.3",
-        "livewire/livewire": "*",
+        "livewire/livewire": "^3.2",
         "mcamara/laravel-localization": "*",
         "nwidart/laravel-modules": "^9.0",
         "phpdocumentor/type-resolver": "^1.5",
