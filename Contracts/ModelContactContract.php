@@ -45,7 +45,6 @@ use Illuminate\Support\Carbon;
  * @method array     treeLabel()
  * @method array     treeSons()
  * @method int       treeSonsCount()
- * @method mixed     bellBoys()
  * @method array     toArray()
  * @method BelongsTo user()
  *
