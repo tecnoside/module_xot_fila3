@@ -37,16 +37,16 @@ class GenerateFormByFileAction
         $class_name = Str::substr($class_name, 0, -4);
         $model_name = app($class_name)->getModel();
         $fillable = app($model_name)->getFillable();
-
+        Assert::classExists($class_name);
         $reflection_class = new \ReflectionClass($class_name);
         $form_method = $reflection_class->getMethod('form');
 
         $start_line = $form_method->getStartLine() - 1; // it's actually - 1, otherwise you wont get the function() block
         $end_line = $form_method->getEndLine();
         $length = $end_line - $start_line;
-
+        Assert::string($file_name=$form_method->getFileName());
         // $contents= $file->getContents();
-        $source = file($form_method->getFileName());
+        $source = file($file_name);
         $body = implode('', array_slice($source, $start_line, $length));
 
         dd([
