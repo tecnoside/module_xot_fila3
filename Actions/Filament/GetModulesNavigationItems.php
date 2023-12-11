@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Modules\Tenant\Services\TenantService;
 use Spatie\QueueableAction\QueueableAction;
-use Webmozart\Assert\Assert;
 
 class GetModulesNavigationItems
 {
@@ -48,9 +47,10 @@ class GetModulesNavigationItems
                 ->sort(3)
                 ->visible(function () use ($role) {
                     $user = Filament::auth()->user();
-                    if($user==null){
+                    if (null == $user) {
                         return false;
                     }
+
                     return $user->hasRole($role);
                 });
 
