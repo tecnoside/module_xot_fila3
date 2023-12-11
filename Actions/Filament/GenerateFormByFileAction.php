@@ -44,7 +44,7 @@ class GenerateFormByFileAction
         $start_line = $form_method->getStartLine() - 1; // it's actually - 1, otherwise you wont get the function() block
         $end_line = $form_method->getEndLine();
         $length = $end_line - $start_line;
-        Assert::string($file_name=$form_method->getFileName());
+        Assert::string($file_name = $form_method->getFileName());
         // $contents= $file->getContents();
         $source = file($file_name);
         $body = implode('', array_slice($source, $start_line, $length));
