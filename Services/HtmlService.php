@@ -29,19 +29,22 @@ TableException
  */
 class HtmlService
 {
-    public static function toPdf(array $params): string
+    public static function toPdf(string $html,string $out='show',string $pdforientation='L',string $filename=''): string
     {
         // dddx($params);
 
         include_once __DIR__.'/vendor/autoload.php';
-        $pdforientation = 'L'; // default;
-        $out = 'show';
-        $filename = Storage::disk('local')->path('test.pdf');
+       // $pdforientation = 'L'; // default;
+       // $out = 'show';
+        if($filename==''){
+            $filename = Storage::disk('local')->path('test.pdf');
+        }
+        /*
         extract($params);
         if (! isset($html)) {
             throw new \Exception('err html is missing');
         }
-
+        */
         if (request('debug', false)) {
             return $html;
         }

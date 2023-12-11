@@ -25,7 +25,7 @@
         "illuminate/support": "*",
         "konnco/filament-import": "^1.6",
         "laraxot/module_tenant_fila3": "dev-master",
-        "livewire/livewire": "*",
+        "livewire/livewire": "^3.2",
         "nwidart/laravel-modules": "*",
         "spatie/laravel-data": "*",
         "spatie/laravel-model-status": "*",
