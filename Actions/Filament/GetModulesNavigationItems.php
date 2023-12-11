@@ -47,8 +47,10 @@ class GetModulesNavigationItems
                 ->group('Modules')
                 ->sort(3)
                 ->visible(function () use ($role) {
-                    Assert::notNull($user = Filament::auth()->user());
-
+                    $user = Filament::auth()->user();
+                    if($user==null){
+                        return false;
+                    }
                     return $user->hasRole($role);
                 });
 

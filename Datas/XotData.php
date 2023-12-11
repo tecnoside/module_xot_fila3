@@ -107,6 +107,11 @@ class XotData extends Data implements Wireable
         return $this->team_class;
     }
 
+    public function getTenantClass(): string
+    {
+        return $this->team_class;
+    }
+
     public function getMembershipClass(): string
     {
         return $this->membership_class;
