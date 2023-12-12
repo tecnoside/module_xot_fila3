@@ -7,6 +7,7 @@ namespace Modules\Xot\Providers;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Str;
 use Modules\Xot\Http\Middleware\SetDefaultLocaleForUrlsMiddleware;
+use Modules\Xot\Http\Middleware\SetDefaultTenantForUrlsMiddleware;
 
 // public function boot(\Illuminate\Routing\Router $router)
 
@@ -46,6 +47,9 @@ class RouteServiceProvider extends XotBaseRouteServiceProvider
     {
         $router->prependMiddlewareToGroup('web', SetDefaultLocaleForUrlsMiddleware::class);
         $router->prependMiddlewareToGroup('api', SetDefaultLocaleForUrlsMiddleware::class);
+
+        $router->prependMiddlewareToGroup('web', SetDefaultTenantForUrlsMiddleware::class);
+        $router->prependMiddlewareToGroup('api', SetDefaultTenantForUrlsMiddleware::class);
     }
 
     /*
@@ -74,19 +78,19 @@ class RouteServiceProvider extends XotBaseRouteServiceProvider
     {
         // ---------- Lang Route Pattern
         $langs = config('laravellocalization.supportedLocales');
-        if (! \is_array($langs)) {
+        if (!\is_array($langs)) {
             // throw new \Exception('[.__LINE__.]['.class_basename(__CLASS__).']');
             $langs = ['it' => 'it', 'en' => 'en'];
         }
 
         $lang_pattern = collect(array_keys($langs))->implode('|');
-        $lang_pattern = '/|'.$lang_pattern.'|/i';
+        $lang_pattern = '/|' . $lang_pattern . '|/i';
 
         $router->pattern('lang', $lang_pattern);
         // -------------------------------------------------------------
 
         $models = config('morph_map');
-        if (! \is_array($models)) {
+        if (!\is_array($models)) {
             // throw new Exception('[' . print_r($models, true) . '][' . __LINE__ . '][' . class_basename(__CLASS__) . ']');
             $models = [];
         }

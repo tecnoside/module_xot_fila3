@@ -8,15 +8,16 @@ namespace Modules\Xot\Http\Middleware;
  * https://laravel.com/docs/8.x/urls#default-values
  */
 
+use Filament\Facades\Filament;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\URL;
 
 /**
- * Class SetDefaultLocaleForUrlsMiddleware.
+ * Class SetDefaultTenantForUrlsMiddleware.
  */
-class SetDefaultLocaleForUrlsMiddleware
+class SetDefaultTenantForUrlsMiddleware
 {
     /**
      * Handle the incoming request.
@@ -25,7 +26,7 @@ class SetDefaultLocaleForUrlsMiddleware
     {
         URL::defaults(
             [
-                'lang' => app()->getLocale(),
+                'tenant' => Filament::getTenant(),
                 // 'referrer' => url()->previous(),
             ]
         );
