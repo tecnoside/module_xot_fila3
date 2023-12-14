@@ -5,8 +5,17 @@ declare(strict_types=1);
 namespace Modules\Xot\Filament\Pages;
 
 use Filament\Pages\Page;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
+=======
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Filament\Panel;
+
+
+>>>>>>> c605e84 (redirect for who has only a module)
 
 class MainDashboard extends Page
 {
@@ -14,12 +23,17 @@ class MainDashboard extends Page
 
     protected static string $view = 'xot::filament.pages.dashboard';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c605e84 (redirect for who has only a module)
     /*
     public function __construct(){
         dddx('a'); //1
     }
     */
 
+<<<<<<< HEAD
     public function mount(): void
     {
         Assert::notNull($user = auth()->user());
@@ -32,6 +46,19 @@ class MainDashboard extends Page
             $panel_name = $modules->first()->name;
             $module_name = Str::before($panel_name, '::admin');
             $url = '/'.$module_name.'/admin/dashboard';
+=======
+   
+    public function mount(){
+        $user = auth()->user();
+        $modules=($user->roles->filter(function($item){
+            return Str::endsWith($item->name, '::admin');
+        }));
+
+        if($modules->count()==1){
+            $panel_name=$modules->first()->name;
+            $module_name=Str::before($panel_name, '::admin');
+            $url='/'.$module_name.'/admin/dashboard';
+>>>>>>> c605e84 (redirect for who has only a module)
             redirect($url);
         }
 
@@ -41,4 +68,11 @@ class MainDashboard extends Page
         }
         */
     }
+<<<<<<< HEAD
+=======
+   
+
+    
+    
+>>>>>>> c605e84 (redirect for who has only a module)
 }
