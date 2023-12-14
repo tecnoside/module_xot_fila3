@@ -47,23 +47,9 @@ class GetModulesNavigationItems
                 ->sort(3)
                 ->visible(function () use ($role) {
                     $user = Filament::auth()->user();
-<<<<<<< HEAD
-<<<<<<< HEAD
                     if (null == $user) {
                         return false;
                     }
-
-=======
-                    if($user==null){
-                        return false;
-                    }
->>>>>>> 09c147a (Refactor code for better readability and performance)
-=======
-                    if (null == $user) {
-                        return false;
-                    }
-
->>>>>>> 6a28ac1 (Check & fix styling)
                     return $user->hasRole($role);
                 });
 
