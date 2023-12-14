@@ -7,8 +7,6 @@ namespace Modules\Xot\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-<<<<<<< HEAD
-=======
 /**
  * Modules\Xot\Models\Settings.
  *
@@ -33,7 +31,6 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @mixin \Eloquent
  */
->>>>>>> 36cf382 (up)
 class Settings extends Model
 {
     /**
