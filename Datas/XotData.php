@@ -14,13 +14,10 @@ use Modules\User\Models\TenantUser;
 use Spatie\LaravelData\Concerns\WireableData;
 use Spatie\LaravelData\Data;
 use Webmozart\Assert\Assert;
-<<<<<<< HEAD
-use Illuminate\Support\Facades\File;
-use Illuminate\Database\Eloquent\Model;
 
 
-=======
->>>>>>> 5675e70 (Check & fix styling)
+
+
 
 /**
  * Undocumented class.
