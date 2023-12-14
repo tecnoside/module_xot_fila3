@@ -131,7 +131,10 @@ class XotServiceProvider extends XotBaseServiceProvider
                         $e->getMessage(),
                         $data
                     );
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2e327b5 (Refactor error logging and formatting code)
                 /*
                 Log::channel('daily')
                     ->error(
