@@ -7,6 +7,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Filament;
 
+<<<<<<< HEAD
 use Illuminate\Support\Str;
 use Spatie\QueueableAction\QueueableAction;
 use Symfony\Component\Finder\SplFileInfo as File;
@@ -15,6 +16,15 @@ use Webmozart\Assert\Assert;
 use function Safe\file;
 
 use ReflectionClass;
+=======
+use function Safe\file;
+
+use Illuminate\Support\Str;
+
+use Webmozart\Assert\Assert;
+use Spatie\QueueableAction\QueueableAction;
+use Symfony\Component\Finder\SplFileInfo as File;
+>>>>>>> 36cf382 (up)
 
 class GenerateFormByFileAction
 {

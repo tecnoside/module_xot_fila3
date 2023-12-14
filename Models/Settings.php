@@ -7,6 +7,24 @@ namespace Modules\Xot\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
+<<<<<<< HEAD
+=======
+/**
+ * Modules\Xot\Models\Settings.
+ *
+ * @property int                             $id
+ * @property string                          $group
+ * @property string                          $name
+ * @property int                             $locked
+ * @property mixed                           $payload
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static Builder|Settings newModelQuery()
+ * @method static Builder|Settings newQuery()
+ * @method static Builder|Settings query()
+ * @mixin \Eloquent
+ */
+>>>>>>> 36cf382 (up)
 class Settings extends Model
 {
     /**
