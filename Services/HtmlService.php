@@ -29,15 +29,20 @@ TableException
  */
 class HtmlService
 {
+<<<<<<< HEAD
 <<<<<<< HEAD:Services/HtmlService.to_action
     public static function toPdf(string $html, string $out = 'show', string $pdforientation = 'L', string $filename = ''): string
 =======
     public static function toPdf(string $html,string $out='show',string $pdforientation='L',string $filename=''): string
 >>>>>>> 4110617 (.):Services/HtmlService.php
+=======
+    public static function toPdf(string $html, string $out = 'show', string $pdforientation = 'L', string $filename = ''): string
+>>>>>>> 82d99cd (Check & fix styling)
     {
         // dddx($params);
 
         include_once __DIR__.'/vendor/autoload.php';
+<<<<<<< HEAD
 <<<<<<< HEAD:Services/HtmlService.to_action
         // $pdforientation = 'L'; // default;
         // $out = 'show';
@@ -47,6 +52,11 @@ class HtmlService
        // $out = 'show';
         if($filename==''){
 >>>>>>> 4110617 (.):Services/HtmlService.php
+=======
+        // $pdforientation = 'L'; // default;
+        // $out = 'show';
+        if ('' == $filename) {
+>>>>>>> 82d99cd (Check & fix styling)
             $filename = Storage::disk('local')->path('test.pdf');
         }
         /*
