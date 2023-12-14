@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Exceptions\Formatters;
 
-use Throwable;
 use Illuminate\Support\Facades\Auth;
 
 // use Symfony\Component\HttpFoundation\Request;
@@ -14,10 +13,14 @@ class WebhookErrorFormatter
     // private Request $request;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public function __construct(private readonly \Throwable $exception)
 =======
     public function __construct(private readonly Throwable $exception)
 >>>>>>> 5b2a882 (.)
+=======
+    public function __construct(private readonly \Throwable $exception)
+>>>>>>> e270247 (Check & fix styling)
     {
         // $this->request = $request;
     }
