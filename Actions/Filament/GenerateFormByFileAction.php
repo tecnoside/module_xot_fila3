@@ -8,13 +8,12 @@ declare(strict_types=1);
 namespace Modules\Xot\Actions\Filament;
 
 use Illuminate\Support\Str;
-use Spatie\QueueableAction\QueueableAction;
-use Symfony\Component\Finder\SplFileInfo as File;
-use Webmozart\Assert\Assert;
 
 use function Safe\file;
 
-use ReflectionClass;
+use Spatie\QueueableAction\QueueableAction;
+use Symfony\Component\Finder\SplFileInfo as File;
+use Webmozart\Assert\Assert;
 
 class GenerateFormByFileAction
 {
@@ -24,10 +23,8 @@ class GenerateFormByFileAction
      * Undocumented function.
      * return number of input added.
      */
-
     public function execute(File $file): int
     {
-
         if (! $file->isFile()) {
             return 0;
         }
@@ -43,7 +40,6 @@ class GenerateFormByFileAction
         Assert::classExists($class_name);
         $reflection_class = new \ReflectionClass($class_name);
         $form_method = $reflection_class->getMethod('form');
-
 
         $start_line = $form_method->getStartLine() - 1; // it's actually - 1, otherwise you wont get the function() block
         $end_line = $form_method->getEndLine();

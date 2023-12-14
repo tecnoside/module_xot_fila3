@@ -15,10 +15,6 @@ use Spatie\LaravelData\Concerns\WireableData;
 use Spatie\LaravelData\Data;
 use Webmozart\Assert\Assert;
 
-
-
-
-
 /**
  * Undocumented class.
  */
@@ -120,7 +116,6 @@ class XotData extends Data implements Wireable
     {
         return $this->tenant_class;
     }
-
 
     public function getTenantPivotClass(): string
     {

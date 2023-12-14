@@ -50,6 +50,7 @@ class GetModulesNavigationItems
                     if (null == $user) {
                         return false;
                     }
+
                     return $user->hasRole($role);
                 });
 

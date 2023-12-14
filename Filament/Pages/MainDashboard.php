@@ -7,16 +7,12 @@ namespace Modules\Xot\Filament\Pages;
 use Filament\Pages\Page;
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
-use Filament\Panel;
 
 class MainDashboard extends Page
 {
     protected static ?string $navigationIcon = 'heroicon-o-home';
 
     protected static string $view = 'xot::filament.pages.dashboard';
-
 
     /*
     public function __construct(){
