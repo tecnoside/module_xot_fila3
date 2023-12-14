@@ -33,5 +33,8 @@ package-lock.json
 package-lock.json
 .git-rewrite/
 .php-cs-fixer.cache
+<<<<<<< HEAD
 .php-cs-fixer.cache
 .git-rewrite/
+=======
+>>>>>>> aa66acb (.php-cs-fixer.cache >> .gitignore)
