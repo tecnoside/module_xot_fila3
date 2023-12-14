@@ -28,8 +28,11 @@ package-lock.json
 *.phar
 *.cache
 .git-blame-ignore-revs
+<<<<<<< HEAD
 package-lock.json
 .php-cs-fixer.cache
 package-lock.json
 .git-rewrite/
 .php-cs-fixer.cache
+=======
+>>>>>>> 904b553 (add .git-blame-ignore-revs to .gitignore)
