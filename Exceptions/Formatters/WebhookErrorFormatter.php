@@ -12,15 +12,7 @@ class WebhookErrorFormatter
 {
     // private Request $request;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     public function __construct(private readonly \Throwable $exception)
-=======
-    public function __construct(private readonly Throwable $exception)
->>>>>>> 5b2a882 (.)
-=======
-    public function __construct(private readonly \Throwable $exception)
->>>>>>> e270247 (Check & fix styling)
     {
         // $this->request = $request;
     }

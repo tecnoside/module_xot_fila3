@@ -8,13 +8,7 @@ use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Symfony\Component\Console\Output\OutputInterface;
-<<<<<<< HEAD
-use Illuminate\Contracts\Debug\ExceptionHandler;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Symfony\Component\Console\Output\OutputInterface;
-=======
->>>>>>> e270247 (Check & fix styling)
+
 
 /**
  * The exception handler decorator.
@@ -30,10 +24,7 @@ class HandlerDecorator implements ExceptionHandler
      * Set the dependencies.
      * The default Laravel exception handler.
      */
-<<<<<<< HEAD
     public function __construct(
-=======
->>>>>>> e270247 (Check & fix styling)
         protected ExceptionHandler $defaultHandler, HandlersRepository $repository)
     {
         $this->repository = $repository;
