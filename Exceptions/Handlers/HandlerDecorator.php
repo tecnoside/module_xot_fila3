@@ -16,12 +16,20 @@ class HandlerDecorator implements ExceptionHandler
 {
     /**
      * The custom handlers repository.
+<<<<<<< HEAD
+=======
+     *
+     * @var HandlersRepository
+>>>>>>> 2104fd7 (Update code documentation and dependenciesCo-authored-by: nunomaduro <enunomaduro@gmail.com>)
      */
     protected HandlersRepository $repository;
 
     /**
      * Set the dependencies.
+<<<<<<< HEAD
      * The default Laravel exception handler.
+=======
+>>>>>>> 2104fd7 (Update code documentation and dependenciesCo-authored-by: nunomaduro <enunomaduro@gmail.com>)
      */
     public function __construct(
         protected ExceptionHandler $defaultHandler, HandlersRepository $repository)

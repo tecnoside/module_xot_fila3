@@ -1,10 +1,16 @@
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * -WIP.
  */
 =======
 >>>>>>> 2934d64 (.)
+=======
+/**
+ * -WIP.
+ */
+>>>>>>> 2104fd7 (Update code documentation and dependenciesCo-authored-by: nunomaduro <enunomaduro@gmail.com>)
 
 declare(strict_types=1);
 
@@ -27,6 +33,9 @@ use ReflectionClass;
 =======
 >>>>>>> be0380e (Check & fix styling)
 use Illuminate\Support\Str;
+
+use function Safe\file;
+
 use Spatie\QueueableAction\QueueableAction;
 use Symfony\Component\Finder\SplFileInfo as File;
 
