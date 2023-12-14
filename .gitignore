@@ -30,9 +30,13 @@ package-lock.json
 .git-blame-ignore-revs
 package-lock.json
 <<<<<<< HEAD
+<<<<<<< HEAD
 .php-cs-fixer.cache
 package-lock.json
 .git-rewrite/
 .php-cs-fixer.cache
 =======
 >>>>>>> 3198234 (package-lock.json >> .gitignore)
+=======
+.php-cs-fixer.cache
+>>>>>>> c3550f0 (up)
