@@ -31,7 +31,7 @@ class MainDashboard extends Page
             Assert::notNull($modules->first());
             $panel_name = $modules->first()->name;
             $module_name = Str::before($panel_name, '::admin');
-            $url = '/'.$module_name.'/admin/dashboard';
+            $url = '/'.$module_name.'/admin';
             redirect($url);
         }
 
