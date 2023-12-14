@@ -7,12 +7,9 @@ namespace Modules\Xot\Filament\Pages;
 use Filament\Pages\Page;
 use Illuminate\Support\Str;
 use Webmozart\Assert\Assert;
-<<<<<<< HEAD
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Filament\Panel;
-=======
->>>>>>> be20a3c (phpstan error)
 
 class MainDashboard extends Page
 {
@@ -27,10 +24,6 @@ class MainDashboard extends Page
     }
     */
 
-<<<<<<< HEAD
-
-=======
->>>>>>> be20a3c (phpstan error)
     public function mount(): void
     {
         Assert::notNull($user = auth()->user());
