@@ -131,7 +131,6 @@ class XotServiceProvider extends XotBaseServiceProvider
                         $e->getMessage(),
                         $data
                     );
-
                 /*
                 Log::channel('daily')
                     ->error(
