@@ -21,7 +21,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Settings newModelQuery()
  * @method static Builder|Settings newQuery()
  * @method static Builder|Settings query()
-<<<<<<< HEAD
  * @method static Builder|Settings whereCreatedAt($value)
  * @method static Builder|Settings whereGroup($value)
  * @method static Builder|Settings whereId($value)
@@ -29,8 +28,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Settings whereName($value)
  * @method static Builder|Settings wherePayload($value)
  * @method static Builder|Settings whereUpdatedAt($value)
-=======
->>>>>>> ec22c20 (Check & fix styling)
  *
  * @mixin \Eloquent
  */
