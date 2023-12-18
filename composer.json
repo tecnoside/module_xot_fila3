@@ -43,8 +43,13 @@
         "larastan/larastan": "^2.6",
         "laravel/pint": "^1.13",
         "nunomaduro/collision": "*",
+<<<<<<< HEAD
         "larastan/larastan": "^2.7",
         "nunomaduro/phpinsights": "^2.11",
+=======
+        "larastan/larastan": "^2.6",
+        "nunomaduro/phpinsights": "^2.9",
+>>>>>>> 2104fd7 (Update code documentation and dependenciesCo-authored-by: nunomaduro <enunomaduro@gmail.com>)
         "orchestra/testbench": "*",
         "pestphp/pest": "*",
         "pestphp/pest-plugin-arch": "*",

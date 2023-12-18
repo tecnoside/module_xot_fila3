@@ -17,10 +17,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed                           $payload
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- *
  * @method static Builder|Settings newModelQuery()
  * @method static Builder|Settings newQuery()
  * @method static Builder|Settings query()
+<<<<<<< HEAD
  * @method static Builder|Settings whereCreatedAt($value)
  * @method static Builder|Settings whereGroup($value)
  * @method static Builder|Settings whereId($value)
@@ -29,6 +29,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder|Settings wherePayload($value)
  * @method static Builder|Settings whereUpdatedAt($value)
  *
+=======
+>>>>>>> 2104fd7 (Update code documentation and dependenciesCo-authored-by: nunomaduro <enunomaduro@gmail.com>)
  * @mixin \Eloquent
  */
 class Settings extends Model
