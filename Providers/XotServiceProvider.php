@@ -109,11 +109,7 @@ class XotServiceProvider extends XotBaseServiceProvider
      */
     private function extendExceptionHandler()
     {
-<<<<<<< HEAD
         $this->app->extend(ExceptionHandler::class, static function (ExceptionHandler $handler, $app) {
-=======
-        $this->app->extend(ExceptionHandler::class, function (ExceptionHandler $handler, $app) {
->>>>>>> be0380e (Check & fix styling)
             // dddx('a');
             return new HandlerDecorator($handler, $app[HandlersRepository::class]);
         });
@@ -122,11 +118,7 @@ class XotServiceProvider extends XotBaseServiceProvider
     /**
      * @see https://github.com/cerbero90/exception-handler
      */
-<<<<<<< HEAD
     public function registerExceptionHandler(): void
-=======
-    public function registerExceptionHandler()
->>>>>>> be0380e (Check & fix styling)
     {
         $exceptionHandler = $this->app->make(ExceptionHandler::class);
         $exceptionHandler->reporter(
