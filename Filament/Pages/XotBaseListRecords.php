@@ -13,10 +13,15 @@ use Modules\Xot\Actions\Filament\Actions\ImportButton;
  *
  * @property ?string $model
  */
+<<<<<<< HEAD
 abstract class XotBaseListRecords extends ListRecords
 {
     protected function getHeaderActions(): array
     {
+=======
+abstract class XotBaseListRecords extends ListRecords {
+    protected function getHeaderActions(): array {
+>>>>>>> 7301add (.)
         /*
         $anno=Arr::get($this->tableFilters,'anno.value');
         return [

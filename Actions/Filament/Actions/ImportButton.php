@@ -7,12 +7,19 @@ namespace Modules\Xot\Actions\Filament\Actions;
 use Filament\Actions\Action;
 use Spatie\QueueableAction\QueueableAction;
 
+<<<<<<< HEAD
 class ImportButton
 {
     use QueueableAction;
 
     public function execute(): Action
     {
+=======
+class ImportButton {
+    use QueueableAction;
+
+    public function execute(): Action {
+>>>>>>> 7301add (.)
         return Action::make('import')
             ->label('')
             ->tooltip('import XLS')

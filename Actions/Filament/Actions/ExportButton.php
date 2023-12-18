@@ -7,12 +7,19 @@ namespace Modules\Xot\Actions\Filament\Actions;
 use Filament\Actions\Action;
 use Spatie\QueueableAction\QueueableAction;
 
+<<<<<<< HEAD
 class ExportButton
 {
     use QueueableAction;
 
     public function execute(): Action
     {
+=======
+class ExportButton {
+    use QueueableAction;
+
+    public function execute(): Action {
+>>>>>>> 7301add (.)
         return Action::make('export')
             ->label('')
             ->tooltip('export XLS')
