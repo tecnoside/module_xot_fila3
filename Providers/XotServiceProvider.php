@@ -124,13 +124,19 @@ class XotServiceProvider extends XotBaseServiceProvider
         $exceptionHandler->reporter(
             function (\Throwable $e) {
                 // Log::critical(Request::url());
+<<<<<<< HEAD
                 $data = (new WebhookErrorFormatter($e))->format();
 
+=======
+                $data=(new WebhookErrorFormatter($e))->format();
+                                
+>>>>>>> ca3f888 (add a point of debug)
                 Log::channel('slack_errors')
                     ->error(
                         $e->getMessage(),
                         $data
                     );
+                   
                 /*
                 Log::channel('daily')
                     ->error(
