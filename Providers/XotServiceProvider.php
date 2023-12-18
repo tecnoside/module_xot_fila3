@@ -25,8 +25,7 @@ use function Safe\realpath;
 /**
  * Class XotServiceProvider.
  */
-class XotServiceProvider extends XotBaseServiceProvider
-{
+class XotServiceProvider extends XotBaseServiceProvider {
     // use Traits\PresenterTrait;
     use TranslatorTrait;
 
@@ -42,8 +41,7 @@ class XotServiceProvider extends XotBaseServiceProvider
      */
     protected string $module_ns = __NAMESPACE__;
 
-    public function bootCallback(): void
-    {
+    public function bootCallback(): void {
         // $this->registerConfigs();
         $this->registerCommands();
 
@@ -65,8 +63,7 @@ class XotServiceProvider extends XotBaseServiceProvider
         $this->registerExceptionHandler();
     }
 
-    public function registerCallback(): void
-    {
+    public function registerCallback(): void {
         // $this->loadHelpersFrom(__DIR__.'/../Helpers'); //non serve piu
         // $aliasLoader = AliasLoader::getInstance();
         // $aliasLoader->alias('Panel', PanelService::class);
@@ -95,8 +92,7 @@ class XotServiceProvider extends XotBaseServiceProvider
      *
      * @return void
      */
-    private function registerExceptionHandlersRepository()
-    {
+    private function registerExceptionHandlersRepository() {
         $this->app->singleton(HandlersRepository::class, HandlersRepository::class);
     }
 
@@ -107,9 +103,14 @@ class XotServiceProvider extends XotBaseServiceProvider
      *
      * @return void
      */
+<<<<<<< HEAD
     private function extendExceptionHandler()
     {
         $this->app->extend(ExceptionHandler::class, static function (ExceptionHandler $handler, $app) {
+=======
+    private function extendExceptionHandler() {
+        $this->app->extend(ExceptionHandler::class, function (ExceptionHandler $handler, $app) {
+>>>>>>> 2934d64 (.)
             // dddx('a');
             return new HandlerDecorator($handler, $app[HandlersRepository::class]);
         });
@@ -118,8 +119,12 @@ class XotServiceProvider extends XotBaseServiceProvider
     /**
      * @see https://github.com/cerbero90/exception-handler
      */
+<<<<<<< HEAD
     public function registerExceptionHandler(): void
     {
+=======
+    public function registerExceptionHandler() {
+>>>>>>> 2934d64 (.)
         $exceptionHandler = $this->app->make(ExceptionHandler::class);
         $exceptionHandler->reporter(
             static function (\Throwable $e) {
@@ -160,8 +165,7 @@ class XotServiceProvider extends XotBaseServiceProvider
         */
     }
 
-    public function registerConfigs(): void
-    {
+    public function registerConfigs(): void {
         $config_file = realpath(__DIR__.'/../Config/metatag.php');
         $this->mergeConfigFrom($config_file, 'metatag');
         // dddx('a');
@@ -181,8 +185,7 @@ class XotServiceProvider extends XotBaseServiceProvider
 
     //end mergeConfigs
     //*/
-    public function loadHelpersFrom(string $path): void
-    {
+    public function loadHelpersFrom(string $path): void {
         $files = File::files($path);
         foreach ($files as $file) {
             if ('php' !== $file->getExtension()) {
@@ -212,8 +215,7 @@ class XotServiceProvider extends XotBaseServiceProvider
     //end mergeConfigs
     //*/
 
-    private function redirectSSL(): void
-    {
+    private function redirectSSL(): void {
         // --- meglio ficcare un controllo anche sull'env
         if (
             config('xra.forcessl') && (isset($_SERVER['SERVER_NAME']) && 'localhost' !== $_SERVER['SERVER_NAME']
@@ -234,8 +236,7 @@ class XotServiceProvider extends XotBaseServiceProvider
      *
      * @see https://medium.com/@dobron/running-laravel-ide-helper-generator-automatically-b909e75849d0
      */
-    private function registerEvents(): void
-    {
+    private function registerEvents(): void {
         Event::listen(
             MigrationsEnded::class,
             static function (): void {
@@ -247,8 +248,7 @@ class XotServiceProvider extends XotBaseServiceProvider
     /**
      * Undocumented function.
      */
-    private function registerCommands(): void
-    {
+    private function registerCommands(): void {
         $this->commands(
             [
                 // \Modules\Xot\Console\CreateAllRepositoriesCommand::class,
@@ -264,8 +264,7 @@ class XotServiceProvider extends XotBaseServiceProvider
     }
 
     // Method Modules\Xot\Providers\XotServiceProvider::registerViewComposers() is unused
-    private function registerViewComposers(): void
-    {
+    private function registerViewComposers(): void {
         // Factory $view
         // $view->composer('bootstrap-italia::page', BootstrapItaliaComposer::class);
         View::composer('*', XotComposer::class);

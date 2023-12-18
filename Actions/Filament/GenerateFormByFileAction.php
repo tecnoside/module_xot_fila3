@@ -1,12 +1,16 @@
 <?php
+<<<<<<< HEAD
 /**
  * -WIP.
  */
+=======
+>>>>>>> 2934d64 (.)
 
 declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Filament;
 
+<<<<<<< HEAD
 use Illuminate\Support\Str;
 
 use function Safe\file;
@@ -17,14 +21,26 @@ use Webmozart\Assert\Assert;
 
 class GenerateFormByFileAction
 {
+=======
+use ReflectionClass;
+use Illuminate\Support\Str;
+use Spatie\QueueableAction\QueueableAction;
+use Symfony\Component\Finder\SplFileInfo as File;
+
+class GenerateFormByFileAction {
+>>>>>>> 2934d64 (.)
     use QueueableAction;
 
     /**
      * Undocumented function.
      * return number of input added.
      */
+<<<<<<< HEAD
     public function execute(File $file): int
     {
+=======
+    public function execute(File $file): int {
+>>>>>>> 2934d64 (.)
         if (! $file->isFile()) {
             return 0;
         }
@@ -33,6 +49,7 @@ class GenerateFormByFileAction
         }
 
         $class_name = Str::replace(base_path('Modules/'), 'Modules/', $file->getPathname());
+<<<<<<< HEAD
         Assert::string($class_name = Str::replace('/', '\\', $class_name));
         $class_name = Str::substr($class_name, 0, -4);
         $model_name = app($class_name)->getModel();
@@ -40,19 +57,36 @@ class GenerateFormByFileAction
         Assert::classExists($class_name);
         $reflection_class = new \ReflectionClass($class_name);
         $form_method = $reflection_class->getMethod('form');
+=======
+        $class_name = Str::replace('/','\\',$class_name);
+        $class_name = Str::substr($class_name, 0, -4);
+        $model_name = app($class_name)->getModel();
+        $fillable= app($model_name)->getFillable();
+
+        $reflection_class = new ReflectionClass($class_name); 
+        $form_method=$reflection_class->getMethod('form');
+>>>>>>> 2934d64 (.)
 
         $start_line = $form_method->getStartLine() - 1; // it's actually - 1, otherwise you wont get the function() block
         $end_line = $form_method->getEndLine();
         $length = $end_line - $start_line;
+<<<<<<< HEAD
         Assert::string($file_name = $form_method->getFileName());
         // $contents= $file->getContents();
         $source = file($file_name);
         $body = implode('', array_slice($source, $start_line, $length));
+=======
+
+        //$contents= $file->getContents();
+        $source=file($form_method->getFileName());
+        $body = implode("", array_slice($source, $start_line, $length));
+>>>>>>> 2934d64 (.)
 
         dd([
             'class_name' => $class_name,
             'model_name' => $model_name,
             'fillable' => $fillable,
+<<<<<<< HEAD
             // 't1'=>app($class_name)->form(app(\Filament\Forms\Form::class)),
             'methods' => get_class_methods(app($class_name)),
             'form_method' => $form_method,
@@ -63,6 +97,18 @@ class GenerateFormByFileAction
 
     public function ddFile(File $file): void
     {
+=======
+            //'t1'=>app($class_name)->form(app(\Filament\Forms\Form::class)),
+            'methods'=>get_class_methods(app($class_name)),
+            'form_method'=>$form_method,
+            'form_method_methods'=>get_class_methods($form_method),
+            'body'=>$body,
+
+        ]);
+    }
+
+    public function ddFile(File $file): void {
+>>>>>>> 2934d64 (.)
         dd([
             'getRelativePath' => $file->getRelativePath(), // =  ""
             'getRelativePathname' => $file->getRelativePathname(), //  AssenzeResource.php
