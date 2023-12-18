@@ -122,11 +122,6 @@ class XotData extends Data implements Wireable
         return $this->tenant_pivot_class;
     }
 
-    public function getTenantPivotClass(): string
-    {
-        return $this->tenant_pivot_class;
-    }
-
     public function getMembershipClass(): string
     {
         return $this->membership_class;
