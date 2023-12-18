@@ -30,9 +30,13 @@ class HandlerDecorator implements ExceptionHandler
      * The default Laravel exception handler.
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
     public function __construct(
 =======
 >>>>>>> e270247 (Check & fix styling)
+=======
+    public function __construct(
+>>>>>>> b3957b5 (up comopoer)
         protected ExceptionHandler $defaultHandler, HandlersRepository $repository)
     {
         $this->repository = $repository;
