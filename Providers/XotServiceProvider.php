@@ -109,7 +109,7 @@ class XotServiceProvider extends XotBaseServiceProvider
      */
     private function extendExceptionHandler()
     {
-        $this->app->extend(ExceptionHandler::class, function (ExceptionHandler $handler, $app) {
+        $this->app->extend(ExceptionHandler::class, static function (ExceptionHandler $handler, $app) {
             // dddx('a');
             return new HandlerDecorator($handler, $app[HandlersRepository::class]);
         });
@@ -122,20 +122,10 @@ class XotServiceProvider extends XotBaseServiceProvider
     {
         $exceptionHandler = $this->app->make(ExceptionHandler::class);
         $exceptionHandler->reporter(
-            function (\Throwable $e) {
+            static function (\Throwable $e) {
                 // Log::critical(Request::url());
-<<<<<<< HEAD
-<<<<<<< HEAD
                 $data = (new WebhookErrorFormatter($e))->format();
 
-=======
-                $data=(new WebhookErrorFormatter($e))->format();
-                                
->>>>>>> ca3f888 (add a point of debug)
-=======
-                $data = (new WebhookErrorFormatter($e))->format();
-
->>>>>>> de43f23 (Check & fix styling)
                 Log::channel('slack_errors')
                     ->error(
                         $e->getMessage(),
