@@ -17,9 +17,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed                           $payload
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static Builder|Settings newModelQuery()
  * @method static Builder|Settings newQuery()
  * @method static Builder|Settings query()
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @method static Builder|Settings whereCreatedAt($value)
  * @method static Builder|Settings whereGroup($value)
@@ -31,6 +33,9 @@ use Illuminate\Database\Eloquent\Model;
  *
 =======
 >>>>>>> 36cf382 (up)
+=======
+ *
+>>>>>>> c34febf (Check & fix styling)
  * @mixin \Eloquent
  */
 class Settings extends Model
