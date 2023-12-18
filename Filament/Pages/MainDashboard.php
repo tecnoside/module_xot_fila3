@@ -6,7 +6,10 @@ namespace Modules\Xot\Filament\Pages;
 
 use Filament\Pages\Page;
 use Illuminate\Support\Str;
+<<<<<<< HEAD
 use Webmozart\Assert\Assert;
+=======
+>>>>>>> b2ca65e (Check & fix styling)
 
 class MainDashboard extends Page
 {
@@ -20,6 +23,7 @@ class MainDashboard extends Page
     }
     */
 
+<<<<<<< HEAD
     public function mount(): void
     {
         Assert::notNull($user = auth()->user());
@@ -32,6 +36,19 @@ class MainDashboard extends Page
             $panel_name = $modules->first()->name;
             $module_name = Str::before($panel_name, '::admin');
             $url = '/'.$module_name.'/admin';
+=======
+    public function mount()
+    {
+        $user = auth()->user();
+        $modules = $user->roles->filter(function ($item) {
+            return Str::endsWith($item->name, '::admin');
+        });
+
+        if (1 == $modules->count()) {
+            $panel_name = $modules->first()->name;
+            $module_name = Str::before($panel_name, '::admin');
+            $url = '/'.$module_name.'/admin/dashboard';
+>>>>>>> b2ca65e (Check & fix styling)
             redirect($url);
         }
 
