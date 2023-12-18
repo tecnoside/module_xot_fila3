@@ -29,34 +29,14 @@ TableException
  */
 class HtmlService
 {
-<<<<<<< HEAD
-<<<<<<< HEAD:Services/HtmlService.to_action
     public static function toPdf(string $html, string $out = 'show', string $pdforientation = 'L', string $filename = ''): string
-=======
-    public static function toPdf(string $html,string $out='show',string $pdforientation='L',string $filename=''): string
->>>>>>> 4110617 (.):Services/HtmlService.php
-=======
-    public static function toPdf(string $html, string $out = 'show', string $pdforientation = 'L', string $filename = ''): string
->>>>>>> 82d99cd (Check & fix styling)
     {
         // dddx($params);
 
         include_once __DIR__.'/vendor/autoload.php';
-<<<<<<< HEAD
-<<<<<<< HEAD:Services/HtmlService.to_action
         // $pdforientation = 'L'; // default;
         // $out = 'show';
-        if ('' == $filename) {
-=======
-       // $pdforientation = 'L'; // default;
-       // $out = 'show';
-        if($filename==''){
->>>>>>> 4110617 (.):Services/HtmlService.php
-=======
-        // $pdforientation = 'L'; // default;
-        // $out = 'show';
-        if ('' == $filename) {
->>>>>>> 82d99cd (Check & fix styling)
+        if ('' === $filename) {
             $filename = Storage::disk('local')->path('test.pdf');
         }
         /*
@@ -73,11 +53,11 @@ class HtmlService
             $html2pdf = new Html2Pdf($pdforientation, 'A4', 'it');
             $html2pdf->setTestTdInOnePage(false);
             $html2pdf->WriteHTML($html);
-            if ('content_PDF' == $out) {
+            if ('content_PDF' === $out) {
                 return $html2pdf->Output($filename.'.pdf', 'S');
             }
 
-            if ('file' == $out) {
+            if ('file' === $out) {
                 $html2pdf->Output($filename, 'F');
 
                 return $filename;

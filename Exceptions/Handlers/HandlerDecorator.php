@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace Modules\Xot\Exceptions\Handlers;
 
 use Illuminate\Contracts\Debug\ExceptionHandler;
-<<<<<<< HEAD
 use Illuminate\Http\Request;
-=======
->>>>>>> e270247 (Check & fix styling)
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Http\Response;
@@ -29,14 +26,7 @@ class HandlerDecorator implements ExceptionHandler
      * Set the dependencies.
      * The default Laravel exception handler.
      */
-<<<<<<< HEAD
-<<<<<<< HEAD
     public function __construct(
-=======
->>>>>>> e270247 (Check & fix styling)
-=======
-    public function __construct(
->>>>>>> b3957b5 (up comopoer)
         protected ExceptionHandler $defaultHandler, HandlersRepository $repository)
     {
         $this->repository = $repository;

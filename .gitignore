@@ -29,10 +29,7 @@ package-lock.json
 *.cache
 .git-blame-ignore-revs
 package-lock.json
-<<<<<<< HEAD
 .php-cs-fixer.cache
 package-lock.json
 .git-rewrite/
 .php-cs-fixer.cache
-=======
->>>>>>> 3198234 (package-lock.json >> .gitignore)
