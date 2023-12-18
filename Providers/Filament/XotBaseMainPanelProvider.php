@@ -7,6 +7,10 @@ namespace Modules\Xot\Providers\Filament;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+<<<<<<< HEAD
+=======
+use Modules\Xot\Filament\Pages\MainDashboard;
+>>>>>>> c605e84 (redirect for who has only a module)
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
