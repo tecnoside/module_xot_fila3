@@ -45,12 +45,16 @@ class GenerateFormByFileAction
         $end_line = $form_method->getEndLine();
         $length = $end_line - $start_line;
 <<<<<<< HEAD
+<<<<<<< HEAD
         Assert::string($file_name = $form_method->getFileName());
         // $contents= $file->getContents();
         $source = file($file_name);
         $body = implode('', \array_slice($source, $start_line, $length));
 =======
         Assert::string($file_name=$form_method->getFileName());
+=======
+        Assert::string($file_name = $form_method->getFileName());
+>>>>>>> d9bd1c8 (Check & fix styling)
         // $contents= $file->getContents();
         $source = file($file_name);
         $body = implode('', array_slice($source, $start_line, $length));
