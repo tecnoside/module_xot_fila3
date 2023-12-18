@@ -8,6 +8,7 @@ use Filament\Actions\Action;
 use Spatie\QueueableAction\QueueableAction;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 class ImportButton
 {
     use QueueableAction;
@@ -20,6 +21,14 @@ class ImportButton {
 
     public function execute(): Action {
 >>>>>>> 7301add (.)
+=======
+class ImportButton
+{
+    use QueueableAction;
+
+    public function execute(): Action
+    {
+>>>>>>> 583b628 (Check & fix styling)
         return Action::make('import')
             ->label('')
             ->tooltip('import XLS')
