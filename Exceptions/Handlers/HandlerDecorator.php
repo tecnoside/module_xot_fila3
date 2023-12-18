@@ -130,13 +130,8 @@ class HandlerDecorator implements ExceptionHandler
         /**
          * @var callable
          */
-<<<<<<< HEAD
         $callable = [$this->defaultHandler, $name];
 
         return \call_user_func_array($callable, $parameters);
-=======
-        $callable=[$this->defaultHandler, $name];
-        return call_user_func_array($callable, $parameters);
->>>>>>> 36cf382 (up)
     }
 }
