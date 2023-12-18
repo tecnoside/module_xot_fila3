@@ -6,10 +6,7 @@ namespace Modules\Xot\Exceptions\Handlers;
 
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Http\Response;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
@@ -135,6 +132,6 @@ class HandlerDecorator implements ExceptionHandler
          */
         $callable = [$this->defaultHandler, $name];
 
-        return \call_user_func_array($callable, $parameters);
+        return call_user_func_array($callable, $parameters);
     }
 }
