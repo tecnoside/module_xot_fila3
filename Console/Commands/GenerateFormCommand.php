@@ -13,12 +13,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Facades\Module;
 
-<<<<<<< HEAD
 class GenerateFormCommand extends Command
 {
-=======
-class GenerateFormCommand extends Command {
->>>>>>> 2934d64 (.)
     /**
      * The name and signature of the console command.
      *
@@ -38,24 +34,16 @@ class GenerateFormCommand extends Command {
      *
      * @return void
      */
-<<<<<<< HEAD
     public function __construct()
     {
-=======
-    public function __construct() {
->>>>>>> 2934d64 (.)
         parent::__construct();
     }
 
     /**
      * Execute the console command.
      */
-<<<<<<< HEAD
     public function handle(): void
     {
-=======
-    public function handle(): void {
->>>>>>> 2934d64 (.)
         $module_name = $this->argument('module');
         $module_path = Module::getModulePath($module_name);
         if (! Str::endsWith($module_path, '/')) {
