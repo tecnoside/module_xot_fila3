@@ -7,20 +7,11 @@ namespace Modules\Xot\Datas;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Livewire\Wireable;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 5675e70 (Check & fix styling)
 use Modules\Tenant\Services\TenantService;
 use Modules\User\Models\Membership;
 use Modules\User\Models\Team;
 use Modules\User\Models\TenantUser;
 use Spatie\LaravelData\Concerns\WireableData;
-<<<<<<< HEAD
-=======
->>>>>>> 229e261 (split tenant/team)
-=======
->>>>>>> 5675e70 (Check & fix styling)
 use Spatie\LaravelData\Data;
 use Webmozart\Assert\Assert;
 
@@ -124,14 +115,11 @@ class XotData extends Data implements Wireable
     public function getTenantClass(): string
     {
         return $this->tenant_class;
-<<<<<<< HEAD
     }
 
     public function getTenantPivotClass(): string
     {
         return $this->tenant_pivot_class;
-=======
->>>>>>> 229e261 (split tenant/team)
     }
 
     public function getTenantPivotClass(): string
