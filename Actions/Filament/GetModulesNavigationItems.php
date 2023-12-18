@@ -45,18 +45,12 @@ class GetModulesNavigationItems
                 ->icon($icon)
                 ->group('Modules')
                 ->sort($config['navigation_sort'] ?? 1)
-                ->visible(function () use ($role) {
+                ->visible(static function () use ($role) {
                     $user = Filament::auth()->user();
-<<<<<<< HEAD
-                    if (null == $user) {
+                    if (null === $user) {
                         return false;
                     }
 
-=======
-                    if($user==null){
-                        return false;
-                    }
->>>>>>> 09c147a (Refactor code for better readability and performance)
                     return $user->hasRole($role);
                 });
 
