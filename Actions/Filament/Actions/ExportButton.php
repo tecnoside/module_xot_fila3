@@ -18,7 +18,11 @@ class ExportButton
             ->tooltip('export XLS')
             ->icon('heroicon-o-inbox-arrow-down')
             // ->visible(null != $year)
+<<<<<<< HEAD
             ->action(static fn () => dddx('WIP'))
+=======
+            ->action(fn () => dddx('WIP'))
+>>>>>>> master
         ;
     }
 }
