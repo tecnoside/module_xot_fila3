@@ -28,7 +28,11 @@ class GenerateFormByFileAction
         if (! $file->isFile()) {
             return 0;
         }
+<<<<<<< HEAD
         if (! in_array($file->getExtension(), ['php'])) {
+=======
+        if (! \in_array($file->getExtension(), ['php'], false)) {
+>>>>>>> master
             return 0;
         }
 
@@ -44,6 +48,10 @@ class GenerateFormByFileAction
         $start_line = $form_method->getStartLine() - 1; // it's actually - 1, otherwise you wont get the function() block
         $end_line = $form_method->getEndLine();
         $length = $end_line - $start_line;
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
         Assert::string($file_name = $form_method->getFileName());
         // $contents= $file->getContents();
         $source = file($file_name);
