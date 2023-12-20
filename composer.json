@@ -1,0 +1,105 @@
+{
+    "name": "laraxot/module_xot_fila3",
+    "description": "xot module, heart of the laraxot repository",
+    "keywords": [
+        "laraxot",
+        "laravel",
+        "module_xot",
+        "filament"
+    ],
+    "homepage": "https://github.com/laraxot/module_xot_fila3",
+    "license": "MIT",
+    "authors": [{
+        "name": "marco sottana",
+        "email": "marco.sottana@gmail.com",
+        "role": "Developer"
+    }],
+    "require": {
+        "php": "^8.1",
+        "coolsam/modules": "*",
+        "doctrine/dbal": "*",
+        "fidum/laravel-eloquent-morph-to-one": "*",
+        "filament/filament": "^3.0-stable",
+        "guzzlehttp/guzzle": "*",
+        "illuminate/contracts": "*",
+        "illuminate/support": "*",
+        "konnco/filament-import": "^1.6",
+        "laraxot/module_tenant_fila3": "dev-master",
+        "livewire/livewire": "^3.2",
+        "nwidart/laravel-modules": "*",
+        "spatie/laravel-data": "*",
+        "spatie/laravel-model-status": "*",
+        "spatie/laravel-package-tools": "*",
+        "spatie/laravel-permission": "*",
+        "spatie/laravel-queueable-action": "*",
+        "spatie/laravel-tags": "*",
+        "thecodingmachine/safe": "^2.5"
+    },
+    "require-dev": {
+        "barryvdh/laravel-ide-helper": "*",
+        "enlightn/enlightn": "^2.7",
+        "fakerphp/faker": "*",
+        "friendsofphp/php-cs-fixer": "*",
+        "larastan/larastan": "^2.6",
+        "laravel/pint": "^1.13",
+        "nunomaduro/collision": "*",
+        "larastan/larastan": "^2.7",
+        "nunomaduro/phpinsights": "^2.11",
+        "orchestra/testbench": "*",
+        "pestphp/pest": "*",
+        "pestphp/pest-plugin-arch": "*",
+        "pestphp/pest-plugin-laravel": "*",
+        "phpstan/phpstan-deprecation-rules": "*",
+        "phpstan/phpstan-phpunit": "*",
+        "psalm/plugin-laravel": "^2.8",
+        "rector/phpstan-rules": "^0.7.1",
+        "spatie/laravel-ray": "*",
+        "symplify/phpstan-rules": "^12.4",
+        "thecodingmachine/phpstan-safe-rule": "^1.2",
+        "tightenco/duster": "*",
+        "vimeo/psalm": "^5.17"
+    },
+    "repositories": [
+    {
+        "type": "path",
+        "url": "../Tenant"
+    },
+    {
+        "type": "path",
+        "url": "../UI"
+    }],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Xot\\": ""
+        },
+        "files": [
+            "Helpers/Helper.php"
+        ]
+    },
+    "scripts": {
+
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Xot\\Provider\\XotServiceProvider"
+
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
