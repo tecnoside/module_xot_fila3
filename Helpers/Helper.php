@@ -836,7 +836,7 @@ if (! function_exists('getRouteName')) {
     {
         // getRouteName();
         /**
-         * @var \Illuminate\Routing\Route|null
+         * @var Illuminate\Routing\Route|null
          */
         $route = request()->route();
         if (! $route instanceof \Illuminate\Routing\Route) {
