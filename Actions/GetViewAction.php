@@ -34,7 +34,6 @@ class GetViewAction
         $mod = $arr[1];
         $tmp = array_slice($arr, 3);
 
-
         $tmp = collect($tmp)->map(
             function ($item) {
                 $item = str_replace('.php', '', $item);
@@ -45,7 +44,7 @@ class GetViewAction
 
         $pub_view = 'pub_theme::'.$tmp;
         Assert::string($pub_view);
-        
+
         if ('' !== $tpl) {
             $pub_view .= '.'.$tpl;
         }
@@ -73,7 +72,7 @@ class GetViewAction
             dddx([
                 'Views not found',
                 $view,
-                $pub_view
+                $pub_view,
             ]);
         }
 
