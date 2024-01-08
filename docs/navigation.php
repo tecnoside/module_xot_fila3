@@ -34,7 +34,7 @@ return [
         'url' => 'docs/automatic-push',
     ],
     'Config' => [
-        'url' => 'docs/config',
+        'url' => '#',
         'children' => [
             'Configurazione modules.php' => 'docs/config/modules',
         ],
