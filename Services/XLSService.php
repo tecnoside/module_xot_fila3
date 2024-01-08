@@ -35,7 +35,7 @@ class XLSService
     public static function getInstance(): self
     {
         if (! self::$instance instanceof XLSService) {
-            self::$instance = new self;
+            self::$instance = new self();
         }
 
         return self::$instance;
@@ -77,7 +77,7 @@ class XLSService
                     $col_row[] = ['col' => $col_key, 'int_col' => $int_col_key, 'row' => $row_key, 'url' => $column];
                 }
 
-                $int_col_key++;
+                ++$int_col_key;
             }
         }
 
@@ -90,7 +90,7 @@ class XLSService
     public function fromInputFileName(string $name): self
     {
         $file = request()->file('file');
-        if ($file === null) {
+        if (null === $file) {
             throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
 
@@ -100,7 +100,7 @@ class XLSService
     /**
      * Undocumented function.
      *
-     * @param  array<int, UploadedFile>|UploadedFile  $file
+     * @param array<int, UploadedFile>|UploadedFile $file
      *
      * @throws ValidationException
      * @throws \PhpOffice\PhpSpreadsheet\Exception
@@ -116,7 +116,7 @@ class XLSService
         }
 
         $realPath = $file->getRealPath();
-        if ($realPath === false) {
+        if (false === $realPath) {
             throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
 

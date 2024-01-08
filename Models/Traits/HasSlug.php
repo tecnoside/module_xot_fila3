@@ -36,14 +36,14 @@ trait HasSlug
         $counter = 0;
 
         while ($this->slugExists($slug, $this->exists ? $this->getKey() : null)) {
-            $counter++;
+            ++$counter;
             $slug = $originalSlug.'-'.$counter;
         }
 
         return $slug;
     }
 
-    private function slugExists(string $slug, ?int $ignoreId = null): bool
+    private function slugExists(string $slug, int $ignoreId = null): bool
     {
         $query = $this->where('slug', $slug);
 

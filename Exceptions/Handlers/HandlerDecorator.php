@@ -58,7 +58,8 @@ class HandlerDecorator implements ExceptionHandler
     /**
      * Render an exception into a response.
      *
-     * @param  Request  $request
+     * @param Request $request
+     *
      * @return Response|\Symfony\Component\HttpFoundation\Response
      */
     public function render($request, \Throwable $e)
@@ -85,7 +86,7 @@ class HandlerDecorator implements ExceptionHandler
     /**
      * Render an exception to the console.
      *
-     * @param  OutputInterface  $output
+     * @param OutputInterface $output
      */
     public function renderForConsole($output, \Throwable $e)
     {
@@ -121,8 +122,8 @@ class HandlerDecorator implements ExceptionHandler
     /**
      * Proxy other calls to default Laravel exception handler.
      *
-     * @param  string  $name
-     * @param  array  $parameters
+     * @param string $name
+     * @param array  $parameters
      */
     public function __call($name, $parameters)
     {

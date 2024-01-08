@@ -57,7 +57,8 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
     /**
      * Get a relationship.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return mixed|void
      */
     public function getRelationValue($key);
@@ -79,14 +80,15 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
     /**
      * Determine if the model has (one of) the given role(s).
      *
-     * @param  string|int|array|Role|\Illuminate\Support\Collection  $roles
+     * @param string|int|array|Role|\Illuminate\Support\Collection $roles
      */
-    public function hasRole($roles, ?string $guard = null): bool;
+    public function hasRole($roles, string $guard = null): bool;
 
     /**
      * Assign the given role to the model.
      *
-     * @param  array|string|int|Role|\Illuminate\Support\Collection  ...$roles
+     * @param array|string|int|Role|\Illuminate\Support\Collection ...$roles
+     *
      * @return $this
      */
     public function assignRole($roles = []);

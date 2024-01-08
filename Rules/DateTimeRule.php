@@ -13,8 +13,8 @@ use Illuminate\Contracts\Validation\Rule;
 class DateTimeRule implements Rule
 {
     /**
-     * @param  string  $attribute
-     * @param  string  $value
+     * @param string $attribute
+     * @param string $value
      */
     public function passes($attribute, $value): bool
     {

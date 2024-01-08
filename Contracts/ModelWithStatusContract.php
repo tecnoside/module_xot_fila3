@@ -56,5 +56,5 @@ interface ModelWithStatusContract
 
     public function status(): ?Status;
 
-    public function setStatus(string $name, ?string $reason = null): self;
+    public function setStatus(string $name, string $reason = null): self;
 }

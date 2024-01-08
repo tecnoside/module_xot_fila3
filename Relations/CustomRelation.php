@@ -36,15 +36,15 @@ class CustomRelation extends Relation
         /**
          * The baseConstraints callback.
          */
-        protected Closure $baseConstraints,
+        protected \Closure $baseConstraints,
         /**
          * The eagerConstraints callback.
          */
-        protected ?Closure $eagerConstraints,
+        protected ?\Closure $eagerConstraints,
         /**
          * The eager constraints model matcher.
          */
-        protected ?Closure $eagerMatcher
+        protected ?\Closure $eagerMatcher
     ) {
         parent::__construct($query, $model);
     }
@@ -73,7 +73,8 @@ class CustomRelation extends Relation
     /**
      * Initialize the relation on a set of models.
      *
-     * @param  string  $relation
+     * @param string $relation
+     *
      * @return array
      */
     public function initRelation(array $models, $relation)
@@ -88,7 +89,8 @@ class CustomRelation extends Relation
     /**
      * Match the eagerly loaded results to their parents.
      *
-     * @param  string  $relation
+     * @param string $relation
+     *
      * @return array
      */
     public function match(array $models, Collection $collection, $relation)
@@ -112,7 +114,8 @@ class CustomRelation extends Relation
     /**
      * Execute the query as a "select" statement.
      *
-     * @param  array  $columns
+     * @param array $columns
+     *
      * @return Collection
      */
     public function get($columns = ['*'])

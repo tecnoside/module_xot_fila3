@@ -7,12 +7,13 @@ namespace Modules\Xot\Datas;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
+use function Safe\realpath;
+
 use Spatie\LaravelData\Data;
 use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Webmozart\Assert\Assert;
-
-use function Safe\realpath;
 
 /**
  * Undocumented class.
