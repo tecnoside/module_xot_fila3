@@ -109,7 +109,11 @@ class XotServiceProvider extends XotBaseServiceProvider
      */
     private function extendExceptionHandler()
     {
+<<<<<<< HEAD
         $this->app->extend(ExceptionHandler::class, function (ExceptionHandler $handler, $app) {
+=======
+        $this->app->extend(ExceptionHandler::class, static function (ExceptionHandler $handler, $app) {
+>>>>>>> 7e6ca75 (first)
             // dddx('a');
             return new HandlerDecorator($handler, $app[HandlersRepository::class]);
         });
@@ -122,7 +126,11 @@ class XotServiceProvider extends XotBaseServiceProvider
     {
         $exceptionHandler = $this->app->make(ExceptionHandler::class);
         $exceptionHandler->reporter(
+<<<<<<< HEAD
             function (\Throwable $e) {
+=======
+            static function (\Throwable $e) {
+>>>>>>> 7e6ca75 (first)
                 // Log::critical(Request::url());
                 $data = (new WebhookErrorFormatter($e))->format();
 
@@ -131,6 +139,10 @@ class XotServiceProvider extends XotBaseServiceProvider
                         $e->getMessage(),
                         $data
                     );
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7e6ca75 (first)
                 /*
                 Log::channel('daily')
                     ->error(
