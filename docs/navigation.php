@@ -30,6 +30,9 @@ return [
             'Duplicazione del codice' => 'docs/tools/code-duplication',
         ],
     ],
+    'Push automatico in hostinger' => [
+        'url' => 'docs/automatic-push',
+    ],
     'Config' => [
         'url' => 'docs/config',
         'children' => [
