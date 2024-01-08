@@ -21,7 +21,7 @@ class Memoization
      */
     public static function getInstance(): self
     {
-        if (! self::$_instance instanceof \Modules\Xot\Services\Memoization) {
+        if (! self::$_instance instanceof Memoization) {
             self::$_instance = new self();
         }
 
