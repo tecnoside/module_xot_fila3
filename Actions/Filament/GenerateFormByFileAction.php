@@ -28,11 +28,7 @@ class GenerateFormByFileAction
         if (! $file->isFile()) {
             return 0;
         }
-<<<<<<< HEAD
         if (! \in_array($file->getExtension(), ['php'], false)) {
-=======
-        if (! \in_array($file->getExtension(), ['php'], true)) {
->>>>>>> 7e6ca75 (first)
             return 0;
         }
 
@@ -51,11 +47,7 @@ class GenerateFormByFileAction
         Assert::string($file_name = $form_method->getFileName());
         // $contents= $file->getContents();
         $source = file($file_name);
-<<<<<<< HEAD
         $body = implode('', array_slice($source, $start_line, $length));
-=======
-        $body = implode('', \array_slice($source, $start_line, $length));
->>>>>>> 7e6ca75 (first)
 
         dd([
             'class_name' => $class_name,
