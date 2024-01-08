@@ -36,7 +36,11 @@ class HtmlService
         include_once __DIR__.'/vendor/autoload.php';
         // $pdforientation = 'L'; // default;
         // $out = 'show';
+<<<<<<< HEAD
         if ('' == $filename) {
+=======
+        if ('' === $filename) {
+>>>>>>> 7e6ca75 (first)
             $filename = Storage::disk('local')->path('test.pdf');
         }
         /*
