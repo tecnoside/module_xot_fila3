@@ -53,7 +53,10 @@ class GenerateFormByFileAction
         $end_line = $form_method->getEndLine();
         $length = $end_line - $start_line;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
         Assert::string($file_name = $form_method->getFileName());
         // $contents= $file->getContents();
         $source = file($file_name);

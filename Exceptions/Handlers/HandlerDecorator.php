@@ -127,6 +127,7 @@ class HandlerDecorator implements ExceptionHandler
      */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     public function __call($name, $parameters)
 =======
     public function __call($name, $parameters): mixed
@@ -134,6 +135,9 @@ class HandlerDecorator implements ExceptionHandler
 =======
     public function __call($name, $parameters): mixed
 >>>>>>> eacb8a1 (first)
+=======
+    public function __call($name, $parameters): mixed
+>>>>>>> dev
     {
         /**
          * @var callable
