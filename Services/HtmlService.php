@@ -37,10 +37,14 @@ class HtmlService
         // $pdforientation = 'L'; // default;
         // $out = 'show';
 <<<<<<< HEAD
+<<<<<<< HEAD
         if ('' == $filename) {
 =======
         if ('' === $filename) {
 >>>>>>> 7e6ca75 (first)
+=======
+        if ('' == $filename) {
+>>>>>>> eacb8a1 (first)
             $filename = Storage::disk('local')->path('test.pdf');
         }
         /*
@@ -57,11 +61,19 @@ class HtmlService
             $html2pdf = new Html2Pdf($pdforientation, 'A4', 'it');
             $html2pdf->setTestTdInOnePage(false);
             $html2pdf->WriteHTML($html);
+<<<<<<< HEAD
             if ('content_PDF' === $out) {
                 return $html2pdf->Output($filename.'.pdf', 'S');
             }
 
             if ('file' === $out) {
+=======
+            if ('content_PDF' == $out) {
+                return $html2pdf->Output($filename.'.pdf', 'S');
+            }
+
+            if ('file' == $out) {
+>>>>>>> eacb8a1 (first)
                 $html2pdf->Output($filename, 'F');
 
                 return $filename;
