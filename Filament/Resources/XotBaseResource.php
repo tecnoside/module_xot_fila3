@@ -42,7 +42,11 @@ abstract class XotBaseResource extends Resource
 
     public static function trans(string $key): string
     {
-        return __(static::transPath($key));
+        $res= __(static::transPath($key));
+        if(is_array($res)){
+            throw new \Exception ('fix lang ['.$key.']');
+        }
+        return $res;
     }
 
     public static function getModel(): string
