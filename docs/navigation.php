@@ -24,7 +24,7 @@ return [
             'Url Not Found' => 'docs/base/url-not-found',
         ],
     ],
-    'Tools controllo codiceee' => [
+    'Tools controllo codice' => [
         // 'url' => 'docs/tools/code-check',
         'children' => [
             'Duplicazione del codice' => 'docs/tools/code-duplication',
