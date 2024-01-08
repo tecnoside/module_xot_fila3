@@ -21,9 +21,9 @@ class TypeGuesser
     }
 
     /**
-     * @param int|null $size Length of field, if known
+     * @param  int|null  $size Length of field, if known
      */
-    public function guess(string $name, Type $type, int $size = null): string
+    public function guess(string $name, Type $type, ?int $size = null): string
     {
         $name = Str::of($name)->lower();
 
@@ -47,7 +47,7 @@ class TypeGuesser
     /**
      * Check if faker instance has a native resolver for the given property.
      *
-     * @param string $property
+     * @param  string  $property
      */
     private function hasNativeResolverFor($property): bool
     {
@@ -84,7 +84,7 @@ class TypeGuesser
      */
     private function predictCountyType(): string
     {
-        if ('en_US' === $this->faker->locale) {
+        if ($this->faker->locale === 'en_US') {
             return "sprintf('%s County', \$faker->city)";
         }
 
@@ -109,7 +109,7 @@ class TypeGuesser
      */
     private function predictTitleType(?int $size): string
     {
-        if (null === $size || $size <= 10) {
+        if ($size === null || $size <= 10) {
             return 'title';
         }
 
@@ -119,9 +119,9 @@ class TypeGuesser
     /**
      * Get type guess.
      *
-     * @param string $name
+     * @param  string  $name
      */
-    private function guessBasedOnName($name, int $size = null): string
+    private function guessBasedOnName($name, ?int $size = null): string
     {
         return match ($name) {
             'login' => 'userName',

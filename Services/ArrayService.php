@@ -10,13 +10,12 @@ use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 use function Safe\fclose;
 use function Safe\fopen;
 use function Safe\fputcsv;
-
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Class ArrayService.
@@ -40,7 +39,7 @@ class ArrayService
     public static function getInstance(): self
     {
         if (! self::$instance instanceof ArrayService) {
-            self::$instance = new self();
+            self::$instance = new self;
         }
 
         return self::$instance;
@@ -80,8 +79,8 @@ class ArrayService
     /**
      * Undocumented function.
      *
-     * @param array|object $arrObjData
-     * @param array        $arrSkipIndices
+     * @param  array|object  $arrObjData
+     * @param  array  $arrSkipIndices
      */
     public static function fromObjects($arrObjData, $arrSkipIndices = []): array
     {
@@ -112,10 +111,10 @@ class ArrayService
     /**
      * Undocumented function.
      *
-     * @param int $a0
-     * @param int $b0
-     * @param int $a1
-     * @param int $b1
+     * @param  int  $a0
+     * @param  int  $b0
+     * @param  int  $a1
+     * @param  int  $b1
      */
     public static function rangeIntersect($a0, $b0, $a1, $b1): array|bool
     {
@@ -217,7 +216,7 @@ class ArrayService
     public function getFilename(): string
     {
         $filename = $this->filename;
-        if (null !== $filename) {
+        if ($filename !== null) {
             return $filename;
         }
 
@@ -234,7 +233,7 @@ class ArrayService
      */
     public function toXLS(): BinaryFileResponse|Renderable
     {
-        if (1 === request('debug', 0) * 1) {
+        if (request('debug', 0) * 1 === 1) {
             return self::toHtml();
         }
 
@@ -250,7 +249,7 @@ class ArrayService
         }
 
         $this->array = $res;
-        if (1 === $this->export_processor) {
+        if ($this->export_processor === 1) {
             return self::toXLS_phpoffice();
         }
 
@@ -376,7 +375,7 @@ class ArrayService
      */
     public function toXLS_phpoffice(?string $out = 'download'): BinaryFileResponse|Renderable
     {
-        $spreadsheet = new Spreadsheet();
+        $spreadsheet = new Spreadsheet;
         // ----
         $ltr = 'A1';
         // ----

@@ -46,7 +46,7 @@ class RouteDomTest extends TestCase
             }
             */
             $url = str_replace('index.php', '', (string) $url);
-            if (null === $url) {
+            if ($url === null) {
                 throw new \Exception('url is null');
             }
 
@@ -56,7 +56,7 @@ class RouteDomTest extends TestCase
 
             $response = $this->get($url);
             $html = $response->getContent();
-            if (false === $html) {
+            if ($html === false) {
                 throw new \Exception('cannot get content');
             }
 
@@ -96,7 +96,7 @@ class RouteDomTest extends TestCase
     */
     private function dom(string $html): Crawler
     {
-        $crawler = new Crawler();
+        $crawler = new Crawler;
         $crawler->addHTMLContent($html, 'UTF-8');
 
         return $crawler;

@@ -36,7 +36,7 @@ class ModelService
     public static function getInstance(): self
     {
         if (! self::$_instance instanceof ModelService) {
-            self::$_instance = new self();
+            self::$_instance = new self;
         }
 
         return self::$_instance;
@@ -119,7 +119,7 @@ class ModelService
 
         $post_type = collect($models)->search($model::class);
 
-        if (false === $post_type) {
+        if ($post_type === false) {
             $post_type = Str::snake(class_basename($model));
             Relation::morphMap([$post_type => $model::class]);
         }
@@ -149,7 +149,7 @@ class ModelService
             // if (in_array(class_basename($returnType->getName()), ['HasOne', 'HasMany', 'BelongsTo', 'BelongsToMany', 'MorphToMany', 'MorphTo'])) {
             //    $relations[] = $res;
             // } elseif ($doc && false !== strpos($doc, '\\Relations\\')) {
-            if (0 !== $method->getNumberOfRequiredParameters()) {
+            if ($method->getNumberOfRequiredParameters() !== 0) {
                 continue;
             }
 
@@ -187,7 +187,7 @@ class ModelService
                 continue;
             }
 
-            if (__FUNCTION__ === $reflectionMethod->getName()) {
+            if ($reflectionMethod->getName() === __FUNCTION__) {
                 continue;
             }
 

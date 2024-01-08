@@ -59,7 +59,7 @@ abstract class XotBasePanelProvider extends PanelProvider
             ->topNavigation($this->topNavigation)
             ->globalSearch($this->globalSearch)
             ->readOnlyRelationManagersOnResourceViewPagesByDefault(false)
-             ->navigation($this->navigation)
+            ->navigation($this->navigation)
             // ->tenant($teamClass)
             // ->tenant($teamClass,ownershipRelationship:'users')
             // ->tenant($teamClass)

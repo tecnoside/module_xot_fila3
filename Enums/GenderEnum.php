@@ -8,7 +8,7 @@ use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
 
-enum GenderEnum: string implements HasLabel, HasColor, HasIcon
+enum GenderEnum: string implements HasColor, HasIcon, HasLabel
 {
     case FEMALE = 'f';
     case MALE = 'm';

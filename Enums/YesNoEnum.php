@@ -8,7 +8,7 @@ use Filament\Support\Contracts\HasColor;
 use Filament\Support\Contracts\HasIcon;
 use Filament\Support\Contracts\HasLabel;
 
-enum YesNoEnum: string implements HasLabel, HasColor, HasIcon
+enum YesNoEnum: string implements HasColor, HasIcon, HasLabel
 {
     case YES = 'f';
     case NO = 'm';
