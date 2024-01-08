@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 return [
-    'baseUrl' => 'https://laraxot.github.io/module_xot/',
+    'baseUrl' => 'https://laraxot.github.io/module_xot_fila3/',
     'production' => true,
 
     // DocSearch credentials
