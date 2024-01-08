@@ -23,23 +23,12 @@ class MainDashboard extends Page
     public function mount(): void
     {
         Assert::notNull($user = auth()->user());
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> 7e6ca75 (first)
-        $modules = $user->roles->filter(static function ($item) {
-            return Str::endsWith($item->name, '::admin');
-        });
-
-        if (1 === $modules->count()) {
-=======
         $modules = $user->roles->filter(function ($item) {
             return Str::endsWith($item->name, '::admin');
         });
 
-        if (1 == $modules->count()) {
->>>>>>> eacb8a1 (first)
+        if (1 === $modules->count()) {
             Assert::notNull($modules->first());
             $panel_name = $modules->first()->name;
             $module_name = Str::before($panel_name, '::admin');

@@ -125,19 +125,7 @@ class HandlerDecorator implements ExceptionHandler
      * @param string $name
      * @param array  $parameters
      */
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     public function __call($name, $parameters)
-=======
-    public function __call($name, $parameters): mixed
->>>>>>> 7e6ca75 (first)
-=======
-    public function __call($name, $parameters): mixed
->>>>>>> eacb8a1 (first)
-=======
-    public function __call($name, $parameters): mixed
->>>>>>> dev
     {
         /**
          * @var callable

@@ -28,15 +28,7 @@ class GenerateFormByFileAction
         if (! $file->isFile()) {
             return 0;
         }
-<<<<<<< HEAD
-<<<<<<< HEAD
         if (! \in_array($file->getExtension(), ['php'], false)) {
-=======
-        if (! \in_array($file->getExtension(), ['php'], true)) {
->>>>>>> 7e6ca75 (first)
-=======
-        if (! in_array($file->getExtension(), ['php'])) {
->>>>>>> eacb8a1 (first)
             return 0;
         }
 
@@ -52,25 +44,10 @@ class GenerateFormByFileAction
         $start_line = $form_method->getStartLine() - 1; // it's actually - 1, otherwise you wont get the function() block
         $end_line = $form_method->getEndLine();
         $length = $end_line - $start_line;
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
         Assert::string($file_name = $form_method->getFileName());
         // $contents= $file->getContents();
         $source = file($file_name);
-<<<<<<< HEAD
-        $body = implode('', array_slice($source, $start_line, $length));
-=======
         $body = implode('', \array_slice($source, $start_line, $length));
->>>>>>> 7e6ca75 (first)
-=======
-        Assert::string($file_name = $form_method->getFileName());
-        // $contents= $file->getContents();
-        $source = file($file_name);
-        $body = implode('', array_slice($source, $start_line, $length));
->>>>>>> eacb8a1 (first)
 
         dd([
             'class_name' => $class_name,
