@@ -46,7 +46,7 @@ class MetatagData extends Data implements Wireable
 
     public string $logo_header_dark;
 
-    public string $logo_height='2em';
+    public string $logo_height = '2em';
     // = 'xot::img/logo.png';
     public string $logo_footer;
     // ' => 'ewall::img/logo.png',
@@ -93,10 +93,10 @@ class MetatagData extends Data implements Wireable
         return FileService::asset($this->logo_header_dark);
     }
 
-    public function getLogoHeight():string {
+    public function getLogoHeight(): string
+    {
         return $this->logo_height;
     }
-
 
     public function getFavicon(): string
     {
