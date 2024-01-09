@@ -68,20 +68,8 @@ class GetViewAction
         // }
         Assert::string($view);
         if (! view()->exists($view)) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-            // throw new \Exception('View ['.$view.'] not found');
-            dddx([
-                'Views not found',
-                $view,
-                $pub_view,
-            ]);
-=======
             throw new \Exception('View ['.$view.'] not found');
->>>>>>> dev
-=======
-            throw new \Exception('View ['.$view.'] not found');
->>>>>>> dev
+
         }
 
         return $view;
