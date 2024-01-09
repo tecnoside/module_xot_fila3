@@ -316,7 +316,11 @@ if (! function_exists('params2ContainerItem')) {
             // $params = optional(Route::current())->parameters();
             $params = [];
             $route_current = Route::current();
+<<<<<<< HEAD
             if ($route_current instanceof Illuminate\Routing\Route) {
+=======
+            if ($route_current instanceof \Illuminate\Routing\Route) {
+>>>>>>> dev
                 $params = $route_current->parameters();
             }
         }
@@ -823,7 +827,11 @@ if (! function_exists('getRouteParameters')) {
     function getRouteParameters(): array
     {
         $route = request()->route();
+<<<<<<< HEAD
         if (! $route instanceof Illuminate\Routing\Route) {
+=======
+        if (! $route instanceof \Illuminate\Routing\Route) {
+>>>>>>> dev
             return [];
         }
 
@@ -836,10 +844,17 @@ if (! function_exists('getRouteName')) {
     {
         // getRouteName();
         /**
+<<<<<<< HEAD
          * @var Illuminate\Routing\Route|null
          */
         $route = request()->route();
         if (! $route instanceof Illuminate\Routing\Route) {
+=======
+         * @var \Illuminate\Routing\Route|null
+         */
+        $route = request()->route();
+        if (! $route instanceof \Illuminate\Routing\Route) {
+>>>>>>> dev
             return null;
         }
 

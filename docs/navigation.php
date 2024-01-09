@@ -24,17 +24,26 @@ return [
             'Url Not Found' => 'docs/base/url-not-found',
         ],
     ],
+<<<<<<< HEAD
     'Tools controllo codice' => [
+=======
+    'Tools controllo codiceee' => [
+>>>>>>> dev
         // 'url' => 'docs/tools/code-check',
         'children' => [
             'Duplicazione del codice' => 'docs/tools/code-duplication',
         ],
     ],
+<<<<<<< HEAD
     'Push automatico in hostinger' => [
         'url' => 'docs/automatic-push',
     ],
     'Config' => [
         'url' => '#',
+=======
+    'Config' => [
+        'url' => 'docs/config',
+>>>>>>> dev
         'children' => [
             'Configurazione modules.php' => 'docs/config/modules',
         ],
