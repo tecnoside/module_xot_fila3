@@ -43,6 +43,7 @@ class GetViewAction
         )->implode('.');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         $pub_view = 'pub_theme::'.$tmp;
         Assert::string($pub_view);
 
@@ -55,6 +56,9 @@ class GetViewAction
 
         $view = Str::lower($mod).'::'.$tmp;
 
+=======
+        $view = Str::lower($mod).'::'.$tmp;
+>>>>>>> dev
 =======
         $view = Str::lower($mod).'::'.$tmp;
 >>>>>>> dev
@@ -73,12 +77,16 @@ class GetViewAction
         Assert::string($view);
         if (! view()->exists($view)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             // throw new \Exception('View ['.$view.'] not found');
             dddx([
                 'Views not found',
                 $view,
                 $pub_view,
             ]);
+=======
+            throw new \Exception('View ['.$view.'] not found');
+>>>>>>> dev
 =======
             throw new \Exception('View ['.$view.'] not found');
 >>>>>>> dev

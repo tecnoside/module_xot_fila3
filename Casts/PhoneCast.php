@@ -13,6 +13,13 @@ class PhoneCast implements CastsAttributes
      * Cast the given value.
      *
      * @param array<string, mixed> $attributes
+<<<<<<< HEAD
+=======
+     * @param mixed                $model
+     *                                         // Parameter #1 $model (Illuminate\Database\Eloquent\Model) of method Modules\Xot\Casts\PhoneCast::get()
+     *                                         // is not contravariant with parameter #1 $model (mixed) of method
+     *                                         //    Illuminate\Contracts\Database\Eloquent\CastsAttributes::get()
+>>>>>>> dev
      */
     public function get($model, string $key, mixed $value, array $attributes): PhoneValueObject
     {
@@ -27,6 +34,13 @@ class PhoneCast implements CastsAttributes
      * Prepare the given value for storage.
      *
      * @param array<string, mixed> $attributes
+<<<<<<< HEAD
+=======
+     * @param mixed                $model
+     *                                         //Parameter #1 $model (Illuminate\Database\Eloquent\Model) of method Modules\Xot\Casts\PhoneCast::set()
+     *                                         // is not contravariant with parameter #1 $model (mixed) of method
+     *                                         // Illuminate\Contracts\Database\Eloquent\CastsAttributes::set()
+>>>>>>> dev
      */
     public function set($model, string $key, mixed $value, array $attributes): string
     {

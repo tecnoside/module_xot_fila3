@@ -27,7 +27,11 @@ class MainDashboard extends Page
             return Str::endsWith($item->name, '::admin');
         });
 
+<<<<<<< HEAD
         if (1 === $modules->count()) {
+=======
+        if (1 == $modules->count()) {
+>>>>>>> dev
             Assert::notNull($modules->first());
             $panel_name = $modules->first()->name;
             $module_name = Str::before($panel_name, '::admin');

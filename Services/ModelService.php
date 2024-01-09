@@ -35,7 +35,11 @@ class ModelService
      */
     public static function getInstance(): self
     {
+<<<<<<< HEAD
         if (! self::$_instance instanceof ModelService) {
+=======
+        if (! self::$_instance instanceof \Modules\Xot\Services\ModelService) {
+>>>>>>> dev
             self::$_instance = new self();
         }
 
