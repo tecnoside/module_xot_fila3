@@ -16,7 +16,7 @@ use Webmozart\Assert\Assert;
 class XotComposer
 {
     /**
-     * Bind data to the view.
+     * Bind data to the view..
      */
     public function compose(View $view): void
     {
