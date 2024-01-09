@@ -19,7 +19,6 @@ use Modules\Xot\Exceptions\Handlers\HandlerDecorator;
 use Modules\Xot\Exceptions\Handlers\HandlersRepository;
 use Modules\Xot\Providers\Traits\TranslatorTrait;
 use Modules\Xot\View\Composers\XotComposer;
-
 use function Safe\realpath;
 
 /**
