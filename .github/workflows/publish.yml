@@ -5,7 +5,7 @@ on:
     branches:
       - master
 
-permissions: 
+permissions:
   contents: write
 
 jobs:
@@ -25,16 +25,12 @@ jobs:
 
     - name: Node
       run: cd docs && npm install
-      
+
     - name: Production
       run: cd docs && npm run prod
-      
+
     - name: CNAME
-<<<<<<< HEAD
       run: cd docs && echo "laraxot.github.io/module_xot_fila3" > ./build_production/CNAME
-=======
-      run: cd docs && echo "laraxot.github.io/module_xot" > ./build_production/CNAME
->>>>>>> dev
 
     - name: gh-pages
       uses: JamesIves/github-pages-deploy-action@v4.5.0

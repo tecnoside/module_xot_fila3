@@ -44,11 +44,7 @@ class GetModulesNavigationItems
                 ->url('/'.$module_low.'/admin')
                 ->icon($icon)
                 ->group('Modules')
-<<<<<<< HEAD
                 ->sort($config['navigation_sort'] ?? 1)
-=======
-                ->sort(3)
->>>>>>> dev
                 ->visible(function () use ($role) {
                     $user = Filament::auth()->user();
                     if (null == $user) {

@@ -22,11 +22,7 @@ class PolicyService
 
     public static function getInstance(): self
     {
-<<<<<<< HEAD
         if (! self::$policyService instanceof PolicyService) {
-=======
-        if (! self::$policyService instanceof \Modules\Xot\Services\PolicyService) {
->>>>>>> dev
             self::$policyService = new self();
         }
 
