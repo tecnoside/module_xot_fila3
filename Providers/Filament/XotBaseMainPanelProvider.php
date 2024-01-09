@@ -21,10 +21,12 @@ use Modules\Xot\Actions\Filament\GetModulesNavigationItems;
 use Modules\Xot\Datas\MetatagData;
 use Modules\Xot\Filament\Pages\MainDashboard;
 
-abstract class XotBaseMainPanelProvider extends PanelProvider {
+abstract class XotBaseMainPanelProvider extends PanelProvider
+{
     protected bool $topNavigation = false;
 
-    public function panel(Panel $panel): Panel {
+    public function panel(Panel $panel): Panel
+    {
         $metatag = MetatagData::make();
 
         $panel = $panel
