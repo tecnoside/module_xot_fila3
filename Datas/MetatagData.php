@@ -16,7 +16,6 @@ use Spatie\LaravelData\Data;
 class MetatagData extends Data implements Wireable
 {
     use WireableData;
-<<<<<<< HEAD
 
     public string $title;
 
@@ -29,20 +28,10 @@ class MetatagData extends Data implements Wireable
     // ' => 'Find restaurants, specials, and coupons for free',
     public string $generator;
 
-=======
-    public string $title;
-    // ' => 'EWall',
-    public string $sitename;
-    // ' => 'the best place',
-    public string $subtitle;
-    // ' => 'Find restaurants, specials, and coupons for free',
-    public string $generator;
->>>>>>> dev
     // ' => '',
     public string $charset = 'UTF-8';
 
     public string $author;
-<<<<<<< HEAD
 
     // ' => '',
     public string $description;
@@ -111,50 +100,6 @@ class MetatagData extends Data implements Wireable
     // ' => '#000',
     public string $color_banner;
 
-=======
-    // ' => '',
-    public string $description;
-    // ' => '',
-    public string $keywords;
-    // ' => '',
-    public string $nome_regione;
-    // ' => '',
-    public string $nome_comune;
-    // ' => '',
-    public string $site_title;
-    // ' => '',
-    public string $logo;
-    // ' => 'ewall::img/logo.png',
-    public string $logo_square;
-    // ' => 'ewall::img/logo.png',
-    public string $logo_header;
-    // = 'xot::img/logo.png';
-    public string $logo_footer;
-    // ' => 'ewall::img/logo.png',
-    public string $logo_alt;
-    // ' => 'Logo',
-    public string $hide_megamenu;
-    // ' => false,
-    public string $hero_type;
-    // ' => 'with_megamenu_bottom',
-    public string $facebook_href;
-    // ' => 'aa',
-    public string $twitter_href;
-    // ' => '',
-    public string $youtube_href;
-    // ' => '',
-    public string $fastlink;
-    // ' => false,
-    public string $color_primary;
-    // ' => '#0071b0',
-    public string $color_title;
-    // ' => 'white',
-    public string $color_megamenu;
-    // ' => '#d60021',
-    public string $color_hamburger;
-    // ' => '#000',
-    public string $color_banner;
->>>>>>> dev
     // ' => '#000',
     public string $favicon = '/favicon.ico';
 
@@ -170,7 +115,6 @@ class MetatagData extends Data implements Wireable
         return FileService::asset($this->logo_header);
     }
 
-<<<<<<< HEAD
     public function getLogoHeaderDark(): string
     {
         return FileService::asset($this->logo_header_dark);
@@ -181,8 +125,6 @@ class MetatagData extends Data implements Wireable
         return $this->logo_height;
     }
 
-=======
->>>>>>> dev
     public function getFavicon(): string
     {
         return FileService::asset($this->favicon);

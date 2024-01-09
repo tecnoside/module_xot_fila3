@@ -42,8 +42,6 @@ class GetViewAction
             }
         )->implode('.');
 
-<<<<<<< HEAD
-<<<<<<< HEAD
         $pub_view = 'pub_theme::'.$tmp;
         Assert::string($pub_view);
 
@@ -56,12 +54,6 @@ class GetViewAction
 
         $view = Str::lower($mod).'::'.$tmp;
 
-=======
-        $view = Str::lower($mod).'::'.$tmp;
->>>>>>> dev
-=======
-        $view = Str::lower($mod).'::'.$tmp;
->>>>>>> dev
         if ('' !== $tpl) {
             $view .= '.'.$tpl;
         }

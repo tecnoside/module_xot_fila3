@@ -10,10 +10,7 @@ use Livewire\Wireable;
 use Modules\Tenant\Services\TenantService;
 use Modules\User\Models\Membership;
 use Modules\User\Models\Team;
-<<<<<<< HEAD
 use Modules\User\Models\Tenant;
-=======
->>>>>>> dev
 use Modules\User\Models\TenantUser;
 use Spatie\LaravelData\Concerns\WireableData;
 use Spatie\LaravelData\Data;
@@ -64,11 +61,7 @@ class XotData extends Data implements Wireable
 
     public string $team_class = Team::class; // = Team::class;
 
-<<<<<<< HEAD
     public string $tenant_class = Tenant::class; // = Team::class;
-=======
-    public string $tenant_class = Team::class; // = Team::class;
->>>>>>> dev
 
     public string $membership_class = Membership::class; // = Membership::class;
 
