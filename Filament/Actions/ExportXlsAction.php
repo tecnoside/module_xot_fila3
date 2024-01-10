@@ -16,12 +16,15 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Gate;
 use Modules\Xot\Actions\Export\ExportXlsByCollection;
 
-class ExportXlsAction extends Action {
-    public static function getDefaultName(): ?string {
+class ExportXlsAction extends Action
+{
+    public static function getDefaultName(): ?string
+    {
         return 'export_xls';
     }
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         parent::setUp();
 
         $this->translateLabel()
@@ -30,9 +33,9 @@ class ExportXlsAction extends Action {
             ->icon('fas-file-excel')
             ->action(function (Collection $records, $data, $livewire) {
                 $table_records = $livewire->getTableRecords();
-                //dddx($table_records->perPage(1000));
-                //$table_records->setCurrentPage(2);
-                //dddx($table_records->forPage(1,1000));
+                // dddx($table_records->perPage(1000));
+                // $table_records->setCurrentPage(2);
+                // dddx($table_records->forPage(1,1000));
                 $results = new Collection();
                 $start = 1;
                 /*
@@ -48,15 +51,15 @@ class ExportXlsAction extends Action {
                 // return app(ExportXlsByCollection::class)->execute($results);
 
                 dddx([
-                    //'results' => $results,
+                    // 'results' => $results,
                     // 'records'=>$records,
                     // 'data'=>$data,
                     // 'livewire'=>$livewire,
 
                     'getAllTableRecordsCount' => $livewire->getAllTableRecordsCount(),
                     // 'getTableRecords'=>$table_records,
-                    //'t2' => $table_records->getCollection(),
-                    'items'=>$table_records->items(),
+                    // 't2' => $table_records->getCollection(),
+                    'items' => $table_records->items(),
                     'lw methods' => get_class_methods($table_records),
                 ]);
                 // */

@@ -5,25 +5,22 @@ declare(strict_types=1);
 namespace Modules\Xot\Actions\Export;
 
 // use Modules\Xot\Services\ArrayService;
-use function Safe\realpath;
 
 use Illuminate\Support\Collection;
-
-use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use Modules\Xot\Exports\CollectionExport;
 use Spatie\QueueableAction\QueueableAction;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class ExportXlsByCollection {
+class ExportXlsByCollection
+{
     use QueueableAction;
 
     public function execute(
         Collection $collection
     ): BinaryFileResponse {
-       
         $collectionExport = new CollectionExport($collection);
-        $filename ='test.xls';
+        $filename = 'test.xls';
 
         return Excel::download($collectionExport, $filename);
     }
