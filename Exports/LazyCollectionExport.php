@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Exports;
 
-use Illuminate\Support\Collection;
+use Illuminate\Support\LazyCollection;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Webmozart\Assert\Assert;
 
-class CollectionExport implements FromCollection, WithHeadings
+class LazyCollectionExport implements FromCollection, WithHeadings
 {
     use Exportable;
+
     public array $headings;
 
     public string $transKey;
 
-    public function __construct(public Collection $collection, string $transKey = null)
+    public function __construct(public LazyCollection $collection, string $transKey = null)
     {
         // $this->headings = count($headings) > 0 ? $headings : collect($collection->first())->keys()->toArray();
         /**
@@ -53,7 +54,7 @@ class CollectionExport implements FromCollection, WithHeadings
         return $this->headings;
     }
 
-    public function collection(): Collection
+    public function collection(): LazyCollection
     {
         return $this->collection;
     }

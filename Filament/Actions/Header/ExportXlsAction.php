@@ -5,16 +5,18 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\Filament\Actions;
+namespace Modules\Xot\Filament\Actions\Header;
 
 use Filament\Actions\Action;
 // Header actions must be an instance of Filament\Actions\Action, or Filament\Actions\ActionGroup.
 // use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Select;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Gate;
-use Modules\Xot\Actions\Export\ExportXlsByCollection;
+use Livewire\Component;
+use Modules\Xot\Actions\Export\ExportXlsByLazyCollection;
+use Modules\Xot\Actions\Export\ExportXlsByLengthAwarePaginator;
+use Modules\Xot\Actions\Export\ExportXlsByQuery;
 
 class ExportXlsAction extends Action
 {
@@ -29,40 +31,22 @@ class ExportXlsAction extends Action
 
         $this->translateLabel()
             ->label('xot::actions.export_xls')
+
             // ->icon('heroicon-o-cloud-arrow-down')
             ->icon('fas-file-excel')
-            ->action(function (Collection $records, $data, $livewire) {
-                $table_records = $livewire->getTableRecords();
-                // dddx($table_records->perPage(1000));
-                // $table_records->setCurrentPage(2);
-                // dddx($table_records->forPage(1,1000));
-                $results = new Collection();
-                $start = 1;
-                /*
-                while ($start++ <= $table_records->lastPage()) {
-                    foreach ($table_records->getCollection() as $item) {
-                        $results->push($item);
-                    }
-                    dddx($table_records);
-                    $table_records->setCurrentPage($start);
-                }
-                */
+            ->icon('heroicon-o-arrow-down-tray')
+            ->action(function (Component $livewire, $action) {
+                $query = $livewire->getFilteredTableQuery()->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
 
-                // return app(ExportXlsByCollection::class)->execute($results);
+                return app(ExportXlsByQuery::class)->execute($query);
 
-                dddx([
-                    // 'results' => $results,
-                    // 'records'=>$records,
-                    // 'data'=>$data,
-                    // 'livewire'=>$livewire,
+                $lazy = $livewire->getFilteredTableQuery()->cursor(); // Illuminate\Support\LazyCollection
 
-                    'getAllTableRecordsCount' => $livewire->getAllTableRecordsCount(),
-                    // 'getTableRecords'=>$table_records,
-                    // 't2' => $table_records->getCollection(),
-                    'items' => $table_records->items(),
-                    'lw methods' => get_class_methods($table_records),
-                ]);
-                // */
+                return app(ExportXlsByLazyCollection::class)->execute($lazy);
+                // dddx($action->getRecords());
+                // $table_records = $livewire->getTableRecords();
+
+                // return app(ExportXlsByLengthAwarePaginator::class)->execute($table_records);
             });
 
         // ->hidden(fn ($record) => Gate::denies('changePriority', $record))
