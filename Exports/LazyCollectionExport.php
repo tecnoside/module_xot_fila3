@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Exports;
 
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\LazyCollection;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromCollection;
+// use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromIterator;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Webmozart\Assert\Assert;
 
-class LazyCollectionExport implements FromCollection, WithHeadings
+class LazyCollectionExport implements FromIterator, WithHeadings, ShouldQueue
 {
     use Exportable;
 
@@ -57,5 +59,10 @@ class LazyCollectionExport implements FromCollection, WithHeadings
     public function collection(): LazyCollection
     {
         return $this->collection;
+    }
+
+    public function iterator(): \Iterator
+    {
+        return $this->collection->getIterator();
     }
 }

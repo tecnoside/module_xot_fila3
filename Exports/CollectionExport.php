@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Exports;
 
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\Exportable;
@@ -11,7 +12,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Webmozart\Assert\Assert;
 
-class CollectionExport implements FromCollection, WithHeadings
+class CollectionExport implements FromCollection, WithHeadings, ShouldQueue
 {
     use Exportable;
     public array $headings;

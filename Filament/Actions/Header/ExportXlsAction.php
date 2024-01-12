@@ -11,12 +11,12 @@ use Filament\Actions\Action;
 // Header actions must be an instance of Filament\Actions\Action, or Filament\Actions\ActionGroup.
 // use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Select;
+use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Gate;
-use Livewire\Component;
 use Modules\Xot\Actions\Export\ExportXlsByLazyCollection;
-use Modules\Xot\Actions\Export\ExportXlsByLengthAwarePaginator;
 use Modules\Xot\Actions\Export\ExportXlsByQuery;
+use Modules\Xot\Actions\Export\ExportXlsStreamByLazyCollection;
 
 class ExportXlsAction extends Action
 {
@@ -35,18 +35,18 @@ class ExportXlsAction extends Action
             // ->icon('heroicon-o-cloud-arrow-down')
             ->icon('fas-file-excel')
             ->icon('heroicon-o-arrow-down-tray')
-            ->action(function (Component $livewire, $action) {
-                $query = $livewire->getFilteredTableQuery()->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
+            ->action(function (HasTable $livewire) {
+                $filename = class_basename($livewire).'.xlsx';
+                // $query = $livewire->getFilteredTableQuery()->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
 
-                return app(ExportXlsByQuery::class)->execute($query);
+                // return app(ExportXlsByQuery::class)->execute($query, 'query.xlsx');
 
                 $lazy = $livewire->getFilteredTableQuery()->cursor(); // Illuminate\Support\LazyCollection
+                if ($lazy->count() > 10000) {
+                    return app(ExportXlsStreamByLazyCollection::class)->execute($lazy, $filename);
+                }
 
-                return app(ExportXlsByLazyCollection::class)->execute($lazy);
-                // dddx($action->getRecords());
-                // $table_records = $livewire->getTableRecords();
-
-                // return app(ExportXlsByLengthAwarePaginator::class)->execute($table_records);
+                return app(ExportXlsByLazyCollection::class)->execute($lazy, $filename);
             });
 
         // ->hidden(fn ($record) => Gate::denies('changePriority', $record))

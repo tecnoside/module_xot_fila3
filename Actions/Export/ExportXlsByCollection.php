@@ -17,10 +17,11 @@ class ExportXlsByCollection
     use QueueableAction;
 
     public function execute(
-        Collection $collection
+        Collection $collection,
+        string $filename = 'test.xlsx',
+        string $transKey = null
     ): BinaryFileResponse {
         $collectionExport = new CollectionExport($collection);
-        $filename = 'test.xls';
 
         return Excel::download($collectionExport, $filename);
     }

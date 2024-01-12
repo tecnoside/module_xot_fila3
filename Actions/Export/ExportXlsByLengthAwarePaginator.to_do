@@ -17,7 +17,9 @@ class ExportXlsByLengthAwarePaginator
     use QueueableAction;
 
     public function execute(
-        LengthAwarePaginator $paginator
+        LengthAwarePaginator $paginator,
+        string $filename = 'test.xlsx',
+        string $transKey = null
     ): BinaryFileResponse {
         dddx([
             // 'getIterator' => $paginator->getIterator(),
