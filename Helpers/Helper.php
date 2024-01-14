@@ -132,7 +132,7 @@ if (! function_exists('debug_methods')) {
         $methods_get = collect($methods)->filter(
             static fn ($item) => Str::startsWith($item, 'get')
         )->map(
-            function ($item) use ($rows) {
+            static function ($item) use ($rows) {
                 $value = 'Undefined';
                 try {
                     $value = $rows->{$item}();
@@ -204,7 +204,7 @@ if (! function_exists('inAdmin')) {
             return config()->get('in_admin');
         }
         */
-        if ('admin' === Request::segment(1)) {
+        if ('admin' === Request::segment(2)) {
             return true;
         }
 
@@ -362,7 +362,7 @@ if (! function_exists('getModelByName')) {
         // }
 
         $path = collect($files)->first(
-            function ($file) use ($name): bool {
+            static function ($file) use ($name): bool {
                 $info = pathinfo((string) $file);
                 // Offset 'filename' on array{dirname?: string, basename: string, extension?: string, filename: string} on left side of ?? always exists and is not nullable.
                 $filename = $info['filename'];
