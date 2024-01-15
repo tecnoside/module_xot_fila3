@@ -53,6 +53,8 @@ class XotData extends Data implements Wireable
 
     public bool $disable_admin_dynamic_route = false;
 
+    public bool $disable_database_notifications = true;
+
     public bool $register_adm_theme = false;
 
     public bool $register_pub_theme = false;
