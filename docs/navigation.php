@@ -64,6 +64,12 @@ return [
             'Filter' => 'docs/links/filter',
         ],
     ],
+    'No Console' => [
+        'url' => 'docs/no_console',
+        'children' => [
+            'Eseguire comandi su un modulo' => 'docs/no_console/on_module',
+        ],
+    ],
     'Filament' => [
         // 'url' => 'docs/filament',
         'children' => [
