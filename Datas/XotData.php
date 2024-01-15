@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Datas;
 
-use Livewire\Wireable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Spatie\LaravelData\Data;
-use Webmozart\Assert\Assert;
+use Livewire\Wireable;
+use Modules\Tenant\Services\TenantService;
+use Modules\User\Models\Membership;
 use Modules\User\Models\Team;
 use Modules\User\Models\Tenant;
-use Modules\User\Models\Membership;
 use Modules\User\Models\TenantUser;
-use Illuminate\Support\Facades\File;
-use Illuminate\Database\Eloquent\Model;
-use Modules\Tenant\Services\TenantService;
 use Spatie\LaravelData\Concerns\WireableData;
+use Spatie\LaravelData\Data;
+use Webmozart\Assert\Assert;
 
 /**
  * Undocumented class.
@@ -123,14 +123,14 @@ class XotData extends Data implements Wireable
 
     public function getTenantResourceClass(): string
     {
-        //dddx($this->tenant_class); //Modules\Bimaticard\Models\Shop
+        // dddx($this->tenant_class); //Modules\Bimaticard\Models\Shop
         // desiderata  Modules\Bimaticard\Filament\Resources\ShopResource
-        $class=Str::of($this->tenant_class)
-            ->replace('\Models\\','\Filament\Resources\\')
+        $class = Str::of($this->tenant_class)
+            ->replace('\Models\\', '\Filament\Resources\\')
             ->append('Resource')
             ->toString();
-        return $class;
 
+        return $class;
     }
 
     public function getTenantPivotClass(): string

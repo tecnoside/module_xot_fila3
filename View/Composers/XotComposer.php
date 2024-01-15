@@ -31,7 +31,8 @@ class XotComposer
         return asset(FileService::asset($str));
     }
 
-    public function metatag(string $str):string|bool {
+    public function metatag(string $str): string|bool
+    {
         return MetatagData::make()->{$str};
     }
 

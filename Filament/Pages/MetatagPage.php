@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Xot\Filament\Pages;
 
-use Filament\Forms\Form;
-use Filament\Pages\Page;
 use Filament\Actions\Action;
-use Filament\Forms\Contracts\HasForms;
-use Illuminate\Support\Facades\Storage;
-use Filament\Forms\Components\TextInput;
-use Filament\Notifications\Notification;
 use Filament\Forms\Components\FileUpload;
-use Modules\Tenant\Services\TenantService;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Forms\Form;
+use Filament\Notifications\Notification;
+use Filament\Pages\Page;
+use Illuminate\Support\Facades\Storage;
+use Modules\Tenant\Services\TenantService;
 
 class MetatagPage extends Page implements HasForms
 {
@@ -25,8 +27,8 @@ class MetatagPage extends Page implements HasForms
 
     public function mount(): void
     {
-        //$this->form->fill();
-        $data=config('metatag');
+        // $this->form->fill();
+        $data = config('metatag');
         $this->form->fill($data);
     }
 
@@ -62,8 +64,8 @@ class MetatagPage extends Page implements HasForms
                 TextInput::make('logo_header'),
                 TextInput::make('logo_header_dark')
                     ->helperText('logo for dark css'),
-                    //'logo_header'=>'bimaticard::img/logo.png',
-                    //'logo_header_dark' => 'bimaticard::img/logo_dark.png',
+                // 'logo_header'=>'bimaticard::img/logo.png',
+                // 'logo_header_dark' => 'bimaticard::img/logo_dark.png',
                 TextInput::make('logo_height'),
             ])->columns(2)
             ->statePath('data');
@@ -81,7 +83,7 @@ class MetatagPage extends Page implements HasForms
     public function save(): void
     {
         $data = $this->form->getState();
-        TenantService::saveConfig('metatag',$data);
+        TenantService::saveConfig('metatag', $data);
 
         Notification::make()
             ->success()
