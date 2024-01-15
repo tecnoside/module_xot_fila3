@@ -6,6 +6,7 @@ namespace Modules\Xot\View\Composers;
 
 use Illuminate\Support\Arr;
 use Illuminate\View\View;
+use Modules\Xot\Datas\MetatagData;
 use Modules\Xot\Services\FileService;
 use Nwidart\Modules\Facades\Module;
 use Webmozart\Assert\Assert;
@@ -28,6 +29,10 @@ class XotComposer
     public function asset(string $str): string
     {
         return asset(FileService::asset($str));
+    }
+
+    public function metatag(string $str):string|bool {
+        return MetatagData::make()->{$str};
     }
 
     /**

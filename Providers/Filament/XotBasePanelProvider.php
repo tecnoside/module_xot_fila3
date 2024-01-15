@@ -38,22 +38,23 @@ abstract class XotBasePanelProvider extends PanelProvider
 
         $main_module = Str::lower(XotData::make()->main_module);
         $default = ($main_module == $moduleLow);
-        $brandLogo = $metatag->getLogoHeader();
-        $brandName = $metatag->title;
-        $favicon = $metatag->getFavicon();
+
 
         return $panel
             ->default($default)
             ->login()
             // ->registration()
-            // ->passwordReset()
+            ->passwordReset()
             // ->emailVerification()
             // ->profile()
             ->sidebarFullyCollapsibleOnDesktop()
              // ---METATAG
-            ->brandLogo($brandLogo)
-            ->brandName($brandName)
-            ->favicon($favicon)
+            ->brandLogo($metatag->getLogoHeader())
+            ->brandName($metatag->title)
+            ->darkModeBrandLogo($metatag->getLogoHeaderDark())
+            ->brandLogoHeight($metatag->getLogoHeight())
+            ->favicon($metatag->getFavicon())
+
             // ---------------------
             ->maxContentWidth('full')
             ->topNavigation($this->topNavigation)

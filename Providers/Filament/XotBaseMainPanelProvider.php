@@ -29,6 +29,7 @@ abstract class XotBaseMainPanelProvider extends PanelProvider
     {
         $metatag = MetatagData::make();
 
+
         $panel = $panel
             // ->default()
             ->id('admin')
