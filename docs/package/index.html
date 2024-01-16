@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="Building a navigation menu for your site">
+    <meta name="description" content="Package utilizzati">
 
     <meta property="og:site_name" content="Modulo Xot" />
-    <meta property="og:title" content="Navigation | Modulo Xot" />
-    <meta property="og:description" content="Building a navigation menu for your site" />
-    <meta property="og:url" content="https://laraxot.github.io/module_xot_fila3/docs/navigation" />
+    <meta property="og:title" content="Package utilizzati | Modulo Xot" />
+    <meta property="og:description" content="Package utilizzati" />
+    <meta property="og:url" content="https://laraxot.github.io/module_xot_fila3/docs/package" />
     <meta property="og:image" content="https://laraxot.github.io/module_xot_fila3/assets/img/logo.png" />
     <meta property="og:type" content="website" />
 
@@ -18,7 +18,7 @@
     <meta name="twitter:card" content="summary_large_image">
 
     
-    <title>Modulo Xot | Navigation</title>
+    <title>Modulo Xot | Package utilizzati</title>
 
     <link rel="home" href="https://laraxot.github.io/module_xot_fila3/">
     <link rel="icon" href="/favicon.ico">
@@ -319,7 +319,7 @@
             <li class="pl-4">
             
         <a href="https://laraxot.github.io/module_xot_fila3/docs/package"
-            class="lvl0   nav-menu__item hover:text-blue-500"
+            class="lvl0  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
         >
             Pacchetti utilizzati / composer.json
         </a>
@@ -391,32 +391,13 @@
         </nav>
 
         <div class="DocSearch-content w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
-            <h1 id="navigation">Navigation</h1>
+            <h1 id="package-utilizzati">Package utilizzati</h1>
 
-<p>The navigation menu in the left-hand sidebar is defined using an array in <code>navigation.php</code>. Nested pages can be added by using the <code>children</code> associative array.</p>
+<h2>staudenmeir/laravel-adjacency-list {#staudenmeir/laravel-adjacency-list}</h2>
 
-<pre><code class="language-php">&lt;?php
-// navigation.php
+<p>Pacchetto utilizzato per la gestione delle relazioni padre/figlio</p>
 
-return [
-    'Getting Started' =&gt; [
-        'url' =&gt; 'docs/getting-started',
-        'children' =&gt; [
-            'Customizing Your Site' =&gt; 'docs/customizing-your-site',
-            'Navigation' =&gt; 'docs/navigation',
-            'Algolia DocSearch' =&gt; 'docs/algolia-docsearch',
-            'Custom 404 Page' =&gt; 'docs/custom-404-page',
-        ],
-    ],
-    'Jigsaw Docs' =&gt; 'https://jigsaw.tighten.co/docs/installation',
-];
-
-// config.php
-'navigation' =&gt; require_once('navigation.php'),
-
-// blade files
-$page-&gt;navigation
-</code></pre>
+<p>https://github.com/staudenmeir/laravel-adjacency-list</p>
         </div>
     </div>
 </section>
