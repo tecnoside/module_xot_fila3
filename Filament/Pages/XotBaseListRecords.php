@@ -7,6 +7,7 @@ namespace Modules\Xot\Filament\Pages;
 use Filament\Resources\Pages\ListRecords;
 use Modules\Xot\Actions\Filament\Actions\ExportButton;
 use Modules\Xot\Actions\Filament\Actions\ImportButton;
+use Modules\Xot\Filament\Actions\Header\ExportXlsAction;
 
 /**
  * Undocumented class.
@@ -25,8 +26,9 @@ abstract class XotBaseListRecords extends ListRecords
         ];
         */
         return [
-            app(ExportButton::class)->execute(),
-            app(ImportButton::class)->execute(),
+            //app(ExportButton::class)->execute(),
+            //app(ImportButton::class)->execute(),
+            ExportXlsAction::make(),
         ];
     }
 }
