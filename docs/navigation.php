@@ -70,6 +70,12 @@ return [
             'Eseguire comandi su un modulo' => 'docs/no_console/on-module',
         ],
     ],
+    'Pacchetti utilizzati / composer.json' => [
+        'url' => 'docs/package',
+        // 'children' => [
+        //     'https://github.com/staudenmeir/laravel-adjacency-list' => 'docs/package/staudenmeir/laravel-adjacency-list',
+        // ],
+    ],
     'Filament' => [
         // 'url' => 'docs/filament',
         'children' => [
