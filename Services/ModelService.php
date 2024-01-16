@@ -314,7 +314,7 @@ class ModelService
 
     public function modelExistsByTableName(string $table_name): bool
     {
-        $model_ns = $this->model::class;
+        $model_ns = $this->Model::class;
         $model_ns = collect(explode('\\', $model_ns))->slice(0, -1)->implode('\\');
 
         $model_name = Str::singular($table_name);
