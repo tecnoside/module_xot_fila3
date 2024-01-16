@@ -30,7 +30,7 @@ class ExportXlsAction extends Action
         parent::setUp();
 
         $this->translateLabel()
-            //->label('xot::actions.export_xls')
+            // ->label('xot::actions.export_xls')
             ->label('')
             ->tooltip(__('xot::actions.export_xls'))
 
@@ -38,23 +38,21 @@ class ExportXlsAction extends Action
             // ->icon('fas-file-excel')
             ->icon('heroicon-o-arrow-down-tray')
             ->action(function (HasTable $livewire) {
-
                 $filename = class_basename($livewire).'-'.collect($livewire->tableFilters)->flatten()->implode('-').'.xlsx';
                 // $query = $livewire->getFilteredTableQuery()->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
 
                 // return app(ExportXlsByQuery::class)->execute($query, 'query.xlsx');
-                $resource=$livewire->getResource();
-                $fields=null;
-                if(method_exists($resource,'getXlsFields')){
-                    $fields=$resource::getXlsFields($livewire->tableFilters);
-                    
+                $resource = $livewire->getResource();
+                $fields = null;
+                if (method_exists($resource, 'getXlsFields')) {
+                    $fields = $resource::getXlsFields($livewire->tableFilters);
                 }
 
                 $lazy = $livewire->getFilteredTableQuery();
-                if($fields!=null){
-                    $lazy=$lazy->select($fields);
+                if (null != $fields) {
+                    $lazy = $lazy->select($fields);
                 }
-                $lazy= $lazy->cursor(); // Illuminate\Support\LazyCollection
+                $lazy = $lazy->cursor(); // Illuminate\Support\LazyCollection
 
                 if ($lazy->count() > 10000) {
                     return app(ExportXlsStreamByLazyCollection::class)->execute($lazy, $filename);
