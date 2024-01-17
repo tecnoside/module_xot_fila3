@@ -77,7 +77,11 @@ return [
         // ],
     ],
     'Activity Log' => [
+<<<<<<< HEAD
         'url' => 'docs/activity/configurazione',
+=======
+        'url' => '#',
+>>>>>>> f84b3df (docs activity spatie)
         'children' => [
             'Proiettori' => 'docs/activity/proiettori',
             'Aggregati' => 'docs/activity/aggregati',
