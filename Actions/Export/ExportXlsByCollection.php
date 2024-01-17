@@ -12,7 +12,8 @@ use Modules\Xot\Exports\CollectionExport;
 use Spatie\QueueableAction\QueueableAction;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class ExportXlsByCollection {
+class ExportXlsByCollection
+{
     use QueueableAction;
 
     public function execute(

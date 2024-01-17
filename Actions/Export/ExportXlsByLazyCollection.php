@@ -9,7 +9,8 @@ use Modules\Xot\Exports\LazyCollectionExport;
 use Spatie\QueueableAction\QueueableAction;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class ExportXlsByLazyCollection {
+class ExportXlsByLazyCollection
+{
     use QueueableAction;
 
     public function execute(

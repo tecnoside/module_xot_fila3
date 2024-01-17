@@ -14,7 +14,8 @@ use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkReading {
+class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkReading
+{
     use Exportable;
 
     public array $headings = [];
@@ -24,7 +25,8 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
 
     public $query;
 
-    public function __construct($query, string $transKey = null, ?array $fields = null) {
+    public function __construct($query, string $transKey = null, array $fields = null)
+    {
         $this->query = $query;
         $this->transKey = $transKey;
         $this->fields = $fields;
@@ -43,7 +45,8 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
             ->toArray();
     }
 
-    public function headings(): array {
+    public function headings(): array
+    {
         return $this->headings;
     }
 
@@ -52,11 +55,13 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
      *
      * @return Builder|EloquentBuilder|Relation
      */
-    public function query() {
+    public function query()
+    {
         return $this->query->orderBy('id');
     }
 
-    public function chunkSize(): int {
+    public function chunkSize(): int
+    {
         return 200;
     }
 }

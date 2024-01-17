@@ -14,7 +14,8 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Webmozart\Assert\Assert;
 
-class LazyCollectionExport implements FromIterator, WithHeadings, ShouldQueue, WithMapping {
+class LazyCollectionExport implements FromIterator, WithHeadings, ShouldQueue, WithMapping
+{
     use Exportable;
 
     public array $headings;
@@ -22,7 +23,8 @@ class LazyCollectionExport implements FromIterator, WithHeadings, ShouldQueue, W
     public string $transKey;
     public ?array $fields = null;
 
-    public function __construct(public LazyCollection $collection, string $transKey = null, ?array $fields = null) {
+    public function __construct(public LazyCollection $collection, string $transKey = null, array $fields = null)
+    {
         // $this->headings = count($headings) > 0 ? $headings : collect($collection->first())->keys()->toArray();
 
         /**
@@ -52,7 +54,8 @@ class LazyCollectionExport implements FromIterator, WithHeadings, ShouldQueue, W
         $this->headings = $headings->toArray();
     }
 
-    public function map($item): array {
+    public function map($item): array
+    {
         $data = $item->only($this->fields);
 
         return $data;
@@ -63,15 +66,18 @@ class LazyCollectionExport implements FromIterator, WithHeadings, ShouldQueue, W
         */
     }
 
-    public function headings(): array {
+    public function headings(): array
+    {
         return $this->headings;
     }
 
-    public function collection(): LazyCollection {
+    public function collection(): LazyCollection
+    {
         return $this->collection;
     }
 
-    public function iterator(): \Iterator {
+    public function iterator(): \Iterator
+    {
         return $this->collection->getIterator();
     }
 }

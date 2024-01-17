@@ -19,12 +19,15 @@ use Modules\Xot\Actions\Export\ExportXlsByLazyCollection;
 use Modules\Xot\Actions\Export\ExportXlsByQuery;
 use Modules\Xot\Actions\Export\ExportXlsStreamByLazyCollection;
 
-class ExportXlsAction extends Action {
-    public static function getDefaultName(): ?string {
+class ExportXlsAction extends Action
+{
+    public static function getDefaultName(): ?string
+    {
         return 'export_xls';
     }
 
-    protected function setUp(): void {
+    protected function setUp(): void
+    {
         parent::setUp();
 
         $this->translateLabel()

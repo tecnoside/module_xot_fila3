@@ -12,7 +12,8 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 // use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class ExportXlsByQuery {
+class ExportXlsByQuery
+{
     use QueueableAction;
 
     public function execute(
