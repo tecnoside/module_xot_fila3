@@ -12,16 +12,16 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 // use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class ExportXlsByQuery
-{
+class ExportXlsByQuery {
     use QueueableAction;
 
     public function execute(
         \Staudenmeir\LaravelCte\Query\Builder $query,
         string $filename = 'test.xlsx',
-        string $transKey = null
+        string $transKey = null,
+        array $fields = null
     ): BinaryFileResponse {
-        $queryExport = new QueryExport($query);
+        $queryExport = new QueryExport($query, $transKey, $fields);
         // $queryExport->queue($filename); // Serialization of 'PDO' is not allowed
 
         return $queryExport->download($filename);

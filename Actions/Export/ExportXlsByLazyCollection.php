@@ -9,16 +9,16 @@ use Modules\Xot\Exports\LazyCollectionExport;
 use Spatie\QueueableAction\QueueableAction;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class ExportXlsByLazyCollection
-{
+class ExportXlsByLazyCollection {
     use QueueableAction;
 
     public function execute(
         LazyCollection $collection,
         string $filename = 'test.xlsx',
-        string $transKey = null
+        string $transKey = null,
+        array $fields = null,
     ): BinaryFileResponse {
-        $export = new LazyCollectionExport($collection);
+        $export = new LazyCollectionExport($collection, $transKey, $fields);
 
         return $export->download($filename);
     }

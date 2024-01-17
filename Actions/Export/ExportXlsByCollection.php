@@ -12,8 +12,7 @@ use Modules\Xot\Exports\CollectionExport;
 use Spatie\QueueableAction\QueueableAction;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class ExportXlsByCollection
-{
+class ExportXlsByCollection {
     use QueueableAction;
 
     public function execute(
@@ -21,7 +20,7 @@ class ExportXlsByCollection
         string $filename = 'test.xlsx',
         string $transKey = null
     ): BinaryFileResponse {
-        $collectionExport = new CollectionExport($collection);
+        $collectionExport = new CollectionExport($collection, $transKey);
 
         return Excel::download($collectionExport, $filename);
     }
