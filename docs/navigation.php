@@ -78,10 +78,14 @@ return [
     ],
     'Activity Log' => [
 <<<<<<< HEAD
+<<<<<<< HEAD
         'url' => 'docs/activity/configurazione',
 =======
         'url' => '#',
 >>>>>>> f84b3df (docs activity spatie)
+=======
+        // 'url' => '#',
+>>>>>>> master
         'children' => [
             'Proiettori' => 'docs/activity/proiettori',
             'Aggregati' => 'docs/activity/aggregati',
