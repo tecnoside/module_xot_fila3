@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="Page Expired 419">
+    <meta name="description" content="Configurazione Modulo">
 
     <meta property="og:site_name" content="Modulo Xot" />
-    <meta property="og:title" content="Page Expired 419 | Modulo Xot" />
-    <meta property="og:description" content="Page Expired 419" />
-    <meta property="og:url" content="https://laraxot.github.io/module_xot_fila3/docs/errors/page-expired" />
+    <meta property="og:title" content="Configurazione Modulo | Modulo Xot" />
+    <meta property="og:description" content="Configurazione Modulo" />
+    <meta property="og:url" content="https://laraxot.github.io/module_xot_fila3/docs/activity/configurazione" />
     <meta property="og:image" content="https://laraxot.github.io/module_xot_fila3/assets/img/logo.png" />
     <meta property="og:type" content="website" />
 
@@ -18,7 +18,7 @@
     <meta name="twitter:card" content="summary_large_image">
 
     
-    <title>Modulo Xot | Page Expired 419</title>
+    <title>Modulo Xot | Configurazione Modulo</title>
 
     <link rel="home" href="https://laraxot.github.io/module_xot_fila3/">
     <link rel="icon" href="/favicon.ico">
@@ -328,7 +328,7 @@
             <li class="pl-4">
             
         <a href="https://laraxot.github.io/module_xot_fila3/docs/activity/configurazione"
-            class="lvl0   nav-menu__item hover:text-blue-500"
+            class="lvl0  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
         >
             Activity Log
         </a>
@@ -430,13 +430,15 @@
         </nav>
 
         <div class="DocSearch-content w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
-            <h1 id="page-expired-419">Page Expired 419</h1>
+            <h1 id="configurazione">Configurazione Modulo</h1>
 
-<p>Nel caso si presenti questo errore, magari durante il login,<br />
-controllare il .env alla voce SESSION_DOMAIN,<br />
-il valore deve essere l'url utilizzato
-esempio, se stai navigando su mioprogetto.local,<br />
-deve essere uguale a mioprogetto.local</p>
+<p>Ricordarsi di modificare dentro laravel\config\event-sourcing.php, in quanto si dovrebbe usare il modulo Activity.</p>
+
+<pre><code class="language-php">    // 'stored_event_model' =&gt; Spatie\EventSourcing\StoredEvents\Models\EloquentStoredEvent::class,
+    'stored_event_model' =&gt; Modules\Activity\Models\StoredEvent::class,
+</code></pre>
+
+<p>per memorizzare gli eventi dentro la tabella stored_events</p>
         </div>
     </div>
 </section>
