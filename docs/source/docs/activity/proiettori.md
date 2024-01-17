@@ -13,11 +13,12 @@ gia installato su activity
 
 
 ## Definizione Eventi
-Bisogna definire gli eventi (https://spatie.be/docs/laravel-event-sourcing/v7/using-projectors/writing-your-first-projector#content-defining-events)
-Ogni classe evento deve estendere \Spatie\EventSourcing\StoredEvents\ShouldBeStored  
+Bisogna definire gli eventi (https://spatie.be/docs/laravel-event-sourcing/v7/using-projectors/writing-your-first-projector#content-defining-events)  
+Ogni classe evento deve estendere \Spatie\EventSourcing\StoredEvents\ShouldBeStored    
 classe astratta indica al nostro pacchetto che l'evento deve essere archiviato
 
-## Classe Projection
+## Classe Projection/Attivazione Evento
+https://spatie.be/docs/laravel-event-sourcing/v7/using-projectors/writing-your-first-projector#content-lets-fire-off-some-events  
 Per dare il "via/attivare" gli eventi, bisogna farlo tramite una classe che estende Projection (classe estende Eloquent Model)  
 che include funzionalità che impediscono di salvare una proiezione che non è basata sul flusso di eventi.  
 Il salvataggio senza chiamata writeable() genererà un'eccezione.
