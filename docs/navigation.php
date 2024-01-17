@@ -76,6 +76,14 @@ return [
         //     'https://github.com/staudenmeir/laravel-adjacency-list' => 'docs/package/staudenmeir/laravel-adjacency-list',
         // ],
     ],
+    'Activity Log' => [
+        'url' => '#',
+        'children' => [
+            'Proiettori' => 'docs/activity/proiettori',
+            'Aggregati' => 'docs/activity/aggregati',
+            'Reattori' => 'docs/activity/reattori',
+        ],
+    ],
     'Filament' => [
         // 'url' => 'docs/filament',
         'children' => [
