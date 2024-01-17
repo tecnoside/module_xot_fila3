@@ -77,7 +77,7 @@ return [
         // ],
     ],
     'Activity Log' => [
-        // 'url' => '#',
+        'url' => 'docs/activity/configurazione',
         'children' => [
             'Proiettori' => 'docs/activity/proiettori',
             'Aggregati' => 'docs/activity/aggregati',
