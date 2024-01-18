@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="Modulo Test">
+    <meta name="description" content="Event Sourcing">
 
     <meta property="og:site_name" content="Modulo Xot" />
-    <meta property="og:title" content="Modulo Test | Modulo Xot" />
-    <meta property="og:description" content="Modulo Test" />
-    <meta property="og:url" content="https://laraxot.github.io/module_xot_fila3/docs/modules/test" />
+    <meta property="og:title" content="Event Sourcing | Modulo Xot" />
+    <meta property="og:description" content="Event Sourcing" />
+    <meta property="og:url" content="https://laraxot.github.io/module_xot_fila3/docs/activity/event-sourcing" />
     <meta property="og:image" content="https://laraxot.github.io/module_xot_fila3/assets/img/logo.png" />
     <meta property="og:type" content="website" />
 
@@ -18,7 +18,7 @@
     <meta name="twitter:card" content="summary_large_image">
 
     
-    <title>Modulo Xot | Modulo Test</title>
+    <title>Modulo Xot | Event Sourcing</title>
 
     <link rel="home" href="https://laraxot.github.io/module_xot_fila3/">
     <link rel="icon" href="/favicon.ico">
@@ -328,7 +328,7 @@
             <li class="pl-4">
             
         <a href="https://laraxot.github.io/module_xot_fila3/docs/activity/configurazione"
-            class="lvl0   nav-menu__item hover:text-blue-500"
+            class="lvl0 lvl0-active  nav-menu__item hover:text-blue-500"
         >
             Activity Log
         </a>
@@ -338,7 +338,7 @@
             <li class="pl-4">
             
         <a href="https://laraxot.github.io/module_xot_fila3/docs/activity/event-sourcing"
-            class="lvl1   nav-menu__item hover:text-blue-500"
+            class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
         >
             Event Sourcing
         </a>
@@ -439,14 +439,32 @@
         </nav>
 
         <div class="DocSearch-content w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
-            <h1 id="modulo-Test">Modulo Test</h1>
+            <h1>Video</h1>
 
-<p>Modulo test serve per mettere azioni da testare.</p>
+<p>https://www.youtube.com/watch?v=_8daXQAlzd4</p>
 
-<ul>
-<li>Quando le azioni andranno bene verranno spostate nel modulo giusto.</li>
-<li>Ce n’è uno per ogni base e <strong>fa parte della repo della base. Non va in una repository "a parte"</strong></li>
-</ul>
+<h1 id="aggregato">Aggregato</h1>
+
+<p>Cluster di oggetti gestiti dall'app come un unica entità logica a livello di business,<br />
+con uno stato che varia nel tempo.<br />
+(Esempio un ordine di ecommerce, formato da un indirizzo, da degli item acquistabili, dallo stato del conto dell'utente)</p>
+
+<h1 id="comando-diventano-eventi">Comandi diventano Eventi</h1>
+
+<p>...cioè diventano qualcosa che è già successo.<br />
+Prima di diventare un evento ci può essere un controllo che il comando sia andato a buon fine oppure rigettato (validazione),<br />
+eventualmente dividere il comando il più eventi (se questo ci rende la vita più facile dopo).</p>
+
+<p>Si può anche generare un altro evento (magari di correzione), nel caso qualcosa sia andato storto.</p>
+
+<h1 id="event-sourcing">Event Sourcing</h1>
+
+<p>Noi non aggiorniamo mai i dati cambiando quindi lo stato di esso, noi accodiamo tutto quello che succede (anche cose sbagliate).</p>
+
+<p>Grazie a questo filosofia, abbiamo:<br />
+la storia di tutto ciò che è successo in passato, quindi si può interrogare<br />
+quindi si può ricostruire uno stato delle cose ad un certo punto nel tempo<br />
+avere un controllo su un eventuale corruzione dei dati (bug, malicius, errore umano), in modo da poter correggere</p>
         </div>
     </div>
 </section>
