@@ -79,6 +79,7 @@ return [
     'Activity Log' => [
         'url' => 'docs/activity/configurazione',
         'children' => [
+            'Event Sourcing' => 'docs/activity/event-sourcing',
             'Proiettori' => 'docs/activity/proiettori',
             'Aggregati' => 'docs/activity/aggregati',
             'Reattori' => 'docs/activity/reattori',
