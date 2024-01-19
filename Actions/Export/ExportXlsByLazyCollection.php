@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Export;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\LazyCollection;
 use Modules\Xot\Exports\LazyCollectionExport;
 use Spatie\QueueableAction\QueueableAction;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Illuminate\Http\Response;
 
 class ExportXlsByLazyCollection
 {
