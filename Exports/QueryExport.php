@@ -23,8 +23,14 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
 
     public ?string $transKey = null;
 
+    /**
+     * @var \Staudenmeir\LaravelCte\Query\Builder
+     */
     public $query;
 
+    /**
+     * @param \Staudenmeir\LaravelCte\Query\Builder $query
+     */
     public function __construct($query, string $transKey = null, array $fields = null)
     {
         $this->query = $query;

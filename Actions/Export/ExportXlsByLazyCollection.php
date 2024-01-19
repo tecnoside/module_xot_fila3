@@ -8,6 +8,7 @@ use Illuminate\Support\LazyCollection;
 use Modules\Xot\Exports\LazyCollectionExport;
 use Spatie\QueueableAction\QueueableAction;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Illuminate\Http\Response;
 
 class ExportXlsByLazyCollection
 {
@@ -18,7 +19,7 @@ class ExportXlsByLazyCollection
         string $filename = 'test.xlsx',
         string $transKey = null,
         array $fields = null,
-    ): BinaryFileResponse {
+    ): Response|BinaryFileResponse {
         $export = new LazyCollectionExport($collection, $transKey, $fields);
 
         return $export->download($filename);

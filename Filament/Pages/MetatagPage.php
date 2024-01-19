@@ -13,8 +13,12 @@ use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Support\Facades\Storage;
+use Filament\Forms\ComponentContainer;
 use Modules\Tenant\Services\TenantService;
 
+/**
+ * @property ComponentContainer $form
+ */
 class MetatagPage extends Page implements HasForms
 {
     use InteractsWithForms;
