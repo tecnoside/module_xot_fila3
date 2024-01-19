@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Xot\Tests\Unit\Actions\Export;
 
 use Modules\Xot\Actions\Export\ExportXlsByQuery;
@@ -14,20 +16,14 @@ final class ExportXlsByQueryTest extends TestCase
 {
     private ExportXlsByQuery $exportXlsByQuery;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /* @todo Correctly instantiate tested object to use it. */
         $this->exportXlsByQuery = new ExportXlsByQuery();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -37,7 +33,7 @@ final class ExportXlsByQueryTest extends TestCase
 
     public function testExecute(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

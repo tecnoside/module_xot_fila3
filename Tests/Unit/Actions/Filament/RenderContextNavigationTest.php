@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Xot\Tests\Unit\Actions\Filament;
 
 use Modules\Xot\Actions\Filament\RenderContextNavigation;
@@ -14,20 +16,14 @@ final class RenderContextNavigationTest extends TestCase
 {
     private RenderContextNavigation $renderContextNavigation;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /* @todo Correctly instantiate tested object to use it. */
         $this->renderContextNavigation = new RenderContextNavigation();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -37,7 +33,7 @@ final class RenderContextNavigationTest extends TestCase
 
     public function testExecute(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

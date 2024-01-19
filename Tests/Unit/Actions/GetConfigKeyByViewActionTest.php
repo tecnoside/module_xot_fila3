@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Modules\Xot\Actions;
 
 use Modules\Xot\Actions\GetConfigKeyByViewAction;
@@ -14,20 +16,14 @@ final class GetConfigKeyByViewActionTest extends TestCase
 {
     private GetConfigKeyByViewAction $getConfigKeyByViewAction;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /* @todo Correctly instantiate tested object to use it. */
         $this->getConfigKeyByViewAction = new GetConfigKeyByViewAction();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -37,7 +33,7 @@ final class GetConfigKeyByViewActionTest extends TestCase
 
     public function testExecute(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

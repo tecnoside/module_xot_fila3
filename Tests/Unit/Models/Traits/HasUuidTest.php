@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Xot\Tests\Unit\Models\Traits;
 
 use Modules\Xot\Models\Traits\HasUuid;
@@ -14,22 +16,16 @@ final class HasUuidTest extends TestCase
 {
     private HasUuid $hasUuid;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /* @todo Correctly instantiate tested object to use it. */
         $this->hasUuid = $this->getMockBuilder(HasUuid::class)
             ->setConstructorArgs([])
             ->getMockForTrait();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -39,13 +35,13 @@ final class HasUuidTest extends TestCase
 
     public function testGetIncrementing(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testGetKeyType(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

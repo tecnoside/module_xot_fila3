@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Xot\Tests\Unit\Providers\Filament;
 
 use Modules\Xot\Providers\Filament\XotBasePanelProvider;
@@ -14,22 +16,16 @@ final class XotBasePanelProviderTest extends TestCase
 {
     private XotBasePanelProvider $xotBasePanelProvider;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /* @todo Correctly instantiate tested object to use it. */
         $this->xotBasePanelProvider = $this->getMockBuilder(XotBasePanelProvider::class)
             ->setConstructorArgs([])
             ->getMockForAbstractClass();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -39,7 +35,7 @@ final class XotBasePanelProviderTest extends TestCase
 
     public function testPanel(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

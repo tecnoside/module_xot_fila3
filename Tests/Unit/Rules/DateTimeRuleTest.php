@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Modules\Xot\Rules;
 
 use Modules\Xot\Rules\DateTimeRule;
@@ -14,20 +16,14 @@ final class DateTimeRuleTest extends TestCase
 {
     private DateTimeRule $dateTimeRule;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /* @todo Correctly instantiate tested object to use it. */
         $this->dateTimeRule = new DateTimeRule();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -37,19 +33,19 @@ final class DateTimeRuleTest extends TestCase
 
     public function testPassesWhenOk(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::assertTrue($this->dateTimeRule->passes('attribute', 'valid value'));
     }
 
     public function testPassesWhenFailed(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::assertFalse($this->dateTimeRule->passes('attribute', 'invalid value'));
     }
 
     public function testMessage(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

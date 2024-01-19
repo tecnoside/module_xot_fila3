@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Xot\Tests\Unit\Database\Factories;
 
 use Modules\Xot\Database\Factories\SessionFactory;
@@ -14,20 +16,14 @@ final class SessionFactoryTest extends TestCase
 {
     private SessionFactory $sessionFactory;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /* @todo Correctly instantiate tested object to use it. */
         $this->sessionFactory = new SessionFactory();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -37,7 +33,7 @@ final class SessionFactoryTest extends TestCase
 
     public function testDefinition(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

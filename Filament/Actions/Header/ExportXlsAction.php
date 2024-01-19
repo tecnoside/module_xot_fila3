@@ -7,17 +7,16 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Filament\Actions\Header;
 
-use Illuminate\Support\Str;
+use Filament\Actions\Action;
 // Header actions must be an instance of Filament\Actions\Action, or Filament\Actions\ActionGroup.
 // use Filament\Tables\Actions\Action;
-use Filament\Actions\Action;
-use Illuminate\Support\Facades\Gate;
 use Filament\Forms\Components\Select;
-use Filament\Tables\Contracts\HasTable;
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Builder;
-use Modules\Xot\Actions\Export\ExportXlsByQuery;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
 use Modules\Xot\Actions\Export\ExportXlsByLazyCollection;
+use Modules\Xot\Actions\Export\ExportXlsByQuery;
 use Modules\Xot\Actions\Export\ExportXlsStreamByLazyCollection;
 
 class ExportXlsAction extends Action

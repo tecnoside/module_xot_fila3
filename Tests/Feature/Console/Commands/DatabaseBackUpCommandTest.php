@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Xot\Tests\Feature\Console\Commands;
 
 use Modules\Xot\Console\Commands\DatabaseBackUpCommand;
@@ -14,9 +16,6 @@ final class DatabaseBackUpCommandTest extends TestCase
 {
     private DatabaseBackUpCommand $databaseBackUpCommand;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -25,9 +24,6 @@ final class DatabaseBackUpCommandTest extends TestCase
         $this->app->instance(DatabaseBackUpCommand::class, $this->databaseBackUpCommand);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -37,7 +33,7 @@ final class DatabaseBackUpCommandTest extends TestCase
 
     public function testHandle(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         $this->artisan('database:backup')
             ->expectsOutput('Some expected output')
             ->assertExitCode(0);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Modules\Xot\Exceptions;
 
 use Modules\Xot\Exceptions\ApplicationError;
@@ -18,9 +20,6 @@ final class licationErrorTest extends TestCase
 
     private string $error;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -30,33 +29,28 @@ final class licationErrorTest extends TestCase
         $this->applicationError = new ApplicationError($this->help, $this->error);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
 
-        unset($this->applicationError);
-        unset($this->help);
-        unset($this->error);
+        unset($this->applicationError, $this->help, $this->error);
     }
 
     public function testToArray(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testJsonSerialize(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testToJson(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

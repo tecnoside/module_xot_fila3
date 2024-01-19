@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Modules\Xot\Services;
 
-use Mockery;
 use Modules\Xot\Services\UrlService;
-use ReflectionClass;
 use Tests\TestCase;
 use UrlService as UrlServiceAlias;
 
@@ -17,9 +17,6 @@ final class UrlServiceTest extends TestCase
 {
     private UrlService $urlService;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -27,9 +24,6 @@ final class UrlServiceTest extends TestCase
         $this->urlService = new UrlService();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -39,8 +33,8 @@ final class UrlServiceTest extends TestCase
 
     public function testGetInstance(): void
     {
-        $expected = Mockery::mock(UrlServiceAlias::class);
-        $property = (new ReflectionClass(UrlService::class))
+        $expected = \Mockery::mock(UrlServiceAlias::class);
+        $property = (new \ReflectionClass(UrlService::class))
             ->getProperty('instance');
         $property->setValue(null, $expected);
         self::assertSame($expected, UrlService::getInstance());
@@ -48,13 +42,13 @@ final class UrlServiceTest extends TestCase
 
     public function testMake(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testCheckValidUrl(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

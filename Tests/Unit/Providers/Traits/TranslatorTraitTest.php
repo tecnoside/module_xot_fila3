@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Xot\Tests\Unit\Providers\Traits;
 
 use Modules\Xot\Providers\Traits\TranslatorTrait;
@@ -14,22 +16,16 @@ final class TranslatorTraitTest extends TestCase
 {
     private TranslatorTrait $translatorTrait;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /* @todo Correctly instantiate tested object to use it. */
         $this->translatorTrait = $this->getMockBuilder(TranslatorTrait::class)
             ->setConstructorArgs([])
             ->getMockForTrait();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -39,7 +35,7 @@ final class TranslatorTraitTest extends TestCase
 
     public function testRegisterTranslator(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

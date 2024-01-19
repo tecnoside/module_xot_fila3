@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Modules\Xot\Providers;
 
 use Modules\Xot\Providers\XotBaseRouteServiceProvider;
@@ -14,22 +16,16 @@ final class XotBaseRouteServiceProviderTest extends TestCase
 {
     private XotBaseRouteServiceProvider $xotBaseRouteServiceProvider;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /* @todo Correctly instantiate tested object to use it. */
         $this->xotBaseRouteServiceProvider = $this->getMockBuilder(XotBaseRouteServiceProvider::class)
             ->setConstructorArgs([])
             ->getMockForAbstractClass();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -39,13 +35,13 @@ final class XotBaseRouteServiceProviderTest extends TestCase
 
     public function testBoot(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testMap(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

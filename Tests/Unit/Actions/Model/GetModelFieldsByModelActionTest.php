@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Xot\Tests\Unit\Actions\Model;
 
 use Modules\Xot\Actions\Model\GetModelFieldsByModelAction;
@@ -14,20 +16,14 @@ final class GetModelFieldsByModelActionTest extends TestCase
 {
     private GetModelFieldsByModelAction $getModelFieldsByModelAction;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /* @todo Correctly instantiate tested object to use it. */
         $this->getModelFieldsByModelAction = new GetModelFieldsByModelAction();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -37,7 +33,7 @@ final class GetModelFieldsByModelActionTest extends TestCase
 
     public function testExecute(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

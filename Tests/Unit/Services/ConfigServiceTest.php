@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Modules\Xot\Services;
 
 use ConfigService as ConfigServiceAlias;
-use Mockery;
 use Modules\Xot\Services\ConfigService;
-use ReflectionClass;
 use Tests\TestCase;
 
 /**
@@ -17,9 +17,6 @@ final class ConfigServiceTest extends TestCase
 {
     private ConfigService $configService;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -27,9 +24,6 @@ final class ConfigServiceTest extends TestCase
         $this->configService = new ConfigService();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -39,8 +33,8 @@ final class ConfigServiceTest extends TestCase
 
     public function testGetInstance(): void
     {
-        $expected = Mockery::mock(ConfigServiceAlias::class);
-        $property = (new ReflectionClass(ConfigService::class))
+        $expected = \Mockery::mock(ConfigServiceAlias::class);
+        $property = (new \ReflectionClass(ConfigService::class))
             ->getProperty('instance');
         $property->setValue(null, $expected);
         self::assertSame($expected, ConfigService::getInstance());
@@ -48,7 +42,7 @@ final class ConfigServiceTest extends TestCase
 
     public function testMake(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Modules\Xot\Exports;
 
 use Illuminate\Support\LazyCollection;
-use Mockery;
 use Mockery\Mock;
 use Modules\Xot\Exports\LazyCollectionExport;
 use Tests\TestCase;
@@ -23,53 +24,44 @@ final class LazyCollectionExportTest extends TestCase
 
     private array $fields;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->collection = Mockery::mock(LazyCollection::class);
+        $this->collection = \Mockery::mock(LazyCollection::class);
         $this->transKey = '42';
         $this->fields = [];
         $this->lazyCollectionExport = new LazyCollectionExport($this->collection, $this->transKey, $this->fields);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
 
-        unset($this->lazyCollectionExport);
-        unset($this->collection);
-        unset($this->transKey);
-        unset($this->fields);
+        unset($this->lazyCollectionExport, $this->collection, $this->transKey, $this->fields);
     }
 
     public function testMap(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testHeadings(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testCollection(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testIterator(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

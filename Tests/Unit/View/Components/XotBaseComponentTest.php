@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Xot\Tests\Unit\View\Components;
 
 use Modules\Xot\View\Components\XotBaseComponent;
@@ -14,22 +16,16 @@ final class XotBaseComponentTest extends TestCase
 {
     private XotBaseComponent $xotBaseComponent;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /* @todo Correctly instantiate tested object to use it. */
         $this->xotBaseComponent = $this->getMockBuilder(XotBaseComponent::class)
             ->setConstructorArgs([])
             ->getMockForAbstractClass();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -39,19 +35,19 @@ final class XotBaseComponentTest extends TestCase
 
     public function testAssets(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testGetView(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testRender(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

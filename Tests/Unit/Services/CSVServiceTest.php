@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Modules\Xot\Services;
 
 use CSVService as CSVServiceAlias;
-use Mockery;
 use Modules\Xot\Services\CSVService;
-use ReflectionClass;
 use Tests\TestCase;
 
 /**
@@ -17,9 +17,6 @@ final class CSVServiceTest extends TestCase
 {
     private CSVService $cSVService;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -27,9 +24,6 @@ final class CSVServiceTest extends TestCase
         $this->cSVService = new CSVService();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -39,8 +33,8 @@ final class CSVServiceTest extends TestCase
 
     public function testGetInstance(): void
     {
-        $expected = Mockery::mock(CSVServiceAlias::class);
-        $property = (new ReflectionClass(CSVService::class))
+        $expected = \Mockery::mock(CSVServiceAlias::class);
+        $property = (new \ReflectionClass(CSVService::class))
             ->getProperty('instance');
         $property->setValue(null, $expected);
         self::assertSame($expected, CSVService::getInstance());
@@ -48,13 +42,13 @@ final class CSVServiceTest extends TestCase
 
     public function testMake(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testToArray(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

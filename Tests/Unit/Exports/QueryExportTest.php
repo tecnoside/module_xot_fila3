@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Modules\Xot\Exports;
 
-use Mockery;
 use Mockery\Mock;
 use Modules\Xot\Exports\QueryExport;
 use Staudenmeir\LaravelCte\Query\Builder;
@@ -23,47 +24,38 @@ final class QueryExportTest extends TestCase
 
     private array $fields;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->query = Mockery::mock(Builder::class);
+        $this->query = \Mockery::mock(Builder::class);
         $this->transKey = '42';
         $this->fields = [];
         $this->queryExport = new QueryExport($this->query, $this->transKey, $this->fields);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
 
-        unset($this->queryExport);
-        unset($this->query);
-        unset($this->transKey);
-        unset($this->fields);
+        unset($this->queryExport, $this->query, $this->transKey, $this->fields);
     }
 
     public function testHeadings(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testQuery(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testChunkSize(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

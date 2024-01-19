@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Modules\Xot\Datas;
 
 use Modules\Xot\Datas\JsonResponseData;
@@ -14,20 +16,14 @@ final class JsonResponseDataTest extends TestCase
 {
     private JsonResponseData $jsonResponseData;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /* @todo Correctly instantiate tested object to use it. */
         $this->jsonResponseData = new JsonResponseData();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -37,7 +33,7 @@ final class JsonResponseDataTest extends TestCase
 
     public function testResponse(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Xot\Tests\Unit\Models\Policies;
 
 use App\User;
@@ -17,14 +19,11 @@ final class XotBasePolicyTest extends TestCase
 
     private User $user;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /* @todo Correctly instantiate tested object to use it. */
         $this->xotBasePolicy = $this->getMockBuilder(XotBasePolicy::class)
             ->setConstructorArgs([])
             ->getMockForAbstractClass();
@@ -32,15 +31,11 @@ final class XotBasePolicyTest extends TestCase
         $this->app->instance(XotBasePolicy::class, $this->xotBasePolicy);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
 
-        unset($this->xotBasePolicy);
-        unset($this->user);
+        unset($this->xotBasePolicy, $this->user);
     }
 
     public function testBeforeWhenUnauthorized(): void

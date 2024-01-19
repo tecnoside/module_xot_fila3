@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\Unit\Modules\Xot\Traits;
 
 use Modules\Xot\Traits\FormRequestTrait;
@@ -14,22 +16,16 @@ final class FormRequestTraitTest extends TestCase
 {
     private FormRequestTrait $formRequestTrait;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /* @todo Correctly instantiate tested object to use it. */
         $this->formRequestTrait = $this->getMockBuilder(FormRequestTrait::class)
             ->setConstructorArgs([])
             ->getMockForTrait();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -39,7 +35,7 @@ final class FormRequestTraitTest extends TestCase
 
     public function testMessages(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }

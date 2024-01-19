@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Xot\Tests\Unit\Actions\Export;
 
 use Modules\Xot\Actions\Export\ExportXlsStreamByLazyCollection;
@@ -14,20 +16,14 @@ final class ExportXlsStreamByLazyCollectionTest extends TestCase
 {
     private ExportXlsStreamByLazyCollection $exportXlsStreamByLazyCollection;
 
-    /**
-     * {@inheritdoc}
-     */
     protected function setUp(): void
     {
         parent::setUp();
 
-        /** @todo Correctly instantiate tested object to use it. */
+        /* @todo Correctly instantiate tested object to use it. */
         $this->exportXlsStreamByLazyCollection = new ExportXlsStreamByLazyCollection();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function tearDown(): void
     {
         parent::tearDown();
@@ -37,13 +33,13 @@ final class ExportXlsStreamByLazyCollectionTest extends TestCase
 
     public function testExecute(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 
     public function testHeadings(): void
     {
-        /** @todo This test is incomplete. */
+        /* @todo This test is incomplete. */
         self::markTestIncomplete();
     }
 }
