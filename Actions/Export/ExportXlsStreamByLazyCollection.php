@@ -21,7 +21,8 @@ class ExportXlsStreamByLazyCollection
     public function execute(
         LazyCollection $data,
         string $filename = 'test.csv',
-        string $transKey = null
+        string $transKey = null,
+        array $fields = null
     ) {
         $headers = [
             'Content-Disposition' => 'attachment; filename='.$filename,

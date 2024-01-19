@@ -7,16 +7,17 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Filament\Actions\Header;
 
-use Filament\Actions\Action;
+use Illuminate\Support\Str;
 // Header actions must be an instance of Filament\Actions\Action, or Filament\Actions\ActionGroup.
 // use Filament\Tables\Actions\Action;
+use Filament\Actions\Action;
+use Illuminate\Support\Facades\Gate;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Contracts\HasTable;
+use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Str;
-use Modules\Xot\Actions\Export\ExportXlsByLazyCollection;
 use Modules\Xot\Actions\Export\ExportXlsByQuery;
+use Modules\Xot\Actions\Export\ExportXlsByLazyCollection;
 use Modules\Xot\Actions\Export\ExportXlsStreamByLazyCollection;
 
 class ExportXlsAction extends Action
@@ -38,7 +39,7 @@ class ExportXlsAction extends Action
             // ->icon('heroicon-o-cloud-arrow-down')
             // ->icon('fas-file-excel')
             ->icon('heroicon-o-arrow-down-tray')
-            ->action(function (HasTable $livewire) {
+            ->action(function (ListRecords $livewire) {
                 $filename = class_basename($livewire).'-'.collect($livewire->tableFilters)->flatten()->implode('-').'.xlsx';
                 $module = Str::of(get_class($livewire))->between('Modules\\', '\Filament\\')->lower()->toString();
                 $transKey = $module.'::'.Str::of(class_basename($livewire))
