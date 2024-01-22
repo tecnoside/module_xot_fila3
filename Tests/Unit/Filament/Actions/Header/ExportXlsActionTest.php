@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\Filament\Tests\Unit\Actions\Header;
+namespace Modules\Xot\Tests\Unit\Filament\Actions\Header;
 
 use Modules\Xot\Filament\Actions\Header\ExportXlsAction;
 use Tests\TestCase;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\Actions\Tests\Unit\Filament\Filter;
+namespace Modules\Xot\Tests\Unit\Actions\Filament\Filter;
 
 use Modules\Xot\Actions\Filament\Filter\GetYearFilter;
 use Tests\TestCase;

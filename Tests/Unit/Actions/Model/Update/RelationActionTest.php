@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\Actions\Tests\Unit\Model\Update;
+namespace Modules\Xot\Tests\Unit\Actions\Model\Update;
 
 use Modules\Xot\Actions\Model\Update\RelationAction;
 use Tests\TestCase;

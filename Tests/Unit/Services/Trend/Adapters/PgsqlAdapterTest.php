@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\Services\Tests\Unit\Trend\Adapters;
+namespace Modules\Xot\Tests\Unit\Services\Trend\Adapters;
 
 use Modules\Xot\Services\Trend\Adapters\PgsqlAdapter;
 use Tests\TestCase;

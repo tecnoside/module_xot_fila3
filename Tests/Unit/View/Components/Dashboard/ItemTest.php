@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\View\Tests\Unit\Components\Dashboard;
+namespace Modules\Xot\Tests\Unit\View\Components\Dashboard;
 
 use Modules\Xot\View\Components\Dashboard\Item;
 use Tests\TestCase;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\Actions\Tests\Unit\Model\Store;
+namespace Modules\Xot\Tests\Unit\Actions\Model\Store;
 
 use Modules\Xot\Actions\Model\Store\HasManyThroughAction;
 use Tests\TestCase;

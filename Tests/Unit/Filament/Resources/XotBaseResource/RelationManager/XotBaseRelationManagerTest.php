@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\Filament\Resources\Tests\Unit\XotBaseResource\RelationManager;
+namespace Modules\Xot\Tests\Unit\Filament\Resources\XotBaseResource\RelationManager;
 
 use Modules\Xot\Filament\Resources\XotBaseResource\RelationManager\XotBaseRelationManager;
 use Tests\TestCase;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\Http\Tests\Feature\Controllers\Admin;
+namespace Modules\Xot\Tests\Feature\Http\Controllers\Admin;
 
 use Modules\Xot\Http\Controllers\Admin\XotPanelController;
 use Tests\TestCase;

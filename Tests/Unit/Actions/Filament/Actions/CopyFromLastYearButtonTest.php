@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\Actions\Tests\Unit\Filament\Actions;
+namespace Modules\Xot\Tests\Unit\Actions\Filament\Actions;
 
 use Modules\Xot\Actions\Filament\Actions\CopyFromLastYearButton;
 use Tests\TestCase;
