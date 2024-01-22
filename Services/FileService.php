@@ -910,14 +910,11 @@ class FileService
 
         $path = self::fixPath($path);
 
-        /*
-        throw new Exception ??
         if (! File::exists($path)) {
-            if (Str::endsWith($path, 'Http'.DIRECTORY_SEPARATOR.'Livewire')) {
+            if (Str::startsWith($path, base_path('Modules'))) {
                 File::makeDirectory($path, 0755, true, true);
             }
         }
-        */
 
         $exists = File::exists($components_json);
         // dddx(['exists' => $exists, 'components_json' => $components_json]);

@@ -45,7 +45,7 @@ class XotServiceProvider extends XotBaseServiceProvider
     public function bootCallback(): void
     {
         // $this->registerConfigs();
-        $this->registerCommands();
+        // $this->registerCommands(); //moved to XotBaseServiceProvider
 
         $this->redirectSSL();
 
@@ -243,9 +243,9 @@ class XotServiceProvider extends XotBaseServiceProvider
         );
     }
 
-    /**
+    /*
      * Undocumented function.
-     */
+
     private function registerCommands(): void
     {
         $this->commands(
@@ -261,6 +261,7 @@ class XotServiceProvider extends XotBaseServiceProvider
             ]
         );
     }
+    */
 
     // Method Modules\Xot\Providers\XotServiceProvider::registerViewComposers() is unused
     private function registerViewComposers(): void

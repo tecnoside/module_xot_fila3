@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Modules\Xot\Services\BladeService;
+use Modules\Xot\Services\FileService;
 use Modules\Xot\Services\LivewireService;
 
 use function Safe\glob;
@@ -51,6 +52,7 @@ abstract class XotBaseServiceProvider extends ServiceProvider
         $this->registerLivewireComponents();
         // Illuminate\Contracts\Container\BindingResolutionException: Target class [modules] does not exist.
         $this->registerBladeComponents();
+        $this->registerCommands();
     }
 
     /**
@@ -151,6 +153,23 @@ abstract class XotBaseServiceProvider extends ServiceProvider
             Str::before($this->module_ns, '\Providers'),
             $prefix,
         );
+    }
+
+    public function registerCommands(): void
+    {
+        $prefix = '';
+        $comps = FileService::getComponents(
+            $this->module_dir.'/../Console/Commands',
+            Str::before($this->module_ns, '\Providers'),
+            $prefix,
+        );
+        if (count($comps) > 0) {
+            $commands = collect($comps)->map(function ($item) {
+                return $this->module_ns.'\Console\Commands\\'.$item->class_name;
+            })->toArray();
+
+            $this->commands($commands);
+        }
     }
 
     /**
