@@ -31,7 +31,7 @@ class MorphManyAction
         $models = [];
         $ids = [];
         foreach ($relationDTO->data as $data) {
-            if (\in_array($keyName, array_keys($data), true)) {
+            if (\in_array($keyName,  array_keys($data), false)) {
                 /*
                 $related_id = $data[$keyName];
                 $row = $related->firstOrCreate([$keyName => $related_id]);

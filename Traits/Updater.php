@@ -43,7 +43,7 @@ trait Updater
         */
         // *
         static::deleting(function ($model): void {
-            if (\in_array('deleted_by', array_keys($model->attributes), true)) {
+            if (\in_array('deleted_by',  array_keys($model->attributes), false)) {
                 $model->deleted_by = auth()->id();
                 $model->save();
             }

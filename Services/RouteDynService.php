@@ -34,7 +34,7 @@ class RouteDynService
 
     public static function getPrefix(array $v, ?string $namespace): string
     {
-        if (\in_array('prefix', array_keys($v), true)) {
+        if (\in_array('prefix',  array_keys($v), false)) {
             return $v['prefix'];
         }
 
@@ -63,7 +63,7 @@ class RouteDynService
 
     public static function getAs(array $v, ?string $namespace): string
     {
-        if (\in_array('as', array_keys($v), true)) {
+        if (\in_array('as',  array_keys($v), false)) {
             return $v['as'];
         }
 
@@ -80,7 +80,7 @@ class RouteDynService
 
     public static function getNamespace(array $v, ?string $namespace): ?string
     {
-        if (\in_array('namespace', array_keys($v), true)) {
+        if (\in_array('namespace',  array_keys($v), false)) {
             return $v['namespace'];
         }
 
@@ -102,7 +102,7 @@ class RouteDynService
 
     public static function getAct(array $v, ?string $namespace): string
     {
-        if (\in_array('act', array_keys($v), true)) {
+        if (\in_array('act',  array_keys($v), false)) {
             return $v['act'];
         }
 
@@ -128,7 +128,7 @@ class RouteDynService
 
     public static function getParamName(array $v, ?string $namespace): string
     {
-        if (\in_array('param_name', array_keys($v), true)) {
+        if (\in_array('param_name',  array_keys($v), false)) {
             return $v['param_name'];
         }
 
@@ -190,7 +190,7 @@ class RouteDynService
 
     public static function getController(array $v, ?string $namespace): string
     {
-        if (\in_array('controller', array_keys($v), true)) {
+        if (\in_array('controller',  array_keys($v), false)) {
             return $v['controller'];
         }
 
@@ -217,7 +217,7 @@ class RouteDynService
 
     public static function getMethod(array $v, ?string $namespace): array
     {
-        if (\in_array('method', array_keys($v), true)) {
+        if (\in_array('method',  array_keys($v), false)) {
             return $v['method'];
         }
 

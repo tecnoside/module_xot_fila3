@@ -20,7 +20,7 @@ class BelongsToManyAction
             'row' => $row,
             'relation' => $relation, ]);
         */
-        if (\in_array('to', array_keys($relationDTO->data), true) || \in_array('from', array_keys($relationDTO->data), true)) {
+        if (\in_array('to',  array_keys($relationDTO->data), false) || \in_array('from',  array_keys($relationDTO->data), false)) {
             // $this->saveMultiselectTwoSides($row, $relation->name, $relation->data);
             $to = $relationDTO->data['to'] ?? [];
             $model->{$relationDTO->name}()->sync($to);

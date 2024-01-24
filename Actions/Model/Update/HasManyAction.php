@@ -62,7 +62,7 @@ class HasManyAction
         // dddx(get_class_methods($relationDTO->rows));
 
         foreach ($relationDTO->data as $data) {
-            if (\in_array($keyName, array_keys($data), true)) {
+            if (\in_array($keyName,  array_keys($data), false)) {
                 $data[$foreignKeyName] = $parentKey;
                 $res = app(UpdateAction::class)->execute($related, $data, []);
 
