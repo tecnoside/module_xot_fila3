@@ -480,7 +480,7 @@
 
 <pre><code class="language-php">-&gt;filter(
     function ($item) use ($methods) {
-        return \in_array($item, $methods, true);
+        return \in_array($item,  $methods, false);
     })
 </code></pre>
 

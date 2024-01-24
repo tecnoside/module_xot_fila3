@@ -513,7 +513,7 @@ ModelService::make()-&gt;setModel($profile)-&gt;getRelationshipsAndData(['first_
 
 <pre><code class="language-php">$data = collect($data)-&gt;filter(
 function ($item, $key) use ($methods) {
-    return \in_array($key, $methods, true);
+    return \in_array($key,  $methods, false);
 })
 </code></pre>
 

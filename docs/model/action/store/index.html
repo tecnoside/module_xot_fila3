@@ -467,7 +467,7 @@
 <li>Then data get <em>lang</em> from the website Locale configuration.</li>
 </ul>
 
-<pre><code class="language-php">if (! isset($data['lang']) &amp;&amp; \in_array('lang', $row-&gt;getFillable(), true)) {
+<pre><code class="language-php">if (! isset($data['lang']) &amp;&amp; \in_array('lang',  $row-&gt;getFillable(), false)) {
     $data['lang'] = app()-&gt;getLocale();
 }
 </code></pre>
@@ -480,7 +480,7 @@
 </ul>
 
 <pre><code class="language-php">if (! isset($data['user_id'])
-    &amp;&amp; \in_array('user_id', $row-&gt;getFillable(), true)
+    &amp;&amp; \in_array('user_id',  $row-&gt;getFillable(), false)
     &amp;&amp; 'user_id' !== $row-&gt;getKeyName()
     ) {
     data['user_id'] = \Auth::id();
