@@ -98,7 +98,7 @@ class ArrayService
                     $value = self::fromObjects($value, $arrSkipIndices); // recursive call
                 }
 
-                if (\in_array($index,  $arrSkipIndices, false)) {
+                if (\in_array($index, $arrSkipIndices, false)) {
                     continue;
                 }
 
@@ -185,7 +185,7 @@ class ArrayService
         $ris = $coll_1->filter(
             function ($value, $key) use ($arr_2) {
                 try {
-                    return ! \in_array($value,  $arr_2, false);
+                    return ! \in_array($value, $arr_2, false);
                 } catch (\Exception $exception) {
                     dddx(['err' => $exception->getMessage(), 'value' => $value, 'key' => $key, 'arr_2' => $arr_2]);
                 }

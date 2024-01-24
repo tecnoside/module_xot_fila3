@@ -75,7 +75,7 @@ class ModelService
         // $post_type = $this->getPostType();
         // Relation::morphMap([$post_type => get_class($model)]);
         $data = collect($data)->filter(
-            static fn ($item, $key): bool => \in_array($key,  $methods, false)
+            static fn ($item, $key): bool => \in_array($key, $methods, false)
         )->map(
             function ($v, $k) use ($model, $data) {
                 if (! \is_string($k)) {

@@ -17,7 +17,7 @@ class BelongsToManyAction
     public function execute(Model $model, RelationDTO $relationDTO): void
     {
         // dddx(['row' => $row, 'relation' => $relation]);
-        if (\in_array('to',  array_keys($relationDTO->data), false) || \in_array('from',  array_keys($relationDTO->data), false)) {
+        if (\in_array('to', array_keys($relationDTO->data), false) || \in_array('from', array_keys($relationDTO->data), false)) {
             // $this->saveMultiselectTwoSides($row, $relation->name, $relation->data);
             $to = $relationDTO->data['to'] ?? [];
 
@@ -34,7 +34,7 @@ class BelongsToManyAction
         $keyName = $relationDTO->related->getKeyName();
 
         foreach ($relationDTO->data as $data) {
-            if (\in_array($keyName,  array_keys($data), false)) {
+            if (\in_array($keyName, array_keys($data), false)) {
                 // $related_id = $data[$keyName];
 
                 // $row = $related->firstOrCreate([$keyName => $related_id]);

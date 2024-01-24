@@ -15,7 +15,7 @@ class StoreAction
 
     public function execute(Model $model, array $data, array $rules): Model
     {
-        if (! isset($data['lang']) && \in_array('lang',  $model->getFillable(), false)) {
+        if (! isset($data['lang']) && \in_array('lang', $model->getFillable(), false)) {
             $data['lang'] = app()->getLocale();
         }
 

@@ -30,7 +30,7 @@ class MorphToManyAction
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
-        if (\in_array('to',  array_keys($data), false) || \in_array('from',  array_keys($data), false)) {
+        if (\in_array('to', array_keys($data), false) || \in_array('from', array_keys($data), false)) {
             if (! isset($data['to'])) {
                 $data['to'] = [];
             }
