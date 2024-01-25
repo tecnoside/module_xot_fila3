@@ -89,7 +89,7 @@ Filter *methods data* instead of simple properties data
 ```php
 $data = collect($data)->filter(
 function ($item, $key) use ($methods) {
-    return \in_array($key, $methods, true);
+    return \in_array($key,  $methods, false);
 })
 ```
 

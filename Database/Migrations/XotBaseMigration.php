@@ -18,8 +18,6 @@ use Illuminate\Support\Str;
 use Modules\Xot\Datas\XotData;
 use Nwidart\Modules\Facades\Module;
 
-// ----- models -----
-
 /**
  * Class XotBaseMigration.
  */

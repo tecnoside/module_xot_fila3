@@ -47,7 +47,7 @@ $res = collect($data)
 ```php
 ->filter(
     function ($item) use ($methods) {
-        return \in_array($item, $methods, true);
+        return \in_array($item,  $methods, false);
     })
 ```
 

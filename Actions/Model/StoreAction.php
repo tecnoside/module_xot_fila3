@@ -15,13 +15,13 @@ class StoreAction
 
     public function execute(Model $model, array $data, array $rules): Model
     {
-        if (! isset($data['lang']) && \in_array('lang', $model->getFillable(), true)) {
+        if (! isset($data['lang']) && \in_array('lang', $model->getFillable(), false)) {
             $data['lang'] = app()->getLocale();
         }
 
         /*if (
             ! isset($data['user_id'])
-            && \in_array('user_id', $row->getFillable(), true)
+            && \in_array('user_id',  $row->getFillable(), false)
             && 'user_id' !== $row->getKeyName()
         ) {
             $data['user_id'] = \Auth::id();

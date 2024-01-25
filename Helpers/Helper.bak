@@ -845,7 +845,7 @@ function ($item) use ($obj) {
                     'forceDelete',
                     'forceCreate',
                 ];
-                if (! Str::startsWith($item, '__') && ! in_array($item, $exclude, true)) {
+                if (! Str::startsWith($item, '__') && ! in_array($item,  $exclude, false)) {
                     return true;
                 }
 

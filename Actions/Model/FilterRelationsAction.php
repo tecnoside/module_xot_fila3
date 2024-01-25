@@ -27,7 +27,7 @@ class FilterRelationsAction
                 static function ($value, $item) use ($methods): bool {
                     $method = Str::camel($item);
 
-                    return \in_array($method, $methods, true);
+                    return \in_array($method, $methods, false);
                 }
             )
             ->filter(

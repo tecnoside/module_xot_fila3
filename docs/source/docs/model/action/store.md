@@ -31,7 +31,7 @@ public function execute(Model $row, array $data, array $rules): Model {
 * Then data get *lang* from the website Locale configuration.
 
 ```php
-if (! isset($data['lang']) && \in_array('lang', $row->getFillable(), true)) {
+if (! isset($data['lang']) && \in_array('lang',  $row->getFillable(), false)) {
     $data['lang'] = app()->getLocale();
 }
 ```
@@ -43,7 +43,7 @@ if (! isset($data['lang']) && \in_array('lang', $row->getFillable(), true)) {
 
 ```php
 if (! isset($data['user_id'])
-    && \in_array('user_id', $row->getFillable(), true)
+    && \in_array('user_id',  $row->getFillable(), false)
     && 'user_id' !== $row->getKeyName()
     ) {
     data['user_id'] = \Auth::id();

@@ -24,7 +24,7 @@ class CustomRelationAction
         $related = $relationDTO->related;
         $keyName = $relationDTO->related->getKeyName();
         foreach ($relationDTO->data as $data) {
-            if (\in_array($keyName, array_keys($data), true)) {
+            if (\in_array($keyName, array_keys($data), false)) {
                 $res = app(UpdateAction::class)->execute($related, $data, []);
                 $ids[] = $res->getKey();
                 $models[] = $res;
