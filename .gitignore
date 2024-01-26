@@ -27,3 +27,4 @@ package-lock.json
 *.phar
 .git-rewrite/
 
+node_modules
