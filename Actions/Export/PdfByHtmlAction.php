@@ -23,7 +23,7 @@ class PdfByHtmlAction
         string $disk = 'cache',
         string $out = 'download'
     ): string|BinaryFileResponse {
-        include_once realpath(__DIR__.'/../../Services/vendor/autoload.php');
+        // include_once realpath(__DIR__.'/../../Services/vendor/autoload.php');
         $html2pdf = new Html2Pdf('L', 'A4', 'it');
         $html2pdf->writeHTML($html);
         // $filename = 'my_doc.pdf';
