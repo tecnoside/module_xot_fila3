@@ -7,20 +7,19 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Filament\Actions\Header;
 
-use Illuminate\Support\Str;
+use Filament\Actions\Action;
 // Header actions must be an instance of Filament\Actions\Action, or Filament\Actions\ActionGroup.
 // use Filament\Tables\Actions\Action;
-use Filament\Actions\Action;
-use Illuminate\Support\Facades\Gate;
 use Filament\Forms\Components\Select;
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Database\Eloquent\Builder;
-use Modules\Xot\Actions\Export\ExportXlsByQuery;
-use Modules\Xot\Actions\Export\ExportXlsByCollection;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
 use Modules\Xot\Actions\Export\ExportXlsByLazyCollection;
+use Modules\Xot\Actions\Export\ExportXlsByQuery;
 use Modules\Xot\Actions\Export\ExportXlsStreamByLazyCollection;
 
-class ExportXlsAction extends Action
+class ExportXlsLazyAction extends Action
 {
     public static function getDefaultName(): ?string
     {
@@ -49,9 +48,8 @@ class ExportXlsAction extends Action
                     ->append('.fields')
                     ->toString();
 
-                $query = $livewire->getFilteredTableQuery()->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
-                $rows=$query->get();
-                
+                //$query = $livewire->getFilteredTableQuery()->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
+                //dddx($query->get());
 
                 $resource = $livewire->getResource();
                 $fields = null;
@@ -59,7 +57,24 @@ class ExportXlsAction extends Action
                     $fields = $resource::getXlsFields($livewire->tableFilters);
                 }
 
-                return app(ExportXlsByCollection::class)->execute($rows, $filename, $transKey, $fields);
+                $lazy = $livewire->getFilteredTableQuery();
+                if (null != $fields) {
+                    // $lazy = $lazy->select($fields);
+                }
+                if ($lazy->count() < 7) {
+                    $query = $lazy->getQuery();
+
+                    return app(ExportXlsByQuery::class)->execute($query, $filename, $transKey, $fields);
+                }
+
+                $lazy = $lazy
+                    ->cursor(); // Illuminate\Support\LazyCollection
+
+                if ($lazy->count() > 3000) {
+                    return app(ExportXlsStreamByLazyCollection::class)->execute($lazy, $filename, $transKey, $fields);
+                }
+
+                return app(ExportXlsByLazyCollection::class)->execute($lazy, $filename, $transKey, $fields);
             });
 
         // ->hidden(fn ($record) => Gate::denies('changePriority', $record))
