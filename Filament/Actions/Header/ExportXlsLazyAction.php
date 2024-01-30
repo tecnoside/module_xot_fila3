@@ -48,8 +48,8 @@ class ExportXlsLazyAction extends Action
                     ->append('.fields')
                     ->toString();
 
-                //$query = $livewire->getFilteredTableQuery()->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
-                //dddx($query->get());
+                // $query = $livewire->getFilteredTableQuery()->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
+                // dddx($query->get());
 
                 $resource = $livewire->getResource();
                 $fields = null;
