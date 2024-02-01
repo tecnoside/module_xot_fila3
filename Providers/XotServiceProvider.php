@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
-use Modules\Xot\Console\Commands\DatabaseBackUpCommand;
 use Modules\Xot\Exceptions\Formatters\WebhookErrorFormatter;
 use Modules\Xot\Exceptions\Handlers\HandlerDecorator;
 use Modules\Xot\Exceptions\Handlers\HandlersRepository;
@@ -242,26 +241,6 @@ class XotServiceProvider extends XotBaseServiceProvider
             }
         );
     }
-
-    /*
-     * Undocumented function.
-
-    private function registerCommands(): void
-    {
-        $this->commands(
-            [
-                // \Modules\Xot\Console\CreateAllRepositoriesCommand::class,
-                // \Modules\Xot\Console\PanelMakeCommand::class,
-                // \Modules\Xot\Console\FixProvidersCommand::class,
-                DatabaseBackUpCommand::class,
-                \Modules\Xot\Console\Commands\GenerateFormCommand::class,
-                // \Modules\Xot\Console\Commands\WorkerCheck::class,
-                // \Modules\Xot\Console\Commands\WorkerRetry::class,
-                // \Modules\Xot\Console\Commands\WorkerStop::class,
-            ]
-        );
-    }
-    */
 
     // Method Modules\Xot\Providers\XotServiceProvider::registerViewComposers() is unused
     private function registerViewComposers(): void
