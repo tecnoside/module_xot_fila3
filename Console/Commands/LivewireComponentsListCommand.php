@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 /**
+ * get all registered livewire components.
+ *
  * @see ---
  */
 
