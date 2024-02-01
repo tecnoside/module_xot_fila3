@@ -19,8 +19,6 @@ use function Safe\json_decode;
 use function Safe\json_encode;
 use function Safe\realpath;
 
-// use Modules;
-
 /**
  * Class XotBaseServiceProvider.
  */
