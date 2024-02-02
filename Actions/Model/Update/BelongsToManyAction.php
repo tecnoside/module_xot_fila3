@@ -64,11 +64,13 @@ class BelongsToManyAction
             try {
                 $model->{$relationDTO->name}()->syncWithoutDetaching($ids);
             } catch (\Exception $e) {
-                dddx([
+                dddx(
+                    [
                     'message' => $e->getMessage(),
                     'model' => $model,
                     'relationDTO' => $relationDTO,
-                ]);
+                    ]
+                );
             }
 
             return;

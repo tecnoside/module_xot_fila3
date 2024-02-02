@@ -162,9 +162,11 @@ abstract class XotBaseServiceProvider extends ServiceProvider
             $prefix,
         );
         if (count($comps) > 0) {
-            $commands = collect($comps)->map(function ($item) {
-                return $this->module_ns.'\Console\Commands\\'.$item->class_name;
-            })->toArray();
+            $commands = collect($comps)->map(
+                function ($item) {
+                    return $this->module_ns.'\Console\Commands\\'.$item->class_name;
+                }
+            )->toArray();
 
             $this->commands($commands);
         }

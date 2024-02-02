@@ -49,7 +49,8 @@ class GenerateFormByFileAction
         $source = file($file_name);
         $body = implode('', \array_slice($source, $start_line, $length));
 
-        dd([
+        dd(
+            [
             'class_name' => $class_name,
             'model_name' => $model_name,
             'fillable' => $fillable,
@@ -58,12 +59,14 @@ class GenerateFormByFileAction
             'form_method' => $form_method,
             'form_method_methods' => get_class_methods($form_method),
             'body' => $body,
-        ]);
+            ]
+        );
     }
 
     public function ddFile(File $file): void
     {
-        dd([
+        dd(
+            [
             'getRelativePath' => $file->getRelativePath(), // =  ""
             'getRelativePathname' => $file->getRelativePathname(), //  AssenzeResource.php
             'getFilenameWithoutExtension' => $file->getFilenameWithoutExtension(), // AssenzeResource
@@ -78,6 +81,7 @@ class GenerateFormByFileAction
             // 'getFileInfo' => $file->getFileInfo(),
             // 'getPathInfo' => $file->getPathInfo(),
             'methods' => get_class_methods($file),
-        ]);
+            ]
+        );
     }
 }

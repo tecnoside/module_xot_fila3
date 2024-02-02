@@ -65,9 +65,11 @@ abstract class XotBasePanelProvider extends PanelProvider
             // ->tenant($teamClass)
             ->id($moduleLow.'::admin')
             ->path($moduleLow.'/admin')
-            ->colors([
+            ->colors(
+                [
                 // 'primary' => Color::Teal,
-            ])
+                ]
+            )
             /*
             ->userMenuItems([
                 MenuItem::make()
@@ -91,15 +93,20 @@ abstract class XotBasePanelProvider extends PanelProvider
             */
             ->discoverResources(in: base_path('Modules/'.$this->module.'/Filament/Resources'), for: sprintf('%s\Filament\Resources', $moduleNamespace))
             ->discoverPages(in: base_path('Modules/'.$this->module.'/Filament/Pages'), for: sprintf('%s\Filament\Pages', $moduleNamespace))
-            ->pages([
+            ->pages(
+                [
                 // Dashboard::class,
-            ])
+                ]
+            )
             ->discoverWidgets(in: base_path('Modules/'.$this->module.'/Filament/Widgets'), for: sprintf('%s\Filament\Widgets', $moduleNamespace))
-            ->widgets([
+            ->widgets(
+                [
                 // Widgets\AccountWidget::class,
                 // Widgets\FilamentInfoWidget::class,
-            ])
-            ->middleware([
+                ]
+            )
+            ->middleware(
+                [
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
                 StartSession::class,
@@ -109,10 +116,13 @@ abstract class XotBasePanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-            ])
-            ->authMiddleware([
+                ]
+            )
+            ->authMiddleware(
+                [
                 Authenticate::class,
-            ]);
+                ]
+            );
 
         /*
         $adminPanel = Filament::getPanel('admin');

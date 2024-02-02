@@ -26,9 +26,11 @@ class CopyFromLastYearAction
             $data[$fieldName] = $year;
             $up = $modelClass::create($data);
             */
-            $up = $row->replicate()->fill([
+            $up = $row->replicate()->fill(
+                [
                 $fieldName => $year,
-            ]);
+                ]
+            );
             $up->save();
         }
     }

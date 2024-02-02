@@ -42,12 +42,14 @@ trait Updater
          * For deletes we need to save the model first with the deleted_by field
         */
         // *
-        static::deleting(function ($model): void {
-            if (\in_array('deleted_by', array_keys($model->attributes), false)) {
-                $model->deleted_by = auth()->id();
-                $model->save();
+        static::deleting(
+            function ($model): void {
+                if (\in_array('deleted_by', array_keys($model->attributes), false)) {
+                    $model->deleted_by = auth()->id();
+                    $model->save();
+                }
             }
-        });
+        );
         // */
         // ----------------------
     }

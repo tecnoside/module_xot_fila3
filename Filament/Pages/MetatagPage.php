@@ -39,7 +39,8 @@ class MetatagPage extends Page implements HasForms
     public function form(Form $form): Form
     {
         return $form
-            ->schema([
+            ->schema(
+                [
                 TextInput::make('title')
                     ->required(),
                 TextInput::make('sitename'),
@@ -71,7 +72,8 @@ class MetatagPage extends Page implements HasForms
                 // 'logo_header'=>'bimaticard::img/logo.png',
                 // 'logo_header_dark' => 'bimaticard::img/logo_dark.png',
                 TextInput::make('logo_height'),
-            ])->columns(2)
+                ]
+            )->columns(2)
             ->statePath('data');
     }
 

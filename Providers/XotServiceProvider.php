@@ -108,10 +108,12 @@ class XotServiceProvider extends XotBaseServiceProvider
      */
     private function extendExceptionHandler()
     {
-        $this->app->extend(ExceptionHandler::class, function (ExceptionHandler $handler, $app) {
-            // dddx('a');
-            return new HandlerDecorator($handler, $app[HandlersRepository::class]);
-        });
+        $this->app->extend(
+            ExceptionHandler::class, function (ExceptionHandler $handler, $app) {
+                // dddx('a');
+                return new HandlerDecorator($handler, $app[HandlersRepository::class]);
+            }
+        );
     }
 
     /**
@@ -213,8 +215,7 @@ class XotServiceProvider extends XotBaseServiceProvider
     private function redirectSSL(): void
     {
         // --- meglio ficcare un controllo anche sull'env
-        if (
-            config('xra.forcessl') && (isset($_SERVER['SERVER_NAME']) && 'localhost' !== $_SERVER['SERVER_NAME']
+        if (config('xra.forcessl') && (isset($_SERVER['SERVER_NAME']) && 'localhost' !== $_SERVER['SERVER_NAME']
             && isset($_SERVER['REQUEST_SCHEME']) && 'http' === $_SERVER['REQUEST_SCHEME'])
         ) {
             URL::forceScheme('https');

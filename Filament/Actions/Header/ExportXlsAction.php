@@ -36,27 +36,29 @@ class ExportXlsAction extends Action
             // ->icon('heroicon-o-cloud-arrow-down')
             // ->icon('fas-file-excel')
             ->icon('heroicon-o-arrow-down-tray')
-            ->action(function (ListRecords $livewire) {
-                $filename = class_basename($livewire).'-'.collect($livewire->tableFilters)->flatten()->implode('-').'.xlsx';
-                $module = Str::of(get_class($livewire))->between('Modules\\', '\Filament\\')->lower()->toString();
-                $transKey = $module.'::'.Str::of(class_basename($livewire))
-                    ->kebab()
-                    ->replace('list-', '')
-                    ->singular()
-                    ->append('.fields')
-                    ->toString();
+            ->action(
+                function (ListRecords $livewire) {
+                    $filename = class_basename($livewire).'-'.collect($livewire->tableFilters)->flatten()->implode('-').'.xlsx';
+                    $module = Str::of(get_class($livewire))->between('Modules\\', '\Filament\\')->lower()->toString();
+                    $transKey = $module.'::'.Str::of(class_basename($livewire))
+                        ->kebab()
+                        ->replace('list-', '')
+                        ->singular()
+                        ->append('.fields')
+                        ->toString();
 
-                $query = $livewire->getFilteredTableQuery()->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
-                $rows = $query->get();
+                    $query = $livewire->getFilteredTableQuery()->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
+                    $rows = $query->get();
 
-                $resource = $livewire->getResource();
-                $fields = null;
-                if (method_exists($resource, 'getXlsFields')) {
-                    $fields = $resource::getXlsFields($livewire->tableFilters);
+                    $resource = $livewire->getResource();
+                    $fields = null;
+                    if (method_exists($resource, 'getXlsFields')) {
+                        $fields = $resource::getXlsFields($livewire->tableFilters);
+                    }
+
+                    return app(ExportXlsByCollection::class)->execute($rows, $filename, $transKey, $fields);
                 }
-
-                return app(ExportXlsByCollection::class)->execute($rows, $filename, $transKey, $fields);
-            });
+            );
 
         // ->hidden(fn ($record) => Gate::denies('changePriority', $record))
         /*

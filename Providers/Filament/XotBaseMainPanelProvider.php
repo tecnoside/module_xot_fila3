@@ -36,9 +36,11 @@ abstract class XotBaseMainPanelProvider extends PanelProvider
             ->login()
             ->passwordReset()
             ->sidebarFullyCollapsibleOnDesktop()
-            ->colors([
+            ->colors(
+                [
                 'primary' => Color::Amber,
-            ])
+                ]
+            )
              // ---METATAG
             ->brandLogo($metatag->getLogoHeader())
             ->brandName($metatag->title)
@@ -48,15 +50,20 @@ abstract class XotBaseMainPanelProvider extends PanelProvider
              // ---------------------
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
-            ->pages([
+            ->pages(
+                [
                 MainDashboard::class,
-            ])
+                ]
+            )
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([
+            ->widgets(
+                [
                 // Widgets\AccountWidget::class,
                 // Widgets\FilamentInfoWidget::class,
-            ])
-            ->middleware([
+                ]
+            )
+            ->middleware(
+                [
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
                 StartSession::class,
@@ -66,10 +73,13 @@ abstract class XotBaseMainPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-            ])
-            ->authMiddleware([
+                ]
+            )
+            ->authMiddleware(
+                [
                 Authenticate::class,
-            ]);
+                ]
+            );
         $navs = app(GetModulesNavigationItems::class)->execute();
 
         $panel->navigationItems($navs);

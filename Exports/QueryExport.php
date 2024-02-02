@@ -39,15 +39,17 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
 
         $this->headings = collect($query->first())
             ->keys()
-            ->map(function ($item) use ($transKey) {
-                $t = $transKey.'.'.$item;
-                $trans = trans($t);
-                if ($trans != $t) {
-                    return $trans;
-                }
+            ->map(
+                function ($item) use ($transKey) {
+                    $t = $transKey.'.'.$item;
+                    $trans = trans($t);
+                    if ($trans != $t) {
+                        return $trans;
+                    }
 
-                return $item;
-            })
+                    return $item;
+                }
+            )
             ->toArray();
     }
 

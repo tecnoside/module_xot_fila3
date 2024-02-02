@@ -9,7 +9,8 @@ use Rector\Set\ValueObject\SetList;
 use RectorLaravel\Set\LaravelSetList;
 
 return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->paths([
+    $rectorConfig->paths(
+        [
         __DIR__.'/Modules',
         __DIR__.'/app',
         __DIR__.'/bootstrap',
@@ -18,21 +19,25 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__.'/resources',
         __DIR__.'/routes',
         __DIR__.'/tests',
-    ]);
+        ]
+    );
 
-    $rectorConfig->skip([
+    $rectorConfig->skip(
+        [
         __DIR__.'/Modules/*/docs',
         __DIR__.'/Modules/*/vendor',
         '*/docs',
         '*/vendor',
-    ]);
+        ]
+    );
 
     // register a single rule
     // $rectorConfig->rule(InlineConstructorDefaultToPropertyRector::class);
     // $rectorConfig->rule(RedirectRouteToToRouteHelperRector::class);
 
     // define sets of rules
-    $rectorConfig->sets([
+    $rectorConfig->sets(
+        [
         PHPUnitLevelSetList::UP_TO_PHPUNIT_100,
         // SetList::DEAD_CODE,
         // SetList::CODE_QUALITY,
@@ -45,7 +50,8 @@ return static function (RectorConfig $rectorConfig): void {
         // SetList::PRIVATIZATION,//problemi con final
         // SetList::EARLY_RETURN,
         // SetList::INSTANCEOF,
-    ]);
+        ]
+    );
 
     $rectorConfig->importNames();
 };

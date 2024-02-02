@@ -30,22 +30,26 @@ class Search
         $search_fields = $model->getFillable();
         // $table = $model->getTable();
         if (\strlen($q) > 1) {
-            $query = $query->where(function ($subquery) use ($search_fields, $q): void {
-                foreach ($search_fields as $search_field) {
-                    if (Str::contains($search_field, '.')) {
-                        [$rel, $rel_field] = explode('.', (string) $search_field);
-                        // dddx([$rel, $rel_field]);
-                        $subquery = $subquery->orWhereHas($rel, static function (Builder $query) use ($rel_field, $q): void {
-                            // dddx($subquery1->getConnection()->getDatabaseName());
-                            $query->where($rel_field, 'like', '%'.$q.'%');
-                            // dddx($subquery1);
-                        });
-                    // dddx($subquery);
-                    } else {
-                        $subquery = $subquery->orWhere($search_field, 'like', '%'.$q.'%');
+            $query = $query->where(
+                function ($subquery) use ($search_fields, $q): void {
+                    foreach ($search_fields as $search_field) {
+                        if (Str::contains($search_field, '.')) {
+                            [$rel, $rel_field] = explode('.', (string) $search_field);
+                            // dddx([$rel, $rel_field]);
+                            $subquery = $subquery->orWhereHas(
+                                $rel, static function (Builder $query) use ($rel_field, $q): void {
+                                    // dddx($subquery1->getConnection()->getDatabaseName());
+                                    $query->where($rel_field, 'like', '%'.$q.'%');
+                                    // dddx($subquery1);
+                                }
+                            );
+                            // dddx($subquery);
+                        } else {
+                            $subquery = $subquery->orWhere($search_field, 'like', '%'.$q.'%');
+                        }
                     }
                 }
-            });
+            );
         }
 
         // dddx(['q' => $q, 'sql' => $query->toSql()]);

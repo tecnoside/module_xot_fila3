@@ -29,23 +29,25 @@ class ExportXlsStreamByLazyCollection
         ];
         $head = $this->headings($data, $transKey);
 
-        return response()->stream(function () use ($data, $head) {
-            $file = fopen('php://output', 'w+');
-            fputcsv($file, $head);
+        return response()->stream(
+            function () use ($data, $head) {
+                $file = fopen('php://output', 'w+');
+                fputcsv($file, $head);
 
-            foreach ($data as $key => $value) {
-                $data = $value->toArray();
-                fputcsv($file, $data);
-            }
-            $blanks = ["\t", "\t", "\t", "\t"];
-            fputcsv($file, $blanks);
-            $blanks = ["\t", "\t", "\t", "\t"];
-            fputcsv($file, $blanks);
-            $blanks = ["\t", "\t", "\t", "\t"];
-            fputcsv($file, $blanks);
+                foreach ($data as $key => $value) {
+                    $data = $value->toArray();
+                    fputcsv($file, $data);
+                }
+                $blanks = ["\t", "\t", "\t", "\t"];
+                fputcsv($file, $blanks);
+                $blanks = ["\t", "\t", "\t", "\t"];
+                fputcsv($file, $blanks);
+                $blanks = ["\t", "\t", "\t", "\t"];
+                fputcsv($file, $blanks);
 
-            fclose($file);
-        }, 200, $headers);
+                fclose($file);
+            }, 200, $headers
+        );
     }
 
     public function headings(LazyCollection $data, string $transKey = null): array
@@ -56,22 +58,24 @@ class ExportXlsStreamByLazyCollection
         $head = $data->first();
         $headings = collect($head)->keys();
         if (null !== $transKey) {
-            $headings = $headings->map(function (string $item) use ($transKey) {
-                $key = $transKey.'.fields.'.$item;
-                $trans = trans($key);
-                if ($trans !== $key) {
-                    return $trans;
-                }
+            $headings = $headings->map(
+                function (string $item) use ($transKey) {
+                    $key = $transKey.'.fields.'.$item;
+                    $trans = trans($key);
+                    if ($trans !== $key) {
+                        return $trans;
+                    }
 
-                Assert::string($item1 = Str::replace('.', '_', $item));
-                $key = $transKey.'.fields.'.$item1;
-                $trans = trans($key);
-                if ($trans !== $key) {
-                    return $trans;
-                }
+                    Assert::string($item1 = Str::replace('.', '_', $item));
+                    $key = $transKey.'.fields.'.$item1;
+                    $trans = trans($key);
+                    if ($trans !== $key) {
+                        return $trans;
+                    }
 
-                return $item;
-            });
+                    return $item;
+                }
+            );
         }
 
         $headings = $headings->toArray();

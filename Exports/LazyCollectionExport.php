@@ -33,22 +33,24 @@ class LazyCollectionExport implements FromIterator, WithHeadings, ShouldQueue, W
         $head = $collection->first();
         $headings = collect($head)->keys();
         if (null !== $transKey) {
-            $headings = $headings->map(function (string $item) use ($transKey) {
-                $key = $transKey.'.fields.'.$item;
-                $trans = trans($key);
-                if ($trans !== $key) {
-                    return $trans;
-                }
+            $headings = $headings->map(
+                function (string $item) use ($transKey) {
+                    $key = $transKey.'.fields.'.$item;
+                    $trans = trans($key);
+                    if ($trans !== $key) {
+                        return $trans;
+                    }
 
-                Assert::string($item1 = Str::replace('.', '_', $item));
-                $key = $transKey.'.fields.'.$item1;
-                $trans = trans($key);
-                if ($trans !== $key) {
-                    return $trans;
-                }
+                    Assert::string($item1 = Str::replace('.', '_', $item));
+                    $key = $transKey.'.fields.'.$item1;
+                    $trans = trans($key);
+                    if ($trans !== $key) {
+                        return $trans;
+                    }
 
-                return $item;
-            });
+                    return $item;
+                }
+            );
         }
         $this->fields = $fields;
         $this->headings = $headings->toArray();

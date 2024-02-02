@@ -38,44 +38,46 @@ class ExportXlsLazyAction extends Action
             // ->icon('heroicon-o-cloud-arrow-down')
             // ->icon('fas-file-excel')
             ->icon('heroicon-o-arrow-down-tray')
-            ->action(function (ListRecords $livewire) {
-                $filename = class_basename($livewire).'-'.collect($livewire->tableFilters)->flatten()->implode('-').'.xlsx';
-                $module = Str::of(get_class($livewire))->between('Modules\\', '\Filament\\')->lower()->toString();
-                $transKey = $module.'::'.Str::of(class_basename($livewire))
-                    ->kebab()
-                    ->replace('list-', '')
-                    ->singular()
-                    ->append('.fields')
-                    ->toString();
+            ->action(
+                function (ListRecords $livewire) {
+                    $filename = class_basename($livewire).'-'.collect($livewire->tableFilters)->flatten()->implode('-').'.xlsx';
+                    $module = Str::of(get_class($livewire))->between('Modules\\', '\Filament\\')->lower()->toString();
+                    $transKey = $module.'::'.Str::of(class_basename($livewire))
+                        ->kebab()
+                        ->replace('list-', '')
+                        ->singular()
+                        ->append('.fields')
+                        ->toString();
 
-                // $query = $livewire->getFilteredTableQuery()->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
-                // dddx($query->get());
+                    // $query = $livewire->getFilteredTableQuery()->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
+                    // dddx($query->get());
 
-                $resource = $livewire->getResource();
-                $fields = null;
-                if (method_exists($resource, 'getXlsFields')) {
-                    $fields = $resource::getXlsFields($livewire->tableFilters);
-                }
+                    $resource = $livewire->getResource();
+                    $fields = null;
+                    if (method_exists($resource, 'getXlsFields')) {
+                        $fields = $resource::getXlsFields($livewire->tableFilters);
+                    }
 
-                $lazy = $livewire->getFilteredTableQuery();
-                if (null != $fields) {
-                    // $lazy = $lazy->select($fields);
-                }
-                if ($lazy->count() < 7) {
-                    $query = $lazy->getQuery();
+                    $lazy = $livewire->getFilteredTableQuery();
+                    if (null != $fields) {
+                        // $lazy = $lazy->select($fields);
+                    }
+                    if ($lazy->count() < 7) {
+                        $query = $lazy->getQuery();
 
-                    return app(ExportXlsByQuery::class)->execute($query, $filename, $transKey, $fields);
-                }
+                        return app(ExportXlsByQuery::class)->execute($query, $filename, $transKey, $fields);
+                    }
 
-                $lazy = $lazy
+                    $lazy = $lazy
                     ->cursor(); // Illuminate\Support\LazyCollection
 
-                if ($lazy->count() > 3000) {
-                    return app(ExportXlsStreamByLazyCollection::class)->execute($lazy, $filename, $transKey, $fields);
-                }
+                    if ($lazy->count() > 3000) {
+                        return app(ExportXlsStreamByLazyCollection::class)->execute($lazy, $filename, $transKey, $fields);
+                    }
 
-                return app(ExportXlsByLazyCollection::class)->execute($lazy, $filename, $transKey, $fields);
-            });
+                    return app(ExportXlsByLazyCollection::class)->execute($lazy, $filename, $transKey, $fields);
+                }
+            );
 
         // ->hidden(fn ($record) => Gate::denies('changePriority', $record))
         /*

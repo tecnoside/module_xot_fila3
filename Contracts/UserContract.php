@@ -35,7 +35,7 @@ use Spatie\Permission\Contracts\Role;
  * @property Collection|array<\Modules\User\Models\Area> $areas
  * @property \Modules\User\Models\PermUser|null          $perm
  *
- * @mixin    \Eloquent
+ * @mixin \Eloquent
  */
 interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract, ModelContract, MustVerifyEmail, PassportHasApiTokensContract
 {
