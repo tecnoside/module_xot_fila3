@@ -23,7 +23,7 @@ abstract class XotBaseViewModel implements Arrayable
             ->filter(fn (\ReflectionMethod $reflectionMethod): bool => \in_array('public', \Reflection::getModifierNames($reflectionMethod->getModifiers()), false))
             ->mapWithKeys(
                 fn (\ReflectionMethod $reflectionMethod): array => [
-                Str::snake($reflectionMethod->getName()) => $this->{$reflectionMethod->getName()}(),
+                    Str::snake($reflectionMethod->getName()) => $this->{$reflectionMethod->getName()}(),
                 ]
             )
             ->toArray();

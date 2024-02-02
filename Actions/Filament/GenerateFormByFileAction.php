@@ -51,14 +51,14 @@ class GenerateFormByFileAction
 
         dd(
             [
-            'class_name' => $class_name,
-            'model_name' => $model_name,
-            'fillable' => $fillable,
-            // 't1'=>app($class_name)->form(app(\Filament\Forms\Form::class)),
-            'methods' => get_class_methods(app($class_name)),
-            'form_method' => $form_method,
-            'form_method_methods' => get_class_methods($form_method),
-            'body' => $body,
+                'class_name' => $class_name,
+                'model_name' => $model_name,
+                'fillable' => $fillable,
+                // 't1'=>app($class_name)->form(app(\Filament\Forms\Form::class)),
+                'methods' => get_class_methods(app($class_name)),
+                'form_method' => $form_method,
+                'form_method_methods' => get_class_methods($form_method),
+                'body' => $body,
             ]
         );
     }
@@ -67,20 +67,20 @@ class GenerateFormByFileAction
     {
         dd(
             [
-            'getRelativePath' => $file->getRelativePath(), // =  ""
-            'getRelativePathname' => $file->getRelativePathname(), //  AssenzeResource.php
-            'getFilenameWithoutExtension' => $file->getFilenameWithoutExtension(), // AssenzeResource
-            // 'getContents' => $file->getContents(),
-            'getPath' => $file->getPath(), // = /var/www/html/ptvx/laravel/Modules/Progressioni/Filament/Resources
-            'getFilename' => $file->getFilename(), // = AssenzeResource.php
-            'getExtension' => $file->getExtension(), // php
-            'getBasename' => $file->getBasename(), // AssenzeResource.php
-            'getPathname' => $file->getPathname(), // "/var/www/html/ptvx/laravel/Modules/Progressioni/Filament/Resources/AssenzeResource.php
-            'isFile' => $file->isFile(), // true
-            'getRealPath' => $file->getRealPath(), // /var/www/html/ptvx/laravel/Modules/Progressioni/Filament/Resources/AssenzeResource.php
-            // 'getFileInfo' => $file->getFileInfo(),
-            // 'getPathInfo' => $file->getPathInfo(),
-            'methods' => get_class_methods($file),
+                'getRelativePath' => $file->getRelativePath(), // =  ""
+                'getRelativePathname' => $file->getRelativePathname(), //  AssenzeResource.php
+                'getFilenameWithoutExtension' => $file->getFilenameWithoutExtension(), // AssenzeResource
+                // 'getContents' => $file->getContents(),
+                'getPath' => $file->getPath(), // = /var/www/html/ptvx/laravel/Modules/Progressioni/Filament/Resources
+                'getFilename' => $file->getFilename(), // = AssenzeResource.php
+                'getExtension' => $file->getExtension(), // php
+                'getBasename' => $file->getBasename(), // AssenzeResource.php
+                'getPathname' => $file->getPathname(), // "/var/www/html/ptvx/laravel/Modules/Progressioni/Filament/Resources/AssenzeResource.php
+                'isFile' => $file->isFile(), // true
+                'getRealPath' => $file->getRealPath(), // /var/www/html/ptvx/laravel/Modules/Progressioni/Filament/Resources/AssenzeResource.php
+                // 'getFileInfo' => $file->getFileInfo(),
+                // 'getPathInfo' => $file->getPathInfo(),
+                'methods' => get_class_methods($file),
             ]
         );
     }

@@ -41,16 +41,16 @@ class MetatagPage extends Page implements HasForms
         return $form
             ->schema(
                 [
-                TextInput::make('title')
-                    ->required(),
-                TextInput::make('sitename'),
-                TextInput::make('subtitle'),
-                TextInput::make('generator'),
-                TextInput::make('charset'),
-                TextInput::make('author'),
-                TextInput::make('description'),
-                TextInput::make('keywords'),
-                /*
+                    TextInput::make('title')
+                        ->required(),
+                    TextInput::make('sitename'),
+                    TextInput::make('subtitle'),
+                    TextInput::make('generator'),
+                    TextInput::make('charset'),
+                    TextInput::make('author'),
+                    TextInput::make('description'),
+                    TextInput::make('keywords'),
+                    /*
                 FileUpload::make('logo_header')
                     ->preserveFilenames()
                     ->image()
@@ -66,12 +66,12 @@ class MetatagPage extends Page implements HasForms
                     })->first() )
                                       ,
                 */
-                TextInput::make('logo_header'),
-                TextInput::make('logo_header_dark')
-                    ->helperText('logo for dark css'),
-                // 'logo_header'=>'bimaticard::img/logo.png',
-                // 'logo_header_dark' => 'bimaticard::img/logo_dark.png',
-                TextInput::make('logo_height'),
+                    TextInput::make('logo_header'),
+                    TextInput::make('logo_header_dark')
+                        ->helperText('logo for dark css'),
+                    // 'logo_header'=>'bimaticard::img/logo.png',
+                    // 'logo_header_dark' => 'bimaticard::img/logo_dark.png',
+                    TextInput::make('logo_height'),
                 ]
             )->columns(2)
             ->statePath('data');

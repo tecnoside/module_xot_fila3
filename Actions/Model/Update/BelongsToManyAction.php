@@ -66,9 +66,9 @@ class BelongsToManyAction
             } catch (\Exception $e) {
                 dddx(
                     [
-                    'message' => $e->getMessage(),
-                    'model' => $model,
-                    'relationDTO' => $relationDTO,
+                        'message' => $e->getMessage(),
+                        'model' => $model,
+                        'relationDTO' => $relationDTO,
                     ]
                 );
             }

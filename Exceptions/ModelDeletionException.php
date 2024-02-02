@@ -39,8 +39,8 @@ class ModelDeletionException extends ApplicationException
     {
         $res = trans(
             'exception.model_not_deleted.error', [
-            'id' => $this->id,
-            'model' => $this->model,
+                'id' => $this->id,
+                'model' => $this->model,
             ]
         );
         if (! \is_string($res)) {
