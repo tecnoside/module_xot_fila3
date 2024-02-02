@@ -6,6 +6,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions;
 
+use function Safe\preg_match_all;
+
 use Spatie\QueueableAction\QueueableAction;
 
 class ParsePrintPageStringAction

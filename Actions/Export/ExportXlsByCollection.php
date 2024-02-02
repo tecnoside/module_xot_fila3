@@ -19,9 +19,10 @@ class ExportXlsByCollection
     public function execute(
         Collection $collection,
         string $filename = 'test.xlsx',
-        string $transKey = null
+        string $transKey = null,
+        array $fields = null,
     ): BinaryFileResponse {
-        $collectionExport = new CollectionExport($collection, $transKey);
+        $collectionExport = new CollectionExport($collection, $transKey, $fields);
 
         return Excel::download($collectionExport, $filename);
     }
