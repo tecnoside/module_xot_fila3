@@ -15,6 +15,7 @@ use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Illuminate\Support\Facades\Storage;
 use Modules\Tenant\Services\TenantService;
+use Webmozart\Assert\Assert;
 
 /**
  * @property ComponentContainer $form
@@ -32,7 +33,7 @@ class MetatagPage extends Page implements HasForms
     public function mount(): void
     {
         // $this->form->fill();
-        $data = config('metatag');
+        Assert::isArray($data = config('metatag'));
         $this->form->fill($data);
     }
 

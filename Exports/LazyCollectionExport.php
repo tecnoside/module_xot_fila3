@@ -78,6 +78,9 @@ class LazyCollectionExport implements FromIterator, WithHeadings, ShouldQueue, W
         return $this->collection;
     }
 
+    /**
+     * Returns an iterator for the current collection.
+     */
     public function iterator(): \Iterator
     {
         return $this->collection->getIterator();

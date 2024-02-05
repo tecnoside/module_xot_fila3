@@ -13,6 +13,7 @@ use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Staudenmeir\LaravelCte\Query\Builder as CteBuilder;
 
 class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkReading
 {
@@ -24,12 +25,12 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
     public ?string $transKey = null;
 
     /**
-     * @var \Staudenmeir\LaravelCte\Query\Builder
+     * @var CteBuilder|Builder
      */
     public $query;
 
     /**
-     * @param \Staudenmeir\LaravelCte\Query\Builder $query
+     * @param CteBuilder|Builder $query
      */
     public function __construct($query, string $transKey = null, array $fields = null)
     {

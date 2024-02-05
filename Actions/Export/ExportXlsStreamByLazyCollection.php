@@ -12,6 +12,7 @@ use function Safe\fopen;
 use function Safe\fputcsv;
 
 use Spatie\QueueableAction\QueueableAction;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Webmozart\Assert\Assert;
 
 class ExportXlsStreamByLazyCollection
@@ -23,7 +24,7 @@ class ExportXlsStreamByLazyCollection
         string $filename = 'test.csv',
         string $transKey = null,
         array $fields = null
-    ) {
+    ): StreamedResponse {
         $headers = [
             'Content-Disposition' => 'attachment; filename='.$filename,
         ];

@@ -6,8 +6,10 @@ namespace Modules\Xot\Actions\Export;
 
 // use Modules\Xot\Services\ArrayService;
 
+use Illuminate\Database\Query\Builder;
 use Modules\Xot\Exports\QueryExport;
 use Spatie\QueueableAction\QueueableAction;
+use Staudenmeir\LaravelCte\Query\Builder as CteBuilder;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 // use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -17,7 +19,7 @@ class ExportXlsByQuery
     use QueueableAction;
 
     public function execute(
-        \Staudenmeir\LaravelCte\Query\Builder $query,
+        Builder|CteBuilder $query,
         string $filename = 'test.xlsx',
         string $transKey = null,
         array $fields = null

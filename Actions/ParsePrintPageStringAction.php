@@ -26,14 +26,14 @@ class ParsePrintPageStringAction
             if ('' == $matches[2][$i]) {
                 $res[] = (int) $matches[1][$i];
             } else {
-                $res = array_merge($res, self::fromTo($matches[1][$i], $matches[2][$i]));
+                $res = array_merge($res, self::fromTo((int) $matches[1][$i], (int) $matches[2][$i]));
             }
         }
 
         return $res;
     }
 
-    public static function fromTo($from, $to): array
+    public static function fromTo(int $from, int $to): array
     {
         $res = [];
         for ($i = $from; $i <= $to; ++$i) {
