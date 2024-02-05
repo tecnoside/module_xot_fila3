@@ -34,7 +34,7 @@ class HandlerDecorator implements ExceptionHandler
      *
      * @throws \Throwable
      */
-    public function report(\Throwable $e)
+    public function report(\Throwable $e): mixed
     {
         foreach ($this->repository->getReportersByException($e) as $reporter) {
             if ($report = $reporter($e)) {
