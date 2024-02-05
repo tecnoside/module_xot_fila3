@@ -22,8 +22,8 @@ class ExportXlsStreamByLazyCollection
     public function execute(
         LazyCollection $data,
         string $filename = 'test.csv',
-        string $transKey = null,
-        array $fields = null
+        ?string $transKey = null,
+        ?array $fields = null
     ): StreamedResponse {
         $headers = [
             'Content-Disposition' => 'attachment; filename='.$filename,
@@ -51,7 +51,7 @@ class ExportXlsStreamByLazyCollection
         );
     }
 
-    public function headings(LazyCollection $data, string $transKey = null): array
+    public function headings(LazyCollection $data, ?string $transKey = null): array
     {
         /**
          * @var array

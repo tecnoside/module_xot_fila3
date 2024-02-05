@@ -21,8 +21,8 @@ class ExportXlsByQuery
     public function execute(
         Builder|CteBuilder $query,
         string $filename = 'test.xlsx',
-        string $transKey = null,
-        array $fields = null
+        ?string $transKey = null,
+        ?array $fields = null
     ): BinaryFileResponse {
         $queryExport = new QueryExport($query, $transKey, $fields);
         // $queryExport->queue($filename); // Serialization of 'PDO' is not allowed

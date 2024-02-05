@@ -82,7 +82,7 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
      *
      * @param string|int|array|Role|\Illuminate\Support\Collection $roles
      */
-    public function hasRole($roles, string $guard = null): bool;
+    public function hasRole($roles, ?string $guard = null): bool;
 
     /**
      * Assign the given role to the model.

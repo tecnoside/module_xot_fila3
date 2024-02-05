@@ -20,7 +20,7 @@ class CollectionExport implements FromCollection, WithHeadings, ShouldQueue
     public string $transKey;
     public ?array $fields = null;
 
-    public function __construct(public Collection $collection, string $transKey = null, array $fields = null)
+    public function __construct(public Collection $collection, ?string $transKey = null, ?array $fields = null)
     {
         // $this->headings = count($headings) > 0 ? $headings : collect($collection->first())->keys()->toArray();
         /**

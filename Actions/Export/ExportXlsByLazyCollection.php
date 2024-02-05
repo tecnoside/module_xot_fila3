@@ -17,8 +17,8 @@ class ExportXlsByLazyCollection
     public function execute(
         LazyCollection $collection,
         string $filename = 'test.xlsx',
-        string $transKey = null,
-        array $fields = null,
+        ?string $transKey = null,
+        ?array $fields = null,
     ): Response|BinaryFileResponse {
         $export = new LazyCollectionExport($collection, $transKey, $fields);
 

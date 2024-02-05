@@ -32,7 +32,7 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
     /**
      * @param CteBuilder|Builder $query
      */
-    public function __construct($query, string $transKey = null, array $fields = null)
+    public function __construct($query, ?string $transKey = null, ?array $fields = null)
     {
         $this->query = $query;
         $this->transKey = $transKey;

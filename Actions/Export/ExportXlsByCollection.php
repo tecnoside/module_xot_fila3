@@ -19,8 +19,8 @@ class ExportXlsByCollection
     public function execute(
         Collection $collection,
         string $filename = 'test.xlsx',
-        string $transKey = null,
-        array $fields = null,
+        ?string $transKey = null,
+        ?array $fields = null,
     ): BinaryFileResponse {
         $collectionExport = new CollectionExport($collection, $transKey, $fields);
 
