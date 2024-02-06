@@ -6,6 +6,8 @@ namespace Modules\Xot\Traits;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 
+use function Safe\preg_replace;
+
 // /laravel/app/Updater.php
 // Str::camel() 'foo_bar' fooBar
 // kebab_case() 'fooBar'  foo-bar
@@ -15,10 +17,8 @@ use Illuminate\Contracts\Auth\Authenticatable;
 /**
  * Trait MyLogTrait.
  */
-trait MyLogTrait
-{
-    protected static function boot(): void
-    {
+trait MyLogTrait {
+    protected static function boot(): void {
         parent::boot();
         /*
          \Event::listen(['eloquent.*'], function ($a){

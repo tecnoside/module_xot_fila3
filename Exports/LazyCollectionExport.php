@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace Modules\Xot\Exports;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
 use Illuminate\Support\Str;
-use Maatwebsite\Excel\Concerns\Exportable;
 // use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromIterator;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Webmozart\Assert\Assert;
 
-class LazyCollectionExport implements FromIterator, WithHeadings, ShouldQueue, WithMapping
-{
+class LazyCollectionExport implements FromIterator, WithHeadings, ShouldQueue, WithMapping {
     use Exportable;
 
     public array $headings;
@@ -23,8 +23,7 @@ class LazyCollectionExport implements FromIterator, WithHeadings, ShouldQueue, W
     public string $transKey;
     public ?array $fields = null;
 
-    public function __construct(public LazyCollection $collection, ?string $transKey = null, ?array $fields = null)
-    {
+    public function __construct(public LazyCollection $collection, ?string $transKey = null, ?array $fields = null) {
         // $this->headings = count($headings) > 0 ? $headings : collect($collection->first())->keys()->toArray();
 
         /**
@@ -56,8 +55,14 @@ class LazyCollectionExport implements FromIterator, WithHeadings, ShouldQueue, W
         $this->headings = $headings->toArray();
     }
 
-    public function map($item): array
-    {
+    /**
+     * Undocumented function.
+     *
+     * @param Collection $item
+     *
+     * @return Collection
+     */
+    public function map($item) {
         $data = $item->only($this->fields);
 
         return $data;
@@ -68,21 +73,18 @@ class LazyCollectionExport implements FromIterator, WithHeadings, ShouldQueue, W
         */
     }
 
-    public function headings(): array
-    {
+    public function headings(): array {
         return $this->headings;
     }
 
-    public function collection(): LazyCollection
-    {
+    public function collection(): LazyCollection {
         return $this->collection;
     }
 
     /**
      * Returns an iterator for the current collection.
      */
-    public function iterator(): \Iterator
-    {
+    public function iterator(): \Iterator {
         return $this->collection->getIterator();
     }
 }
