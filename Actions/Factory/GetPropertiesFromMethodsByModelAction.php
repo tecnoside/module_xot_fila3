@@ -42,14 +42,18 @@ class GetPropertiesFromMethodsByModelAction {
                     $file->next();
                 }
                 $code = trim(preg_replace('/\s\s+/', '', $code));
-                $begin = strpos($code, 'function(');
-                $code = substr($code, $begin, strrpos($code, '}') - $begin + 1);
+                $begin = (int)strpos($code, 'function(');
+                $length=(int)strrpos($code, '}') - $begin + 1;
+                $code = substr($code, $begin, $length);
                 foreach (['belongsTo'] as $relation) {
                     $search = '$this->'.$relation.'(';
                     if ($pos = stripos($code, $search)) {
                         $relationObj = $model->$method();
                         if ($relationObj instanceof Relation) {
                             // $this->setProperty($relationObj->getForeignKeyName(), 'factory('.get_class($relationObj->getRelated()).'::class)');
+                            if(!method_exists($relationObj,'getForeignKeyName')){
+                                throw new \Exception('[WIP]['.__LINE__.']['.__FILE__.']');
+                            }
                             $name = $relationObj->getForeignKeyName();
                             $type = 'factory('.get_class($relationObj->getRelated()).'::class)';
                             $table = null;

@@ -13,6 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Modules\Xot\Actions\Export\TransCollectionAction;
 
 class CollectionExport implements FromCollection, WithHeadings, ShouldQueue,WithMapping
 {
@@ -46,34 +47,13 @@ class CollectionExport implements FromCollection, WithHeadings, ShouldQueue,With
 
     public function headings(): array
     {
-        
         $headings=$this->getHead();
         $transKey = $this->transKey;
-        if (null !== $transKey) {
-            $headings = $headings->map(
-                function (string $item) use ($transKey) {
-                    $key = $transKey.'.fields.'.$item;
-                    $trans = trans($key);
-                    if ($trans !== $key) {
-                        return $trans;
-                    }
-
-                    Assert::string($item1 = Str::replace('.', '_', $item));
-                    $key = $transKey.'.fields.'.$item1;
-                    $trans = trans($key);
-                    if ($trans !== $key) {
-                        return $trans;
-                    }
-
-                    return $item;
-                }
-            );
-        }
-        
-       
-       
+        $headings=app(TransCollectionAction::class)->execute($headings,$transKey);
         return $headings->toArray();
     }
+
+    
 
     public function collection(): Collection
     {
@@ -82,11 +62,12 @@ class CollectionExport implements FromCollection, WithHeadings, ShouldQueue,With
     }
 
      /**
-    * @param object $item
+    * @param \Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null $item
     */
     public function map($item): array
     {
         if($this->fields==null){
+        
             return collect($item)->toArray();
         }
         return collect($item)->only($this->fields)->toArray();

@@ -60,12 +60,11 @@ class LazyCollectionExport implements FromIterator, WithHeadings, ShouldQueue, W
      *
      * @param Collection $item
      *
-     * @return Collection
      */
-    public function map($item) {
+    public function map($item):array {
         $data = $item->only($this->fields);
 
-        return $data;
+        return $data->toArray();
         /*
         return [
             $item->id,
@@ -85,6 +84,7 @@ class LazyCollectionExport implements FromIterator, WithHeadings, ShouldQueue, W
      * Returns an iterator for the current collection.
      */
     public function iterator(): \Iterator {
+        /** @phpstan-ignore-next-line */
         return $this->collection->getIterator();
     }
 }

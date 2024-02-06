@@ -23,7 +23,8 @@ class GetPropertiesFromTableByModelAction {
     public function execute(Model $model): array {
         $table = $model->getConnection()->getTablePrefix().$model->getTable();
         // Method Illuminate\Database\Connection::getDoctrineSchemaManager() invoked with 1 parameter, 0 required.
-        $schema = $model->getConnection()->getDoctrineSchemaManager($table);
+        //$schema = $model->getConnection()->getDoctrineSchemaManager($table);
+        $schema = $model->getConnection()->getDoctrineSchemaManager();
         $databasePlatform = $schema->getDatabasePlatform();
         $databasePlatform->registerDoctrineTypeMapping('enum', 'customEnum');
 

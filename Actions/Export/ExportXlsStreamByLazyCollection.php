@@ -35,11 +35,12 @@ class ExportXlsStreamByLazyCollection {
                 fputcsv($file, $head);
 
                 foreach ($data as $key => $value) {
-                    try {
-                        $data = $value->toArray();
-                    } catch (\Exception $e) {
-                        $data = [];
-                    }
+                    //if(!method_exists($value,'toArray')){
+                    //    throw new \Exception('WIP['.__LINE__.']['.__FILE__.']');
+                    //}
+                    /** @phpstan-ignore-next-line */
+                    $data = $value->toArray();
+                    
                     fputcsv($file, $data);
                 }
                 $blanks = ["\t", "\t", "\t", "\t"];
