@@ -6,15 +6,13 @@ namespace Modules\Xot\Actions\Collection;
 
 // use Modules\Xot\Services\ArrayService;
 
-use Illuminate\Support\Str;
-use Webmozart\Assert\Assert;
 use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Facades\Excel;
-use Modules\Xot\Exports\CollectionExport;
+use Illuminate\Support\Str;
 use Spatie\QueueableAction\QueueableAction;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Webmozart\Assert\Assert;
 
-class TransCollectionAction {
+class TransCollectionAction
+{
     use QueueableAction;
 
     public string|null $transKey;
@@ -23,27 +21,25 @@ class TransCollectionAction {
         Collection $collection,
         ?string $transKey,
     ): Collection {
-         if (null == $transKey) {
+        if (null == $transKey) {
             return $collection;
-         }
+        }
 
-         $this->transKey=$transKey;
+        $this->transKey = $transKey;
 
-        $collection = $collection->map(fn($item):string => $this->trans($item));
-            
+        $collection = $collection->map(fn ($item): string => $this->trans($item));
+
         return $collection;
     }
 
-
-    /** 
-     * @param mixed $item
-     */
-    public function trans($item):string{
-        if(!is_string($item)){
+    public function trans($item): string
+    {
+        if (! is_string($item)) {
             dddx($item);
+
             return '';
         }
-        $transKey=$this->transKey;
+        $transKey = $this->transKey;
         $key = $transKey.'.'.$item;
         $trans = trans($key);
         if ($trans !== $key) {
@@ -58,6 +54,5 @@ class TransCollectionAction {
         }
 
         return $item;
-
     }
 }

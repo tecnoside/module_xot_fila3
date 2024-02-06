@@ -17,8 +17,10 @@ use function Safe\preg_replace;
 /**
  * Trait MyLogTrait.
  */
-trait MyLogTrait {
-    protected static function boot(): void {
+trait MyLogTrait
+{
+    protected static function boot(): void
+    {
         parent::boot();
         /*
          \Event::listen(['eloquent.*'], function ($a){

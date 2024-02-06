@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Exports;
 
-use Illuminate\Support\Collection;
-use Illuminate\Database\Query\Builder;
-use Maatwebsite\Excel\Concerns\FromQuery;
-use Maatwebsite\Excel\Concerns\Exportable;
-// use Laravel\Scout\Builder as ScoutBuilder;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Maatwebsite\Excel\Concerns\WithMapping;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithChunkReading;
-use Illuminate\Database\Eloquent\Relations\Relation;
-use Staudenmeir\LaravelCte\Query\Builder as CteBuilder;
-use Modules\Xot\Actions\Collection\TransCollectionAction;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Database\Query\Builder;
+// use Laravel\Scout\Builder as ScoutBuilder;
+use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\FromQuery;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
+use Modules\Xot\Actions\Collection\TransCollectionAction;
+use Staudenmeir\LaravelCte\Query\Builder as CteBuilder;
 
 class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkReading, WithMapping
 {
@@ -59,27 +59,29 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
         */
     }
 
-    public function getHead():Collection{
-        if(is_array($this->fields)){
+    public function getHead(): Collection
+    {
+        if (is_array($this->fields)) {
             return collect($this->fields);
         }
         /**
-         * @var \Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null 
+         * @var \Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null
          */
-        $first=$this->query->first();
-        if($first==null){
+        $first = $this->query->first();
+        if (null == $first) {
             return collect([]);
         }
-        //Parameter #1 $value of function collect expects Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null, object given.
+
+        // Parameter #1 $value of function collect expects Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null, object given.
         return collect($first)->keys();
-        
     }
 
     public function headings(): array
     {
-        $headings=$this->getHead();
+        $headings = $this->getHead();
         $transKey = $this->transKey;
-        $headings=app(TransCollectionAction::class)->execute($headings,$transKey);
+        $headings = app(TransCollectionAction::class)->execute($headings, $transKey);
+
         return $headings->toArray();
     }
 
@@ -98,19 +100,18 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
         return 200;
     }
 
-     /**
-    * @param \Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null $item
-    */
+    /**
+     * @param \Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null $item
+     */
     public function map($item): array
     {
-        if($this->fields==null){
+        if (null == $this->fields) {
             return collect($item)->toArray();
         }
-        //rameter #1 $value of function collect expects Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null, object given.
+
+        // rameter #1 $value of function collect expects Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null, object given.
         return collect($item)
             ->only($this->fields)
             ->toArray();
-       
-        
     }
 }

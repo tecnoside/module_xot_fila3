@@ -11,7 +11,8 @@ use Spatie\QueueableAction\QueueableAction;
 use Staudenmeir\LaravelCte\Query\Builder as CteBuilder;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
-class ExportXlsByQuery {
+class ExportXlsByQuery
+{
     use QueueableAction;
 
     public function execute(

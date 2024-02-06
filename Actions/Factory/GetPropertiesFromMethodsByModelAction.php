@@ -22,10 +22,12 @@ use Spatie\QueueableAction\QueueableAction;
 /**
  * @see https://github.com/mpociot/laravel-test-factory-helper/blob/master/src/Console/GenerateCommand.php#L213
  */
-class GetPropertiesFromMethodsByModelAction {
+class GetPropertiesFromMethodsByModelAction
+{
     use QueueableAction;
 
-    public function execute(Model $model): array {
+    public function execute(Model $model): array
+    {
         $methods = get_class_methods($model);
         $data = [];
         foreach ($methods as $method) {
@@ -42,8 +44,8 @@ class GetPropertiesFromMethodsByModelAction {
                     $file->next();
                 }
                 $code = trim(preg_replace('/\s\s+/', '', $code));
-                $begin = (int)strpos($code, 'function(');
-                $length=(int)strrpos($code, '}') - $begin + 1;
+                $begin = (int) strpos($code, 'function(');
+                $length = (int) strrpos($code, '}') - $begin + 1;
                 $code = substr($code, $begin, $length);
                 foreach (['belongsTo'] as $relation) {
                     $search = '$this->'.$relation.'(';
@@ -51,7 +53,7 @@ class GetPropertiesFromMethodsByModelAction {
                         $relationObj = $model->$method();
                         if ($relationObj instanceof Relation) {
                             // $this->setProperty($relationObj->getForeignKeyName(), 'factory('.get_class($relationObj->getRelated()).'::class)');
-                            if(!method_exists($relationObj,'getForeignKeyName')){
+                            if (! method_exists($relationObj, 'getForeignKeyName')) {
                                 throw new \Exception('[WIP]['.__LINE__.']['.__FILE__.']');
                             }
                             $name = $relationObj->getForeignKeyName();

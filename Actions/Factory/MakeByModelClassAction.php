@@ -13,7 +13,8 @@ namespace Modules\Xot\Actions\Factory;
 
 use Spatie\QueueableAction\QueueableAction;
 
-class MakeByModelClassAction {
+class MakeByModelClassAction
+{
     use QueueableAction;
 
     /**
@@ -23,7 +24,8 @@ class MakeByModelClassAction {
      *
      * @return void|bool
      */
-    public function execute(string $modelClass) {
+    public function execute(string $modelClass)
+    {
         $reflectionClass = new \ReflectionClass($modelClass);
 
         if (! $reflectionClass->isSubclassOf('Illuminate\Database\Eloquent\Model')) {
