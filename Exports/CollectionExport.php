@@ -13,7 +13,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Modules\Xot\Actions\Export\TransCollectionAction;
+use Modules\Xot\Actions\Collection\TransCollectionAction;
+
 
 class CollectionExport implements FromCollection, WithHeadings, ShouldQueue,WithMapping
 {

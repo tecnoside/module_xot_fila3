@@ -14,8 +14,8 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Modules\Xot\Actions\Export\TransCollectionAction;
 use Staudenmeir\LaravelCte\Query\Builder as CteBuilder;
+use Modules\Xot\Actions\Collection\TransCollectionAction;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 
 class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkReading, WithMapping

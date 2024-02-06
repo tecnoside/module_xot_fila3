@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\Actions\Export;
+namespace Modules\Xot\Actions\Collection;
 
 // use Modules\Xot\Services\ArrayService;
 
