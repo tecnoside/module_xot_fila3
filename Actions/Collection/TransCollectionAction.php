@@ -32,9 +32,9 @@ class TransCollectionAction
         return $collection;
     }
 
-    /** 
-    * @param mixed|null $item
-    */
+    /**
+     * @param mixed|null $item
+     */
     public function trans($item): string
     {
         if (! is_string($item)) {
