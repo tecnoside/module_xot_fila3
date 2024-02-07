@@ -6,7 +6,7 @@ namespace Modules\Xot\Http\Livewire;
 
 // use Illuminate\Support\Carbon;
 use Livewire\Component;
-use Modules\Cms\Actions\GetViewAction;
+use Modules\Xot\Actions\GetViewAction;
 
 /**
  * Class Test.
