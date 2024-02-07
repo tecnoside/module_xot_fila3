@@ -37,9 +37,9 @@ class XotComposer
         $fun = 'get'.Str::studly($str);
         if (method_exists($metatag, $fun)) {
             return $metatag->{$fun}();
-            //$callback = [$metatag,$fun];
-            //Assert::isCallable($callback);
-            //return call_user_func_array($callback, []);
+            // $callback = [$metatag,$fun];
+            // Assert::isCallable($callback);
+            // return call_user_func_array($callback, []);
         }
 
         return $metatag->{$str};
