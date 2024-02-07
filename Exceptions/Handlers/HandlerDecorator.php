@@ -33,6 +33,8 @@ class HandlerDecorator implements ExceptionHandler
      * Report or log an exception.
      *
      * @throws \Throwable
+     *
+     * @return mixed|void
      */
     public function report(\Throwable $e)
     {
@@ -87,6 +89,8 @@ class HandlerDecorator implements ExceptionHandler
      * Render an exception to the console.
      *
      * @param OutputInterface $output
+     *
+     * @return mixed|void
      */
     public function renderForConsole($output, \Throwable $e)
     {
@@ -124,6 +128,8 @@ class HandlerDecorator implements ExceptionHandler
      *
      * @param string $name
      * @param array  $parameters
+     *
+     * @return mixed|void
      */
     public function __call($name, $parameters)
     {

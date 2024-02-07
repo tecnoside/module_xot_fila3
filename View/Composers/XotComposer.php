@@ -33,7 +33,13 @@ class XotComposer
 
     public function metatag(string $str): string|bool
     {
-        return MetatagData::make()->{$str};
+        $metatag = MetatagData::make();
+        $fun = 'get'.Str::studly($str);
+        if (method_exists($metatag, $fun)) {
+            return $metatag->{$fun}();
+        }
+
+        return $metatag->{$str};
     }
 
     /**

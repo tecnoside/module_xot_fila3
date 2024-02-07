@@ -9,13 +9,16 @@ use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Query\Builder;
 // use Laravel\Scout\Builder as ScoutBuilder;
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMapping;
+use Modules\Xot\Actions\Collection\TransCollectionAction;
 use Staudenmeir\LaravelCte\Query\Builder as CteBuilder;
 
-class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkReading
+class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkReading, WithMapping
 {
     use Exportable;
 
@@ -38,6 +41,7 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
         $this->transKey = $transKey;
         $this->fields = $fields;
 
+        /*
         $this->headings = collect($query->first())
             ->keys()
             ->map(
@@ -52,11 +56,33 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
                 }
             )
             ->toArray();
+        */
+    }
+
+    public function getHead(): Collection
+    {
+        if (is_array($this->fields)) {
+            return collect($this->fields);
+        }
+        /**
+         * @var \Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null
+         */
+        $first = $this->query->first();
+        if (null == $first) {
+            return collect([]);
+        }
+
+        // Parameter #1 $value of function collect expects Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null, object given.
+        return collect($first)->keys();
     }
 
     public function headings(): array
     {
-        return $this->headings;
+        $headings = $this->getHead();
+        $transKey = $this->transKey;
+        $headings = app(TransCollectionAction::class)->execute($headings, $transKey);
+
+        return $headings->toArray();
     }
 
     /**
@@ -72,5 +98,20 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
     public function chunkSize(): int
     {
         return 200;
+    }
+
+    /**
+     * @param \Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null $item
+     */
+    public function map($item): array
+    {
+        if (null == $this->fields) {
+            return collect($item)->toArray();
+        }
+
+        // rameter #1 $value of function collect expects Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null, object given.
+        return collect($item)
+            ->only($this->fields)
+            ->toArray();
     }
 }

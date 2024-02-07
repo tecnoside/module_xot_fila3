@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Exceptions\Handlers;
 
+use Closure;
 use ReflectionFunction;
 
 /**
@@ -71,8 +72,10 @@ class HandlersRepository
      */
     protected function handlesException(callable $handler, \Throwable $e)
     {
+        // protected function handlesException(Closure $handler, \Throwable $e)
         // Parameter #1 $function of class ReflectionFunction constructor expects Closure|string, callable(): mixed
         //  given.
+        /** @phpstan-ignore-next-line */
         $reflection = new \ReflectionFunction($handler);
 
         if (! $params = $reflection->getParameters()) {
