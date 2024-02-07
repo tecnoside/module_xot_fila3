@@ -17,10 +17,12 @@ use Spatie\QueueableAction\QueueableAction;
 /**
  * @see https://github.com/mpociot/laravel-test-factory-helper/blob/master/src/Console/GenerateCommand.php#L213
  */
-class GetFakerAction {
+class GetFakerAction
+{
     use QueueableAction;
 
-    public function execute(string $name, ?string $type = null, ?string $table = null): string {
+    public function execute(string $name, ?string $type = null, ?string $table = null): string
+    {
         if (null !== $type && Str::startsWith($type, 'factory(')) {
             return $type;
         }

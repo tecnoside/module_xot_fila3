@@ -15,7 +15,8 @@ use Spatie\QueueableAction\QueueableAction;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Webmozart\Assert\Assert;
 
-class ExportXlsStreamByLazyCollection {
+class ExportXlsStreamByLazyCollection
+{
     use QueueableAction;
 
     public function execute(
@@ -35,12 +36,12 @@ class ExportXlsStreamByLazyCollection {
                 fputcsv($file, $head);
 
                 foreach ($data as $key => $value) {
-                    //if(!method_exists($value,'toArray')){
+                    // if(!method_exists($value,'toArray')){
                     //    throw new \Exception('WIP['.__LINE__.']['.__FILE__.']');
-                    //}
+                    // }
                     /** @phpstan-ignore-next-line */
                     $data = $value->toArray();
-                    
+
                     fputcsv($file, $data);
                 }
                 $blanks = ["\t", "\t", "\t", "\t"];
@@ -55,7 +56,8 @@ class ExportXlsStreamByLazyCollection {
         );
     }
 
-    public function headings(LazyCollection $data, ?string $transKey = null): array {
+    public function headings(LazyCollection $data, ?string $transKey = null): array
+    {
         /**
          * @var array
          */

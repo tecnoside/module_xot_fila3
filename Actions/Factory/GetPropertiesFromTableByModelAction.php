@@ -17,13 +17,15 @@ use Spatie\QueueableAction\QueueableAction;
 /**
  * @see https://github.com/mpociot/laravel-test-factory-helper/blob/master/src/Console/GenerateCommand.php#L213
  */
-class GetPropertiesFromTableByModelAction {
+class GetPropertiesFromTableByModelAction
+{
     use QueueableAction;
 
-    public function execute(Model $model): array {
+    public function execute(Model $model): array
+    {
         $table = $model->getConnection()->getTablePrefix().$model->getTable();
         // Method Illuminate\Database\Connection::getDoctrineSchemaManager() invoked with 1 parameter, 0 required.
-        //$schema = $model->getConnection()->getDoctrineSchemaManager($table);
+        // $schema = $model->getConnection()->getDoctrineSchemaManager($table);
         $schema = $model->getConnection()->getDoctrineSchemaManager();
         $databasePlatform = $schema->getDatabasePlatform();
         $databasePlatform->registerDoctrineTypeMapping('enum', 'customEnum');
@@ -49,9 +51,9 @@ class GetPropertiesFromTableByModelAction {
                 } else {
                     $type = $column->getType()->getName();
                 }
-                if (! ($model->incrementing && $model->getKeyName() === $name) &&
-                    $name !== $model::CREATED_AT &&
-                    $name !== $model::UPDATED_AT
+                if (! ($model->incrementing && $model->getKeyName() === $name)
+                    && $name !== $model::CREATED_AT
+                    && $name !== $model::UPDATED_AT
                 ) {
                     if (! method_exists($model, 'getDeletedAtColumn') || (method_exists($model, 'getDeletedAtColumn') && $name !== $model->getDeletedAtColumn())) {
                         // $this->setProperty($name, $type, $table);
