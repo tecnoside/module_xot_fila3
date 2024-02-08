@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Modules\Xot\View\Composers;
 
+use Illuminate\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Illuminate\View\View;
-use Modules\Xot\Datas\MetatagData;
-use Modules\Xot\Services\FileService;
-use Nwidart\Modules\Facades\Module;
 use Webmozart\Assert\Assert;
+use Modules\Xot\Datas\MetatagData;
+use Nwidart\Modules\Facades\Module;
+use Modules\Xot\Services\FileService;
 
 /**
  * Class XotComposer.
