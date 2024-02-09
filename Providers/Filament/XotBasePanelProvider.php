@@ -70,27 +70,7 @@ abstract class XotBasePanelProvider extends PanelProvider
                     // 'primary' => Color::Teal,
                 ]
             )
-            /*
-            ->userMenuItems([
-                MenuItem::make()
-                    ->label('Settings')
-                    //->url(fn (): string => Settings::getUrl())
-                    ->icon('heroicon-o-cog-6-tooth'),
-                // ...
-            ])
-            ->navigationItems([
-                NavigationItem::make('Analytics')
-                    ->url('https://filament.pirsch.io', shouldOpenInNewTab: true)
-                    ->icon('heroicon-o-presentation-chart-line')
-                    ->group('Reports')
-                    ->sort(3),
-                NavigationItem::make('dashboard')
-                    ->label(fn (): string => __('filament-panels::pages/dashboard.title'))
-                    ->url(fn (): string => Dashboard::getUrl())
-                    ->isActiveWhen(fn () => request()->routeIs('filament.admin.pages.dashboard')),
-                // ...
-            ])
-            */
+
             ->discoverResources(in: base_path('Modules/'.$this->module.'/Filament/Resources'), for: sprintf('%s\Filament\Resources', $moduleNamespace))
             ->discoverPages(in: base_path('Modules/'.$this->module.'/Filament/Pages'), for: sprintf('%s\Filament\Pages', $moduleNamespace))
             ->pages(
