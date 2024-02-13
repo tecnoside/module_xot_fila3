@@ -18,10 +18,8 @@ class MorphToManyAction
 
     /**
      * Undocumented function.
-     *
-     * @return void
      */
-    public function execute(Model $row, RelationDTO $relationDTO)
+    public function execute(Model $row, RelationDTO $relationDTO): void
     {
         $data = $relationDTO->data;
         $name = $relationDTO->name;

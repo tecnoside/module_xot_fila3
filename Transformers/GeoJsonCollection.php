@@ -16,10 +16,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
  */
 class GeoJsonCollection extends ResourceCollection
 {
-    /**
-     * @var string
-     */
-    public $collects = GeoJsonResource::class;
+    public string $collects = GeoJsonResource::class;
 
     // ErrorException (Declaration of Modules\Xot\Transformers\GeoJsonResource::toArray(Illuminate\Http\Request
     // $request) should be compatible with Illuminate\Http\Resources\Json\JsonResource::toArray($request)) thrown

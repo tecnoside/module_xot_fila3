@@ -16,10 +16,8 @@ class HasManyAction
 
     /**
      * Undocumented function.
-     *
-     * @return void
      */
-    public function execute(Model $model, RelationDTO $relationDTO)
+    public function execute(Model $model, RelationDTO $relationDTO): void
     {
         if (! $relationDTO->rows instanceof HasMany) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');

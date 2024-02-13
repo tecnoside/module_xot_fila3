@@ -17,13 +17,11 @@ use Modules\Xot\Services\ArrayService;
 use Modules\Xot\Services\FileService;
 use Modules\Xot\Services\ModuleService;
 use Nwidart\Modules\Facades\Module;
-
 use function Safe\define;
 use function Safe\glob;
 use function Safe\json_decode;
 use function Safe\parse_url;
 use function Safe\preg_match;
-
 use Webmozart\Assert\Assert;
 
 // ------------------------------------------------
@@ -204,13 +202,13 @@ if (! function_exists('inAdmin')) {
             return config()->get('in_admin');
         }
         */
-        if ('admin' === Request::segment(2)) {
+        if (Request::segment(2) === 'admin') {
             return true;
         }
 
         $segments = Request::segments();
 
-        return (is_countable($segments) ? count($segments) : 0) > 0 && 'livewire' === $segments[0] && true === session('in_admin');
+        return (is_countable($segments) ? count($segments) : 0) > 0 && $segments[0] === 'livewire' && session('in_admin') === true;
     }
 }
 
@@ -309,7 +307,7 @@ if (! function_exists('params2ContainerItem')) {
      */
     function params2ContainerItem(?array $params = null): array
     {
-        if (null === $params) {
+        if ($params === null) {
             // Call to static method current() on an unknown class Route.
             // $params = optional(\Route::current())->parameters();
             // Cannot call method parameters() on mixed.
@@ -374,7 +372,7 @@ if (! function_exists('getModelByName')) {
 
         // dddx($registered);
 
-        if (null === $path) {
+        if ($path === null) {
             throw new Exception('['.$name.'] not in morph_map ['.__LINE__.']['.__FILE__.']');
         }
 
@@ -553,7 +551,7 @@ if (! function_exists('dottedToBrackets')) {
     function dottedToBrackets(string $str, string $quotation_marks = ''): string
     {
         return collect(explode('.', $str))->map(
-            static fn (string $v, $k): string => 0 === $k ? $v : '['.$v.']'
+            static fn (string $v, $k): string => $k === 0 ? $v : '['.$v.']'
         )->implode('');
     }
 }
@@ -608,7 +606,7 @@ if (! function_exists('url_queries')) {
         // Split the URL down into an array with all the parts separated out
         $url_parsed = parse_url($url);
 
-        if (false === $url_parsed) {
+        if ($url_parsed === false) {
             throw new Exception('error parsing url ['.$url.']');
         }
 
@@ -673,7 +671,7 @@ if (! function_exists('getRelationships')) {
         foreach ($methods as $method) {
             $reflection = new ReflectionMethod($model, $method);
             $args = $reflection->getParameters();
-            if ([] !== $args) {
+            if ($args !== []) {
                 continue;
             }
 
@@ -955,10 +953,8 @@ if (! function_exists('secondsToHms')) {
 if (! function_exists('rowsToSql')) {
     /**
      * Undocumented function.
-     *
-     * @param HasOne|Builder|Illuminate\Database\Eloquent\Builder $rows
      */
-    function rowsToSql($rows): string
+    function rowsToSql(HasOne|Builder|Illuminate\Database\Eloquent\Builder $rows): string
     {
         // $sql = str_replace('?', $rows->getBindings(), $rows->toSql());
         /**
@@ -983,7 +979,7 @@ if (! function_exists('getServerName')) {
         $default = Str::after($default, '//');
 
         $server_name = $default;
-        if (isset($_SERVER['SERVER_NAME']) && '127.0.0.1' !== $_SERVER['SERVER_NAME']) {
+        if (isset($_SERVER['SERVER_NAME']) && $_SERVER['SERVER_NAME'] !== '127.0.0.1') {
             $server_name = $_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'];
         }
 

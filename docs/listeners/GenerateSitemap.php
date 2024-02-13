@@ -34,7 +34,7 @@ class GenerateSitemap
                     return $this->isExcluded($path);
                 }
             )->each(
-                function ($path) use ($baseUrl, $sitemap): void {
+                static function ($path) use ($baseUrl, $sitemap): void {
                     $sitemap->addItem(rtrim($baseUrl, '/').$path, time(), Sitemap::DAILY);
                 }
             );

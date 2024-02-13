@@ -6,11 +6,9 @@ namespace Modules\Xot\Providers;
 
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Database\Events\MigrationsEnded;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Modules\Xot\Exceptions\Formatters\WebhookErrorFormatter;
@@ -18,7 +16,6 @@ use Modules\Xot\Exceptions\Handlers\HandlerDecorator;
 use Modules\Xot\Exceptions\Handlers\HandlersRepository;
 use Modules\Xot\Providers\Traits\TranslatorTrait;
 use Modules\Xot\View\Composers\XotComposer;
-
 use function Safe\realpath;
 
 /**
@@ -90,40 +87,13 @@ class XotServiceProvider extends XotBaseServiceProvider
     }
 
     /**
-     * Register the custom exception handlers repository.
-     *
-     * @return void
-     */
-    private function registerExceptionHandlersRepository()
-    {
-        $this->app->singleton(HandlersRepository::class, HandlersRepository::class);
-    }
-
-    /**
-     * Extend the Laravel default exception handler.
-     *
-     * @see https://github.com/cerbero90/exception-handler/blob/master/src/Providers/ExceptionHandlerServiceProvider.php
-     *
-     * @return void
-     */
-    private function extendExceptionHandler()
-    {
-        $this->app->extend(
-            ExceptionHandler::class, function (ExceptionHandler $handler, $app) {
-                // dddx('a');
-                return new HandlerDecorator($handler, $app[HandlersRepository::class]);
-            }
-        );
-    }
-
-    /**
      * @see https://github.com/cerbero90/exception-handler
      */
     public function registerExceptionHandler(): void
     {
         $exceptionHandler = $this->app->make(ExceptionHandler::class);
         $exceptionHandler->reporter(
-            function (\Throwable $e) {
+            static function (\Throwable $e): void {
                 // Log::critical(Request::url());
                 $data = (new WebhookErrorFormatter($e))->format();
 
@@ -185,16 +155,40 @@ class XotServiceProvider extends XotBaseServiceProvider
     {
         $files = File::files($path);
         foreach ($files as $file) {
-            if ('php' !== $file->getExtension()) {
+            if ($file->getExtension() !== 'php') {
                 continue;
             }
 
-            if (false === $file->getRealPath()) {
+            if ($file->getRealPath() === false) {
                 continue;
             }
 
             include_once $file->getRealPath();
         }
+    }
+
+    /**
+     * Register the custom exception handlers repository.
+     */
+    private function registerExceptionHandlersRepository(): void
+    {
+        $this->app->singleton(HandlersRepository::class, HandlersRepository::class);
+    }
+
+    /**
+     * Extend the Laravel default exception handler.
+     *
+     * @see https://github.com/cerbero90/exception-handler/blob/master/src/Providers/ExceptionHandlerServiceProvider.php
+     */
+    private function extendExceptionHandler(): void
+    {
+        $this->app->extend(
+            ExceptionHandler::class,
+            static function (ExceptionHandler $handler, $app) {
+                // dddx('a');
+                return new HandlerDecorator($handler, $app[HandlersRepository::class]);
+            }
+        );
     }
 
     /*
@@ -215,8 +209,8 @@ class XotServiceProvider extends XotBaseServiceProvider
     private function redirectSSL(): void
     {
         // --- meglio ficcare un controllo anche sull'env
-        if (config('xra.forcessl') && (isset($_SERVER['SERVER_NAME']) && 'localhost' !== $_SERVER['SERVER_NAME']
-            && isset($_SERVER['REQUEST_SCHEME']) && 'http' === $_SERVER['REQUEST_SCHEME'])
+        if (config('xra.forcessl') && (isset($_SERVER['SERVER_NAME']) && $_SERVER['SERVER_NAME'] !== 'localhost'
+            && isset($_SERVER['REQUEST_SCHEME']) && $_SERVER['REQUEST_SCHEME'] === 'http')
         ) {
             URL::forceScheme('https');
             /*

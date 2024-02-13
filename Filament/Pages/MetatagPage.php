@@ -6,14 +6,12 @@ namespace Modules\Xot\Filament\Pages;
 
 use Filament\Actions\Action;
 use Filament\Forms\ComponentContainer;
-use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Illuminate\Support\Facades\Storage;
 use Modules\Tenant\Services\TenantService;
 use Webmozart\Assert\Assert;
 
@@ -78,15 +76,6 @@ class MetatagPage extends Page implements HasForms
             ->statePath('data');
     }
 
-    protected function getFormActions(): array
-    {
-        return [
-            Action::make('save')
-                ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label'))
-                ->submit('save'),
-        ];
-    }
-
     public function save(): void
     {
         $data = $this->form->getState();
@@ -96,5 +85,14 @@ class MetatagPage extends Page implements HasForms
             ->success()
             ->title(__('filament-panels::resources/pages/edit-record.notifications.saved.title'))
             ->send();
+    }
+
+    protected function getFormActions(): array
+    {
+        return [
+            Action::make('save')
+                ->label(__('filament-panels::resources/pages/edit-record.form.actions.save.label'))
+                ->submit('save'),
+        ];
     }
 }

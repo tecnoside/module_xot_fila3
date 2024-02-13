@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Xot\Traits;
 
 use Illuminate\Contracts\Auth\Authenticatable;
-
 use function Safe\preg_replace;
 
 // /laravel/app/Updater.php
@@ -60,7 +59,7 @@ trait MyLogTrait
                         static function ($value, $key): bool {
                             $key = preg_replace('/[\x00-\x1F\x7F-\xFF]/', '', (string) $key);
 
-                            return '*attributes' === $key;
+                            return $key === '*attributes';
                         }
                     )->values()[0];
                     $parz['data'] = json_encode($data, JSON_THROW_ON_ERROR);

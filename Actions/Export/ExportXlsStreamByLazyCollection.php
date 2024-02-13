@@ -6,11 +6,9 @@ namespace Modules\Xot\Actions\Export;
 
 use Illuminate\Support\LazyCollection;
 use Illuminate\Support\Str;
-
 use function Safe\fclose;
 use function Safe\fopen;
 use function Safe\fputcsv;
-
 use Spatie\QueueableAction\QueueableAction;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Webmozart\Assert\Assert;
@@ -31,7 +29,7 @@ class ExportXlsStreamByLazyCollection
         $head = $this->headings($data, $transKey);
 
         return response()->stream(
-            function () use ($data, $head) {
+            static function () use ($data, $head): void {
                 $file = fopen('php://output', 'w+');
                 fputcsv($file, $head);
 
@@ -52,7 +50,9 @@ class ExportXlsStreamByLazyCollection
                 fputcsv($file, $blanks);
 
                 fclose($file);
-            }, 200, $headers
+            },
+            200,
+            $headers
         );
     }
 
@@ -63,9 +63,9 @@ class ExportXlsStreamByLazyCollection
          */
         $head = $data->first();
         $headings = collect($head)->keys();
-        if (null !== $transKey) {
+        if ($transKey !== null) {
             $headings = $headings->map(
-                function (string $item) use ($transKey) {
+                static function (string $item) use ($transKey) {
                     $key = $transKey.'.fields.'.$item;
                     $trans = trans($key);
                     if ($trans !== $key) {
@@ -84,8 +84,6 @@ class ExportXlsStreamByLazyCollection
             );
         }
 
-        $headings = $headings->toArray();
-
-        return $headings;
+        return $headings->toArray();
     }
 }

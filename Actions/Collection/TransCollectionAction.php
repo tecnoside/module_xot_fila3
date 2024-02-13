@@ -21,21 +21,16 @@ class TransCollectionAction
         Collection $collection,
         ?string $transKey,
     ): Collection {
-        if (null == $transKey) {
+        if ($transKey === null) {
             return $collection;
         }
 
         $this->transKey = $transKey;
 
-        $collection = $collection->map(fn ($item): string => $this->trans($item));
-
-        return $collection;
+        return $collection->map(fn ($item): string => $this->trans($item));
     }
 
-    /**
-     * @param mixed|null $item
-     */
-    public function trans($item): string
+    public function trans(mixed $item): string
     {
         if (! is_string($item)) {
             dddx($item);

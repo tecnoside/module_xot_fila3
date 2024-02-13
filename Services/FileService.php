@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
-use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Facades\Module;
-
 use function Safe\json_decode;
 use function Safe\json_encode;
 use function Safe\realpath;
 use function Safe\scandir;
-
 use Webmozart\Assert\Assert;
 
 /**
@@ -141,7 +138,7 @@ class FileService
         }
 
         // dddx(app()->environment());// local
-        if (! File::exists($filename_to) || 'production' !== app()->environment()) {
+        if (! File::exists($filename_to) || app()->environment() !== 'production') {
             if (! File::exists(\dirname($filename_to))) {
                 File::makeDirectory(\dirname($filename_to), 0755, true, true);
             }
@@ -439,7 +436,7 @@ class FileService
         })->collapse()->first();
         */
         $ns_dir = self::getViewNameSpacePath($ns_name);
-        if (null === $ns_dir) {
+        if ($ns_dir === null) {
             return '#['.$key.']['.__LINE__.']['.__FILE__.']';
         }
 
@@ -610,11 +607,11 @@ class FileService
                     $viewNamespace = '---';
                 }
                 */
-                if ('pub_theme' === $hints) {
+                if ($hints === 'pub_theme') {
                     $tmp = str_replace(public_path(''), '', $viewNamespace);
                     $tmp = str_replace(\DIRECTORY_SEPARATOR, '/', $tmp);
                     $pos = mb_strpos($filename, '/');
-                    if (false === $pos) {
+                    if ($pos === false) {
                         throw new \Exception('not found / on filename');
                     }
 
@@ -667,7 +664,7 @@ class FileService
             return public_path(substr($path, \strlen(asset(''))));
         }
 
-        if ('/' === $path[0]) {
+        if ($path[0] === '/') {
             $path = mb_substr($path, 1);
         }
 
@@ -722,11 +719,11 @@ class FileService
         $data = [];
         foreach ($dirs as $v) {
             $name = Str::after($v, $path.\DIRECTORY_SEPARATOR);
-            $value = '' === $dir ? $name : $dir.\DIRECTORY_SEPARATOR.$name;
+            $value = $dir === '' ? $name : $dir.\DIRECTORY_SEPARATOR.$name;
             if (! \in_array($name, $except, false)) {
                 $data[] = $value;
                 $sub = self::allDirectories($v, $except, $value);
-                if ([] !== $sub) {
+                if ($sub !== []) {
                     $data = array_merge($data, $sub);
                 }
             }
@@ -777,7 +774,7 @@ class FileService
             return $value;
         }
 
-        if (null === $value) {
+        if ($value === null) {
             return $value;
         }
 
@@ -874,7 +871,7 @@ class FileService
         $from_value = self::config($from);
         $to_value = self::config($to);
 
-        if (null !== $to_value) {
+        if ($to_value !== null) {
             return;
         }
 
@@ -929,7 +926,7 @@ class FileService
 
         $comps = [];
         foreach ($files as $file) {
-            if ('php' === $file->getExtension()) {
+            if ($file->getExtension() === 'php') {
                 $tmp = (object) [];
                 $class_name = $file->getFilenameWithoutExtension();
 
@@ -942,7 +939,7 @@ class FileService
                 $relative_path = $file->getRelativePath();
                 Assert::string($relative_path = Str::replace('/', '\\', $relative_path), 'wip');
 
-                if ('' !== $relative_path) {
+                if ($relative_path !== '') {
                     $tmp->comp_name = '';
                     $piece = collect(explode('\\', $relative_path))
                         ->map(
@@ -984,7 +981,7 @@ class FileService
     {
         if ($binaryPrefix) {
             $unit = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB'];
-            if (0 === $bytes) {
+            if ($bytes === 0) {
                 return '0 '.$unit[0];
             }
 
@@ -992,7 +989,7 @@ class FileService
         }
 
         $unit = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'];
-        if (0 === $bytes) {
+        if ($bytes === 0) {
             return '0 '.$unit[0];
         }
 
@@ -1017,7 +1014,7 @@ class FileService
         // } catch (\Exception $e) {
         //    return null;
         // }
-        if (false === $reflectionClass->getFileName()) {
+        if ($reflectionClass->getFileName() === false) {
             return null;
         }
 

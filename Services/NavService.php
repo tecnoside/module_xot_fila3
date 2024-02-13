@@ -8,7 +8,6 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
-
 use function Safe\date;
 
 /**
@@ -45,7 +44,7 @@ class NavService
 
             $tmp['active'] = $year === $params['year'] ? 1 : 0;
 
-            if (null === $routename) {
+            if ($routename === null) {
                 throw new \Exception('routename is null');
             }
 
@@ -82,7 +81,7 @@ class NavService
 
         $q = 2;
         $date = Carbon::create($year, $month, 1);
-        if (false === $date) {
+        if ($date === false) {
             throw new \Exception('carbon error');
         }
 
@@ -98,7 +97,7 @@ class NavService
             }
 
             $tmp['active'] = $year === $params['year'] && $month === $params['month'] ? 1 : 0;
-            if (null === $routename) {
+            if ($routename === null) {
                 throw new \Exception('routename is null');
             }
 

@@ -10,10 +10,7 @@ namespace Modules\Xot\Filament\Actions\Header;
 use Filament\Actions\Action;
 // Header actions must be an instance of Filament\Actions\Action, or Filament\Actions\ActionGroup.
 // use Filament\Tables\Actions\Action;
-use Filament\Forms\Components\Select;
 use Filament\Resources\Pages\ListRecords;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 use Modules\Xot\Actions\Export\ExportXlsByLazyCollection;
 use Modules\Xot\Actions\Export\ExportXlsByQuery;
@@ -21,10 +18,6 @@ use Modules\Xot\Actions\Export\ExportXlsStreamByLazyCollection;
 
 class ExportXlsLazyAction extends Action
 {
-    public static function getDefaultName(): ?string
-    {
-        return 'export_xls';
-    }
 
     protected function setUp(): void
     {
@@ -39,9 +32,9 @@ class ExportXlsLazyAction extends Action
             // ->icon('fas-file-excel')
             ->icon('heroicon-o-arrow-down-tray')
             ->action(
-                function (ListRecords $livewire) {
+                static function (ListRecords $livewire) {
                     $filename = class_basename($livewire).'-'.collect($livewire->tableFilters)->flatten()->implode('-').'.xlsx';
-                    $module = Str::of(get_class($livewire))->between('Modules\\', '\Filament\\')->lower()->toString();
+                    $module = Str::of($livewire::class)->between('Modules\\', '\Filament\\')->lower()->toString();
                     $transKey = $module.'::'.Str::of(class_basename($livewire))
                         ->kebab()
                         ->replace('list-', '')
@@ -59,7 +52,7 @@ class ExportXlsLazyAction extends Action
                     }
 
                     $lazy = $livewire->getFilteredTableQuery();
-                    if (null != $fields) {
+                    if ($fields !== null) {
                         // $lazy = $lazy->select($fields);
                     }
                     if ($lazy->count() < 7) {
@@ -69,7 +62,7 @@ class ExportXlsLazyAction extends Action
                     }
 
                     $lazy = $lazy
-                    ->cursor(); // Illuminate\Support\LazyCollection
+                        ->cursor(); // Illuminate\Support\LazyCollection
 
                     if ($lazy->count() > 3000) {
                         return app(ExportXlsStreamByLazyCollection::class)->execute($lazy, $filename, $transKey, $fields);
@@ -99,5 +92,9 @@ class ExportXlsLazyAction extends Action
         })
         ->modalSubmitActionLabel(trans('camping::operation.actions.save'));
         */
+    }
+    public static function getDefaultName(): ?string
+    {
+        return 'export_xls';
     }
 }

@@ -37,7 +37,7 @@ abstract class XotBasePanelProvider extends PanelProvider
         $metatag = MetatagData::make();
 
         $main_module = Str::lower(XotData::make()->main_module);
-        $default = ($main_module == $moduleLow);
+        $default = ($main_module === $moduleLow);
 
         return $panel
             ->default($default)

@@ -77,7 +77,7 @@ class ModelService
         $data = collect($data)->filter(
             static fn ($item, $key): bool => \in_array($key, $methods, false)
         )->map(
-            function ($v, $k) use ($model, $data) {
+            static function ($v, $k) use ($model, $data) {
                 if (! \is_string($k)) {
                     dddx([$k, $v, $data]);
                 }
@@ -119,7 +119,7 @@ class ModelService
 
         $post_type = collect($models)->search($model::class);
 
-        if (false === $post_type) {
+        if ($post_type === false) {
             $post_type = Str::snake(class_basename($model));
             Relation::morphMap([$post_type => $model::class]);
         }
@@ -149,7 +149,7 @@ class ModelService
             // if (in_array(class_basename($returnType->getName()), ['HasOne', 'HasMany', 'BelongsTo', 'BelongsToMany', 'MorphToMany', 'MorphTo'])) {
             //    $relations[] = $res;
             // } elseif ($doc && false !== strpos($doc, '\\Relations\\')) {
-            if (0 !== $method->getNumberOfRequiredParameters()) {
+            if ($method->getNumberOfRequiredParameters() !== 0) {
                 continue;
             }
 
@@ -297,7 +297,7 @@ class ModelService
         $table_names = $dbSchemaManager->listTableNames();
 
         return collect($table_names)->map(
-            function ($table_name) use ($dbSchemaManager): array {
+            static function ($table_name) use ($dbSchemaManager): array {
                 $doctrineTable = $dbSchemaManager->listTableDetails($table_name);
                 $columns = $doctrineTable->getColumns();
                 $collection = collect($columns)->map(

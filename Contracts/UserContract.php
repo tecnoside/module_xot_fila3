@@ -49,56 +49,40 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
 
     /**
      * Undocumented function.
-     *
-     * @return bool
      */
-    public function update(array $attributes = [], array $options = []);
+    public function update(array $attributes = [], array $options = []): bool;
 
     /**
      * Get a relationship.
-     *
-     * @param string $key
-     *
-     * @return mixed|void
      */
-    public function getRelationValue($key);
+    public function getRelationValue(string $key): mixed;
 
     /**
      * Undocumented function.
-     *
-     * @return Model
      */
-    public function newInstance();
+    public function newInstance(): Model;
 
     /**
      * Summary of getKey.
-     *
-     * @return string|int
      */
-    public function getKey();
+    public function getKey(): string|int;
 
     /**
      * Determine if the model has (one of) the given role(s).
-     *
-     * @param string|int|array|Role|\Illuminate\Support\Collection $roles
      */
-    public function hasRole($roles, ?string $guard = null): bool;
+    public function hasRole(string|int|array|Role|\Illuminate\Support\Collection $roles, ?string $guard = null): bool;
 
     /**
      * Assign the given role to the model.
      *
-     * @param array|string|int|Role|\Illuminate\Support\Collection ...$roles
-     *
      * @return $this
      */
-    public function assignRole($roles = []);
+    public function assignRole(array|string|int|Role|\Illuminate\Support\Collection $roles = []);
 
     /**
      * Get the current access token being used by the user.
-     *
-     * @return Token|TransientToken|null
      */
-    public function token();
+    public function token(): Token|TransientToken|null;
 
     /**
      * A model may have multiple roles.

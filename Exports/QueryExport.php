@@ -27,15 +27,9 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
 
     public ?string $transKey = null;
 
-    /**
-     * @var CteBuilder|Builder
-     */
-    public $query;
+    public CteBuilder|Builder $query;
 
-    /**
-     * @param CteBuilder|Builder $query
-     */
-    public function __construct($query, ?string $transKey = null, ?array $fields = null)
+    public function __construct(CteBuilder|Builder $query, ?string $transKey = null, ?array $fields = null)
     {
         $this->query = $query;
         $this->transKey = $transKey;
@@ -68,7 +62,7 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
          * @var \Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null
          */
         $first = $this->query->first();
-        if (null == $first) {
+        if ($first === null) {
             return collect([]);
         }
 
@@ -87,10 +81,8 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
 
     /**
      * se si usa scout aggiungere |ScoutBuilder.
-     *
-     * @return Builder|EloquentBuilder|Relation
      */
-    public function query()
+    public function query(): Builder|EloquentBuilder|Relation
     {
         return $this->query->orderBy('id');
     }
@@ -103,9 +95,9 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
     /**
      * @param \Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null $item
      */
-    public function map($item): array
+    public function map(\Illuminate\Contracts\Support\Arrayable|iterable|null $item): array
     {
-        if (null == $this->fields) {
+        if ($this->fields === null) {
             return collect($item)->toArray();
         }
 

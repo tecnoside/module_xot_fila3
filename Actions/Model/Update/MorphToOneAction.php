@@ -16,10 +16,8 @@ class MorphToOneAction
 
     /**
      * Undocumented function.
-     *
-     * @return void
      */
-    public function execute(Model $model, RelationDTO $relationDTO)
+    public function execute(Model $model, RelationDTO $relationDTO): void
     {
         // dddx(['row' => $row, 'relation' => $relation]);
         if (! $relationDTO->rows instanceof MorphToOne) {

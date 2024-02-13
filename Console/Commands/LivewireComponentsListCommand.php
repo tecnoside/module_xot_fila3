@@ -11,26 +11,18 @@ declare(strict_types=1);
 namespace Modules\Xot\Console\Commands;
 
 use Illuminate\Console\Command;
-use Livewire\Livewire;
-use Livewire\LivewireManager;
-use Livewire\Mechanisms\ComponentRegistry;
-use Livewire\Mechanisms\HandleComponents\HandleComponents;
 
 class LivewireComponentsListCommand extends Command
 {
     /**
      * The name and signature of the console command.
-     *
-     * @var string
      */
-    protected $signature = 'xot:livewire-list';
+    protected string $signature = 'xot:livewire-list';
 
     /**
      * The console command description.
-     *
-     * @var string
      */
-    protected $description = ' rilevare tutti i componenti registrati di Livewire';
+    protected string $description = ' rilevare tutti i componenti registrati di Livewire';
 
     /**
      * Create a new command instance.

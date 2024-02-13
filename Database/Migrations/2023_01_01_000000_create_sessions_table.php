@@ -17,7 +17,7 @@ class CreateSessionsTable extends XotBaseMigration
     {
         // -- CREATE --
         $this->tableCreate(
-            function (Blueprint $table): void {
+            static function (Blueprint $table): void {
                 $table->string('id')->primary();
                 $table->foreignId('user_id')->nullable()->index();
                 $table->string('ip_address', 45)->nullable();

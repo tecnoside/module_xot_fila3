@@ -46,10 +46,8 @@ class TypeGuesser
 
     /**
      * Check if faker instance has a native resolver for the given property.
-     *
-     * @param string $property
      */
-    private function hasNativeResolverFor($property): bool
+    private function hasNativeResolverFor(string $property): bool
     {
         try {
             $this->faker->getFormatter($property);
@@ -84,7 +82,7 @@ class TypeGuesser
      */
     private function predictCountyType(): string
     {
-        if ('en_US' === $this->faker->locale) {
+        if ($this->faker->locale === 'en_US') {
             return "sprintf('%s County', \$faker->city)";
         }
 
@@ -109,7 +107,7 @@ class TypeGuesser
      */
     private function predictTitleType(?int $size): string
     {
-        if (null === $size || $size <= 10) {
+        if ($size === null || $size <= 10) {
             return 'title';
         }
 
@@ -118,10 +116,8 @@ class TypeGuesser
 
     /**
      * Get type guess.
-     *
-     * @param string $name
      */
-    private function guessBasedOnName($name, ?int $size = null): string
+    private function guessBasedOnName(string $name, ?int $size = null): string
     {
         return match ($name) {
             'login' => 'userName',

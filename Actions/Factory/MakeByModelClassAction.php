@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+
 /**
  * @see https://github.com/TheDoctor0/laravel-factory-generator. 24 days ago
  * @see https://github.com/mpociot/laravel-test-factory-helper  on 2 Mar 2020.
@@ -21,10 +22,8 @@ class MakeByModelClassAction
      * Undocumented function.
      *
      * @param class-string $modelClass
-     *
-     * @return void|bool
      */
-    public function execute(string $modelClass)
+    public function execute(string $modelClass): null|bool
     {
         $reflectionClass = new \ReflectionClass($modelClass);
 

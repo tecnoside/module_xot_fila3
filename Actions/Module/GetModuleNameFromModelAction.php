@@ -14,7 +14,7 @@ class GetModuleNameFromModelAction
 
     public function execute(Model $model): string
     {
-        $model_class = \get_class($model);
+        $model_class = $model::class;
         $module = Str::between($model_class, 'Modules\\', '\Models\\');
 
         return (string) $module;

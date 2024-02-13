@@ -2,12 +2,12 @@
 /**
  * @see https://dev.to/kodeas/executing-shell-commands-in-laravel-1098
  */
+
 declare(strict_types=1);
 
 namespace Modules\Xot\Actions;
 
 use function Safe\preg_match_all;
-
 use Spatie\QueueableAction\QueueableAction;
 
 class ParsePrintPageStringAction
@@ -23,7 +23,7 @@ class ParsePrintPageStringAction
         $n = count($matches[0]);
         $res = [];
         for ($i = 0; $i < $n; ++$i) {
-            if ('' == $matches[2][$i]) {
+            if ($matches[2][$i] === '') {
                 $res[] = (int) $matches[1][$i];
             } else {
                 $res = array_merge($res, self::fromTo((int) $matches[1][$i], (int) $matches[2][$i]));

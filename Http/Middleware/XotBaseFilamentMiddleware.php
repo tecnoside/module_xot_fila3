@@ -38,7 +38,7 @@ abstract class XotBaseFilamentMiddleware extends Middleware
             return;
         }
 
-        abort_if('local' !== config('app.env'), 403);
+        abort_if(config('app.env') !== 'local', 403);
     }
 
     protected function redirectTo($request): string
@@ -48,10 +48,7 @@ abstract class XotBaseFilamentMiddleware extends Middleware
         return route(sprintf('%s.auth.login', $contextName));
     }
 
-    /**
-     * @return Module|\Nwidart\Modules\Module
-     */
-    private function getModule()
+    private function getModule(): Module|\Nwidart\Modules\Module
     {
         return app('modules')->findOrFail(static::$module);
     }
@@ -62,7 +59,7 @@ abstract class XotBaseFilamentMiddleware extends Middleware
     private function getContextName(): string
     {
         $this->getModule();
-        if ('' === static::$context || '0' === static::$context) {
+        if (static::$context === '' || static::$context === '0') {
             throw new \Exception('Context has to be defined in your class');
         }
 

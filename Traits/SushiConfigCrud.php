@@ -9,7 +9,6 @@ declare(strict_types=1);
 namespace Modules\Xot\Traits;
 
 use Modules\Tenant\Services\TenantService;
-
 use function Safe\file_put_contents;
 
 trait SushiConfigCrud
@@ -25,7 +24,7 @@ trait SushiConfigCrud
          * need to have the updated_by field here as well.
          */
         static::creating(
-            function ($model): void {
+            static function ($model): void {
                 $data = [];
                 $data['id'] = $model->max('id') + 1;
                 $data = array_merge($data, $model->toArray());
@@ -43,7 +42,7 @@ trait SushiConfigCrud
                 $new = array_merge($original, [$data]);
                 $fillable = $model->getFillable();
                 $new = collect($new)->map(
-                    function (array $item) use ($fillable): array {
+                    static function (array $item) use ($fillable): array {
                         foreach ($fillable as $v) {
                             if (! isset($item[$v])) {
                                 $item[$v] = null;
@@ -54,7 +53,8 @@ trait SushiConfigCrud
                     }
                 )->all();
                 file_put_contents(
-                    $config_path, '<?php
+                    $config_path,
+                    '<?php
                     return '.var_export($new, true).';'
                 );
                 // Artisan::call('cache:clear');
@@ -64,7 +64,7 @@ trait SushiConfigCrud
                  * updating.
                  */
         static::updating(
-            function ($model): void {
+            static function ($model): void {
                 $data = $model->toArray();
                 $config_name = $model->config_name;
                 if (class_exists('\\'.TenantService::class)) {
@@ -77,11 +77,12 @@ trait SushiConfigCrud
                     $original = [];
                 }
 
-                $up = collect($original)->groupBy('id')->map(fn ($item) => $item->first())->all();
+                $up = collect($original)->groupBy('id')->map(static fn ($item) => $item->first())->all();
                 $id = $data['id'];
                 $up[$id] = $data;
                 file_put_contents(
-                    $config_path, '<?php
+                    $config_path,
+                    '<?php
                 return '.var_export($up, true).';'
                 );
             }
@@ -93,7 +94,7 @@ trait SushiConfigCrud
         */
 
         static::deleting(
-            function ($model): void {
+            static function ($model): void {
                 $data = $model->toArray();
                 $config_name = $model->config_name;
                 if (class_exists('\\'.TenantService::class)) {
@@ -106,11 +107,12 @@ trait SushiConfigCrud
                     $original = [];
                 }
 
-                $up = collect($original)->groupBy('id')->map(fn ($item) => $item->first())->all();
+                $up = collect($original)->groupBy('id')->map(static fn ($item) => $item->first())->all();
                 $id = $data['id'];
                 unset($up['id']);
                 file_put_contents(
-                    $config_path, '<?php
+                    $config_path,
+                    '<?php
              return '.var_export($up, true).';'
                 );
             }
