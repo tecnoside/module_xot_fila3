@@ -49,7 +49,7 @@ class PdfService
 
         $pdfMerger = new PDFMerger();
         $pdf_files = collect(File::files($path))->filter(
-            static fn ($file, $key): bool => $file->getExtension() === 'pdf' && ! Str::startsWith($file->getBasename(), '_')
+            static fn ($file, $key): bool => 'pdf' === $file->getExtension() && ! Str::startsWith($file->getBasename(), '_')
         );
         foreach ($this->filenames as $filename) {
             // $pdf->addPDF($filename.'.pdf');

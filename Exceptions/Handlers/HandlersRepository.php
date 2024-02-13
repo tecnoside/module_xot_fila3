@@ -11,22 +11,16 @@ class HandlersRepository
 {
     /**
      * The custom handlers reporting exceptions.
-     *
-     * @var array
      */
     protected array $reporters = [];
 
     /**
      * The custom handlers rendering exceptions.
-     *
-     * @var array
      */
     protected array $renderers = [];
 
     /**
      * The custom handlers rendering exceptions in console.
-     *
-     * @var array
      */
     protected array $consoleRenderers = [];
 

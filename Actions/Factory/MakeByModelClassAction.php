@@ -23,7 +23,7 @@ class MakeByModelClassAction
      *
      * @param class-string $modelClass
      */
-    public function execute(string $modelClass): null|bool
+    public function execute(string $modelClass): bool|null
     {
         $reflectionClass = new \ReflectionClass($modelClass);
 

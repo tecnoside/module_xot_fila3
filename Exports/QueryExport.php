@@ -62,7 +62,7 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
          * @var \Illuminate\Contracts\Support\Arrayable<(int|string), mixed>|iterable<(int|string), mixed>|null
          */
         $first = $this->query->first();
-        if ($first === null) {
+        if (null === $first) {
             return collect([]);
         }
 
@@ -97,7 +97,7 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
      */
     public function map(\Illuminate\Contracts\Support\Arrayable|iterable|null $item): array
     {
-        if ($this->fields === null) {
+        if (null === $this->fields) {
             return collect($item)->toArray();
         }
 

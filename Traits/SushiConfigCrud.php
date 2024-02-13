@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace Modules\Xot\Traits;
 
 use Modules\Tenant\Services\TenantService;
+
 use function Safe\file_put_contents;
 
 trait SushiConfigCrud

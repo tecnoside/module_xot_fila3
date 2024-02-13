@@ -35,6 +35,7 @@ abstract class XotBaseResource extends Resource
         $modelClass = static::getModel();
         Assert::notNull($modelClass);
         $modelNameSlug = Str::kebab(class_basename($modelClass));
+
         return $moduleNameLow.'::'.$modelNameSlug.'.'.$key;
     }
 

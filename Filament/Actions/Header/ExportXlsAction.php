@@ -16,7 +16,6 @@ use Modules\Xot\Actions\Export\ExportXlsByCollection;
 
 class ExportXlsAction extends Action
 {
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -74,6 +73,7 @@ class ExportXlsAction extends Action
         ->modalSubmitActionLabel(trans('camping::operation.actions.save'));
         */
     }
+
     public static function getDefaultName(): ?string
     {
         return 'export_xls';

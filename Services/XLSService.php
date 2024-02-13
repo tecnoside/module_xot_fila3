@@ -90,7 +90,7 @@ class XLSService
     public function fromInputFileName(string $name): self
     {
         $file = request()->file('file');
-        if ($file === null) {
+        if (null === $file) {
             throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
 
@@ -116,7 +116,7 @@ class XLSService
         }
 
         $realPath = $file->getRealPath();
-        if ($realPath === false) {
+        if (false === $realPath) {
             throw new \Exception('[.__LINE__.]['.class_basename(self::class).']');
         }
 

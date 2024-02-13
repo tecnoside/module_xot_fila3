@@ -32,8 +32,6 @@ class HandlerDecorator implements ExceptionHandler
 
     /**
      * Proxy other calls to default Laravel exception handler.
-     *
-     * @param array  $parameters
      */
     public function __call(string $name, array $parameters): mixed
     {

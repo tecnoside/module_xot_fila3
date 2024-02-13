@@ -82,7 +82,7 @@ class TypeGuesser
      */
     private function predictCountyType(): string
     {
-        if ($this->faker->locale === 'en_US') {
+        if ('en_US' === $this->faker->locale) {
             return "sprintf('%s County', \$faker->city)";
         }
 
@@ -107,7 +107,7 @@ class TypeGuesser
      */
     private function predictTitleType(?int $size): string
     {
-        if ($size === null || $size <= 10) {
+        if (null === $size || $size <= 10) {
             return 'title';
         }
 

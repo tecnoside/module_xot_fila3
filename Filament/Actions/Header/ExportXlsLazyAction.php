@@ -18,7 +18,6 @@ use Modules\Xot\Actions\Export\ExportXlsStreamByLazyCollection;
 
 class ExportXlsLazyAction extends Action
 {
-
     protected function setUp(): void
     {
         parent::setUp();
@@ -52,7 +51,7 @@ class ExportXlsLazyAction extends Action
                     }
 
                     $lazy = $livewire->getFilteredTableQuery();
-                    if ($fields !== null) {
+                    if (null !== $fields) {
                         // $lazy = $lazy->select($fields);
                     }
                     if ($lazy->count() < 7) {
@@ -93,6 +92,7 @@ class ExportXlsLazyAction extends Action
         ->modalSubmitActionLabel(trans('camping::operation.actions.save'));
         */
     }
+
     public static function getDefaultName(): ?string
     {
         return 'export_xls';

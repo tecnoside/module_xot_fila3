@@ -17,7 +17,6 @@ use Webmozart\Assert\Assert;
  */
 class XotComposer
 {
-
     /**
      * Undocumented function.
      *
@@ -48,6 +47,7 @@ class XotComposer
 
         return \call_user_func_array($callback, $arguments);
     }
+
     /**
      * Bind data to the view..
      */

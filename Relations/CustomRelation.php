@@ -71,8 +71,6 @@ class CustomRelation extends Relation
 
     /**
      * Initialize the relation on a set of models.
-     *
-     * @return array
      */
     public function initRelation(array $models, string $relation): array
     {
@@ -85,8 +83,6 @@ class CustomRelation extends Relation
 
     /**
      * Match the eagerly loaded results to their parents.
-     *
-     * @return array
      */
     public function match(array $models, Collection $collection, string $relation): array
     {
@@ -108,8 +104,6 @@ class CustomRelation extends Relation
 
     /**
      * Execute the query as a "select" statement.
-     *
-     * @param array $columns
      */
     public function get(array $columns = ['*']): Collection
     {
