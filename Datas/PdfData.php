@@ -1,4 +1,8 @@
 <?php
+/**
+ * @see https://github.com/masterix21/laravel-html2pdf/blob/master/src/config/html2pdf.php
+ * @see https://github.com/masterix21/laravel-html2pdf/blob/master/src/PDF.php
+ */
 
 declare(strict_types=1);
 
@@ -76,7 +80,6 @@ class PdfData extends Data
 
     public function fromHtml(string $html): self
     {
-        include_once realpath(__DIR__.'/../Services/vendor/autoload.php');
         $html2pdf = new Html2Pdf($this->orientation, $this->format, $this->lang);
         $html2pdf->writeHTML($html);
         $html2pdf->output($this->getPath(), $this->dest);
