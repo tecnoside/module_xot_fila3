@@ -60,10 +60,14 @@ interface ModelContract
      */
     public function forceFill(array $attributes);
 
-    /**
+     /**
      * Save the model to the database.
+     *
+     * @param  array  $options
+     * @return bool
      */
-    public function save(array $options = []): bool;
+
+    public function save(array $options = []);
 
     /*
      * Save a new model and return the instance. Allow mass-assignment.
@@ -72,15 +76,20 @@ interface ModelContract
 
     public function forceCreate(array $attributes);
     */
+
     /**
      * Convert the model instance to an array.
+     *
+     * @return array
      */
-    public function toArray(): array;
+    public function toArray();
 
     /**
      * Get the value of the model's primary key.
+     *
+     * @return mixed|int|string
      */
-    public function getKey(): string|int;
+    public function getKey();
 
     /*
      * Add a basic where clause to the query.

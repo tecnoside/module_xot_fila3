@@ -38,7 +38,7 @@ class CacheLock extends BaseModel
     /**
      * @var array<int, string>
      */
-    protected array $fillable = [
+    protected $fillable = [
         'key',
         'owner',
         'expiration',

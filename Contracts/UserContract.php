@@ -48,24 +48,38 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
     public function profile(): HasOne;
 
     /**
-     * Undocumented function.
+     * Update the model in the database.
+     *
+     * @param  array  $attributes
+     * @param  array  $options
+     * @return bool
      */
-    public function update(array $attributes = [], array $options = []): bool;
 
-    /**
+    public function update(array $attributes = [], array $options = []);
+
+     /**
      * Get a relationship.
+     *
+     * @param  string  $key
+     * @return mixed
      */
-    public function getRelationValue(string $key): mixed;
+    public function getRelationValue($key);
 
     /**
-     * Undocumented function.
+     * Create a new instance of the given model.
+     *
+     * @param  array  $attributes
+     * @param  bool  $exists
+     * @return static
      */
-    public function newInstance(): Model;
+    public function newInstance($attributes = [], $exists = false);
 
     /**
-     * Summary of getKey.
+     * Get the value of the model's primary key.
+     *
+     * @return mixed|int|string
      */
-    public function getKey(): string|int;
+    public function getKey();
 
     /**
      * Determine if the model has (one of) the given role(s).
@@ -79,10 +93,12 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
      */
     public function assignRole(array|string|int|Role|\Illuminate\Support\Collection $roles = []);
 
-    /**
+    /*
      * Get the current access token being used by the user.
+     *
+     * @return \Laravel\Passport\Token|\Laravel\Passport\TransientToken|null
      */
-    public function token(): Token|TransientToken|null;
+    //public function token();
 
     /**
      * A model may have multiple roles.
