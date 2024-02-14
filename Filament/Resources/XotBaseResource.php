@@ -35,9 +35,8 @@ abstract class XotBaseResource extends Resource
         $modelClass = static::getModel();
         Assert::notNull($modelClass);
         $modelNameSlug = Str::kebab(class_basename($modelClass));
-        $res = $moduleNameLow.'::'.$modelNameSlug.'.'.$key;
 
-        return $res;
+        return $moduleNameLow.'::'.$modelNameSlug.'.'.$key;
     }
 
     public static function trans(string $key): string
@@ -95,11 +94,6 @@ abstract class XotBaseResource extends Resource
         return static::trans('navigation.name');
     }
 
-    protected function getTitle(): string
-    {
-        return static::trans('navigation.name');
-    }
-
     // public static function getNavigationIcon(): ?string
     // {
     //    return 'heroicon-o-user-group';
@@ -120,5 +114,10 @@ abstract class XotBaseResource extends Resource
     {
         return [
         ];
+    }
+
+    protected function getTitle(): string
+    {
+        return static::trans('navigation.name');
     }
 }

@@ -15,7 +15,7 @@ return [
 
     'collections' => [
         'posts' => [
-            'path' => function ($page) {
+            'path' => static function ($page) {
                 // return $page->lang.'/posts/'.Str::slug($page->getFilename());
                 // return 'posts/' . ($page->featured ? 'featured/' : '') . Str::slug($page->getFilename());
 
@@ -23,7 +23,7 @@ return [
             },
         ],
         'docs' => [
-            'path' => function ($page) {
+            'path' => static function ($page) {
                 // return $page->lang.'/docs/'.Str::slug($page->getFilename());
                 return 'docs/'.Str::slug($page->getFilename());
             },
@@ -38,17 +38,17 @@ return [
     'navigation' => include_once 'navigation.php',
 
     // helpers
-    'isActive' => function ($page, $path) {
+    'isActive' => static function ($page, $path) {
         return Str::endsWith(trimPath($page->getPath()), trimPath($path));
     },
-    'isItemActive' => function ($page, $item) {
+    'isItemActive' => static function ($page, $item) {
         return Str::endsWith(trimPath($page->getPath()), trimPath($item->getPath()));
     },
-    'isActiveParent' => function ($page, $menuItem) {
+    'isActiveParent' => static function ($page, $menuItem) {
         if (is_object($menuItem) && $menuItem->children) {
             return $menuItem->children->contains(
-                function ($child) use ($page) {
-                    return trimPath($page->getPath()) == trimPath($child);
+                static function ($child) use ($page) {
+                    return trimPath($page->getPath()) === trimPath($child);
                 }
             );
         }
@@ -57,7 +57,7 @@ return [
         return Str::startsWith($path, 'http') ? $path : '/' . trimPath($path);
     },
     */
-    'url' => function ($page, $path) {
+    'url' => static function ($page, $path) {
         if (Str::startsWith($path, 'http')) {
             return $path;
         }
@@ -66,7 +66,7 @@ return [
         return url('/'.trimPath($path));
     },
 
-    'children' => function ($page, $docs) {
+    'children' => static function ($page, $docs) {
         return $docs->where('parent_id', $page->id);
     },
 ];

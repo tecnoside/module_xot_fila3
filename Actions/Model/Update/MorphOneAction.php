@@ -16,10 +16,8 @@ class MorphOneAction
 
     /**
      * Undocumented function.
-     *
-     * @return void
      */
-    public function execute(Model $model, RelationDTO $relationDTO)
+    public function execute(Model $model, RelationDTO $relationDTO): void
     {
         /* con update or create crea sempre uno nuovo, con update e basta se non esiste non va a crearlo */
         // $rows = $model->$name();

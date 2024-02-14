@@ -31,7 +31,7 @@ class ExportXlsStreamByLazyCollection
         $head = $this->headings($data, $transKey);
 
         return response()->stream(
-            function () use ($data, $head) {
+            static function () use ($data, $head): void {
                 $file = fopen('php://output', 'w+');
                 fputcsv($file, $head);
 
@@ -52,7 +52,9 @@ class ExportXlsStreamByLazyCollection
                 fputcsv($file, $blanks);
 
                 fclose($file);
-            }, 200, $headers
+            },
+            200,
+            $headers
         );
     }
 
@@ -65,7 +67,7 @@ class ExportXlsStreamByLazyCollection
         $headings = collect($head)->keys();
         if (null !== $transKey) {
             $headings = $headings->map(
-                function (string $item) use ($transKey) {
+                static function (string $item) use ($transKey) {
                     $key = $transKey.'.fields.'.$item;
                     $trans = trans($key);
                     if ($trans !== $key) {
@@ -84,8 +86,6 @@ class ExportXlsStreamByLazyCollection
             );
         }
 
-        $headings = $headings->toArray();
-
-        return $headings;
+        return $headings->toArray();
     }
 }

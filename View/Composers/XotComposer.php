@@ -18,35 +18,6 @@ use Webmozart\Assert\Assert;
 class XotComposer
 {
     /**
-     * Bind data to the view..
-     */
-    public function compose(View $view): void
-    {
-        $lang = app()->getLocale();
-        $view->with('lang', $lang);
-        $view->with('_theme', $this);
-    }
-
-    public function asset(string $str): string
-    {
-        return asset(FileService::asset($str));
-    }
-
-    public function metatag(string $str): string|bool
-    {
-        $metatag = MetatagData::make();
-        $fun = 'get'.Str::studly($str);
-        if (method_exists($metatag, $fun)) {
-            return $metatag->{$fun}();
-            // $callback = [$metatag,$fun];
-            // Assert::isCallable($callback);
-            // return call_user_func_array($callback, []);
-        }
-
-        return $metatag->{$str};
-    }
-
-    /**
      * Undocumented function.
      *
      * @param array<mixed|void> $arguments
@@ -75,5 +46,34 @@ class XotComposer
         Assert::isCallable($callback);
 
         return \call_user_func_array($callback, $arguments);
+    }
+
+    /**
+     * Bind data to the view..
+     */
+    public function compose(View $view): void
+    {
+        $lang = app()->getLocale();
+        $view->with('lang', $lang);
+        $view->with('_theme', $this);
+    }
+
+    public function asset(string $str): string
+    {
+        return asset(FileService::asset($str));
+    }
+
+    public function metatag(string $str): string|bool
+    {
+        $metatag = MetatagData::make();
+        $fun = 'get'.Str::studly($str);
+        if (method_exists($metatag, $fun)) {
+            return $metatag->{$fun}();
+            // $callback = [$metatag,$fun];
+            // Assert::isCallable($callback);
+            // return call_user_func_array($callback, []);
+        }
+
+        return $metatag->{$str};
     }
 }

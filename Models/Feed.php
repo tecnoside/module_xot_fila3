@@ -26,5 +26,5 @@ class Feed extends BaseModel
     /**
      * @var array<int, string>
      */
-    protected $fillable = ['id', 'created_at', 'updated_at'];
+    protected array $fillable = ['id', 'created_at', 'updated_at'];
 }

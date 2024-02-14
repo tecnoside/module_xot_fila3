@@ -955,10 +955,8 @@ if (! function_exists('secondsToHms')) {
 if (! function_exists('rowsToSql')) {
     /**
      * Undocumented function.
-     *
-     * @param HasOne|Builder|Illuminate\Database\Eloquent\Builder $rows
      */
-    function rowsToSql($rows): string
+    function rowsToSql(HasOne|Builder|Illuminate\Database\Eloquent\Builder $rows): string
     {
         // $sql = str_replace('?', $rows->getBindings(), $rows->toSql());
         /**

@@ -9,7 +9,6 @@ namespace Modules\Xot\Services;
 // use PhpOffice\PhpSpreadsheet\Spreadsheet;
 // use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 // use Mpdf\Mpdf;
-use Exception;
 use Illuminate\Support\Facades\Storage;
 use Spipu\Html2Pdf\Exception\ExceptionFormatter;
 use Spipu\Html2Pdf\Exception\Html2PdfException;
@@ -36,7 +35,7 @@ class HtmlService
         include_once __DIR__.'/vendor/autoload.php';
         // $pdforientation = 'L'; // default;
         // $out = 'show';
-        if ('' == $filename) {
+        if ('' === $filename) {
             $filename = Storage::disk('local')->path('test.pdf');
         }
         /*

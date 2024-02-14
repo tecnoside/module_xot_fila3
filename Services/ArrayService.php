@@ -79,11 +79,8 @@ class ArrayService
 
     /**
      * Undocumented function.
-     *
-     * @param array|object $arrObjData
-     * @param array        $arrSkipIndices
      */
-    public static function fromObjects($arrObjData, $arrSkipIndices = []): array
+    public static function fromObjects(array|object $arrObjData, array $arrSkipIndices = []): array
     {
         $arrData = [];
 
@@ -111,13 +108,8 @@ class ArrayService
 
     /**
      * Undocumented function.
-     *
-     * @param int $a0
-     * @param int $b0
-     * @param int $a1
-     * @param int $b1
      */
-    public static function rangeIntersect($a0, $b0, $a1, $b1): array|bool
+    public static function rangeIntersect(int $a0, int $b0, int $a1, int $b1): array|bool
     {
         if ($a1 >= $a0 && $a1 <= $b0 && $b0 <= $b1) {
             return [$a1, $b0];
@@ -183,7 +175,7 @@ class ArrayService
         $arr_2 = self::fixType($arr_2);
 
         $ris = $coll_1->filter(
-            function ($value, $key) use ($arr_2) {
+            static function ($value, $key) use ($arr_2) {
                 try {
                     return ! \in_array($value, $arr_2, false);
                 } catch (\Exception $exception) {

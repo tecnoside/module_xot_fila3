@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Modules\Xot\Datas;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Livewire\Wireable;
 use Modules\Tenant\Services\TenantService;
@@ -125,12 +124,10 @@ class XotData extends Data implements Wireable
     {
         // dddx($this->tenant_class); //Modules\Bimaticard\Models\Shop
         // desiderata  Modules\Bimaticard\Filament\Resources\ShopResource
-        $class = Str::of($this->tenant_class)
+        return Str::of($this->tenant_class)
             ->replace('\Models\\', '\Filament\Resources\\')
             ->append('Resource')
             ->toString();
-
-        return $class;
     }
 
     public function getTenantPivotClass(): string

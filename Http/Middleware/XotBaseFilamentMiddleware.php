@@ -48,10 +48,7 @@ abstract class XotBaseFilamentMiddleware extends Middleware
         return route(sprintf('%s.auth.login', $contextName));
     }
 
-    /**
-     * @return Module|\Nwidart\Modules\Module
-     */
-    private function getModule()
+    private function getModule(): Module|\Nwidart\Modules\Module
     {
         return app('modules')->findOrFail(static::$module);
     }

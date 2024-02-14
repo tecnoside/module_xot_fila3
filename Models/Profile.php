@@ -92,7 +92,7 @@ class Profile extends BaseModel implements ModelProfileContract, ModelWithUserCo
     /**
      * @var array<int, string>
      */
-    protected $fillable = ['id', 'user_id'];
+    protected array $fillable = ['id', 'user_id'];
 
     /*
      * Undocumented function.

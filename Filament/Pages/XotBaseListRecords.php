@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Modules\Xot\Filament\Pages;
 
 use Filament\Resources\Pages\ListRecords;
-use Modules\Xot\Actions\Filament\Actions\ExportButton;
-use Modules\Xot\Actions\Filament\Actions\ImportButton;
 use Modules\Xot\Filament\Actions\Header\ExportXlsAction;
 
 /**

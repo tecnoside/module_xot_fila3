@@ -57,7 +57,7 @@ class TranslatorService extends BaseTranslator
     public static function store(array $data): void
     {
         $data = collect($data)->map(
-            function ($v, $k) {
+            static function ($v, $k) {
                 $item = self::parse(['key' => $k]);
                 $item['value'] = $v;
 
@@ -212,7 +212,7 @@ class TranslatorService extends BaseTranslator
         self::addMissing($key, $data);
 
         return collect($data)->map(
-            function (string $item) use ($key) {
+            static function (string $item) use ($key) {
                 $k = $key.'.'.$item;
 
                 return trans($k);
@@ -222,14 +222,8 @@ class TranslatorService extends BaseTranslator
 
     /**
      * get.
-     *
-     * @param string      $key
-     * @param string|null $locale
-     * @param bool        $fallback
-     *
-     * @return array|string
      */
-    public function get($key, array $replace = [], $locale = null, $fallback = true)
+    public function get(string $key, array $replace = [], ?string $locale = null, bool $fallback = true): array|string
     {
         // backtrace(true);
         // trans parte da xotbasepanel riga 1109 (per ora)
@@ -246,13 +240,8 @@ class TranslatorService extends BaseTranslator
 
     /**
      * getFromJson.
-     *
-     * @param string      $key
-     * @param string|null $locale
-     *
-     * @return array|string
      */
-    public function getFromJson($key, array $replace = [], $locale = null)
+    public function getFromJson(string $key, array $replace = [], ?string $locale = null): array|string
     {
         return $this->get($key, $replace, $locale);
     }

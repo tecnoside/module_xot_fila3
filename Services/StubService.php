@@ -292,7 +292,7 @@ class StubService
         $platform->registerDoctrineTypeMapping('enum', 'string');
 
         return $this->getFillable()->map(
-            function ($input_name) use ($connection, $model) {
+            static function ($input_name) use ($connection, $model) {
                 try {
                     $table_name = $connection->getTablePrefix().$model->getTable();
                     if (! \is_string($input_name)) {
@@ -709,11 +709,8 @@ class StubService
 
     /**
      * Undocumented function.
-     *
-     * @param string $key
-     * @param string $value
      */
-    private function mapToFactory($key, $value = null): array
+    private function mapToFactory(string $key, ?string $value = null): array
     {
         return [
             $key => null === $value ? $value : sprintf("'%s' => %s", $key, $value),
@@ -722,10 +719,8 @@ class StubService
 
     /**
      * Map name to faker method.
-     *
-     * @return string
      */
-    private function mapToFaker(Column $column)
+    private function mapToFaker(Column $column): string
     {
         return app(TypeGuesser::class)->guess(
             $column->getName(),

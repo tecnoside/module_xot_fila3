@@ -24,7 +24,7 @@ class MainDashboard extends Page
     {
         Assert::notNull($user = auth()->user());
         $modules = $user->roles->filter(
-            function ($item) {
+            static function ($item) {
                 return Str::endsWith($item->name, '::admin');
             }
         );

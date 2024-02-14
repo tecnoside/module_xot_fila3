@@ -128,6 +128,6 @@ trait Cacheable
                 : $this->cacheMinutes;
         }
 
-        return $time ?: $this->cacheMinutes;
+        return $time ? $time : $this->cacheMinutes;
     }
 }

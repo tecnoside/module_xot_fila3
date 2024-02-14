@@ -38,7 +38,8 @@ class ModelDeletionException extends ApplicationException
     public function error(): string
     {
         $res = trans(
-            'exception.model_not_deleted.error', [
+            'exception.model_not_deleted.error',
+            [
                 'id' => $this->id,
                 'model' => $this->model,
             ]
