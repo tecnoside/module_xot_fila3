@@ -32,6 +32,9 @@ into the vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php fil
 https://laravel-news.com/6-eloquent-secrets
 
 directly on the model.
+/**
+* @var int
+*/
 protected $perPage = 30;
 
 function getFullNameAttribute() {
