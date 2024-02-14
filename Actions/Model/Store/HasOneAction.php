@@ -7,7 +7,7 @@ namespace Modules\Xot\Actions\Model\Store;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Arr;
-use Modules\Xot\DTOs\RelationDTO;
+use Modules\Xot\Datas\RelationData as RelationDTO;
 use Spatie\QueueableAction\QueueableAction;
 
 class HasOneAction
@@ -23,7 +23,7 @@ class HasOneAction
 
         $rows = $relationDTO->rows;
 
-        if (! Arr::isAssoc($relationDTO->data) && 1 === count($relationDTO->data)) {
+        if (! Arr::isAssoc($relationDTO->data) && 1 === \count($relationDTO->data)) {
             $related_id = $relationDTO->data[0];
             $related = $relationDTO->related->find($related_id);
             if (! $related instanceof Model) {

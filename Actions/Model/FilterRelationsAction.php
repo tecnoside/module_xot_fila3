@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Modules\Xot\DTOs\RelationDTO;
+use Modules\Xot\Datas\RelationData;
 use Spatie\LaravelData\DataCollection;
 use Spatie\QueueableAction\QueueableAction;
 
@@ -17,7 +17,7 @@ class FilterRelationsAction
     use QueueableAction;
 
     /**
-     * @return DataCollection<(int|string), RelationDTO>
+     * @return DataCollection<(int|string), RelationData>
      */
     public function execute(Model $model, array $data): DataCollection
     {
@@ -60,6 +60,11 @@ class FilterRelationsAction
                 }
             )->all();
 
-        return RelationDTO::collection($res);
+        /**
+         * @var DataCollection<int|string, RelationData>
+         */
+        $res = RelationData::collect($res);
+
+        return $res;
     }
 }
