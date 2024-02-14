@@ -40,7 +40,7 @@ class Cache extends BaseModel
     /**
      * @var array<int, string>
      */
-    protected array $fillable = [
+    protected $fillable = [
         'key',
         'value',
         'expiration',
