@@ -6,7 +6,7 @@ namespace Modules\Xot\Actions\Model\Update;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Modules\Xot\DTOs\RelationDTO;
+use Modules\Xot\Datas\RelationData as RelationDTO;
 use Spatie\QueueableAction\QueueableAction;
 
 class HasOneAction

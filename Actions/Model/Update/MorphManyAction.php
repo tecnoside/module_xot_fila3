@@ -6,7 +6,7 @@ namespace Modules\Xot\Actions\Model\Update;
 
 use Illuminate\Database\Eloquent\Model;
 use Modules\Xot\Actions\Model\UpdateAction;
-use Modules\Xot\DTOs\RelationDTO;
+use Modules\Xot\Datas\RelationData as RelationDTO;
 use Spatie\QueueableAction\QueueableAction;
 
 class MorphManyAction

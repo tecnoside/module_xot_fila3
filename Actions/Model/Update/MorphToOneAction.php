@@ -7,7 +7,7 @@ namespace Modules\Xot\Actions\Model\Update;
 use Fidum\EloquentMorphToOne\MorphToOne;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
-use Modules\Xot\DTOs\RelationDTO;
+use Modules\Xot\Datas\RelationData as RelationDTO;
 use Spatie\QueueableAction\QueueableAction;
 
 class MorphToOneAction

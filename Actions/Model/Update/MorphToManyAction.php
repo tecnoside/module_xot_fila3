@@ -7,7 +7,7 @@ namespace Modules\Xot\Actions\Model\Update;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Modules\Xot\DTOs\RelationDTO;
+use Modules\Xot\Datas\RelationData as RelationDTO;
 use Spatie\QueueableAction\QueueableAction;
 
 class MorphToManyAction
@@ -24,7 +24,7 @@ class MorphToManyAction
         $data = $relationDTO->data;
         $name = $relationDTO->name;
         $model = $row;
-        if (! is_array($data)) {
+        if (! \is_array($data)) {
             throw new \Exception('['.__LINE__.']['.__FILE__.']');
         }
 
