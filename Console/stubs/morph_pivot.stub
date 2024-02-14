@@ -17,6 +17,9 @@ class DummyClass extends MorphPivot{
  */
  public static $snakeAttributes = true;
 
+/**
+* @var int
+*/
 protected $perPage = 30;
 
     protected $fillable = [
