@@ -12,8 +12,10 @@ namespace Modules\Xot\Filament\Actions\Table;
 use Filament\Tables\Actions\Action;
 use Modules\Xot\Actions\Export\PdfByModelAction;
 
-class PdfAction extends Action {
-    protected function setUp(): void {
+class PdfAction extends Action
+{
+    protected function setUp(): void
+    {
         parent::setUp();
 
         $this->translateLabel()
