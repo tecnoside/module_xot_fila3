@@ -46,7 +46,7 @@ class HandlerDecorator implements ExceptionHandler
      *
      * @throws \Throwable
      *
-     * @return void
+     * @return void|mixed
      */
     public function report(\Throwable $e)
     {
@@ -102,7 +102,7 @@ class HandlerDecorator implements ExceptionHandler
      *
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
-     * @return void
+     * @return void|mixed
      *
      * @internal this method is not meant to be used or overwritten outside the framework
      */

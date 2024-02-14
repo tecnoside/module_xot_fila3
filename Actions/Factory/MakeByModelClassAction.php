@@ -43,5 +43,7 @@ class MakeByModelClassAction
             'dataFromTable' => $dataFromTable,
             'dataFromMethods' => $dataFromMethods,
         ]);
+
+        return null;
     }
 }

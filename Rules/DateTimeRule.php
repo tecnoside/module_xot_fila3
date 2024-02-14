@@ -12,7 +12,15 @@ use Illuminate\Contracts\Validation\Rule;
  */
 class DateTimeRule implements Rule
 {
-    public function passes(string $attribute, string $value): bool
+
+    /**
+     * Undocumented function
+     *
+     * @param string $attribute
+     * @param string $value
+     * @return boolean
+     */
+    public function passes($attribute,$value): bool
     {
         // dddx($attribute); //published_at
         // dddx($value);//10/10/2019 13:43
