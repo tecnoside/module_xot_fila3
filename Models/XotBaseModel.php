@@ -21,8 +21,9 @@ abstract class XotBaseModel extends Model
      * Indicates whether attributes are snake cased on arrays.
      *
      * @see https://laravel-news.com/6-eloquent-secrets
-     */
-    public static bool $snakeAttributes = true;
+     * @var bool
+*/
+    public static $snakeAttributes = true;
 
     protected $perPage = 30;
 }
