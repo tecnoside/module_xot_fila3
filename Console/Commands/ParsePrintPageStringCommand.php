@@ -22,8 +22,9 @@ class ParsePrintPageStringCommand extends Command
 
     /**
      * The console command description.
-     */
-    protected string $description = ' esplode';
+     * @var string
+*/
+    protected $description = ' esplode';
 
     /**
      * Create a new command instance.
