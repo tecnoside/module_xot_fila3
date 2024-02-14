@@ -40,7 +40,7 @@ class HandlerDecorator implements ExceptionHandler
          */
         $callable = [$this->defaultHandler, $name];
 
-        return call_user_func_array($callable, $parameters);
+        return \call_user_func_array($callable, $parameters);
     }
 
     /**
@@ -68,9 +68,13 @@ class HandlerDecorator implements ExceptionHandler
     }
 
     /**
-     * Render an exception into a response.
+     * Render an exception into an HTTP response.
+     *
+     * @throws \Throwable
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function render(Request $request, \Throwable $e): Response|\Symfony\Component\HttpFoundation\Response
+    public function render(Request $request, \Throwable $e)
     {
         foreach ($this->repository->getRenderersByException($e) as $renderer) {
             if ($render = $renderer($e, $request)) {
