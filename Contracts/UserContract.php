@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Laravel\Passport\Token;
-use Laravel\Passport\TransientToken;
 use Modules\User\Contracts\HasTeamsContract;
 use Spatie\Permission\Contracts\Role;
 
@@ -50,26 +49,23 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
     /**
      * Update the model in the database.
      *
-     * @param  array  $attributes
-     * @param  array  $options
      * @return bool
      */
-
     public function update(array $attributes = [], array $options = []);
 
-     /**
+    /**
      * Get a relationship.
      *
-     * @param  string  $key
-     * @return mixed
+     * @param string $key
      */
     public function getRelationValue($key);
 
     /**
      * Create a new instance of the given model.
      *
-     * @param  array  $attributes
-     * @param  bool  $exists
+     * @param array $attributes
+     * @param bool  $exists
+     *
      * @return static
      */
     public function newInstance($attributes = [], $exists = false);
@@ -98,7 +94,7 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
      *
      * @return \Laravel\Passport\Token|\Laravel\Passport\TransientToken|null
      */
-    //public function token();
+    // public function token();
 
     /**
      * A model may have multiple roles.
