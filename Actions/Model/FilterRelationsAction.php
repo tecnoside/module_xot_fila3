@@ -63,7 +63,7 @@ class FilterRelationsAction
         /**
          * @var DataCollection<int|string, RelationData>
          */
-        $res = RelationData::collect($res,DataCollection::class);
+        $res = RelationData::collect($res, DataCollection::class);
 
         return $res;
     }
