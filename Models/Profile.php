@@ -23,14 +23,12 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Collection<int, Role>       $roles
  * @property int|null                    $roles_count
  * @property User|null                   $user
- *
  * @method static \Modules\Xot\Database\Factories\ProfileFactory factory($count = null, $state = [])
  * @method static Builder|Profile                                newModelQuery()
  * @method static Builder|Profile                                newQuery()
  * @method static Builder|Profile                                permission($permissions)
  * @method static Builder|Profile                                query()
  * @method static Builder|Profile                                role($roles, $guard = null)
- *
  * @property int                         $id
  * @property string|null                 $type
  * @property string|null                 $first_name
@@ -50,7 +48,6 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Collection<int, Role>       $roles
  * @property int|null                    $roles_count
  * @property User|null                   $user
- *
  * @method static \Modules\Xot\Database\Factories\ProfileFactory factory($count = null, $state = [])
  * @method static Builder|Profile                                newModelQuery()
  * @method static Builder|Profile                                newQuery()
@@ -73,7 +70,6 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static Builder|Profile                                whereUserId($value)
  * @method static Builder|Profile                                withoutPermission($permissions)
  * @method static Builder|Profile                                withoutRole($roles, $guard = null)
- *
  * @mixin \Eloquent
  */
 class Profile extends BaseModel implements ModelProfileContract, ModelWithUserContract
