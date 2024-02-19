@@ -7,6 +7,7 @@ namespace Modules\Xot\Actions;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Spatie\QueueableAction\QueueableAction;
+use Webmozart\Assert\Assert;
 
 class GetTransKeyAction
 {
@@ -19,20 +20,22 @@ class GetTransKeyAction
     {
         if ('' === $class) {
             $backtrace = debug_backtrace();
-            $class = Arr::get($backtrace, '1.class');
+            Assert::string($class = Arr::get($backtrace, '1.class'));
         }
 
-        $class = str_replace('\Filament\Resources\\', '\\', $class);
+        $class = Str::of($class)
+            ->replace('\Filament\Resources\\', '\\')
+            ->toString();
 
         $arr = explode('\\', $class);
         if ('Modules' !== $arr[0]) {
             throw new \Exception('Invalid class name['.__LINE__.']['.__FILE__.']');
         }
 
-        $module = Arr::get($arr, '1');
+        Assert::string($module = Arr::get($arr, '1'));
         $module_low = strtolower($module);
 
-        $model = Arr::get($arr, '2');
+        Assert::string($model = Arr::get($arr, '2'));
         $model = Str::before($model, 'Resource');
         $model_low = strtolower($model);
 
