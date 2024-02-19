@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Database\Events\MigrationsEnded;
 use Illuminate\Support\Facades\Event;
@@ -95,21 +96,15 @@ class XotServiceProvider extends XotBaseServiceProvider
         $exceptionHandler = $this->app->make(ExceptionHandler::class);
         $exceptionHandler->reporter(
             static function (\Throwable $e): void {
-                // Log::critical(Request::url());
                 $data = (new WebhookErrorFormatter($e))->format();
-
+                if ($e instanceof AuthenticationException) {
+                    return;
+                }
                 Log::channel('slack_errors')
                     ->error(
                         $e->getMessage(),
                         $data
                     );
-                /*
-                Log::channel('daily')
-                    ->error(
-                        $e->getMessage(),
-                        (new WebhookErrorFormatter($e))->format()
-                    );
-                */
             }
         );
 
