@@ -168,7 +168,7 @@ class XotData extends Data implements Wireable
         return $res;
     }
 
-    public function getProfileModel(): Model&ProfileContract
+    public function getProfileModel(): Model|ProfileContract
     {
         $user_id = (string) Filament::auth()->id();
 
