@@ -118,7 +118,7 @@ class XotData extends Data implements Wireable
     }
 
     /**
-     * Undocumented function
+     * Undocumented function.
      */
     public function getTenantClass(): string
     {
