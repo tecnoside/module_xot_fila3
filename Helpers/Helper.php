@@ -388,6 +388,7 @@ if (! function_exists('getModelByName')) {
     }
 }
 
+/* moved into xotData
 if (! function_exists('getUserClass')) {
     function getUserClass(): string
     {
@@ -399,6 +400,7 @@ if (! function_exists('getUserClass')) {
         return $class;
     }
 }
+*/
 
 if (! function_exists('getModuleFromModel')) {
     function getModuleFromModel(object $model): Nwidart\Modules\Module
