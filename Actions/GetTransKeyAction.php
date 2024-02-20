@@ -14,7 +14,7 @@ class GetTransKeyAction
     use QueueableAction;
 
     /**
-     * PER ORA FUNZIONA SOLO CON LIVEWIRE.
+     *---.
      */
     public function execute(string $class = ''): string
     {
@@ -42,6 +42,12 @@ class GetTransKeyAction
         $callable = function ($item) use ($model) {
             if (Str::endsWith($item, $model)) {
                 $item = Str::before($item, $model);
+            }
+            if (Str::endsWith($item, 'RelationManager')) {
+                $item = Str::before($item, 'RelationManager');
+            }
+            if (Str::endsWith($item, 'Managers')) {
+                $item = Str::before($item, 'Managers');
             }
 
             return Str::kebab($item);
