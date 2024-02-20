@@ -26,7 +26,8 @@ abstract class XotBasePolicy
         return null;
     }
 
-    public function viewAny(UserContract $userContract): bool {
-       return false;
+    public function viewAny(UserContract $userContract): bool
+    {
+        return false;
     }
 }
