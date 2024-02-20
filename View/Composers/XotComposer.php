@@ -57,7 +57,7 @@ class XotComposer
         $lang = app()->getLocale();
         $view->with('lang', $lang);
         $view->with('_theme', $this);
-        if(\Auth::check()){
+        if (\Auth::check()) {
             $profile = XotData::make()->getProfileModel();
             $view->with('_profile', $profile);
         }
