@@ -3,28 +3,29 @@
 declare(strict_types=1);
 
 // use Illuminate\Support\Facades\Storage;
+use function Safe\glob;
+use function Safe\define;
+use Illuminate\Support\Str;
+use function Safe\parse_url;
+use Webmozart\Assert\Assert;
+use function Safe\preg_match;
+use function Safe\json_decode;
+use Modules\Xot\Datas\XotData;
+use Illuminate\Support\Facades\URL;
+use Nwidart\Modules\Facades\Module;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Route;
+use Modules\Xot\Services\FileService;
+use Illuminate\Database\Query\Builder;
+
+use Modules\Xot\Services\ArrayService;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Request;
+use Modules\Xot\Services\ModuleService;
+use Modules\Xot\Contracts\ProfileContract;
+
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Database\Query\Builder;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Str;
-use Modules\Xot\Datas\XotData;
-use Modules\Xot\Services\ArrayService;
-use Modules\Xot\Services\FileService;
-use Modules\Xot\Services\ModuleService;
-use Nwidart\Modules\Facades\Module;
-
-use function Safe\define;
-use function Safe\glob;
-use function Safe\json_decode;
-use function Safe\parse_url;
-use function Safe\preg_match;
-
-use Webmozart\Assert\Assert;
 
 // ------------------------------------------------
 
@@ -1066,7 +1067,7 @@ if (! function_exists('recursive_unset')) {
 }
 
 if (! function_exists('profile')) {
-    function profile(): Model
+    function profile(): Model|ProfileContract
     {
         $xotData = XotData::make();
 

@@ -57,8 +57,10 @@ class XotComposer
         $lang = app()->getLocale();
         $view->with('lang', $lang);
         $view->with('_theme', $this);
-        $profile = XotData::make()->getProfileModel();
-        $view->with('_profile', $profile);
+        if(\Auth::check()){
+            $profile = XotData::make()->getProfileModel();
+            $view->with('_profile', $profile);
+        }
     }
 
     public function asset(string $str): string
