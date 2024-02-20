@@ -5,17 +5,16 @@ declare(strict_types=1);
 namespace Modules\Xot\Models;
 
 // use Illuminate\Database\Eloquent\Relations\HasOne;
-use Modules\User\Models\Role;
-use Modules\User\Models\User;
-use Modules\User\Models\Permission;
-use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Builder;
-use Modules\Xot\Contracts\ProfileContract;
 use Illuminate\Database\Eloquent\Collection;
+use Modules\User\Models\Permission;
+use Modules\User\Models\Role;
 use Modules\User\Models\Traits\IsProfileTrait;
+use Modules\User\Models\User;
 use Modules\Xot\Contracts\ModelProfileContract;
 use Modules\Xot\Contracts\ModelWithUserContract;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\Xot\Contracts\ProfileContract;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Modules\Xot\Models\Profile.
@@ -78,7 +77,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @mixin \Eloquent
  */
-class Profile extends BaseModel implements ModelProfileContract, ModelWithUserContract,ProfileContract
+class Profile extends BaseModel implements ModelProfileContract, ModelWithUserContract, ProfileContract
 {
     // spatie
     use HasRoles;
@@ -96,6 +95,4 @@ class Profile extends BaseModel implements ModelProfileContract, ModelWithUserCo
      * @var array<int, string>
      */
     protected $fillable = ['id', 'user_id'];
-
-   
 }
