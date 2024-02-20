@@ -33,7 +33,7 @@ class StubService
 
     public array $replaces = [];
 
-    public array $custom_replaces = [];
+    private array $custom_replaces = [];
 
     public bool $debug = false;
 
@@ -710,7 +710,7 @@ class StubService
     /**
      * Undocumented function.
      */
-    private function mapToFactory(string $key, ?string $value = null): array
+    private function mapToFactory(string $key, string $value = null): array
     {
         return [
             $key => null === $value ? $value : sprintf("'%s' => %s", $key, $value),
