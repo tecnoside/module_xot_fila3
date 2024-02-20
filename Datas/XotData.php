@@ -4,17 +4,20 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Datas;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Exception;
 use Livewire\Wireable;
-use Modules\Tenant\Services\TenantService;
-use Modules\User\Models\Membership;
-use Modules\User\Models\Team;
-use Modules\User\Models\Tenant;
-use Modules\User\Models\TenantUser;
-use Spatie\LaravelData\Concerns\WireableData;
+use Illuminate\Support\Str;
 use Spatie\LaravelData\Data;
 use Webmozart\Assert\Assert;
+use Modules\User\Models\Team;
+use Filament\Facades\Filament;
+use Modules\User\Models\Tenant;
+use Modules\User\Models\Membership;
+use Modules\User\Models\TenantUser;
+use Illuminate\Database\Eloquent\Model;
+use Modules\Tenant\Services\TenantService;
+use Modules\Xot\Contracts\ProfileContract;
+use Spatie\LaravelData\Concerns\WireableData;
 
 /**
  * Undocumented class.
@@ -153,13 +156,20 @@ class XotData extends Data implements Wireable
     public function getProfileModelByUserId(string $user_id): Model
     {
         $profileClass = $this->getProfileClass();
-
-        return app($profileClass)->firstOrCreate(['user_id' => $user_id]);
+        $profile=app($profileClass);
+        if(!in_array('user_id',$profile->getFillable())){
+            throw new Exception('add user_id to fillable on class '.$profileClass);
+        }
+        
+        $res= $profile->firstOrCreate(['user_id' => $user_id]);
+        
+        return $res;
     }
 
-    public function getProfileModel(): Model
+    public function getProfileModel(): Model&ProfileContract
     {
-        $user_id = (string) auth()->id();
+        $user_id = (string) Filament::auth()->id();
+       
 
         return $this->getProfileModelByUserId($user_id);
     }
