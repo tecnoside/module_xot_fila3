@@ -21,6 +21,7 @@ class PdfAction extends Action
         $this->translateLabel()
             ->label('')
             ->tooltip('pdf')
+            ->openUrlInNewTab()
             // ->icon('heroicon-o-cloud-arrow-down')
             // ->icon('fas-file-excel')
             ->icon('heroicon-o-document-arrow-down')

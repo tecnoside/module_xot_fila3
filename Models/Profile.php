@@ -7,12 +7,13 @@ namespace Modules\Xot\Models;
 // use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Modules\User\Models\Permission;
 use Modules\User\Models\Role;
+use Modules\User\Models\Traits\IsProfileTrait;
 use Modules\User\Models\User;
 use Modules\Xot\Contracts\ModelProfileContract;
 use Modules\Xot\Contracts\ModelWithUserContract;
+use Modules\Xot\Contracts\ProfileContract;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -76,10 +77,11 @@ use Spatie\Permission\Traits\HasRoles;
  *
  * @mixin \Eloquent
  */
-class Profile extends BaseModel implements ModelProfileContract, ModelWithUserContract
+class Profile extends BaseModel implements ModelProfileContract, ModelWithUserContract, ProfileContract
 {
     // spatie
     use HasRoles;
+    use IsProfileTrait;
 
     // use HasTags; //non serve
 
@@ -93,16 +95,4 @@ class Profile extends BaseModel implements ModelProfileContract, ModelWithUserCo
      * @var array<int, string>
      */
     protected $fillable = ['id', 'user_id'];
-
-    /*
-     * Undocumented function.
-     */
-    public function user(): BelongsTo
-    {
-        // $user = TenantService::model('user'); //no bisgna guardare dentro config(auth  etc etc
-        // $user_class = \get_class($user);
-        $userClass = getUserClass();
-
-        return $this->belongsTo($userClass);
-    }
 }

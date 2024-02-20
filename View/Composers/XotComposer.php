@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Modules\Xot\Datas\MetatagData;
+use Modules\Xot\Datas\XotData;
 use Modules\Xot\Services\FileService;
 use Nwidart\Modules\Facades\Module;
 use Webmozart\Assert\Assert;
@@ -56,6 +57,8 @@ class XotComposer
         $lang = app()->getLocale();
         $view->with('lang', $lang);
         $view->with('_theme', $this);
+        $profile = XotData::make()->getProfileModel();
+        $view->with('_profile', $profile);
     }
 
     public function asset(string $str): string
