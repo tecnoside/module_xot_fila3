@@ -23,14 +23,9 @@ class LivewireComponentsListCommand extends Command
 
     /**
      * The console command description.
-<<<<<<< HEAD
      *
      * @var string
      */
-=======
-     * @var string
-*/
->>>>>>> 5c3a5a9 (up)
     protected $description = ' rilevare tutti i componenti registrati di Livewire';
 
     /**

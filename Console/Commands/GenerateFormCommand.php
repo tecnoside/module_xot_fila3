@@ -24,14 +24,9 @@ class GenerateFormCommand extends Command
 
     /**
      * The console command description.
-<<<<<<< HEAD
      *
      * @var string
      */
-=======
-     * @var string
-*/
->>>>>>> 5c3a5a9 (up)
     protected $description = 'fill form with inputs';
 
     /**
