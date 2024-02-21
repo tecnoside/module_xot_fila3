@@ -27,6 +27,7 @@ abstract class BaseModel extends Model
      * Indicates whether attributes are snake cased on arrays.
      *
      * @see https://laravel-news.com/6-eloquent-secrets
+<<<<<<< HEAD
      *
      * @var bool
      */
@@ -40,6 +41,20 @@ abstract class BaseModel extends Model
     /**
      * @var bool
      */
+=======
+     * @var bool
+*/
+    public static $snakeAttributes = true;
+
+    /**
+* @var bool
+*/
+public $incrementing = true;
+
+    /**
+* @var bool
+*/
+>>>>>>> ac01b6a (up)
     public $timestamps = true;
 
     /**
@@ -68,9 +83,15 @@ abstract class BaseModel extends Model
     ];
 
     /**
+<<<<<<< HEAD
      * @var string
      */
     protected $primaryKey = 'id';
+=======
+* @var string
+*/
+protected $primaryKey = 'id';
+>>>>>>> ac01b6a (up)
 
     /**
      * @var array<int, string>
