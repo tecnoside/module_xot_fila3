@@ -20,8 +20,6 @@ class PdfByModelAction
         string $disk = 'cache',
         string $out = 'download'
     ): string|BinaryFileResponse {
-
-
         $model_class = $model::class;
         $model_name = class_basename($model_class);
         $model_name_low = strtolower($model_name);
