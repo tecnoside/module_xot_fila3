@@ -28,12 +28,10 @@ abstract class BaseMorphPivot extends MorphPivot
      */
     public $incrementing = true;
 
-
     /**
      * @var bool
      */
     public $incrementing = true;
-
 
     /**
      * @var int

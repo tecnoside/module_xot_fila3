@@ -51,11 +51,10 @@ interface PassportHasApiTokensContract
     /**
      * Create a new personal access token for the user.
      *
-     * @param  string  $name
-     * @param  array  $scopes
-     * @return \Laravel\Passport\PersonalAccessTokenResult
+     * @param string $name
+     *
+     * @return PersonalAccessTokenResult
      */
-
     public function createToken($name, array $scopes = []);
 
     /**
