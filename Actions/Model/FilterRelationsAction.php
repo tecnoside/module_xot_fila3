@@ -63,7 +63,11 @@ class FilterRelationsAction
         /**
          * @var DataCollection<int|string, RelationData>
          */
+<<<<<<< HEAD
         $res = RelationData::collect($res, DataCollection::class);
+=======
+        $res = RelationData::collect($res);
+>>>>>>> e1265fc (up)
 
         return $res;
     }
