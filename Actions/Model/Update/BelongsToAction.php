@@ -7,6 +7,7 @@ namespace Modules\Xot\Actions\Model\Update;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Modules\Xot\Datas\RelationData as RelationDTO;
 use Spatie\QueueableAction\QueueableAction;
 
@@ -41,7 +42,8 @@ class BelongsToAction
         }
 
         if (Arr::isAssoc($relationDTO->data)) {
-            $sub = $rows->first();
+            // modificato da $rows->first() a $rows->getModel()
+            $sub = $rows->getModel();
             if (null === $sub) {
                 throw new \Exception('['.__LINE__.']['.__FILE__.']');
             }
@@ -54,7 +56,7 @@ class BelongsToAction
 
         if ($rows->exists()) {
             // $rows->update($data); // non passa per il mutator
-            $model->{$relationDTO->name}->update($data);
+            $model->{Str::camel($relationDTO->name)}->update($data);
 
             return;
         }
