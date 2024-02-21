@@ -26,13 +26,7 @@ abstract class XotBaseModel extends Model
     public static $snakeAttributes = true;
 
     /**
-<<<<<<< HEAD
      * @var int
      */
     protected $perPage = 30;
-=======
-* @var int
-*/
-protected $perPage = 30;
->>>>>>> 7ebcf85 (up)
 }

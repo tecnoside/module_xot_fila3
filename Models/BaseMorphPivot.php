@@ -34,18 +34,11 @@ abstract class BaseMorphPivot extends MorphPivot
      */
     public $incrementing = true;
 
-<<<<<<< HEAD
 
     /**
      * @var int
      */
     protected $perPage = 30;
-=======
-    /**
-* @var int
-*/
-protected $perPage = 30;
->>>>>>> 7ebcf85 (up)
 
     protected $connection = 'mysql'; // this will use the specified database connection
 
