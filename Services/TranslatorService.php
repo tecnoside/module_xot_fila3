@@ -223,10 +223,17 @@ class TranslatorService extends BaseTranslator
     /**
      * Get the translation for the given key.
      *
+<<<<<<< HEAD
      * @param string      $key
      * @param string|null $locale
      * @param bool        $fallback
      *
+=======
+     * @param  string  $key
+     * @param  array  $replace
+     * @param  string|null  $locale
+     * @param  bool  $fallback
+>>>>>>> a8e862f (up)
      * @return string|array
      */
     public function get($key, array $replace = [], $locale = null, $fallback = true)
