@@ -20,17 +20,29 @@ class PdfByModelAction
         string $disk = 'cache',
         string $out = 'download'
     ): string|BinaryFileResponse {
+
+        
         $model_class = $model::class;
         $model_name = class_basename($model_class);
+<<<<<<< HEAD
         $model_name_low = strtolower($model_name);
         $module = Str::between($model_class, 'Modules\\', '\Models');
         $module_low = strtolower($module);
+=======
+        $model_name_low=strtolower($model_name);
+        $module = Str::between($model_class, 'Modules\\', '\Models');
+        $module_low=strtolower($module);
+>>>>>>> cd02905 (up)
         $view_name = $module_low.'::'.Str::kebab($model_name).'.show.pdf';
 
         $view_params = [
             'view' => $view_name,
             'row' => $model,
+<<<<<<< HEAD
             'transKey' => $module_low.'::'.Str::plural($model_name_low).'.fields',
+=======
+            'transKey'=> $module_low.'::'.Str::plural($model_name_low).'.fields',
+>>>>>>> cd02905 (up)
         ];
         $view = view($view_name, $view_params);
 
