@@ -60,11 +60,18 @@ interface ModelContract
      */
     public function forceFill(array $attributes);
 
-    /**
+     /**
      * Save the model to the database.
      *
+<<<<<<< HEAD
      * @return bool
      */
+=======
+     * @param  array  $options
+     * @return bool
+     */
+
+>>>>>>> db2684d (up)
     public function save(array $options = []);
 
     /*
