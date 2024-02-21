@@ -54,6 +54,11 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
     /**
      * Get a relationship.
      *
+<<<<<<< HEAD
+=======
+     * @param string $key
+     * @return mixed|null
+>>>>>>> b995928 (up)
      */
     public function getRelationValue($key);
 
