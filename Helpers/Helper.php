@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
+use Modules\Xot\Contracts\ProfileContract;
 use Modules\Xot\Datas\XotData;
 use Modules\Xot\Services\ArrayService;
 use Modules\Xot\Services\FileService;
@@ -1066,7 +1067,7 @@ if (! function_exists('recursive_unset')) {
 }
 
 if (! function_exists('profile')) {
-    function profile(): Model
+    function profile(): Model|ProfileContract
     {
         $xotData = XotData::make();
 
