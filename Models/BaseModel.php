@@ -68,21 +68,9 @@ abstract class BaseModel extends Model
     ];
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
      * @var string
      */
     protected $primaryKey = 'id';
-=======
-* @var string
-*/
-protected $primaryKey = 'id';
->>>>>>> ac01b6a (up)
-=======
-     * @var string
-     */
-    protected $primaryKey = 'id';
->>>>>>> c91a7a1 (Check & fix styling)
 
     /**
      * @var array<int, string>

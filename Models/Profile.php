@@ -95,19 +95,4 @@ class Profile extends BaseModel implements ModelProfileContract, ModelWithUserCo
      * @var array<int, string>
      */
     protected $fillable = ['id', 'user_id'];
-<<<<<<< HEAD
-=======
-
-    /*
-     * Undocumented function.
-     */
-    public function user(): BelongsTo
-    {
-        // $user = TenantService::model('user'); //no bisgna guardare dentro config(auth  etc etc
-        // $user_class = \get_class($user);
-        $userClass = getUserClass();
-
-        return $this->belongsTo($userClass);
-    }
->>>>>>> db2684d (up)
 }

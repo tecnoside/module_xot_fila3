@@ -63,20 +63,8 @@ interface ModelContract
     /**
      * Save the model to the database.
      *
-<<<<<<< HEAD
-<<<<<<< HEAD
      * @return bool
      */
-=======
-     * @param  array  $options
-     * @return bool
-     */
-
->>>>>>> db2684d (up)
-=======
-     * @return bool
-     */
->>>>>>> 714a726 (Check & fix styling)
     public function save(array $options = []);
 
     /*
