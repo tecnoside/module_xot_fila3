@@ -18,9 +18,10 @@ use Laravel\Passport\TransientToken;
  */
 interface PassportHasApiTokensContract
 {
-     /**
+    /**
      * Get all of the user's registered OAuth clients.
      *
+<<<<<<< HEAD
 <<<<<<< HEAD
      * @return HasMany
      */
@@ -29,16 +30,24 @@ interface PassportHasApiTokensContract
      */
 
 >>>>>>> ac01b6a (up)
+=======
+     * @return HasMany
+     */
+>>>>>>> c91a7a1 (Check & fix styling)
     public function clients();
 
     /**
      * Get all of the access tokens for the user.
      *
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @return HasMany
 =======
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
 >>>>>>> ac01b6a (up)
+=======
+     * @return HasMany
+>>>>>>> c91a7a1 (Check & fix styling)
      */
     public function tokens();
 
@@ -53,11 +62,16 @@ interface PassportHasApiTokensContract
      * Determine if the current API token has a given scope.
      *
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @param string $scope
      *
 =======
      * @param  string  $scope
 >>>>>>> ac01b6a (up)
+=======
+     * @param string $scope
+     *
+>>>>>>> c91a7a1 (Check & fix styling)
      * @return bool
      */
     public function tokenCan($scope);
@@ -65,6 +79,7 @@ interface PassportHasApiTokensContract
     /**
      * Create a new personal access token for the user.
      *
+<<<<<<< HEAD
 <<<<<<< HEAD
      * @param string $name
      *
@@ -77,6 +92,12 @@ interface PassportHasApiTokensContract
      */
 
 >>>>>>> ac01b6a (up)
+=======
+     * @param string $name
+     *
+     * @return PersonalAccessTokenResult
+     */
+>>>>>>> c91a7a1 (Check & fix styling)
     public function createToken($name, array $scopes = []);
 
     /**

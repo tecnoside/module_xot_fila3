@@ -19,6 +19,7 @@ abstract class BaseMorphPivot extends MorphPivot
      *
      * @see https://laravel-news.com/6-eloquent-secrets
 <<<<<<< HEAD
+<<<<<<< HEAD
      *
      * @var bool
      */
@@ -33,19 +34,27 @@ abstract class BaseMorphPivot extends MorphPivot
      * @var bool
      */
 =======
+=======
+     *
+>>>>>>> c91a7a1 (Check & fix styling)
      * @var bool
-*/
+     */
     public static $snakeAttributes = true;
 
     /**
-* @var bool
-*/
-public $incrementing = true;
+     * @var bool
+     */
+    public $incrementing = true;
 
     /**
+<<<<<<< HEAD
 * @var bool
 */
 >>>>>>> ac01b6a (up)
+=======
+     * @var bool
+     */
+>>>>>>> c91a7a1 (Check & fix styling)
     public $timestamps = true;
 
     /**
@@ -64,6 +73,7 @@ public $incrementing = true;
 
     /**
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @var string
      */
     protected $primaryKey = 'id';
@@ -72,6 +82,11 @@ public $incrementing = true;
 */
 protected $primaryKey = 'id';
 >>>>>>> ac01b6a (up)
+=======
+     * @var string
+     */
+    protected $primaryKey = 'id';
+>>>>>>> c91a7a1 (Check & fix styling)
 
     /**
      * @var array<int, string>
