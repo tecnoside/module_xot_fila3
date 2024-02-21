@@ -12,15 +12,6 @@ use Illuminate\Contracts\Validation\Rule;
  */
 class DateTimeRule implements Rule
 {
-<<<<<<< HEAD
-    /**
-     * Undocumented function.
-     *
-     * @param string $attribute
-     * @param string $value
-     */
-    public function passes($attribute, $value): bool
-=======
 
     /**
      * Undocumented function
@@ -30,7 +21,6 @@ class DateTimeRule implements Rule
      * @return boolean
      */
     public function passes($attribute,$value): bool
->>>>>>> b995928 (up)
     {
         // dddx($attribute); //published_at
         // dddx($value);//10/10/2019 13:43

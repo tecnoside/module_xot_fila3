@@ -34,16 +34,9 @@ class LazyCollectionExport implements FromIterator, WithHeadings, ShouldQueue, W
 
     /**
      * Undocumented function.
-<<<<<<< HEAD
-     *
-     * @param Collection $item
-     */
-    public function map($item): array
-=======
      * @param Collection $item
      */
     public function map( $item): array
->>>>>>> b995928 (up)
     {
         $data = $item->only($this->fields);
 
