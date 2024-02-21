@@ -60,9 +60,10 @@ interface ModelContract
      */
     public function forceFill(array $attributes);
 
-     /**
+    /**
      * Save the model to the database.
      *
+<<<<<<< HEAD
 <<<<<<< HEAD
      * @return bool
      */
@@ -72,6 +73,10 @@ interface ModelContract
      */
 
 >>>>>>> db2684d (up)
+=======
+     * @return bool
+     */
+>>>>>>> 714a726 (Check & fix styling)
     public function save(array $options = []);
 
     /*

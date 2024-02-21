@@ -50,6 +50,7 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
      * Update the model in the database.
      *
 <<<<<<< HEAD
+<<<<<<< HEAD
      * @return bool
      */
     public function update(array $attributes = [], array $options = []);
@@ -60,11 +61,16 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
      */
 >>>>>>> db2684d (up)
 
+=======
+     * @return bool
+     */
+>>>>>>> 714a726 (Check & fix styling)
     public function update(array $attributes = [], array $options = []);
 
-     /**
+    /**
      * Get a relationship.
      *
+<<<<<<< HEAD
 <<<<<<< HEAD
      * @param string $key
      *
@@ -73,12 +79,16 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
      * @param  string  $key
      * @return mixed
 >>>>>>> db2684d (up)
+=======
+     * @param string $key
+>>>>>>> 714a726 (Check & fix styling)
      */
     public function getRelationValue($key);
 
     /**
      * Create a new instance of the given model.
      *
+<<<<<<< HEAD
 <<<<<<< HEAD
      * @param array $attributes
      * @param bool  $exists
@@ -87,6 +97,11 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
      * @param  array  $attributes
      * @param  bool  $exists
 >>>>>>> db2684d (up)
+=======
+     * @param array $attributes
+     * @param bool  $exists
+     *
+>>>>>>> 714a726 (Check & fix styling)
      * @return static
      */
     public function newInstance($attributes = [], $exists = false);
@@ -116,10 +131,14 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
      * @return \Laravel\Passport\Token|\Laravel\Passport\TransientToken|null
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
     // public function token();
 =======
     //public function token();
 >>>>>>> db2684d (up)
+=======
+    // public function token();
+>>>>>>> 714a726 (Check & fix styling)
 
     /**
      * A model may have multiple roles.
