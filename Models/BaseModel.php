@@ -48,21 +48,9 @@ abstract class BaseModel extends Model
     protected $perPage = 30;
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
      * @var string
      */
     protected $connection = 'mysql'; // this will use the specified database connection
-=======
-* @var string
-*/
-protected $connection = 'mysql'; // this will use the specified database connection
->>>>>>> 829df0f (up)
-=======
-     * @var string
-     */
-    protected $connection = 'mysql'; // this will use the specified database connection
->>>>>>> ebfbbd9 (Check & fix styling)
 
     /**
      * @var array<int, string>
