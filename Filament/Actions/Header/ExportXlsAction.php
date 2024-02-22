@@ -7,12 +7,12 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Filament\Actions\Header;
 
-use Filament\Actions\Action;
 // Header actions must be an instance of Filament\Actions\Action, or Filament\Actions\ActionGroup.
 // use Filament\Tables\Actions\Action;
+use Filament\Actions\Action;
 use Filament\Resources\Pages\ListRecords;
-use Illuminate\Support\Str;
 use Modules\Xot\Actions\Export\ExportXlsByCollection;
+use Modules\Xot\Actions\GetTransKeyAction;
 
 class ExportXlsAction extends Action
 {
@@ -31,14 +31,8 @@ class ExportXlsAction extends Action
             ->action(
                 static function (ListRecords $livewire) {
                     $filename = class_basename($livewire).'-'.collect($livewire->tableFilters)->flatten()->implode('-').'.xlsx';
-                    $module = Str::of($livewire::class)->between('Modules\\', '\Filament\\')->lower()->toString();
-                    $transKey = $module.'::'.Str::of(class_basename($livewire))
-                        ->kebab()
-                        ->replace('list-', '')
-                        ->singular()
-                        ->append('.fields')
-                        ->toString();
-
+                    $transKey = app(GetTransKeyAction::class)->execute($livewire::class);
+                    $transKey .= '.fields';
                     $query = $livewire->getFilteredTableQuery(); // ->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
                     $rows = $query->get();
 

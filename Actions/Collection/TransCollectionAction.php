@@ -32,7 +32,7 @@ class TransCollectionAction
 
     public function trans(mixed $item): string
     {
-        if (! is_string($item)) {
+        if (! \is_string($item)) {
             dddx($item);
 
             return '';
@@ -40,6 +40,7 @@ class TransCollectionAction
         $transKey = $this->transKey;
         $key = $transKey.'.'.$item;
         $trans = trans($key);
+
         if ($trans !== $key) {
             return $trans;
         }

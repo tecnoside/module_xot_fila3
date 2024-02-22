@@ -22,8 +22,8 @@ class CollectionExport implements FromCollection, WithHeadings, ShouldQueue, Wit
 
     public function __construct(
         public Collection $collection,
-        ?string $transKey = null,
-        ?array $fields = null
+        string $transKey = null,
+        array $fields = null
     ) {
         $this->transKey = $transKey;
         $this->fields = $fields;
@@ -69,7 +69,13 @@ class CollectionExport implements FromCollection, WithHeadings, ShouldQueue, Wit
         // return collect($item)->only($this->fields)->toArray();
         $data = [];
         foreach ($this->fields as $field) {
-            $data[$field] = data_get($item, $field);
+            $value = data_get($item, $field);
+            if (\is_object($value)) {
+                if (enum_exists($value::class)) {
+                    $value = $value->getLabel();
+                }
+            }
+            $data[$field] = $value;
         }
 
         return $data;
