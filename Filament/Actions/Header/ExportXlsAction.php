@@ -39,7 +39,7 @@ class ExportXlsAction extends Action
                         ->append('.fields')
                         ->toString();
 
-                    $query = $livewire->getFilteredTableQuery()->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
+                    $query = $livewire->getFilteredTableQuery(); // ->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
                     $rows = $query->get();
 
                     $resource = $livewire->getResource();

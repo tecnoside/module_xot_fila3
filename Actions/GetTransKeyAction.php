@@ -27,6 +27,10 @@ class GetTransKeyAction
             ->replace('\Filament\Resources\\', '\\')
             ->toString();
 
+        $class = Str::of($class)
+            ->replace('\Filament\Pages\\', '\\')
+            ->toString();
+
         $arr = explode('\\', $class);
         if ('Modules' !== $arr[0]) {
             throw new \Exception('Invalid class name['.__LINE__.']['.__FILE__.']');
@@ -37,9 +41,13 @@ class GetTransKeyAction
 
         Assert::string($model = Arr::get($arr, '2'));
         $model = Str::before($model, 'Resource');
+
+        if (Str::endsWith($model, 'Page') && \strlen($model) > 5) {
+            $model = Str::before($model, 'Page');
+        }
         $model_low = strtolower($model);
 
-        $callable = function ($item) use ($model) {
+        $callable = static function ($item) use ($model) {
             if (Str::endsWith($item, $model)) {
                 $item = Str::before($item, $model);
             }
@@ -48,6 +56,9 @@ class GetTransKeyAction
             }
             if (Str::endsWith($item, 'Managers')) {
                 $item = Str::before($item, 'Managers');
+            }
+            if (Str::endsWith($item, 'Page') && \strlen($item) > 5) {
+                $item = Str::before($item, 'Page');
             }
 
             return Str::kebab($item);
@@ -59,7 +70,10 @@ class GetTransKeyAction
             ->implode('.')
         ;
 
-        $tmp = $module_low.'::'.$model_low.'.'.$res;
+        $tmp = $module_low.'::'.$model_low;
+        if ('' !== $res) {
+            $tmp .= '.'.$res;
+        }
 
         return $tmp;
     }

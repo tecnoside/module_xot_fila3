@@ -22,8 +22,8 @@ class CollectionExport implements FromCollection, WithHeadings, ShouldQueue, Wit
 
     public function __construct(
         public Collection $collection,
-        string|null $transKey = null,
-        array|null $fields = null
+        string $transKey = null,
+        array $fields = null
     ) {
         $this->transKey = $transKey;
         $this->fields = $fields;
@@ -31,7 +31,7 @@ class CollectionExport implements FromCollection, WithHeadings, ShouldQueue, Wit
 
     public function getHead(): Collection
     {
-        if (is_array($this->fields)) {
+        if (\is_array($this->fields)) {
             return collect($this->fields);
         }
 
@@ -66,6 +66,12 @@ class CollectionExport implements FromCollection, WithHeadings, ShouldQueue, Wit
             return collect($item)->toArray();
         }
 
-        return collect($item)->only($this->fields)->toArray();
+        // return collect($item)->only($this->fields)->toArray();
+        $data = [];
+        foreach ($this->fields as $field) {
+            $data[$field] = data_get($item, $field);
+        }
+
+        return $data;
     }
 }

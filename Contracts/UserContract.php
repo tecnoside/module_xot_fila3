@@ -1,7 +1,5 @@
 <?php
 
-// senza la document delle property phpstan da errore per proprieta' mancante
-
 declare(strict_types=1);
 
 namespace Modules\Xot\Contracts;
@@ -80,7 +78,7 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
     /**
      * Determine if the model has (one of) the given role(s).
      */
-    public function hasRole(string|int|array|Role|\Illuminate\Support\Collection $roles, ?string $guard = null): bool;
+    public function hasRole(string|int|array|Role|\Illuminate\Support\Collection $roles, string $guard = null): bool;
 
     /**
      * Assign the given role to the model.
@@ -89,7 +87,7 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
      */
     public function assignRole(array|string|int|Role|\Illuminate\Support\Collection $roles = []);
 
-    /*
+    /**
      * Get the current access token being used by the user.
      *
      * @return \Laravel\Passport\Token|\Laravel\Passport\TransientToken|null
