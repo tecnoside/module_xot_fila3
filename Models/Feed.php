@@ -23,8 +23,6 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Feed extends BaseModel
 {
-    /**
-     * @var array<int, string>
-     */
+    /** @var  array<int, string> */
     protected $fillable = ['id', 'created_at', 'updated_at'];
 }

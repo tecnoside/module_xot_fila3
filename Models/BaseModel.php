@@ -32,14 +32,10 @@ abstract class BaseModel extends Model
      */
     public static $snakeAttributes = true;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     public $incrementing = true;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     public $timestamps = true;
 
     /**
@@ -47,14 +43,10 @@ abstract class BaseModel extends Model
      */
     protected $perPage = 30;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $connection = 'mysql'; // this will use the specified database connection
 
-    /**
-     * @var array<int, string>
-     */
+    /** @var  array<int, string> */
     protected $fillable = ['id'];
 
     /**
@@ -67,14 +59,10 @@ abstract class BaseModel extends Model
         'deleted_at' => 'datetime',
     ];
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $primaryKey = 'id';
 
-    /**
-     * @var array<int, string>
-     */
+    /** @var  array<int, string> */
     protected $hidden = [
         // 'password'
     ];
