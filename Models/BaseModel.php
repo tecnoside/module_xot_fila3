@@ -46,7 +46,7 @@ abstract class BaseModel extends Model
     /** @var string */
     protected $connection = 'mysql'; // this will use the specified database connection
 
-    /** @var  array<int, string> */
+    /** @var array<int, string> */
     protected $fillable = ['id'];
 
     /**
@@ -62,7 +62,7 @@ abstract class BaseModel extends Model
     /** @var string */
     protected $primaryKey = 'id';
 
-    /** @var  array<int, string> */
+    /** @var array<int, string> */
     protected $hidden = [
         // 'password'
     ];

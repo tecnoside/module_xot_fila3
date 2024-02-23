@@ -91,6 +91,6 @@ class Profile extends BaseModel implements ModelProfileContract, ModelWithUserCo
      */
     // private string $guard_name = 'web';
 
-    /** @var  array<int, string> */
+    /** @var array<int, string> */
     protected $fillable = ['id', 'user_id'];
 }
