@@ -41,9 +41,9 @@ class TransCollectionAction
         $key = $transKey.'.'.$item;
         $trans = trans($key);
 
-        //if ($trans !== $key) {
-            return $trans;
-        //}
+        // if ($trans !== $key) {
+        return $trans;
+        // }
 
         Assert::string($item1 = Str::replace('.', '_', $item));
         $key = $transKey.'.'.$item1;
