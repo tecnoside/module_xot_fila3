@@ -79,7 +79,7 @@ class GetTransKeyAction
             $tmp .= '.'.$res;
         }
 
-        $tmp = Str::of($tmp)->replace('.pages.list.','.')->toString();
+        $tmp = Str::of($tmp)->replace('.pages.list.', '.')->toString();
 
         return $tmp;
     }
