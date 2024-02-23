@@ -46,10 +46,14 @@ class GetTransKeyAction
             $model = Str::before($model, 'Page');
         }
         $model_low = strtolower($model);
+        $model_plural=Str::plural($model);
 
-        $callable = static function ($item) use ($model) {
+        $callable = static function ($item) use ($model,$model_plural) {
             if (Str::endsWith($item, $model)) {
                 $item = Str::before($item, $model);
+            }
+            if (Str::endsWith($item, $model_plural)) {
+                $item = Str::before($item, $model_plural);
             }
             if (Str::endsWith($item, 'RelationManager')) {
                 $item = Str::before($item, 'RelationManager');
@@ -60,6 +64,7 @@ class GetTransKeyAction
             if (Str::endsWith($item, 'Page') && \strlen($item) > 5) {
                 $item = Str::before($item, 'Page');
             }
+
 
             return Str::kebab($item);
         };
