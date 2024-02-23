@@ -26,19 +26,13 @@ abstract class BaseMorphPivot extends MorphPivot
     /** @var bool */
     public $incrementing = true;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $perPage = 30;
 
     /** @var string */
     protected $connection = 'mysql'; // this will use the specified database connection
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
+    /** @var array<int, string> */
     protected $appends = [];
 
     /** @var string */
@@ -53,7 +47,9 @@ abstract class BaseMorphPivot extends MorphPivot
         'note',
     ];
 
-    protected $casts = ['created_at' => 'datetime', 'updated_at' => 'datetime',
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
     ];
 }
