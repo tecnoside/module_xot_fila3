@@ -986,7 +986,7 @@ if (! function_exists('getServerName')) {
         if (isset($_SERVER['SERVER_NAME']) && '127.0.0.1' !== $_SERVER['SERVER_NAME']) {
             $server_name = $_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'];
         }
-        $server_name = Str::of($server_name)->replace('www.','')->toString();
+        $server_name = Str::of($server_name)->replace('www.', '')->toString();
 
         return $server_name;
     }

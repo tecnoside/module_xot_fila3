@@ -71,7 +71,7 @@ class CollectionExport implements FromCollection, WithHeadings, ShouldQueue, Wit
         foreach ($this->fields as $field) {
             $value = data_get($item, $field);
             if (\is_object($value)) {
-                if (enum_exists($value::class) && method_exists($value,'getLabel')) {
+                if (enum_exists($value::class) && method_exists($value, 'getLabel')) {
                     $value = $value->getLabel();
                 }
             }
