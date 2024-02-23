@@ -27,14 +27,19 @@ class ExportXlsTableAction extends Action
              ->icon('heroicon-o-arrow-down-tray')
             ->action(
                 static function (RelationManager $livewire) {
+                    $livewire_class=$livewire::class;
                     $filename = class_basename($livewire).'-'.collect($livewire->tableFilters)->flatten()->implode('-').'.xlsx';
-                    $transKey = app(GetTransKeyAction::class)->execute($livewire::class);
+                    $transKey = app(GetTransKeyAction::class)->execute($livewire_class);
                     $transKey .= '.fields';
                     $query = $livewire->getFilteredTableQuery(); // ->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
                     $rows = $query->get();
 
                     $fields = null;
+<<<<<<< HEAD
                     $livewire_class = $livewire::class;
+=======
+
+>>>>>>> 7b5ac79 (up)
                     if (method_exists($livewire_class, 'getXlsFields')) {
                         $fields = $livewire_class::getXlsFields($livewire->tableFilters);
                     }
