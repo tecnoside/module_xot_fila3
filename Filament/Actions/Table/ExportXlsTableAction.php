@@ -34,8 +34,9 @@ class ExportXlsTableAction extends Action
                     $rows = $query->get();
 
                     $fields = null;
-                    if (method_exists($livewire, 'getXlsFields')) {
-                        $fields = $livewire::getXlsFields($livewire->tableFilters);
+                    $livewire_class=$livewire::class;
+                    if (method_exists($livewire_class, 'getXlsFields')) {
+                        $fields = $livewire_class::getXlsFields($livewire->tableFilters);
                     }
 
                     return app(ExportXlsByCollection::class)->execute($rows, $filename, $transKey, $fields);

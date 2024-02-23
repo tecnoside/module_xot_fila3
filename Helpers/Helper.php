@@ -977,7 +977,6 @@ if (! function_exists('getServerName')) {
     {
         $default = env('APP_URL');
         if (! is_string($default)) {
-            // throw new Exception('['.$default.']['.__LINE__.']['.class_basename(__CLASS__).']');
             $default = 'localhost';
         }
 
@@ -987,8 +986,7 @@ if (! function_exists('getServerName')) {
         if (isset($_SERVER['SERVER_NAME']) && '127.0.0.1' !== $_SERVER['SERVER_NAME']) {
             $server_name = $_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'];
         }
-
-        Assert::string($server_name = Str::replace('www.', '', $server_name), 'wip');
+        $server_name = Str::of($server_name)->replace('www.','')->toString();
 
         return $server_name;
     }
