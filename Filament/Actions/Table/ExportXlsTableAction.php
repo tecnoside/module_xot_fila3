@@ -27,7 +27,7 @@ class ExportXlsTableAction extends Action
              ->icon('heroicon-o-arrow-down-tray')
             ->action(
                 static function (RelationManager $livewire) {
-                    $livewire_class=$livewire::class;
+                    $livewire_class = $livewire::class;
                     $filename = class_basename($livewire).'-'.collect($livewire->tableFilters)->flatten()->implode('-').'.xlsx';
                     $transKey = app(GetTransKeyAction::class)->execute($livewire_class);
                     $transKey .= '.fields';
