@@ -31,7 +31,5 @@ class GetViewNameSpacePathAction
             return base_path('Themes/'.$theme_name);
         }
         throw new \Exception('View namespace not found['.$ns.'].');
-
-        return null;
     }
 }
