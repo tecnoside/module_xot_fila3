@@ -88,7 +88,7 @@ if (! function_exists('str_contains')) {
 if (! function_exists('hex2rgba')) {
     /* Convert hexdec color string to rgb(a) string */
 
-    function hex2rgba($color, $opacity = -1)
+    function hex2rgba(string $color, int $opacity = -1): string
     {
         $default = 'rgb(0,0,0)';
 
@@ -352,7 +352,7 @@ if (! function_exists('params2ContainerItem')) {
     /**
      * @return array<array>
      */
-    function params2ContainerItem(?array $params = null): array
+    function params2ContainerItem(array $params = null): array
     {
         if (null === $params) {
             // Call to static method current() on an unknown class Route.
@@ -645,7 +645,7 @@ if (! function_exists('url_queries')) {
      *
      * @return string The updated query string
      */
-    function url_queries(array $queries, ?string $url = null): string
+    function url_queries(array $queries, string $url = null): string
     {
         // If a URL isn't supplied, use the current one
         if (! $url) {
