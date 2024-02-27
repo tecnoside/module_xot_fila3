@@ -13,6 +13,8 @@ class SendMailByRecordsAction
 
     /**
      * Undocumented function.
+     *
+     * @return bool
      */
     public function execute(Collection $records, string $mail_class)
     {
