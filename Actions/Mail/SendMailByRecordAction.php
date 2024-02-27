@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Spatie\QueueableAction\QueueableAction;
+use Webmozart\Assert\Assert;
 
 class SendMailByRecordAction
 {
@@ -22,6 +23,13 @@ class SendMailByRecordAction
      */
     public function execute(Model $record, string $mail_class)
     {
+        if (! method_exists($record, 'canSendEmail')) {
+            throw new \Exception('You need to define a canSendEmail method in your model ['.get_class($record).']');
+        }
+        if (! method_exists($record, 'myLogs')) {
+            throw new \Exception('You need to define a myLogs method in your model ['.get_class($record).']');
+        }
+
         if (! $record->canSendEmail()) {
             return false;
         }
@@ -29,16 +37,19 @@ class SendMailByRecordAction
         // if (! Gate::allows('send-mail', $record)) {
         //    dddx('NO');
         // }
+        /*
         $record_class = get_class($record);
         $log_class = Str::of($record_class)
             ->before('\Models')
             ->append('\Models\MyLog')
             ->toString();
-
-        $to = $record->email;
+        */
+        $to = $record->attributes['email'] ?? null;
         $to = 'marco.sottana@gmail.com';
 
-        Mail::to($to)->send(new $mail_class($record));
+        Assert::isInstanceOf($mailable = new $mail_class($record), \Illuminate\Contracts\Mail\Mailable::class);
+
+        Mail::to($to)->send($mailable);
         $record->myLogs()->create(['act' => 'sendMail']);
 
         /*
