@@ -7,15 +7,17 @@ namespace Modules\Xot\Actions\Mail;
 use Illuminate\Database\Eloquent\Collection;
 use Spatie\QueueableAction\QueueableAction;
 
-class SendMailByRecordsAction {
+class SendMailByRecordsAction
+{
     use QueueableAction;
 
     /**
      * Undocumented function.
      */
-    public function execute(Collection $records,string $mail_class) {
+    public function execute(Collection $records, string $mail_class)
+    {
         foreach ($records as $record) {
-            app(SendMailByRecordAction::class)->execute($record,$mail_class);
+            app(SendMailByRecordAction::class)->execute($record, $mail_class);
         }
 
         return true;
