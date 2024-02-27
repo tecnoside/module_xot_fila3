@@ -11,7 +11,7 @@ class GetViewNameSpacePathAction
     use QueueableAction;
 
     /**
-     * ---
+     * ---.
      */
     public function execute(string $ns): string
     {

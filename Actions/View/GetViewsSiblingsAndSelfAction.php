@@ -15,7 +15,7 @@ class GetViewsSiblingsAndSelfAction
     use QueueableAction;
 
     /**
-     * ---
+     * ---.
      */
     public function execute(string $view): array
     {
