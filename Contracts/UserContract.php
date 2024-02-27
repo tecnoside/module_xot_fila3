@@ -90,7 +90,7 @@ interface UserContract extends CanResetPassword, FilamentUser, HasTeamsContract,
     /**
      * Get the current access token being used by the user.
      *
-     * @return \Laravel\Passport\Token|\Laravel\Passport\TransientToken|null
+     * @return Token|\Laravel\Passport\TransientToken|null
      */
     // public function token();
 
