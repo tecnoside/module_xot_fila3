@@ -44,10 +44,10 @@ class SendMailByRecordAction
             ->append('\Models\MyLog')
             ->toString();
         */
-        $to = $record->attributes['email'] ?? null;
-        $to = 'marco.sottana@gmail.com';
-
-        Assert::isInstanceOf($mailable = new $mail_class($record), \Illuminate\Contracts\Mail\Mailable::class);
+        //$to = $record->attributes['email'] ?? null;
+        //$to = 'marco.sottana@gmail.com';
+        $to=$record->email;
+        //Assert::isInstanceOf($mailable = new $mail_class($record), \Illuminate\Contracts\Mail\Mailable::class);
 
         Mail::to($to)->send($mailable);
         $record->myLogs()->create(['act' => 'sendMail']);
