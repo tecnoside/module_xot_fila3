@@ -41,7 +41,7 @@ interface ProfileContract
     /**
      * Determine if the model has (one of) the given role(s).
      */
-    public function hasRole(string|int|array|\Spatie\Permission\Contracts\Role|\Illuminate\Support\Collection $roles, string $guard = null): bool;
+    public function hasRole(string|int|array|\Spatie\Permission\Contracts\Role|\Illuminate\Support\Collection $roles, ?string $guard = null): bool;
 
     /**
      * Determine if the model has any of the given role(s).
@@ -55,7 +55,7 @@ interface ProfileContract
      *
      * @throws PermissionDoesNotExist
      */
-    public function hasPermissionTo(string|int|Permission $permission, string $guardName = null): bool;
+    public function hasPermissionTo(string|int|Permission $permission, ?string $guardName = null): bool;
 
     /**
      * Create a new Eloquent query builder for the model.
