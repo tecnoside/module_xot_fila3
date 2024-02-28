@@ -88,7 +88,11 @@ if (! function_exists('str_contains')) {
 if (! function_exists('hex2rgba')) {
     /* Convert hexdec color string to rgb(a) string */
 
+<<<<<<< HEAD
     function hex2rgba(string $color, int $opacity = -1): string
+=======
+    function hex2rgba($color, $opacity = -1)
+>>>>>>> 9cd8aa64cf8a872b6a3ce10b2153e86b9c6d0ac4
     {
         $default = 'rgb(0,0,0)';
 
