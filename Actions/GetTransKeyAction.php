@@ -67,7 +67,7 @@ class GetTransKeyAction
             }
 
             // return Str::kebab($item);
-            return Str::of($model)->snake()->toString();
+            return Str::of($item)->snake()->toString();
         };
 
         $res = collect($arr)
@@ -82,6 +82,9 @@ class GetTransKeyAction
         }
 
         $tmp = Str::of($tmp)->replace('.pages.list.', '.')->toString();
+        if (Str::endsWith($tmp, '.pages.list')) {
+            $tmp = Str::before($tmp, '.pages.list');
+        }
 
         return $tmp;
     }
