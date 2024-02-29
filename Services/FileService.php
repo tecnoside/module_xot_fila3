@@ -96,7 +96,7 @@ class FileService
             $ns_after = Str::after($ns_after, '/');
         }
 
-        if (\in_array($ns, ['pub_theme', 'adm_theme'], true)) {
+        if (\in_array($ns, ['pub_theme', 'adm_theme'], false)) {
             $theme = config('xra.'.$ns);
 
             $filename_from = self::fixPath(base_path('Themes/'.$theme.'/Resources/'.$ns_after));
@@ -194,7 +194,7 @@ class FileService
             return $viewHints[$ns][0];
         }
 
-        if (\in_array($ns, ['pub_theme', 'adm_theme'], true)) {
+        if (\in_array($ns, ['pub_theme', 'adm_theme'], false)) {
             $theme_name = config('xra.'.$ns);
 
             return base_path('Themes/'.$theme_name);
@@ -227,7 +227,7 @@ class FileService
 
     public static function getViewNameSpaceUrl(string $ns, string $path1): string
     {
-        if (\in_array($ns, ['pub_theme', 'adm_theme'], true)) {
+        if (\in_array($ns, ['pub_theme', 'adm_theme'], false)) {
             $path = self::getViewNameSpacePath($ns);
         } else {
             $module_path = Module::getModulePath($ns);
@@ -460,7 +460,7 @@ class FileService
             return asset($path);
         }
 
-        if (\in_array($ns_name, ['pub_theme', 'adm_theme'], true)) {
+        if (\in_array($ns_name, ['pub_theme', 'adm_theme'], false)) {
             return self::viewThemeNamespaceToAsset($key);
         }
 

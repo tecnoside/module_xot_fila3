@@ -423,7 +423,7 @@ class RouteService
 
         return collect($tmp_arr)
             ->filter(
-                static fn ($item): bool => ! \in_array($item, ['Module', 'Item'], true)
+                static fn ($item): bool => ! \in_array($item, ['Module', 'Item'], false)
             )
             ->map(
                 static function ($item) use ($params) {

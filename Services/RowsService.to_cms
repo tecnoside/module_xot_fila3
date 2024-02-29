@@ -141,7 +141,7 @@ class RowsService
         $filters_fields = $filters_fields
             ->filter(
                 function ($item) use ($filters) {
-                    return \in_array($item->param_name, array_keys($filters), true);
+                    return \in_array($item->param_name, array_keys($filters), false);
                 }
             )
             ->all();
