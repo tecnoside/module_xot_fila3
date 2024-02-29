@@ -66,7 +66,8 @@ class GetTransKeyAction
                 $item = Str::before($item, 'Page');
             }
 
-            return Str::kebab($item);
+            // return Str::kebab($item);
+            return Str::of($model)->snake()->toString();
         };
 
         $res = collect($arr)
