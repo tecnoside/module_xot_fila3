@@ -45,7 +45,8 @@ class GetTransKeyAction
         if (Str::endsWith($model, 'Page') && \strlen($model) > 5) {
             $model = Str::before($model, 'Page');
         }
-        $model_low = strtolower($model);
+        // $model_low = strtolower($model);
+        $model_low = Str::of($model)->snake()->toString();
         $model_plural = Str::plural($model);
 
         $callable = static function ($item) use ($model, $model_plural) {
