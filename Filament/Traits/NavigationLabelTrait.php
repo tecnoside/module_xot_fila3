@@ -13,9 +13,12 @@ trait NavigationLabelTrait
     {
         $transKey = app(GetTransKeyAction::class)->execute(static::class);
         $tmp = $transKey.'.'.$key;
-        Assert::nullOrString($res = trans($tmp), 'fix translation ['.$tmp.']');
+        $res = trans($tmp);
+        if (\is_string($res)) {
+            return $res;
+        }
 
-        return $res;
+        return 'fix:'.$tmp;
     }
 
     public static function getModelLabel(): string
