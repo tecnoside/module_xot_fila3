@@ -43,7 +43,7 @@ class BelongsToAction
 
         if (Arr::isAssoc($relationDTO->data)) {
             // modificato da $rows->first() a $rows->getModel()
-            $sub = $rows->getModel();
+            $sub = $rows->first() ?? $rows->getModel();
             if (null === $sub) {
                 throw new \Exception('['.__LINE__.']['.__FILE__.']');
             }

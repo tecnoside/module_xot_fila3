@@ -23,7 +23,7 @@ class UpdateAction
         $validator->validate();
 
         $keyName = $model->getKeyName();
-        $data['updated_by'] = authId();
+        // $data['updated_by'] = authId();
         if (null === $model->getKey()) {
             $key = $data[$keyName];
             $data = collect($data)->except($keyName)->toArray();
@@ -42,7 +42,7 @@ class UpdateAction
 
         app(__NAMESPACE__.'\\Update\RelationAction')->execute($model, $data);
 
-        $msg = 'aggiornato! ['.$model->getKey().']!'; // .'['.implode(',',$row->getChanges()).']';
+        $msg = 'aggiornato! ['.$model->getKey().']!';
 
         Session::flash('status', $msg); // .
 
