@@ -30,7 +30,7 @@ class MainDashboard extends Page
         );
 
         if (1 === $modules->count()) {
-            Assert::notNull($modules->first());
+            Assert::notNull($modules->first(), '['.__LINE__.']['.__FILE__.']');
             $panel_name = $modules->first()->name;
             $module_name = Str::before($panel_name, '::admin');
             $url = '/'.$module_name.'/admin';
