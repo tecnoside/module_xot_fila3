@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model;
 
+use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -23,10 +24,11 @@ class UpdateAction
         $validator->validate();
 
         $keyName = $model->getKeyName();
-
+        $data['updated_by'] = Filament::auth()->id();
         if (null === $model->getKey()) {
             $key = $data[$keyName];
             $data = collect($data)->except($keyName)->toArray();
+
             if (method_exists($model, 'withTrashed')) {
                 $model = $model->withTrashed();
             }
