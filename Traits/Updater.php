@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Traits;
 
-use Filament\Facades\Filament;
-
 /**
  * Trait Updater.
  * https://dev.to/hasanmn/automatically-update-createdby-and-updatedby-in-laravel-using-bootable-traits-28g9.
@@ -19,14 +17,14 @@ trait Updater
     {
         static::creating(
             static function ($model): void {
-                $model->created_by = Filament::auth()->id();
-                $model->updated_by = Filament::auth()->id();
+                $model->created_by = authId();
+                $model->updated_by = authId();
             }
         );
 
         static::updating(
             static function ($model): void {
-                $model->updated_by = Filament::auth()->id();
+                $model->updated_by = authId();
             }
         );
         /*
@@ -36,7 +34,7 @@ trait Updater
         static::deleting(
             static function ($model): void {
                 if (\in_array('deleted_by', array_keys($model->attributes), false)) {
-                    $model->deleted_by = Filament::auth()->id();
+                    $model->deleted_by = authId();
                     $model->save();
                 }
             }

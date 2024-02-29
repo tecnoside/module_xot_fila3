@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Model;
 
-use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -19,8 +18,8 @@ class StoreAction
         if (! isset($data['lang']) && \in_array('lang', $model->getFillable(), false)) {
             $data['lang'] = app()->getLocale();
         }
-        $data['updated_by'] = Filament::auth()->id();
-        $data['created_by'] = Filament::auth()->id();
+        $data['updated_by'] = authId();
+        $data['created_by'] = authId();
         /*if (
             ! isset($data['user_id'])
             && \in_array('user_id',  $row->getFillable(), false)

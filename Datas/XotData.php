@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Datas;
 
-use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Livewire\Wireable;
@@ -170,7 +169,7 @@ class XotData extends Data implements Wireable
 
     public function getProfileModel(): Model|ProfileContract
     {
-        $user_id = (string) Filament::auth()->id();
+        $user_id = (string) authId();
 
         return $this->getProfileModelByUserId($user_id);
     }

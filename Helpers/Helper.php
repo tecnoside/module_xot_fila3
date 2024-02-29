@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 // use Illuminate\Support\Facades\Storage;
+use Filament\Facades\Filament;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -352,7 +353,7 @@ if (! function_exists('params2ContainerItem')) {
     /**
      * @return array<array>
      */
-    function params2ContainerItem(?array $params = null): array
+    function params2ContainerItem(array $params = null): array
     {
         if (null === $params) {
             // Call to static method current() on an unknown class Route.
@@ -645,7 +646,7 @@ if (! function_exists('url_queries')) {
      *
      * @return string The updated query string
      */
-    function url_queries(array $queries, ?string $url = null): string
+    function url_queries(array $queries, string $url = null): string
     {
         // If a URL isn't supplied, use the current one
         if (! $url) {
@@ -1121,5 +1122,17 @@ if (! function_exists('cssInLine')) {
     function cssInLine(string $file): string
     {
         return File::get(FileService::assetPath($file));
+    }
+}
+
+if (! function_exists('authId')) {
+    function authId(): string|null
+    {
+        $id = Filament::auth()->id() ?? auth()->id();
+        if (null == $id) {
+            return null;
+        }
+
+        return strval($id);
     }
 }
