@@ -15,7 +15,7 @@ class TransCollectionAction
 {
     use QueueableAction;
 
-    public string|null $transKey;
+    public ?string $transKey;
 
     public function execute(
         Collection $collection,
