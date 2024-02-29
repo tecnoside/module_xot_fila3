@@ -88,7 +88,11 @@ if (! function_exists('str_contains')) {
 if (! function_exists('hex2rgba')) {
     /* Convert hexdec color string to rgb(a) string */
 
+<<<<<<< HEAD
     function hex2rgba(string $color, int $opacity = -1): string
+=======
+    function hex2rgba(string $color, float $opacity = -1): string
+>>>>>>> 88bbfb5 (up)
     {
         $default = 'rgb(0,0,0)';
 
@@ -98,14 +102,14 @@ if (! function_exists('hex2rgba')) {
         }
 
         // Sanitize $color if "#" is provided
-        if ('#' == $color[0]) {
+        if ('#' === $color[0]) {
             $color = substr($color, 1);
         }
 
         // Check if color has 6 or 3 characters and get values
-        if (6 == strlen($color)) {
+        if (6 === strlen($color)) {
             $hex = [$color[0].$color[1], $color[2].$color[3], $color[4].$color[5]];
-        } elseif (3 == strlen($color)) {
+        } elseif (3 === strlen($color)) {
             $hex = [$color[0].$color[0], $color[1].$color[1], $color[2].$color[2]];
         } else {
             return $default;
@@ -115,7 +119,7 @@ if (! function_exists('hex2rgba')) {
         $rgb = array_map('hexdec', $hex);
 
         // Check if opacity is set(rgba or rgb)
-        if (-1 != $opacity) {
+        if (-1 !== $opacity) {
             if ($opacity < 0 || $opacity > 1) {
                 $opacity = 1.0;
             }
@@ -352,7 +356,7 @@ if (! function_exists('params2ContainerItem')) {
     /**
      * @return array<array>
      */
-    function params2ContainerItem(?array $params = null): array
+    function params2ContainerItem(array $params = null): array
     {
         if (null === $params) {
             // Call to static method current() on an unknown class Route.
@@ -645,7 +649,7 @@ if (! function_exists('url_queries')) {
      *
      * @return string The updated query string
      */
-    function url_queries(array $queries, ?string $url = null): string
+    function url_queries(array $queries, string $url = null): string
     {
         // If a URL isn't supplied, use the current one
         if (! $url) {
