@@ -51,7 +51,7 @@ trait NavigationLabelTrait
         return static::trans('navigation.name');
     }
 
-    protected function getTitle(): string
+    public function getTitle(): string
     {
         return static::trans('navigation.name');
     }
