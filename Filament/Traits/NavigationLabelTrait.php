@@ -55,6 +55,24 @@ trait NavigationLabelTrait
     {
         return static::trans('navigation.name');
     }
+    /*
+    public static function getNavigationSort(): ?int {
+        return JobsWaitingPlugin::make()->getNavigationSort();
+    }
+
+    public static function getBreadcrumb(): string {
+        return JobsWaitingPlugin::make()->getBreadcrumb();
+    }
+
+    public static function shouldRegisterNavigation(): bool {
+        return JobsWaitingPlugin::make()->shouldRegisterNavigation();
+    }
+
+    public static function getNavigationIcon(): string {
+        return JobsWaitingPlugin::make()->getNavigationIcon();
+    }
+
+    */
 }
 
 /*
