@@ -13,6 +13,7 @@ use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Modules\Tenant\Services\TenantService;
+use Modules\Xot\Filament\Traits\NavigationLabelTrait;
 use Webmozart\Assert\Assert;
 
 /**
@@ -21,6 +22,7 @@ use Webmozart\Assert\Assert;
 class MetatagPage extends Page implements HasForms
 {
     use InteractsWithForms;
+    use NavigationLabelTrait;
 
     public ?array $data = [];
 
