@@ -71,24 +71,21 @@ class XotData extends Data implements Wireable
     public string $tenant_pivot_class = TenantUser::class; // = Membership::class;
 
     public ?string $super_admin = null;
+    private static ?self $instance = null;
+
+    /**
+     * @var (Model&ProfileContract)|null
+     */
+    private $profile;
 
     public static function make(): self
     {
-        /*
-        $xot = config('xra');
-
-        if (! \is_array($xot) || count($xot) < 3) {
-            // *
-            $path = TenantService::filePath('xra.php');
-            $xot = File::getRequire($path);
-            if (! \is_array($xot)) {
-                $xot = [];
-            }
+        if (! self::$instance) {
+            $data = TenantService::getConfig('xra');
+            self::$instance = self::from($data);
         }
-        */
-        $data = TenantService::getConfig('xra');
 
-        return self::from($data);
+        return self::$instance;
     }
 
     public function getUserClass(): string
@@ -154,7 +151,7 @@ class XotData extends Data implements Wireable
         return 'Modules\\'.$this->main_module.'\Http\Controllers\HomeController';
     }
 
-    public function getProfileModelByUserId(string $user_id): Model
+    public function getProfileModelByUserId(string $user_id): Model&ProfileContract
     {
         $profileClass = $this->getProfileClass();
         $profile = app($profileClass);
@@ -167,11 +164,16 @@ class XotData extends Data implements Wireable
         return $res;
     }
 
-    public function getProfileModel(): Model|ProfileContract
+    public function getProfileModel(): Model&ProfileContract
     {
+        if (null != $this->profile) {
+            return $this->profile;
+        }
         $user_id = (string) authId();
 
-        return $this->getProfileModelByUserId($user_id);
+        Assert::isInstanceOf($this->profile = $this->getProfileModelByUserId($user_id), ProfileContract::class);
+
+        return $this->profile;
     }
 
     public function update(array $data): self

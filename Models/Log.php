@@ -32,7 +32,7 @@ class Log extends BaseModel
         'size' => 'integer',
     ];
 
-    public function getRows()
+    public function getRows(): array
     {
         $rows = [];
         $files = File::files(storage_path('logs'));
