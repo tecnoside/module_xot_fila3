@@ -82,6 +82,7 @@ class GetTransKeyAction
         }
 
         $tmp = Str::of($tmp)->replace('.pages.list.', '.')->toString();
+        $tmp = Str::of($tmp)->replace('::enums.', '::')->toString();
         if (Str::endsWith($tmp, '.pages.list')) {
             $tmp = Str::before($tmp, '.pages.list');
         }
