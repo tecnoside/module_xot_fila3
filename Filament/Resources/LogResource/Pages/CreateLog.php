@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Modules\Xot\Filament\Resources\LogResource\Pages;
 
-use Modules\Xot\Filament\Resources\LogResource;
-use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use Modules\Xot\Filament\Resources\LogResource;
 
 class CreateLog extends CreateRecord
 {

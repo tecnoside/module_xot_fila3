@@ -58,7 +58,7 @@ class LogResource extends Resource
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist->schema([
-            Infolists\Components\TextEntry::make('name')
+            TextEntry::make('name')
                 ->columnSpanFull(),
             /*
             Infolists\Components\TextEntry::make('email')
