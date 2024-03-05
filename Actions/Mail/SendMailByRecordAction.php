@@ -56,7 +56,7 @@ class SendMailByRecordAction
             Mail::to($to)->send($mailable);
             $record->myLogs()->create(['act' => 'sendMail']);
         } else {
-            throw new \Exception('Email is null matr['.$record->matr.']');
+            throw new \Exception('Email is null matr['.$record->getTable().']['.$record->getKey().']');
         }
         /*
         $log_class::create([
