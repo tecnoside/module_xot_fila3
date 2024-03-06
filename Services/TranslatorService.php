@@ -6,11 +6,11 @@ namespace Modules\Xot\Services;
 
 use Illuminate\Support\Arr;
 // ---- services ---
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
-use Modules\Xot\Actions\Array\SaveArrayAction;
+use Illuminate\Support\Str;
 use Illuminate\Translation\Translator as BaseTranslator;
+use Modules\Xot\Actions\Array\SaveArrayAction;
 
 // dddx('leggo');
 
@@ -94,7 +94,7 @@ class TranslatorService extends BaseTranslator
 
             $filename = $v['filename'];
             // echo '<h3>['.$filename.']</h3>';
-            app(SaveArrayAction::class)->execute(data:$data, filename:$filename);
+            app(SaveArrayAction::class)->execute(data: $data, filename: $filename);
         }
     }
 
@@ -126,8 +126,7 @@ class TranslatorService extends BaseTranslator
         } catch (\Exception) {
         }
 
-        
-        app(SaveArrayAction::class)->execute(data:$rows, filename:$filename);
+        app(SaveArrayAction::class)->execute(data: $rows, filename: $filename);
 
         Session::flash('status', 'Modifica Eseguita! ['.$filename.']');
 
@@ -186,7 +185,7 @@ class TranslatorService extends BaseTranslator
             ->all();
 
         if ($original !== $merged) {
-            app(SaveArrayAction::class)->execute(data:$merged, filename:$file_path);
+            app(SaveArrayAction::class)->execute(data: $merged, filename: $file_path);
             Session::flash('status', 'Modifica Eseguita! ['.$file_path.']');
         }
     }

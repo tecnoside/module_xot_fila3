@@ -8,11 +8,11 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Console\Commands;
 
-use Illuminate\Support\Str;
-use Webmozart\Assert\Assert;
 use Illuminate\Console\Command;
-use Nwidart\Modules\Facades\Module;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+use Nwidart\Modules\Facades\Module;
+use Webmozart\Assert\Assert;
 
 class GenerateFormCommand extends Command
 {

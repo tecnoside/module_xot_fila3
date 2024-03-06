@@ -6,19 +6,16 @@ namespace Modules\Xot\Actions\Array;
 
 // use Modules\Xot\Services\ArrayService;
 
-use Illuminate\Support\Str;
-use Webmozart\Assert\Assert;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Spatie\QueueableAction\QueueableAction;
 
 class SaveArrayAction
 {
     use QueueableAction;
 
-
-    public function execute(array $data, string $filename):void{
-        
+    public function execute(array $data, string $filename): void
+    {
         $content = var_export($data, true);
 
         // HHVM fails at __set_state, so just use object cast for now
