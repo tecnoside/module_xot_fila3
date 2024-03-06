@@ -103,11 +103,16 @@ class MetatagData extends Data implements Wireable
     // ' => '#000',
     public string $favicon = '/favicon.ico';
 
+    private static ?self $instance = null;
+
     public static function make(): self
     {
-        $data = TenantService::getConfig('metatag');
+        if (! self::$instance) {
+            $data = TenantService::getConfig('metatag');
+            self::$instance = self::from($data);
+        }
 
-        return self::from($data);
+        return self::$instance;
     }
 
     public function getLogoHeader(): string
