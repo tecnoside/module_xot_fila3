@@ -169,7 +169,7 @@ if (! function_exists('dddx')) {
         );
     }
 }
-
+/*
 if (! function_exists('debug_methods')) {
     function debug_methods(object $rows): string
     {
@@ -199,6 +199,7 @@ if (! function_exists('debug_methods')) {
             ->render();
     }
 }
+*/
 
 if (! function_exists('getFilename')) {
     function getFilename(array $params): string

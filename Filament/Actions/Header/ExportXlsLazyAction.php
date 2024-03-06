@@ -64,27 +64,6 @@ class ExportXlsLazyAction extends Action
                     return app(ExportXlsByLazyCollection::class)->execute($lazy, $filename, $transKey, $fields);
                 }
             );
-
-        // ->hidden(fn ($record) => Gate::denies('changePriority', $record))
-        /*
-        ->form([
-            Select::make('priority_id')
-                ->translateLabel()
-                ->label('camping::operation.fields.priority')
-                ->relationship(
-                    name: 'priority',
-                    titleAttribute: 'name',
-                    modifyQueryUsing: fn (Builder $query) => $query->orderByDesc('level'),
-                )
-                ->preload()
-                ->searchable(),
-        ])
-        ->action(function (Operation $record, $data) {
-            $record->priority_id = $data['priority_id'];
-            $record->save();
-        })
-        ->modalSubmitActionLabel(trans('camping::operation.actions.save'));
-        */
     }
 
     public static function getDefaultName(): ?string

@@ -8,10 +8,11 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Console\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Webmozart\Assert\Assert;
+use Illuminate\Console\Command;
 use Nwidart\Modules\Facades\Module;
+use Illuminate\Support\Facades\File;
 
 class GenerateFormCommand extends Command
 {
@@ -44,7 +45,7 @@ class GenerateFormCommand extends Command
      */
     public function handle(): void
     {
-        $module_name = $this->argument('module');
+        Assert::string($module_name = $this->argument('module'));
         $module_path = Module::getModulePath($module_name);
         if (! Str::endsWith($module_path, '/')) {
             $module_path .= '/';

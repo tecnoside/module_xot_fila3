@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Services;
 
+use function Safe\scandir;
+use function Safe\realpath;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\Str;
-use Nwidart\Modules\Facades\Module;
+use Webmozart\Assert\Assert;
 
 use function Safe\json_decode;
 use function Safe\json_encode;
-use function Safe\realpath;
-use function Safe\scandir;
+use Nwidart\Modules\Facades\Module;
+use Illuminate\Support\Facades\File;
 
-use Webmozart\Assert\Assert;
+use Illuminate\Support\Facades\Vite;
+use Modules\Xot\Actions\Array\SaveArrayAction;
 
 /**
  * Class FileService.
@@ -750,7 +751,7 @@ class FileService
         $ns_dir = self::getViewNameSpacePath($ns_name);
         $path = $ns_dir.'/../../Config/'.$stringable.'.php';
         if (! File::exists($path)) {
-            ArrayService::save(['filename' => $path, 'data' => []]);
+            app(SaveArrayAction::class)->execute(data:[], filename:$path);
         }
 
         $data = File::getRequire($path);
@@ -895,7 +896,8 @@ class FileService
             'data' => $data,
         ]);
         */
-        ArrayService::save(['filename' => $to_path, 'data' => $data]);
+        
+        app(SaveArrayAction::class)->execute(data:$data, filename:$to_path);
     }
 
     /**
