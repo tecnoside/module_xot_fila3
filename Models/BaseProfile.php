@@ -7,13 +7,13 @@ namespace Modules\Xot\Models;
 // use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Notifications\Notifiable;
 use Modules\User\Models\Permission;
 use Modules\User\Models\Role;
 use Modules\User\Models\Traits\IsProfileTrait;
 use Modules\User\Models\User;
-use Modules\Xot\Contracts\ModelProfileContract;
-use Modules\Xot\Contracts\ModelWithUserContract;
 use Modules\Xot\Contracts\ProfileContract;
+use Parental\HasChildren;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -77,13 +77,12 @@ use Spatie\Permission\Traits\HasRoles;
  *
  * @mixin \Eloquent
  */
-class Profile extends BaseModel implements ModelProfileContract, ModelWithUserContract, ProfileContract
+abstract class BaseProfile extends BaseModel implements ProfileContract
 {
-    // spatie
+    use HasChildren;
     use HasRoles;
     use IsProfileTrait;
-
-    // use HasTags; //non serve
+    use Notifiable;
 
     /**
      * Undocumented variable.
@@ -92,5 +91,28 @@ class Profile extends BaseModel implements ModelProfileContract, ModelWithUserCo
     // private string $guard_name = 'web';
 
     /** @var array<int, string> */
-    protected $fillable = ['id', 'user_id'];
+    protected $fillable = [
+        'id',
+        'user_id',
+        'type',
+        'first_name',
+        'last_name',
+        'phone',
+        'email',
+        'bio',
+        'is_active',
+    ];
+
+    protected $appends = [
+        'full_name',
+    ];
+
+    /** @var array<string, string> */
+    protected $casts = [
+        'updated_by' => 'string',
+        'created_by' => 'string',
+        'deleted_by' => 'string',
+
+        'is_active' => 'boolean',
+    ];
 }
