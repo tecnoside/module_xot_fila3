@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Export;
 
-
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Http\Response;
 use Modules\Xot\Exports\QueryExport;
 use Spatie\QueueableAction\QueueableAction;
-//use Staudenmeir\LaravelCte\Query\Builder as CteBuilder;
+// use Staudenmeir\LaravelCte\Query\Builder as CteBuilder;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ExportXlsByQuery
