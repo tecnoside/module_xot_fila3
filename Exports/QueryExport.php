@@ -6,8 +6,8 @@ namespace Modules\Xot\Exports;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
-use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Relations\Relation;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 // use Laravel\Scout\Builder as ScoutBuilder;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\Exportable;
@@ -16,7 +16,8 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Modules\Xot\Actions\Collection\TransCollectionAction;
-//use Staudenmeir\LaravelCte\Query\Builder as CteBuilder;
+
+// use Staudenmeir\LaravelCte\Query\Builder as CteBuilder;
 
 class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkReading, WithMapping
 {
