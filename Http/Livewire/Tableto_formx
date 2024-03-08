@@ -1,4 +1,4 @@
-<?php
+trict_types=1);
 
 namespace Modules\Xot\Http\Livewire;
 
@@ -43,5 +43,3 @@ class Table extends XotBaseTableComponent {
         }
 
         return $columns;
-    }
-}

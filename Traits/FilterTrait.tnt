@@ -1,4 +1,4 @@
-<?php
+trict_types=1);
 
 namespace Modules\Xot\Traits;
 
@@ -323,5 +323,3 @@ function ($item, $key) use ($lang) {
         return $rows;
     }
 
-    //end filter
-}

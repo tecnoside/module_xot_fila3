@@ -1,4 +1,4 @@
-<?php
+trict_types=1);
 
 namespace XRA\Extend\Traits;
 
@@ -320,5 +320,3 @@ trait CrudTrait
         $row->updated_at = Carbon::now();
         $row->save();
         return SweetAlert::alert('Successo!', 'Risorsa rinominata correttamente.', 'green');
-    }
-}
