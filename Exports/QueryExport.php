@@ -6,8 +6,8 @@ namespace Modules\Xot\Exports;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Database\Query\Builder;
 // use Laravel\Scout\Builder as ScoutBuilder;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\Exportable;
@@ -16,7 +16,7 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Modules\Xot\Actions\Collection\TransCollectionAction;
-use Staudenmeir\LaravelCte\Query\Builder as CteBuilder;
+//use Staudenmeir\LaravelCte\Query\Builder as CteBuilder;
 
 class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkReading, WithMapping
 {
@@ -27,9 +27,9 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
 
     public ?string $transKey = null;
 
-    public CteBuilder|Builder $query;
+    public QueryBuilder|EloquentBuilder $query;
 
-    public function __construct(CteBuilder|Builder $query, ?string $transKey = null, ?array $fields = null)
+    public function __construct(QueryBuilder|EloquentBuilder $query, ?string $transKey = null, ?array $fields = null)
     {
         $this->query = $query;
         $this->transKey = $transKey;
@@ -82,7 +82,7 @@ class QueryExport implements FromQuery, ShouldQueue, WithHeadings, WithChunkRead
     /**
      * se si usa scout aggiungere |ScoutBuilder.
      */
-    public function query(): Builder|EloquentBuilder|Relation
+    public function query(): QueryBuilder|EloquentBuilder|Relation
     {
         return $this->query->orderBy('id');
     }
