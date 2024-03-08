@@ -6,8 +6,8 @@ namespace Modules\Xot\Exports;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Query\Builder as QueryBuilder;
+use Illuminate\Database\Eloquent\Relations\Relation;
 // use Laravel\Scout\Builder as ScoutBuilder;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\Exportable;
