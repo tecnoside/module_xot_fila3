@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace Modules\Xot\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-
 use Modules\Xot\Models\Log;
 
-class LogFactory extends Factory {
+class LogFactory extends Factory
+{
     /**
      * The name of the factory's corresponding model.
      *
@@ -22,11 +21,10 @@ class LogFactory extends Factory {
      *
      * @return array
      */
-    public function definition() {
-
-
+    public function definition()
+    {
         return [
-            'id' => $this->faker->word
+            'id' => $this->faker->word,
         ];
     }
 }
