@@ -19,26 +19,26 @@ class CreateSessionsTable extends XotBaseMigration
         $this->tableCreate(
             static function (Blueprint $table): void {
                 $table->string('id')->primary();
-                //$table->foreignId('user_id')->nullable()->index();
-                $table->string('user_id',36)->nullable()->index();
+                // $table->foreignId('user_id')->nullable()->index();
+                $table->string('user_id', 36)->nullable()->index();
                 $table->string('ip_address', 45)->nullable();
                 $table->text('user_agent')->nullable();
                 $table->text('payload');
                 $table->integer('last_activity')->index();
-                //$table->timestamps();
-                //$table->string('created_by')->nullable();
-                //$table->string('updated_by')->nullable();
+                // $table->timestamps();
+                // $table->string('created_by')->nullable();
+                // $table->string('updated_by')->nullable();
             }
         );
 
-         // -- UPDATE --
-         $this->tableUpdate(
+        // -- UPDATE --
+        $this->tableUpdate(
             static function (Blueprint $table): void {
                 // if (! $this->hasColumn('email')) {
                 //    $table->string('email')->nullable();
                 // }
                 // $this->updateUser($table);
-                $this->updateTimestamps($table,true);
+                $this->updateTimestamps($table, true);
             }
         );
     }
