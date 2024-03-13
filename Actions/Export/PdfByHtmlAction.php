@@ -20,6 +20,7 @@ class PdfByHtmlAction
         string $out = 'download'
     ): string|BinaryFileResponse {
         $html2pdf = new Html2Pdf('L', 'A4', 'it');
+        $html2pdf->setTestTdInOnePage(false);
         $html2pdf->writeHTML($html);
         $path = Storage::disk($disk)->path($filename);
         $html2pdf->output($path, 'F');
