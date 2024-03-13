@@ -24,7 +24,6 @@ class CreateSessionsTable extends XotBaseMigration
                 $table->text('user_agent')->nullable();
                 $table->text('payload');
                 $table->integer('last_activity')->index();
-<<<<<<< HEAD
                 // $table->timestamps();
                 // $table->string('created_by')->nullable();
                 // $table->string('updated_by')->nullable();
@@ -39,11 +38,6 @@ class CreateSessionsTable extends XotBaseMigration
                 // }
                 // $this->updateUser($table);
                 $this->updateTimestamps($table, true);
-=======
-                $table->timestamps();
-                $table->string('created_by')->nullable();
-                $table->string('updated_by')->nullable();
->>>>>>> 2ecdc898 (up)
             }
         );
     }
