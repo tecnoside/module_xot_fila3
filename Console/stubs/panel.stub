@@ -1,4 +1,4 @@
-trict_types=1);
+<?php
 
 namespace DummyNamespace;
 
@@ -154,3 +154,5 @@ class DummyClassName extends XotBasePanel {
      */
     public function actions():array {
         return [];
+    }
+}
