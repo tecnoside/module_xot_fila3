@@ -5,16 +5,19 @@ declare(strict_types=1);
 namespace Modules\Xot\Models;
 
 // use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Notifications\Notifiable;
-use Modules\User\Models\Permission;
-use Modules\User\Models\Role;
-use Modules\User\Models\Traits\IsProfileTrait;
-use Modules\User\Models\User;
-use Modules\Xot\Contracts\ProfileContract;
 use Parental\HasChildren;
+use Modules\User\Models\Role;
+use Modules\User\Models\User;
+use Modules\User\Models\Permission;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
+use Modules\Xot\Contracts\ProfileContract;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Collection;
+use Modules\User\Models\Traits\IsProfileTrait;
+use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
+use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 
 /**
  * Modules\Xot\Models\Profile.
@@ -51,6 +54,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property Collection<int, Role>       $roles
  * @property int|null                    $roles_count
  * @property User|null                   $user
+ * @property \Spatie\SchemalessAttributes\SchemalessAttributes   $extra
  *
  * @method static \Modules\Xot\Database\Factories\ProfileFactory factory($count = null, $state = [])
  * @method static Builder|Profile                                newModelQuery()
@@ -83,6 +87,8 @@ abstract class BaseProfile extends BaseModel implements ProfileContract
     use HasRoles;
     use IsProfileTrait;
     use Notifiable;
+    use InteractsWithMedia;
+    use SchemalessAttributesTrait;
 
     /**
      * Undocumented variable.
@@ -114,5 +120,16 @@ abstract class BaseProfile extends BaseModel implements ProfileContract
         'deleted_by' => 'string',
 
         'is_active' => 'boolean',
+        'extra' => SchemalessAttributes::class,
     ];
+
+     /** @var array */
+     protected $schemalessAttributes = [
+        'extra',
+    ];
+
+    public function scopeWithExtraAttributes(): Builder
+    {
+        return $this->extra->modelScope();
+    }
 }

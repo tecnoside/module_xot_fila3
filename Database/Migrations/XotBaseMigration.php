@@ -96,6 +96,9 @@ abstract class XotBaseMigration extends Migration
 
     public function getSchemaManager(): AbstractSchemaManager
     {
+        /*
+        Schema::getTables(), Schema::getColumns(), Schema::getIndexes(), Schema::getForeignKeys()
+        */
         return $this->getConn()
             ->getConnection()
             ->getDoctrineSchemaManager();
