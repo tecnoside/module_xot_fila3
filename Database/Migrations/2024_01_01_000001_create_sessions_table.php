@@ -38,7 +38,9 @@ class CreateSessionsTable extends XotBaseMigration
                 //    $table->string('email')->nullable();
                 // }
                 // $this->updateUser($table);
-                dddx($this->getColumnType('user_id'));
+                if(in_array($this->getColumnType('user_id'),['bigint'],false)){
+                    $table->string('user_id', 36)->nullable()->change();
+                };
                 $this->updateTimestamps($table, true);
             }
         );
