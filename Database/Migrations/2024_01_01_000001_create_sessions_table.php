@@ -19,7 +19,8 @@ class CreateSessionsTable extends XotBaseMigration
         $this->tableCreate(
             function (Blueprint $table): void {
                 $table->string('id')->primary();
-                $table->foreignId('user_id')->nullable()->index();
+                // $table->foreignId('user_id')->nullable()->index();
+                $table->string('user_id', 36)->nullable()->index();
                 $table->string('ip_address', 45)->nullable();
                 $table->text('user_agent')->nullable();
                 $table->text('payload');
@@ -37,6 +38,7 @@ class CreateSessionsTable extends XotBaseMigration
                 //    $table->string('email')->nullable();
                 // }
                 // $this->updateUser($table);
+                dddx($this->getColumnType('user_id'));
                 $this->updateTimestamps($table, true);
             }
         );
