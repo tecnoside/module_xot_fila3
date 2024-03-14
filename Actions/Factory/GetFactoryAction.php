@@ -22,25 +22,27 @@ class GetFactoryAction
 {
     use QueueableAction;
 
-    public function execute(string $model_class){
-        
-        $factory_class=$this->getFactoryClass($model_class);
+    public function execute(string $model_class)
+    {
+        $factory_class = $this->getFactoryClass($model_class);
 
-         if (class_exists($factory_class)) {
+        if (class_exists($factory_class)) {
             return $factory_class::new();
         }
 
         throw new \Exception('Generating Factory ['.$factory_class.'] press [F5] to refresh page ['.__LINE__.']['.__FILE__.']');
     }
 
-    public function getFactoryClass(string $model_class):string {
-        $model_name=class_basename($model_class);
-        $factory_class=Str::of($model_class)
+    public function getFactoryClass(string $model_class): string
+    {
+        $model_name = class_basename($model_class);
+        $factory_class = Str::of($model_class)
             ->before('\Models\\')
             ->append('\Database\Factories\\')
             ->append($model_name)
             ->append('Factory')
             ->toString();
+
         return $factory_class;
     }
 }

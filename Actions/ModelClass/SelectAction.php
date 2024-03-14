@@ -15,7 +15,8 @@ class SelectAction
      */
     public function execute(string $modelClass, string $sql): array
     {
-        $model=app($modelClass);
+        $model = app($modelClass);
+
         return $model->getConnection()->select($sql);
     }
 }

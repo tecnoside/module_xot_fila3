@@ -12,8 +12,8 @@ namespace Modules\Xot\Filament\Actions\Header;
 use Filament\Actions\Action;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Pages\ListRecords;
-use Modules\Xot\Actions\GetTransKeyAction;
 use Modules\Xot\Actions\Export\ExportXlsByCollection;
+use Modules\Xot\Actions\GetTransKeyAction;
 
 class FakeSeederHeaderAction extends Action
 {
@@ -30,10 +30,10 @@ class FakeSeederHeaderAction extends Action
                     ->required(),
             ])
             ->action(
-                function (array $data,ListRecords $livewire) {
+                function (array $data, ListRecords $livewire) {
                     $resource = $livewire->getResource();
-                    $modelClass=$resource::getModel();
-                    
+                    $modelClass = $resource::getModel();
+
                     /*
                     $filename = class_basename($livewire).'-'.collect($livewire->tableFilters)->flatten()->implode('-').'.xlsx';
                     $transKey = app(GetTransKeyAction::class)->execute($livewire::class);
@@ -41,7 +41,7 @@ class FakeSeederHeaderAction extends Action
                     $query = $livewire->getFilteredTableQuery(); // ->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
                     $rows = $query->get();
 
-                    
+
                     $fields = null;
                     if (method_exists($resource, 'getXlsFields')) {
                         $fields = $resource::getXlsFields($livewire->tableFilters);
@@ -49,9 +49,9 @@ class FakeSeederHeaderAction extends Action
 
                     return app(ExportXlsByCollection::class)->execute($rows, $filename, $transKey, $fields);
                     */
-                    $qty=intval($data['qty']);
+                    $qty = intval($data['qty']);
                     dddx([
-                        'a'=>$modelClass::factory()->count($qty)->make(),
+                        'a' => $modelClass::factory()->count($qty)->make(),
                     ]);
                 }
             );
