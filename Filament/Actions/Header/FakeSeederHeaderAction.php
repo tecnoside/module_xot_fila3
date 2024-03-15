@@ -13,10 +13,7 @@ use Filament\Actions\Action;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
-use Modules\Xot\Actions\GetTransKeyAction;
 use Modules\Xot\Actions\ModelClass\FakeSeederAction;
-use Modules\Xot\Actions\Export\ExportXlsByCollection;
-use Modules\Xot\Actions\GetTransKeyAction;
 
 class FakeSeederHeaderAction extends Action
 {
@@ -35,15 +32,15 @@ class FakeSeederHeaderAction extends Action
             ->action(
                 function (array $data, ListRecords $livewire) {
                     $resource = $livewire->getResource();
-                    $modelClass=$resource::getModel();
-                    
-                    $qty=intval($data['qty']);
-                    
+                    $modelClass = $resource::getModel();
+
+                    $qty = intval($data['qty']);
+
                     app(FakeSeederAction::class)
                         ->onQueue()
-                        ->execute($modelClass,$qty);
+                        ->execute($modelClass, $qty);
 
-                    $title='On Queue '.$qty.' '.$modelClass;
+                    $title = 'On Queue '.$qty.' '.$modelClass;
                     Notification::make()
                         ->title($title)
                         ->success()

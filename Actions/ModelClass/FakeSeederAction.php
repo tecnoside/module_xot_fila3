@@ -16,19 +16,18 @@ class FakeSeederAction
      */
     public function execute(string $modelClass, int $qty): void
     {
-        $max=200;
-        $qty_to_do=$qty;
-        if($qty_to_do > $max){
-            $qty_to_do=$max;
+        $max = 200;
+        $qty_to_do = $qty;
+        if ($qty_to_do > $max) {
+            $qty_to_do = $max;
         }
-        
-                
-        $rows=$modelClass::factory()->count($qty_to_do)->make();
-        $fillable=app($modelClass)->getFillable();
+
+        $rows = $modelClass::factory()->count($qty_to_do)->make();
+        $fillable = app($modelClass)->getFillable();
         $chunks = $rows->chunk(50);
-        
-        $chunks->each(function ($chunk) use($modelClass,$fillable){
-            $callback=function($item) use ($fillable){
+
+        $chunks->each(function ($chunk) use ($modelClass) {
+            $callback = function ($item) {
                 /*
                 dddx([
                     'item'=>$item,
@@ -38,28 +37,23 @@ class FakeSeederAction
                 */
                 return $item->getAttributes();
             };
-            $data=$chunk
+            $data = $chunk
                 ->map($callback)
                 ->toArray();
 
-            
             $modelClass::insert($data);
-           
-
         });
-        
 
-        $title='Created '.$qty_to_do.' '.$modelClass.' !';
+        $title = 'Created '.$qty_to_do.' '.$modelClass.' !';
         Notification::make()
             ->title($title)
             ->success()
             ->send();
 
-        if($qty > $max){
+        if ($qty > $max) {
             app(FakeSeederAction::class)
                 ->onQueue()
-                ->execute($modelClass,$qty-$max);
+                ->execute($modelClass, $qty - $max);
         }
-
     }
 }

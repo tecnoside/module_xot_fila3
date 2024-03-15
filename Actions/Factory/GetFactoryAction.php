@@ -48,8 +48,8 @@ class GetFactoryAction
         return $factory_class;
     }
 
-
-    public function createFactory(string $model_class){
+    public function createFactory(string $model_class)
+    {
         $model = app($model_class);
         $dataFromTable = app(GetPropertiesFromTableByModelAction::class)->execute($model);
         $dataFromMethods = app(GetPropertiesFromMethodsByModelAction::class)->execute($model);
