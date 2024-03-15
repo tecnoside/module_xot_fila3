@@ -30,6 +30,8 @@ class GetFactoryAction
             return $factory_class::new();
         }
 
+        $this->createFactory($model_class);
+
         throw new \Exception('Generating Factory ['.$factory_class.'] press [F5] to refresh page ['.__LINE__.']['.__FILE__.']');
     }
 
@@ -44,5 +46,17 @@ class GetFactoryAction
             ->toString();
 
         return $factory_class;
+    }
+
+
+    public function createFactory(string $model_class){
+        $model = app($model_class);
+        $dataFromTable = app(GetPropertiesFromTableByModelAction::class)->execute($model);
+        $dataFromMethods = app(GetPropertiesFromMethodsByModelAction::class)->execute($model);
+
+        dddx([
+            'dataFromTable' => $dataFromTable,
+            'dataFromMethods' => $dataFromMethods,
+        ]);
     }
 }
