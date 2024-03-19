@@ -1,4 +1,4 @@
-trict_types=1);
+<?php
 
 namespace Modules\Xot\Providers;
 
@@ -19,4 +19,6 @@ class XotFactoryGeneratorProvider extends XotBaseServiceProvider
 
         $this->loadViewsFrom($viewPath, 'factory-generator');
 
- 
+        $this->commands([GenerateFactoryCommand::class]);
+    }
+}

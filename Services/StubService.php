@@ -291,6 +291,10 @@ class StubService
         $platform = $connection->getDoctrineSchemaManager()->getDatabasePlatform();
         $platform->registerDoctrineTypeMapping('enum', 'string');
 
+        /*
+        Schema::getTables(), Schema::getColumns(), Schema::getIndexes(), Schema::getForeignKeys(),
+        */
+
         return $this->getFillable()->map(
             static function ($input_name) use ($connection, $model) {
                 try {

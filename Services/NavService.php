@@ -82,7 +82,7 @@ class NavService
 
         $q = 2;
         $date = Carbon::create($year, $month, 1);
-        if (false === $date) {
+        if (null == $date) {
             throw new \Exception('carbon error');
         }
 

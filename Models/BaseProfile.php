@@ -14,7 +14,10 @@ use Modules\User\Models\Traits\IsProfileTrait;
 use Modules\User\Models\User;
 use Modules\Xot\Contracts\ProfileContract;
 use Parental\HasChildren;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
+use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
 
 /**
  * Modules\Xot\Models\Profile.
@@ -32,25 +35,26 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static Builder|Profile                                query()
  * @method static Builder|Profile                                role($roles, $guard = null)
  *
- * @property int                         $id
- * @property string|null                 $type
- * @property string|null                 $first_name
- * @property string|null                 $last_name
- * @property string|null                 $full_name
- * @property string|null                 $email
- * @property Carbon|null                 $created_at
- * @property Carbon|null                 $updated_at
- * @property string|null                 $user_id
- * @property string|null                 $updated_by
- * @property string|null                 $created_by
- * @property Carbon|null                 $deleted_at
- * @property string|null                 $deleted_by
- * @property int                         $is_active
- * @property Collection<int, Permission> $permissions
- * @property int|null                    $permissions_count
- * @property Collection<int, Role>       $roles
- * @property int|null                    $roles_count
- * @property User|null                   $user
+ * @property int                                               $id
+ * @property string|null                                       $type
+ * @property string|null                                       $first_name
+ * @property string|null                                       $last_name
+ * @property string|null                                       $full_name
+ * @property string|null                                       $email
+ * @property Carbon|null                                       $created_at
+ * @property Carbon|null                                       $updated_at
+ * @property string|null                                       $user_id
+ * @property string|null                                       $updated_by
+ * @property string|null                                       $created_by
+ * @property Carbon|null                                       $deleted_at
+ * @property string|null                                       $deleted_by
+ * @property int                                               $is_active
+ * @property Collection<int, Permission>                       $permissions
+ * @property int|null                                          $permissions_count
+ * @property Collection<int, Role>                             $roles
+ * @property int|null                                          $roles_count
+ * @property User|null                                         $user
+ * @property \Spatie\SchemalessAttributes\SchemalessAttributes $extra
  *
  * @method static \Modules\Xot\Database\Factories\ProfileFactory factory($count = null, $state = [])
  * @method static Builder|Profile                                newModelQuery()
@@ -83,6 +87,8 @@ abstract class BaseProfile extends BaseModel implements ProfileContract
     use HasRoles;
     use IsProfileTrait;
     use Notifiable;
+    use InteractsWithMedia;
+    use SchemalessAttributesTrait;
 
     /**
      * Undocumented variable.
@@ -114,5 +120,16 @@ abstract class BaseProfile extends BaseModel implements ProfileContract
         'deleted_by' => 'string',
 
         'is_active' => 'boolean',
+        'extra' => SchemalessAttributes::class,
     ];
+
+    /** @var array */
+    protected $schemalessAttributes = [
+        'extra',
+    ];
+
+    public function scopeWithExtraAttributes(): Builder
+    {
+        return $this->extra->modelScope();
+    }
 }

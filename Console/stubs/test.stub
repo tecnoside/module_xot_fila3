@@ -1,4 +1,4 @@
-trict_types=1);
+<?php
 
 namespace DummyNamespace;
 
@@ -17,4 +17,6 @@ class DummyClass implements Scope
      */
     public function apply(Builder $query, Model $model)
     {
- 
+        // $query->where('age', '>', 200);
+    }
+}
