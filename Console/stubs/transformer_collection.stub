@@ -1,4 +1,4 @@
-trict_types=1);
+<?php
 
 namespace DummyNamespace;
 
@@ -21,3 +21,5 @@ class DummyClass extends ResourceCollection {
                 'self' => 'link-value',
             ],
         ];
+    }
+}

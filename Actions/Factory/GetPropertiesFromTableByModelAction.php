@@ -27,9 +27,11 @@ class GetPropertiesFromTableByModelAction
         $table = $model->getConnection()->getTablePrefix().$model->getTable();
         // Method Illuminate\Database\Connection::getDoctrineSchemaManager() invoked with 1 parameter, 0 required.
         // $schema = $model->getConnection()->getDoctrineSchemaManager($table);
+        // Call to an undefined method Illuminate\Database\Connection::getDoctrineSchemaManager().
         $schema = $model->getConnection()->getDoctrineSchemaManager();
         $databasePlatform = $schema->getDatabasePlatform();
-        $databasePlatform->registerDoctrineTypeMapping('enum', 'customEnum');
+        // Type to be overwritten customEnum does not exist.
+        // $databasePlatform->registerDoctrineTypeMapping('enum', 'customEnum');
 
         $platformName = $databasePlatform->getName();
         // $customTypes = $this->laravel['config']->get("ide-helper.custom_db_types.{$platformName}", []);

@@ -45,8 +45,8 @@ class RouteServiceProvider extends XotBaseRouteServiceProvider
 
     public function registerMyMiddleware(Router $router): void
     {
-        $router->prependMiddlewareToGroup('web', SetDefaultLocaleForUrlsMiddleware::class);
-        $router->prependMiddlewareToGroup('api', SetDefaultLocaleForUrlsMiddleware::class);
+        // $router->prependMiddlewareToGroup('web', SetDefaultLocaleForUrlsMiddleware::class);
+        // $router->prependMiddlewareToGroup('api', SetDefaultLocaleForUrlsMiddleware::class);
 
         $router->prependMiddlewareToGroup('web', SetDefaultTenantForUrlsMiddleware::class);
         $router->prependMiddlewareToGroup('api', SetDefaultTenantForUrlsMiddleware::class);
