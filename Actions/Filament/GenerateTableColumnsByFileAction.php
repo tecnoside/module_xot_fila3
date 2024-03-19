@@ -36,13 +36,12 @@ class GenerateTableColumnsByFileAction
         Assert::string($class_name = Str::replace('/', '\\', $class_name));
         $class_name = Str::substr($class_name, 0, -4);
         $model_name = app($class_name)->getModel();
-        //$contents = $file->getContents();
+        // $contents = $file->getContents();
 
-
-        //dddx([
+        // dddx([
         //    'message'=>'HALT',
         //    'content'=>$file->getContents(),
-        //]);
+        // ]);
 
         $fillable = app($model_name)->getFillable();
         Assert::classExists($class_name);
