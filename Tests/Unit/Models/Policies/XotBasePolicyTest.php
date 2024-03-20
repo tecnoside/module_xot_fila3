@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Tests\Unit\Models\Policies;
 
-use Tests\TestCase;
 use Modules\User\Models\User;
 use Modules\Xot\Models\Policies\XotBasePolicy;
+use Tests\TestCase;
 
 /**
  * Class XotBasePolicyTest.
