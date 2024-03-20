@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Tests\Feature\Http\Controllers\Admin;
 
-use Modules\Xot\Http\Controllers\Admin\XotPanelController;
+use Modules\Cms\Http\Controllers\Admin\XotPanelController;
 use Tests\TestCase;
 
 /**
