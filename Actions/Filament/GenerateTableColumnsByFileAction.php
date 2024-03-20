@@ -44,24 +44,26 @@ class GenerateTableColumnsByFileAction
         Assert::string($class_name = Str::replace('/', '\\', $class_name));
         $class_name = Str::substr($class_name, 0, -4);
         $model_name = app($class_name)->getModel();
+        $model = app($model_name);
         // ------------------- TABLE -------------------
-        $body = app(GetMethodBodyAction::class)->execute($class_name, 'table');
-        $body1 = app(GetStrBetweenStartsWithAction::class)->execute($body, '->columns(', '(', ')');
-        $body_new = '->columns('.chr(13).'['.chr(13).$this->getResourceTableColumns($model_name).chr(13).']'.chr(13).')';
-        $body_up = Str::of($body)
+        /*
+        $body=app(GetMethodBodyAction::class)->execute($class_name,'table');
+        $body1=app(GetStrBetweenStartsWithAction::class)->execute($body,'->columns(','(',')');
+        $body_new = '->columns(['.chr(13).$this->getResourceTableColumns($model_name).chr(13).'])';
+        $body_up=Str::of($body)
             ->replace($body1, $body_new)
             ->toString();
-        $content_new = Str::of($file->getContents())->replace($body, $body_up)->toString();
+        $content_new=Str::of($file->getContents())->replace($body, $body_up)->toString();
         LaravelFile::put($filename, $content_new);
 
-        // -------------------- FORM ------------------------------
-        $body = app(GetMethodBodyAction::class)->execute($class_name, 'form');
-        $body1 = app(GetStrBetweenStartsWithAction::class)->execute($body, '->schema(', '(', ')');
-        $body_new = '->schema('.chr(13).'['.chr(13).$this->getResourceFormSchema($model_name).chr(13).']'.chr(13).')';
-        $body_up = Str::of($body)
+        //-------------------- FORM ------------------------------
+        $body=app(GetMethodBodyAction::class)->execute($class_name,'form');
+        $body1=app(GetStrBetweenStartsWithAction::class)->execute($body,'->schema(','(',')');
+        $body_new = '->schema(['.chr(13).$this->getResourceFormSchema($model_name).chr(13).'])';
+        $body_up=Str::of($body)
             ->replace($body1, $body_new)
             ->toString();
-        $content_new = Str::of($file->getContents())->replace($body, $body_up)->toString();
+        $content_new=Str::of($file->getContents())->replace($body, $body_up)->toString();
         LaravelFile::put($filename, $content_new);
 
         //-----------------------------------------------------
