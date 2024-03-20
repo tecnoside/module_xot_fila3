@@ -7,20 +7,16 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Filament;
 
-use function Safe\file;
-use Illuminate\Support\Str;
-use Webmozart\Assert\Assert;
-use Modules\Performance\Models\Individuale;
-
-use Spatie\QueueableAction\QueueableAction;
-
-use Symfony\Component\Finder\SplFileInfo as File;
-use Illuminate\Support\Facades\File as LaravelFile;
 use Filament\Forms\Commands\Concerns\CanGenerateForms;
-use Modules\Xot\Actions\ModelClass\GetMethodBodyAction;
-use Filament\Tables\Commands\Concerns\CanGenerateTables;
 use Filament\Support\Commands\Concerns\CanReadModelSchemas;
+use Filament\Tables\Commands\Concerns\CanGenerateTables;
+use Illuminate\Support\Facades\File as LaravelFile;
+use Illuminate\Support\Str;
+use Modules\Xot\Actions\ModelClass\GetMethodBodyAction;
 use Modules\Xot\Actions\String\GetStrBetweenStartsWithAction;
+use Spatie\QueueableAction\QueueableAction;
+use Symfony\Component\Finder\SplFileInfo as File;
+use Webmozart\Assert\Assert;
 
 class GenerateTableColumnsByFileAction
 {
@@ -32,25 +28,24 @@ class GenerateTableColumnsByFileAction
 
     /**
      * Undocumented function.
+     *
      * @return void
-     * 
      */
     public function execute(File $file)
     {
-        
         if (! $file->isFile()) {
             return 0;
         }
         if (! \in_array($file->getExtension(), ['php'], false)) {
             return 0;
         }
-        $filename=$file->getPathname();
+        $filename = $file->getPathname();
         $class_name = Str::replace(base_path('Modules/'), 'Modules/', $filename);
         Assert::string($class_name = Str::replace('/', '\\', $class_name));
         $class_name = Str::substr($class_name, 0, -4);
         $model_name = app($class_name)->getModel();
-        $model=app($model_name);
-        //------------------- TABLE -------------------
+        $model = app($model_name);
+        // ------------------- TABLE -------------------
         /*
         $body=app(GetMethodBodyAction::class)->execute($class_name,'table');
         $body1=app(GetStrBetweenStartsWithAction::class)->execute($body,'->columns(','(',')');
@@ -60,7 +55,7 @@ class GenerateTableColumnsByFileAction
             ->toString();
         $content_new=Str::of($file->getContents())->replace($body, $body_up)->toString();
         LaravelFile::put($filename, $content_new);
-        
+
         //-------------------- FORM ------------------------------
         $body=app(GetMethodBodyAction::class)->execute($class_name,'form');
         $body1=app(GetStrBetweenStartsWithAction::class)->execute($body,'->schema(','(',')');
@@ -70,7 +65,7 @@ class GenerateTableColumnsByFileAction
             ->toString();
         $content_new=Str::of($file->getContents())->replace($body, $body_up)->toString();
         LaravelFile::put($filename, $content_new);
-        
+
         //-----------------------------------------------------
 
         if(in_array('anno', $model->getFillable())){
@@ -87,13 +82,7 @@ class GenerateTableColumnsByFileAction
             LaravelFile::put($filename, $content_new);
         }
         */
-        
-        
     }
-
- 
-
-    
 
     public function ddFile(File $file): void
     {
