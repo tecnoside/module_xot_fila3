@@ -7,16 +7,20 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Filament;
 
-use Filament\Support\Commands\Concerns\CanReadModelSchemas;
-use Filament\Tables\Commands\Concerns\CanGenerateTables;
+use function Safe\file;
 use Illuminate\Support\Str;
+use Webmozart\Assert\Assert;
 use Modules\Performance\Models\Individuale;
 
-use function Safe\file;
-
 use Spatie\QueueableAction\QueueableAction;
+
 use Symfony\Component\Finder\SplFileInfo as File;
-use Webmozart\Assert\Assert;
+use Illuminate\Support\Facades\File as LaravelFile;
+use Filament\Forms\Commands\Concerns\CanGenerateForms;
+use Modules\Xot\Actions\ModelClass\GetMethodBodyAction;
+use Filament\Tables\Commands\Concerns\CanGenerateTables;
+use Filament\Support\Commands\Concerns\CanReadModelSchemas;
+use Modules\Xot\Actions\String\GetStrBetweenStartsWithAction;
 
 class GenerateTableColumnsByFileAction
 {
@@ -24,80 +28,51 @@ class GenerateTableColumnsByFileAction
     use CanReadModelSchemas;
     // use CanGenerateImporterColumns;
     use CanGenerateTables;
+    use CanGenerateForms;
 
     /**
      * Undocumented function.
-     * return number of input added.
+     * @return void
+     * 
      */
-    public function execute(File $file): int
+    public function execute(File $file)
     {
-        $model_class = Individuale::class;
-        dddx($this->getResourceTableColumns($model_class));
-
+        
         if (! $file->isFile()) {
             return 0;
         }
         if (! \in_array($file->getExtension(), ['php'], false)) {
             return 0;
         }
-
-        $class_name = Str::replace(base_path('Modules/'), 'Modules/', $file->getPathname());
+        $filename=$file->getPathname();
+        $class_name = Str::replace(base_path('Modules/'), 'Modules/', $filename);
         Assert::string($class_name = Str::replace('/', '\\', $class_name));
         $class_name = Str::substr($class_name, 0, -4);
         $model_name = app($class_name)->getModel();
-
-        $fillable = app($model_name)->getFillable();
-        Assert::classExists($class_name);
-        $reflection_class = new \ReflectionClass($class_name);
-        $table_method = $reflection_class->getMethod('table');
-
-        $start_line = $table_method->getStartLine() - 1; // it's actually - 1, otherwise you wont get the function() block
-        $end_line = $table_method->getEndLine();
-        $length = $end_line - $start_line;
-        Assert::string($file_name = $table_method->getFileName());
-        // $contents= $file->getContents();
-        $source = file($file_name);
-        $body = implode('', \array_slice($source, $start_line, $length));
-
-        $pos = strpos($body, '->columns(');
-        $pos1 = strpos($body, ')', $pos);
-
-        $length = $pos1 - $pos;
-        do {
-            $body1 = substr($body, $pos, $length);
-            $open_count = substr_count($body1, '(');
-            $close_count = substr_count($body1, ')');
-            ++$length;
-        } while ($open_count !== $close_count);
-
-        $model_name = '\Modules\Performance\Models\CriteriOption';
-        $body_new = chr(13).'->columns('.$this->getResourceTableColumns($model_name).')';
-        dd([
-            'model_name' => $model_name,
-            'body_new' => $body_new,
-        ]);
-        /*
-        dd(
-            [
-                'class_name' => $class_name,
-                'model_name' => $model_name,
-                'fillable' => $fillable,
-                // 't1'=>app($class_name)->form(app(\Filament\Forms\Form::class)),
-                'methods' => get_class_methods(app($class_name)),
-                'form_method' => $table_method,
-                'form_method_methods' => get_class_methods($table_method),
-                'body' => $body,
-                'body1' => $body1,
-                'pos' => $pos,
-                'pos1' => $pos1,
-                'open_count' => $open_count,
-                'close_count' => $close_count,
-                'model_name' => $model_name,
-                'body_new' => $body_new,
-            ]
-        );
-        */
+        //------------------- TABLE -------------------
+        $body=app(GetMethodBodyAction::class)->execute($class_name,'table');
+        $body1=app(GetStrBetweenStartsWithAction::class)->execute($body,'->columns(','(',')');
+        $body_new = '->columns('.chr(13).'['.chr(13).$this->getResourceTableColumns($model_name).chr(13).']'.chr(13).')';
+        $body_up=Str::of($body)
+            ->replace($body1, $body_new)
+            ->toString();
+        $content_new=Str::of($file->getContents())->replace($body, $body_up)->toString();
+        LaravelFile::put($filename, $content_new);
+        
+        //-------------------- FORM ------------------------------
+        $body=app(GetMethodBodyAction::class)->execute($class_name,'form');
+        $body1=app(GetStrBetweenStartsWithAction::class)->execute($body,'->schema(','(',')');
+        $body_new = '->schema('.chr(13).'['.chr(13).$this->getResourceFormSchema($model_name).chr(13).']'.chr(13).')';
+        $body_up=Str::of($body)
+            ->replace($body1, $body_new)
+            ->toString();
+        $content_new=Str::of($file->getContents())->replace($body, $body_up)->toString();
+        LaravelFile::put($filename, $content_new);
     }
+
+ 
+
+    
 
     public function ddFile(File $file): void
     {
