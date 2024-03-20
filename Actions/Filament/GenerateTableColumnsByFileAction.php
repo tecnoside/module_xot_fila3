@@ -63,6 +63,23 @@ class GenerateTableColumnsByFileAction
             ->toString();
         $content_new = Str::of($file->getContents())->replace($body, $body_up)->toString();
         LaravelFile::put($filename, $content_new);
+
+        //-----------------------------------------------------
+
+        if(in_array('anno', $model->getFillable())){
+            $body=app(GetMethodBodyAction::class)->execute($class_name,'table');
+            $body1=app(GetStrBetweenStartsWithAction::class)->execute($body,'->filters(','(',')');
+            $body_new = "->filters([
+                    app(\Modules\Xot\Actions\Filament\Filter\GetYearFilter::class)->execute('anno',date('Y')-3,intval(date('Y'))),
+                ],layout: \Filament\Tables\Enums\FiltersLayout::AboveContent)
+                ->persistFiltersInSession()";
+            $body_up=Str::of($body)
+                ->replace($body1, $body_new)
+                ->toString();
+            $content_new=Str::of($file->getContents())->replace($body, $body_up)->toString();
+            LaravelFile::put($filename, $content_new);
+        }
+        */
     }
 
     public function ddFile(File $file): void
