@@ -4,19 +4,17 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\String;
 
-use Exception;
-use Illuminate\Support\Str;
-use Modules\Xot\Services\FileService;
 use Spatie\QueueableAction\QueueableAction;
 
 class GetStrBetweenStartsWithAction
 {
     use QueueableAction;
 
-    public function execute(string $body, string $start,string $open, string $close):string {
+    public function execute(string $body, string $start, string $open, string $close): string
+    {
         $pos = strpos($body, $start);
-        if($pos===false){
-            throw new Exception("Cannot find $start in $body [".__LINE__."][".__FILE__."]");
+        if (false === $pos) {
+            throw new \Exception("Cannot find $start in $body [".__LINE__.']['.__FILE__.']');
         }
         $pos1 = strpos($body, $close, $pos);
 
@@ -27,6 +25,7 @@ class GetStrBetweenStartsWithAction
             $close_count = substr_count($body1, $close);
             ++$length;
         } while ($open_count !== $close_count);
+
         return $body1;
     }
 }
