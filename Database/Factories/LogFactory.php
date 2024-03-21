@@ -23,9 +23,9 @@ class LogFactory extends Factory
     public function definition(): array
     {
         return [
-           // 'key' => $this->faker->word,
-           // 'value' => $this->faker->text,
-           // 'expiration' => $this->faker->randomNumber(5),
+            // 'key' => $this->faker->word,
+            // 'value' => $this->faker->text,
+            // 'expiration' => $this->faker->randomNumber(5),
         ];
     }
 }
