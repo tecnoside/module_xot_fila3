@@ -9,7 +9,7 @@ namespace Modules\Xot\Models;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Modules\Xot\Services\FactoryService;
+use Modules\Xot\Actions\Factory\GetFactoryAction;
 use Modules\Xot\Traits\Updater;
 
 /**
@@ -63,12 +63,6 @@ abstract class BaseModel extends Model
         // 'password'
     ];
 
-    /* -- spatie
-    public function images():MorphMany {
-        return $this->morphMany(Image::class, 'post');
-    }
-    */
-
     /**
      * Create a new factory instance for the model.
      *
@@ -76,6 +70,7 @@ abstract class BaseModel extends Model
      */
     protected static function newFactory()
     {
-        return FactoryService::newFactory(static::class);
+        // return app(\Modules\Xot\Actions\Factory\GetFactoryAction::class)->execute(static::class);
+        return app(GetFactoryAction::class)->execute(static::class);
     }
 }

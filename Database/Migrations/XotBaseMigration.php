@@ -21,28 +21,17 @@ use Nwidart\Modules\Facades\Module;
  */
 abstract class XotBaseMigration extends Migration
 {
-    protected ?Model $model = null;
+    protected Model $model;
 
     protected ?string $model_class = null;
 
-    // *
     public function __construct()
     {
-        if (! $this->model instanceof Model) {
-            $model = $this->getModel();
-            // 37     Dead catch - Exception is never thrown in the try block.
-            // try {
-            $this->model = app($model);
-            // } catch (\Exception $ex) {
-            //    $res = StubService::make()->setModelClass($model)->setName('model')->get();
-            //    throw new \Exception('<br><br>Table '.get_class($this).' does not have model '.$model.'<br><br>');
-            // }
+        if (null == $this->model_class) {
+            $this->model_class = $this->getModel();
         }
-
-        // $this->model = new $this->model();
+        $this->model = app($this->model_class);
     }
-
-    // */
 
     public function getModel(): string
     {
@@ -70,64 +59,52 @@ abstract class XotBaseMigration extends Migration
 
     public function getTable(): string
     {
-        if (! $this->model instanceof Model) {
-            return '';
-        }
-
         return $this->model->getTable();
     }
 
     public function getConn(): Builder
     {
-        // $conn_name=with(new MyModel())->getConnectionName();
-        // \DB::reconnect('mysql');
-        // dddx(config('database'));
-        // \DB::purge('mysql');
-        // \DB::reconnect('mysql');
-        if (! $this->model instanceof Model) {
-            throw new \Exception('model is null');
-        }
-
         $connectionName = $this->model->getConnectionName();
 
-        // dddx([$this->model, $conn_name]);
         return Schema::connection($connectionName);
     }
-
+    /*
     public function getSchemaManager(): AbstractSchemaManager
     {
-        /*
-        Schema::getTables(), Schema::getColumns(), Schema::getIndexes(), Schema::getForeignKeys()
-        */
+
+        //Schema::getTables(), Schema::getColumns(), Schema::getIndexes(), Schema::getForeignKeys()
+
         return $this->getConn()
             ->getConnection()
             ->getDoctrineSchemaManager();
     }
 
-    /**
+    /*
      * @throws \Doctrine\DBAL\Exception
-     */
+
     public function getTableDetails(): Table
     {
         return $this->getSchemaManager()
             ->listTableDetails($this->getTable());
     }
+    */
 
-    /**
+    /*
      * @throws \Doctrine\DBAL\Exception
      *
      * @return array<Index>
-     */
+
     public function getTableIndexes(): array
     {
         return $this->getSchemaManager()
             ->listTableIndexes($this->getTable());
     }
+    */
 
     /**
      * ---.
      */
-    public function tableExists(?string $table = null): bool
+    public function tableExists(string $table = null): bool
     {
         if (null === $table) {
             $table = $this->getTable();
@@ -169,41 +146,14 @@ abstract class XotBaseMigration extends Migration
         $this->getConn()->getConnection()->statement($sql);
     }
 
-    public function hasIndex(string $index, string $type = 'index'): bool
+    public function hasIndex(string $column): bool
     {
-        /*
-        $tbl = $this->getTable();
-        $conn = $this->getConn()->getConnection();
-        $dbSchemaManager = $conn->getDoctrineSchemaManager();
-        $doctrineTable = $dbSchemaManager->listTableDetails($tbl);
-        */
-        $table = $this->getTable();
-        $doctrineTable = $this->getTableDetails();
-
-        // $indexes=$this->getTableIndexes();
-        return $doctrineTable->hasIndex($table.'_'.$index.'_'.$type);
+        return $this->getConn()->hasIndex($this->getTable(), $column);
     }
 
-    public function dropIndex(string $index): void
-    {
-        $table = $this->getTable();
-        $doctrineTable = $this->getTableDetails();
-        $exists = $doctrineTable->hasIndex($table.'_'.$index);
-        if ($exists) {
-            $doctrineTable->dropIndex($table.'_'.$index);
-        }
-    }
-
-    public function hasIndexName(string $name): bool
-    {
-        $doctrineTable = $this->getTableDetails();
-
-        return $doctrineTable->hasIndex($name);
-    }
-
-    /**
+    /*
      * ---.
-     */
+
     public function hasPrimaryKey(): bool
     {
         $table_details = $this->getTableDetails();
@@ -219,6 +169,7 @@ abstract class XotBaseMigration extends Migration
         $sql = 'ALTER TABLE '.$this->getTable().' DROP PRIMARY KEY;';
         $this->query($sql);
     }
+    */
 
     /**
      * Reverse the migrations.
@@ -377,8 +328,7 @@ abstract class XotBaseMigration extends Migration
 
     public function updateUser(Blueprint $table): void
     {
-        $model = $this->getModel();
-        $func = 'updateUserKey'.Str::studly(app($model)->getKeyType());
+        $func = 'updateUserKey'.Str::studly($this->model->getKeyType());
         $this->{$func}($table);
 
         if ($this->hasColumn('model_id') && 'bigint' === $this->getColumnType('model_id')) {
@@ -418,9 +368,9 @@ abstract class XotBaseMigration extends Migration
         }
 
         if ($this->hasColumn('id') && \in_array($this->getColumnType('id'), ['string', 'guid'], true)) {
-            if ($this->hasIndexName('PRIMARY')) {
-                $table->dropPrimary();
-            }
+            // if ($this->hasIndexName('PRIMARY')) {
+            //    $table->dropPrimary();
+            // }
 
             $table->renameColumn('id', 'uuid');
             // $table->id('id')->first();

@@ -34,10 +34,10 @@ class GenerateTableColumnsByFileAction
     public function execute(File $file)
     {
         if (! $file->isFile()) {
-            return 0;
+            return;
         }
         if (! \in_array($file->getExtension(), ['php'], false)) {
-            return 0;
+            return;
         }
         $filename = $file->getPathname();
         $class_name = Str::replace(base_path('Modules/'), 'Modules/', $filename);

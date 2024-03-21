@@ -66,6 +66,7 @@ class GetFactoryAction
      */
     public function createFactory(string $model_class)
     {
+        /*
         $model = app($model_class);
         $dataFromTable = app(GetPropertiesFromTableByModelAction::class)->execute($model);
         $dataFromMethods = app(GetPropertiesFromMethodsByModelAction::class)->execute($model);
@@ -74,5 +75,7 @@ class GetFactoryAction
             'dataFromTable' => $dataFromTable,
             'dataFromMethods' => $dataFromMethods,
         ]);
+        */
+        dddx('WIP');
     }
 }
