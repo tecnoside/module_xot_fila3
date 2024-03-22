@@ -15,17 +15,16 @@
         "role": "Developer"
     }],
     "require": {
-        "php": "^8.1",
-        "coolsam/modules": "*",
+        "php": "^8.2",
         "doctrine/dbal": "*",
         "fidum/laravel-eloquent-morph-to-one": "*",
-        "filament/filament": "^3.0-stable",
+        "filament/filament": "^3.2",
         "guzzlehttp/guzzle": "*",
         "illuminate/contracts": "*",
         "illuminate/support": "*",
-        "konnco/filament-import": "^1.6",
+        "konnco/filament-import": "*",
         "laraxot/module_tenant_fila3": "dev-master",
-        "livewire/livewire": "^3.2",
+        "livewire/livewire": "*",
         "nwidart/laravel-modules": "*",
         "spatie/laravel-data": "*",
         "spatie/laravel-model-status": "*",
@@ -40,7 +39,7 @@
         "enlightn/enlightn": "^2.7",
         "fakerphp/faker": "*",
         "friendsofphp/php-cs-fixer": "*",
-        "larastan/larastan": "^2.7",
+        "larastan/larastan": "^2.9",
         "laravel/pint": "^1.13",
         "nunomaduro/collision": "*",
         "nunomaduro/phpinsights": "^2.11",
@@ -58,14 +57,27 @@
         "vimeo/psalm": "^5.17"
     },
     "repositories": [
-    {
-        "type": "path",
-        "url": "../Tenant"
-    },
-    {
-        "type": "path",
-        "url": "../UI"
-    }],
+        {
+            "type": "path",
+            "url": "../Tenant"
+        },
+        {
+            "type": "path",
+            "url": "../UI"
+        },
+        {
+            "type": "path",
+            "url": "../../packages/konnco/filament-import"
+        },
+        {
+            "type": "path",
+            "url": "../../packages/savannabits/filament-modules"
+        },
+        {
+            "type": "path",
+            "url": "../../packages/sevendays-digital/filament-nested-resources"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Modules\\Xot\\": ""
@@ -86,7 +98,8 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "phpstan/extension-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "wikimedia/composer-merge-plugin": true
         }
     },
     "extra": {
