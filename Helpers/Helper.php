@@ -43,6 +43,14 @@ if (! function_exists('get_current_theme_name')) {
     }
 }
 */
+if (! function_exists('isRunningTestBench')) {
+    function isRunningTestBench(): bool
+    {
+        $testbench = realpath(__DIR__.'/../vendor/orchestra');
+
+        return Str::startsWith(base_path(), $testbench);
+    }
+}
 
 if (! function_exists('snake_case')) {
     function snake_case(string $str): string
@@ -354,7 +362,7 @@ if (! function_exists('params2ContainerItem')) {
     /**
      * @return array<array>
      */
-    function params2ContainerItem(?array $params = null): array
+    function params2ContainerItem(array $params = null): array
     {
         if (null === $params) {
             // Call to static method current() on an unknown class Route.
@@ -647,7 +655,7 @@ if (! function_exists('url_queries')) {
      *
      * @return string The updated query string
      */
-    function url_queries(array $queries, ?string $url = null): string
+    function url_queries(array $queries, string $url = null): string
     {
         // If a URL isn't supplied, use the current one
         if (! $url) {

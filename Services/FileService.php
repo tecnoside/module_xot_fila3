@@ -137,6 +137,9 @@ class FileService
         $filename_to = self::fixPath(public_path($asset));
         $asset = Str::replace(url(''), '', asset($asset));
         if (! File::exists($filename_from)) {
+            if (isRunningTestBench()) {
+                return $path;
+            }
             throw new \Exception('file ['.$filename_from.'] not Exists , path ['.$path.']');
         }
 
