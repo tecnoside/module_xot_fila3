@@ -11,7 +11,6 @@ use Modules\Tenant\Services\TenantService;
 use Modules\User\Models\Membership;
 use Modules\User\Models\Team;
 use Modules\User\Models\Tenant;
-use Modules\User\Models\TenantUser;
 use Modules\Xot\Contracts\ProfileContract;
 use Spatie\LaravelData\Concerns\WireableData;
 use Spatie\LaravelData\Data;
@@ -62,13 +61,13 @@ class XotData extends Data implements Wireable
 
     public bool $register_collective = false;
 
-    public string $team_class = Team::class; // = Team::class;
+    public string $team_class = 'Modules\User\Models\Team'; // = Team::class;
 
-    public string $tenant_class = Tenant::class; // = Team::class;
+    public string $tenant_class = 'Modules\User\Models\Tenant'; // = Team::class;
 
-    public string $membership_class = Membership::class; // = Membership::class;
+    public string $membership_class = 'Modules\User\Models\Membership'; // = Membership::class;
 
-    public string $tenant_pivot_class = TenantUser::class; // = Membership::class;
+    public string $tenant_pivot_class = 'Modules\User\Models\TenantUser'; // = Membership::class;
 
     public ?string $super_admin = null;
     private static ?self $instance = null;

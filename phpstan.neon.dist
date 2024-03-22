@@ -31,7 +31,7 @@ parameters:
         - ./rector.php
 
     bootstrapFiles:
-        - ./Services/vendor/autoload.php
+        # - ./Services/vendor/autoload.php
         - ./phpstan_constants.php
 
     scanFiles:

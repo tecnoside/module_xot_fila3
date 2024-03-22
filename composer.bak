@@ -29,7 +29,7 @@
         "spatie/laravel-tags": "^4.3",
         "spipu/html2pdf": "^5.2",
         "staudenmeir/eloquent-has-many-deep": "^1.17",
-        "symfony/dom-crawler": "^6.2"
+        "symfony/dom-crawler": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.12",

@@ -25,6 +25,7 @@ use function Safe\glob;
 use function Safe\json_decode;
 use function Safe\parse_url;
 use function Safe\preg_match;
+use function Safe\realpath;
 
 use Webmozart\Assert\Assert;
 
@@ -47,8 +48,15 @@ if (! function_exists('isRunningTestBench')) {
     function isRunningTestBench(): bool
     {
         $testbench = realpath(__DIR__.'/../vendor/orchestra');
+        $res = Str::startsWith(base_path(), $testbench);
+        if (false == $res) {
+            dd([
+                'msg' => 'preso',
+                'res' => $res,
+            ]);
+        }
 
-        return Str::startsWith(base_path(), $testbench);
+        return $res;
     }
 }
 
