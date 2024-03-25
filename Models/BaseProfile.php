@@ -15,6 +15,9 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
 
+/**
+ * @propery SchemalessAttributes $extra
+ */
 abstract class BaseProfile extends BaseModel implements ProfileContract
 {
     use HasChildren;

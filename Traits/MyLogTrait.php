@@ -63,7 +63,7 @@ trait MyLogTrait
                             return '*attributes' === $key;
                         }
                     )->values()[0];
-                    $parz['data'] = json_encode($data, JSON_THROW_ON_ERROR);
+                    $parz['data'] = \Safe\json_encode($data, JSON_THROW_ON_ERROR);
                 }
                 $log = static::$logModel;
                 $res = $log::create($parz);
