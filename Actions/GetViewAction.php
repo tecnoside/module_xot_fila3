@@ -13,7 +13,6 @@ class GetViewAction
 {
     use QueueableAction;
 
-   
     public function execute(string $tpl = '', string $file0 = ''): string
     {
         if ('' === $file0) {
