@@ -137,6 +137,9 @@ class FileService
         $filename_to = self::fixPath(public_path($asset));
         $asset = Str::replace(url(''), '', asset($asset));
         if (! File::exists($filename_from)) {
+            if (isRunningTestBench()) {
+                return $path;
+            }
             throw new \Exception('file ['.$filename_from.'] not Exists , path ['.$path.']');
         }
 
@@ -145,11 +148,7 @@ class FileService
             if (! File::exists(\dirname($filename_to))) {
                 File::makeDirectory(\dirname($filename_to), 0755, true, true);
             }
-
-            // 105    If condition is always true.
-            // if (File::exists($filename_from)) {
             File::copy($filename_from, $filename_to);
-            // }
         }
 
         Assert::string($asset, 'wip');

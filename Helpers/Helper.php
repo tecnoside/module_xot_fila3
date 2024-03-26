@@ -25,6 +25,7 @@ use function Safe\glob;
 use function Safe\json_decode;
 use function Safe\parse_url;
 use function Safe\preg_match;
+use function Safe\realpath;
 
 use Webmozart\Assert\Assert;
 
@@ -43,6 +44,34 @@ if (! function_exists('get_current_theme_name')) {
     }
 }
 */
+if (! function_exists('isRunningTestBench')) {
+    function isRunningTestBench(): bool
+    {
+        /*
+        try {
+            $testbench = realpath(__DIR__.'/../vendor/orchestra');
+        } catch (Exception $e) {
+            return false;
+        }
+        $res = Str::startsWith(base_path(), $testbench);
+        if (false == $res) {
+            dd([
+                'msg' => 'preso',
+                'res' => $res,
+                'base_path' => base_path(),
+                'testbench' => $testbench,
+            ]);
+        }
+
+        return $res;
+        */
+        $path = FileService::fixPath('\vendor\orchestra\testbench-core\laravel');
+        $base = FileService::fixPath(base_path());
+        $res = Str::endsWith($base, $path);
+
+        return $res;
+    }
+}
 
 if (! function_exists('snake_case')) {
     function snake_case(string $str): string

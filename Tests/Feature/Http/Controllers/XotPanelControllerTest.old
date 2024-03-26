@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Modules\Xot\Tests\Feature\Http\Controllers\Admin;
+namespace Modules\Xot\Tests\Feature\Http\Controllers;
 
-use Modules\Xot\Http\Controllers\Admin\XotPanelController;
+use Modules\Cms\Http\Controllers\XotPanelController;
 use Tests\TestCase;
 
 /**
  * Class XotPanelControllerTest.
  *
- * @covers \Modules\Xot\Http\Controllers\Admin\XotPanelController
+ * @covers \Modules\Xot\Http\Controllers\XotPanelController
  */
 final class XotPanelControllerTest extends TestCase
 {

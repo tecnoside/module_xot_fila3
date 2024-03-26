@@ -28,6 +28,7 @@ return static function (RectorConfig $rectorConfig): void {
             __DIR__.'/Modules/*/vendor',
             '*/docs',
             '*/vendor',
+            './vendor/',
         ]
     );
 

@@ -15,58 +15,75 @@
         "role": "Developer"
     }],
     "require": {
-        "php": "^8.1",
-        "coolsam/modules": "*",
+        "php": "^8.2",
+        "calebporzio/sushi": "^2.5",
         "doctrine/dbal": "*",
         "fidum/laravel-eloquent-morph-to-one": "*",
-        "filament/filament": "^3.0-stable",
+        "filament/filament": "^3.2",
+        "filament/spatie-laravel-media-library-plugin": "^3.2",
         "guzzlehttp/guzzle": "*",
         "illuminate/contracts": "*",
         "illuminate/support": "*",
-        "konnco/filament-import": "^1.6",
+        "konnco/filament-import": "*",
         "laraxot/module_tenant_fila3": "dev-master",
-        "livewire/livewire": "^3.2",
+        "livewire/livewire": "*",
         "nwidart/laravel-modules": "*",
         "spatie/laravel-data": "*",
         "spatie/laravel-model-status": "*",
         "spatie/laravel-package-tools": "*",
         "spatie/laravel-permission": "*",
         "spatie/laravel-queueable-action": "*",
+        "spatie/laravel-schemaless-attributes": "^2.5",
         "spatie/laravel-tags": "*",
-        "thecodingmachine/safe": "^2.5"
+        "spipu/html2pdf": "^5.2",
+        "symfony/dom-crawler": "*",
+        "thecodingmachine/safe": "^2.5",
+        "tightenco/parental": "^1.4"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "*",
         "enlightn/enlightn": "^2.7",
         "fakerphp/faker": "*",
         "friendsofphp/php-cs-fixer": "*",
-        "larastan/larastan": "^2.6",
+        "larastan/larastan": "*",
         "laravel/pint": "^1.13",
         "nunomaduro/collision": "*",
-        "larastan/larastan": "^2.7",
         "nunomaduro/phpinsights": "^2.11",
-        "orchestra/testbench": "*",
+        "orchestra/testbench": "^8.22",
         "pestphp/pest": "*",
         "pestphp/pest-plugin-arch": "*",
         "pestphp/pest-plugin-laravel": "*",
         "phpstan/phpstan-deprecation-rules": "*",
         "phpstan/phpstan-phpunit": "*",
         "psalm/plugin-laravel": "^2.8",
-        "symplify/phpstan-rules": "*",
         "spatie/laravel-ray": "*",
+        "symplify/phpstan-rules": "*",
         "thecodingmachine/phpstan-safe-rule": "^1.2",
         "tightenco/duster": "*",
         "vimeo/psalm": "^5.17"
     },
     "repositories": [
-    {
-        "type": "path",
-        "url": "../Tenant"
-    },
-    {
-        "type": "path",
-        "url": "../UI"
-    }],
+        {
+            "type": "path",
+            "url": "../Tenant"
+        },
+        {
+            "type": "path",
+            "url": "../UI"
+        },
+        {
+            "type": "path",
+            "url": "../../packages/konnco/filament-import"
+        },
+        {
+            "type": "path",
+            "url": "../../packages/savannabits/filament-modules"
+        },
+        {
+            "type": "path",
+            "url": "../../packages/sevendays-digital/filament-nested-resources"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Modules\\Xot\\": ""
@@ -87,7 +104,8 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "phpstan/extension-installer": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "wikimedia/composer-merge-plugin": true
         }
     },
     "extra": {

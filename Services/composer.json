@@ -19,7 +19,7 @@
         "ptachoire/cssembed": "^1.0",
         "scssphp/scssphp": "^1.11",
         "spipu/html2pdf": "^5.2",
-        "symfony/dom-crawler": "^6.2",
+        "symfony/dom-crawler": "*",
         "twig/twig": "^3.6",
         "wrklst/docxmustache": "^0.0.34"
     },

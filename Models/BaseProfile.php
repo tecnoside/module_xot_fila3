@@ -6,13 +6,9 @@ namespace Modules\Xot\Models;
 
 // use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Notifications\Notifiable;
-use Modules\User\Models\Permission;
-use Modules\User\Models\Role;
-use Modules\User\Models\Traits\IsProfileTrait;
-use Modules\User\Models\User;
 use Modules\Xot\Contracts\ProfileContract;
+use Modules\Xot\Models\Traits\IsProfileTrait;
 use Parental\HasChildren;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\Permission\Traits\HasRoles;
@@ -20,64 +16,39 @@ use Spatie\SchemalessAttributes\Casts\SchemalessAttributes;
 use Spatie\SchemalessAttributes\SchemalessAttributesTrait;
 
 /**
- * Modules\Xot\Models\Profile.
+ * @property \Spatie\SchemalessAttributes\SchemalessAttributes                                                             $extra
+ * @property string                                                                                                        $avatar
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\DeviceUser>                                $deviceUsers
+ * @property int|null                                                                                                      $device_users_count
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Device>                                    $devices
+ * @property int|null                                                                                                      $devices_count
+ * @property string|null                                                                                                   $first_name
+ * @property string|null                                                                                                   $full_name
+ * @property string|null                                                                                                   $last_name
+ * @property \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Modules\Media\Models\Media>    $media
+ * @property int|null                                                                                                      $media_count
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\DeviceUser>                                $mobileDeviceUsers
+ * @property int|null                                                                                                      $mobile_device_users_count
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Device>                                    $mobileDevices
+ * @property int|null                                                                                                      $mobile_devices_count
+ * @property \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
+ * @property int|null                                                                                                      $notifications_count
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Permission>                                $permissions
+ * @property int|null                                                                                                      $permissions_count
+ * @property \Illuminate\Database\Eloquent\Collection<int, \Modules\User\Models\Role>                                      $roles
+ * @property int|null                                                                                                      $roles_count
+ * @property \Modules\User\Models\User|null                                                                                $user
+ * @property string|null                                                                                                   $user_name
  *
- * @property Collection<int, Permission> $permissions
- * @property int|null                    $permissions_count
- * @property Collection<int, Role>       $roles
- * @property int|null                    $roles_count
- * @property User|null                   $user
- *
- * @method static \Modules\Xot\Database\Factories\ProfileFactory factory($count = null, $state = [])
- * @method static Builder|Profile                                newModelQuery()
- * @method static Builder|Profile                                newQuery()
- * @method static Builder|Profile                                permission($permissions)
- * @method static Builder|Profile                                query()
- * @method static Builder|Profile                                role($roles, $guard = null)
- *
- * @property int                                               $id
- * @property string|null                                       $type
- * @property string|null                                       $first_name
- * @property string|null                                       $last_name
- * @property string|null                                       $full_name
- * @property string|null                                       $email
- * @property Carbon|null                                       $created_at
- * @property Carbon|null                                       $updated_at
- * @property string|null                                       $user_id
- * @property string|null                                       $updated_by
- * @property string|null                                       $created_by
- * @property Carbon|null                                       $deleted_at
- * @property string|null                                       $deleted_by
- * @property int                                               $is_active
- * @property Collection<int, Permission>                       $permissions
- * @property int|null                                          $permissions_count
- * @property Collection<int, Role>                             $roles
- * @property int|null                                          $roles_count
- * @property User|null                                         $user
- * @property \Spatie\SchemalessAttributes\SchemalessAttributes $extra
- *
- * @method static \Modules\Xot\Database\Factories\ProfileFactory factory($count = null, $state = [])
- * @method static Builder|Profile                                newModelQuery()
- * @method static Builder|Profile                                newQuery()
- * @method static Builder|Profile                                permission($permissions)
- * @method static Builder|Profile                                query()
- * @method static Builder|Profile                                role($roles, $guard = null)
- * @method static Builder|Profile                                whereCreatedAt($value)
- * @method static Builder|Profile                                whereCreatedBy($value)
- * @method static Builder|Profile                                whereDeletedAt($value)
- * @method static Builder|Profile                                whereDeletedBy($value)
- * @method static Builder|Profile                                whereEmail($value)
- * @method static Builder|Profile                                whereFirstName($value)
- * @method static Builder|Profile                                whereFullName($value)
- * @method static Builder|Profile                                whereId($value)
- * @method static Builder|Profile                                whereIsActive($value)
- * @method static Builder|Profile                                whereLastName($value)
- * @method static Builder|Profile                                whereType($value)
- * @method static Builder|Profile                                whereUpdatedAt($value)
- * @method static Builder|Profile                                whereUpdatedBy($value)
- * @method static Builder|Profile                                whereUserId($value)
- * @method static Builder|Profile                                withoutPermission($permissions)
- * @method static Builder|Profile                                withoutRole($roles, $guard = null)
+ * @method static \Modules\Camping\Database\Factories\ProfileFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile      newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile      newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile      permission($permissions, $without = false)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile      query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile      role($roles, $guard = null, $without = false)
+ * @method static Builder|BaseProfile                                withExtraAttributes()
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile      withoutPermission($permissions)
+ * @method static \Illuminate\Database\Eloquent\Builder|Profile      withoutRole($roles, $guard = null)
  *
  * @mixin \Eloquent
  */
