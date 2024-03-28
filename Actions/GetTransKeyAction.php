@@ -56,9 +56,11 @@ class GetTransKeyAction
             if (Str::endsWith($item, $model_plural)) {
                 $item = Str::before($item, $model_plural);
             }
+
             if (Str::endsWith($item, 'RelationManager')) {
                 $item = Str::before($item, 'RelationManager');
             }
+
             if (Str::endsWith($item, 'Managers')) {
                 $item = Str::before($item, 'Managers');
             }
@@ -83,6 +85,8 @@ class GetTransKeyAction
 
         $tmp = Str::of($tmp)->replace('.pages.list.', '.')->toString();
         $tmp = Str::of($tmp)->replace('::enums.', '::')->toString();
+        $tmp = Str::of($tmp)->replace('.relation.', '.')->toString();
+
         if (Str::endsWith($tmp, '.pages.list')) {
             $tmp = Str::before($tmp, '.pages.list');
         }
