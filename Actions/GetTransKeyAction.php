@@ -82,6 +82,7 @@ class GetTransKeyAction
         if ('' !== $res) {
             $tmp .= '.'.$res;
         }
+        $piece = explode('.', $tmp);
 
         $tmp = Str::of($tmp)->replace('.pages.list.', '.')->toString();
         $tmp = Str::of($tmp)->replace('::enums.', '::')->toString();
@@ -89,6 +90,11 @@ class GetTransKeyAction
 
         if (Str::endsWith($tmp, '.pages.list')) {
             $tmp = Str::before($tmp, '.pages.list');
+        }
+
+        if (Str::contains($tmp, '::actions.') && count($piece) >= 3) {
+            $piece = array_slice($piece, 0, -1);
+            $tmp = Str::of(implode('.', $piece))->replace('::actions.', '::')->toString();
         }
 
         return $tmp;
