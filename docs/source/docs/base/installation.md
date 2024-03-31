@@ -89,4 +89,17 @@ php artisan module:migrate NomeModulo
 ```bash
 npm install
 npm run dev
-```
+```  
+
+### creare la Giunzione
+
+in locale, se utilizzate Laragon, dopo aver clonato il progetto bisogna creare la giunzione nella cartella www.  
+Per creare la giunzione, andare nella cartella www ed eseguire tramite il prompt dei comandi 
+
+```bash
+mklink /j nome_cartella_giuzione path_della_cartella_progetto
+```  
+
+dopo riavviare il server di laragon.
+
+Fatto ciò, andare nel browser e inserire nell'url http://nome_cartella_giuzione.local/
