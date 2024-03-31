@@ -83,6 +83,6 @@ Crearsi il virtual host con il nome del dominio uguale a quello del file di conf
 Noi suggeriamo l'utilizzo di Laragon perchè per crea automaticamente i virtual host.
 Dopo aver installato laragon, Assicurarsi di abilitate tutte le estensioni php indicate nella foto
 
-<img src="php_extentions.png"
+<img src="./php_extentions.png"
      alt="php extentions"
      style="float: left; margin-right: 10px;" />
