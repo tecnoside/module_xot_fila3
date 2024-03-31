@@ -466,7 +466,10 @@ Dopo aver installato laragon, Assicurarsi di abilitate tutte le estensioni php i
 <h3>Clonare la base in locale nella cartella del server, scaricando i submodules, e senza la storia delle modifiche</h3>
 
 <pre><code class="language-bash">git clone https://NOME_BASE.git --recurse-submodules --depth=1
+git submodule foreach git pull
 </code></pre>
+
+<p>Verificare che tutti i moduli siano a master</p>
 
 <h3>dalla cartella "laravel" creare il file delle variabili d'ambiente .env</h3>
 
@@ -530,6 +533,29 @@ Per creare la giunzione, andare nella cartella www ed eseguire tramite il prompt
 <p>dopo riavviare il server di laragon.</p>
 
 <p>Fatto ciò, andare nel browser e inserire nell'url http://nome_cartella_giuzione.local/</p>
+
+<h3>lavorare nel branch dev</h3>
+
+<p>Sia il progetto che ogni singolo modulo hanno un branch dev, generalmente utilizzato per lo sviluppo del progetto.</p>
+
+<p>nel singolo modulo</p>
+
+<pre><code class="language-bash">git branch dev
+git checkout dev
+git_init.sh dev
+git pull origin dev
+git push origin dev -u
+git merge origin master
+</code></pre>
+
+<p>dopo aver eseguito<br />
+git branch nome_branch<br />
+git checkout nome_branch</p>
+
+<p>se il branch di un modulo vuole essere pubblicato, eseguire nel modulo</p>
+
+<pre><code class="language-bash">../../../bascripts/git_init.sh nome_branch
+</code></pre>
         </div>
     </div>
 </section>
