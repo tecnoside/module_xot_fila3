@@ -7,6 +7,28 @@ section: content
 
 # Installazione {#installation}
 
+### virtual host & Laragon
+
+Il progetto può utilizzare varie configurazioni, situati dentro la cartella laravel/config.  
+
+Crearsi il virtual host con il nome del dominio uguale a quello del file di configurazione. Esempio:
+
+- copio la cartella laravel/config/localhost in laravel/config/local/dominio/* e imposto i parametri nei file
+
+- questo significa che il virtual host deve chiamarsi dominio.local
+
+Noi suggeriamo l'utilizzo di Laragon perchè crea automaticamente i virtual host.
+Dopo aver installato laragon, Assicurarsi di abilitate tutte le estensioni php indicate nella foto
+
+<img class="block m-auto" src="https://laraxot.github.io/module_xot_fila3/assets/img/php-extentions.png" alt="php extentions" />  
+
+Configurare le preferenze di laragon come in foto
+
+<img class="block m-auto" src="https://laraxot.github.io/module_xot_fila3/assets/img/laragon-config.png" alt="laragon config" />  
+
+
+Creare una cartella _bases dentro la cartella www, in questa cartella si andrà a clonare il progetto.
+
 ### Clonare la base in locale nella cartella del server, scaricando i submodules, e senza la storia delle modifiche
 
 ```bash
@@ -68,19 +90,3 @@ php artisan module:migrate NomeModulo
 npm install
 npm run dev
 ```
-
-
-### virtual host & Laragon
-
-Il progetto può utilizzare varie configurazioni, situati dentro la cartella laravel/config.  
-
-Crearsi il virtual host con il nome del dominio uguale a quello del file di configurazione. Esempio:
-
-- copio la cartella laravel/config/localhost in laravel/config/local/dominio/* e imposto i parametri nei file
-
-- questo significa che il virtual host deve chiamarsi dominio.local
-
-Noi suggeriamo l'utilizzo di Laragon perchè per crea automaticamente i virtual host.
-Dopo aver installato laragon, Assicurarsi di abilitate tutte le estensioni php indicate nella foto
-
-<img class="block m-auto" src="https://laraxot.github.io/module_xot_fila3/assets/img/php-extentions.png" alt="php extentions" />
