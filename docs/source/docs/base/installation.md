@@ -33,7 +33,10 @@ Creare una cartella _bases dentro la cartella www, in questa cartella si andrà 
 
 ```bash
 git clone https://NOME_BASE.git --recurse-submodules --depth=1
+git submodule foreach git pull
 ```
+
+Verificare che tutti i moduli siano a master
 
 ### dalla cartella "laravel" creare il file delle variabili d'ambiente .env 
     
@@ -103,3 +106,27 @@ mklink /j nome_cartella_giuzione path_della_cartella_progetto
 dopo riavviare il server di laragon.
 
 Fatto ciò, andare nel browser e inserire nell'url http://nome_cartella_giuzione.local/
+
+### lavorare nel branch dev
+
+Sia il progetto che ogni singolo modulo hanno un branch dev, generalmente utilizzato per lo sviluppo del progetto.  
+
+nel singolo modulo  
+
+```bash
+git branch dev
+git checkout dev
+git_init.sh dev
+git pull origin dev
+git push origin dev -u
+git merge origin master
+```  
+
+dopo aver eseguito  
+git branch nome_branch  
+git checkout nome_branch  
+
+se il branch di un modulo vuole essere pubblicato, eseguire nel modulo 
+```bash
+../../../bascripts/git_init.sh nome_branch
+```  
