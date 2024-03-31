@@ -56,10 +56,10 @@ php artisan module:enable NomeModulo
 
 ### fare la migration
 
-in alternativa da terminale:
+Eseguire il comando delle migrazioni per ogni modulo:
 
 ```bash
-php artisan migrate
+php artisan module:migrate NomeModulo
 ```
 
 ### per compilare il tema (da dentro la cartella laravel/Themes/NOME_TEMA)
@@ -81,3 +81,6 @@ Crearsi il virtual host con il nome del dominio uguale a quello del file di conf
 - questo significa che il virtual host deve chiamarsi dominio.local
 
 Noi suggeriamo l'utilizzo di Laragon perchè per crea automaticamente i virtual host.
+Dopo aver installato laragon, Assicurarsi di abilitate tutte le estensioni php indicate nella foto
+
+![php extentions](php_extentions.png)
