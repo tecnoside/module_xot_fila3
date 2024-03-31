@@ -25,7 +25,7 @@ cp .env.latest .env
 ### dalla cartella laravel, lanciare in bash il comando
 
 ```bash
-composer init
+../bashscripts/composer_init.sh
 ```
 
 alternativa: 
