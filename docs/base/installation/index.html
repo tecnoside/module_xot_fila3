@@ -441,6 +441,28 @@
         <div class="DocSearch-content w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
             <h1 id="installation">Installazione</h1>
 
+<h3>virtual host &amp; Laragon</h3>
+
+<p>Il progetto può utilizzare varie configurazioni, situati dentro la cartella laravel/config.</p>
+
+<p>Crearsi il virtual host con il nome del dominio uguale a quello del file di configurazione. Esempio:</p>
+
+<ul>
+<li><p>copio la cartella laravel/config/localhost in laravel/config/local/dominio/* e imposto i parametri nei file</p></li>
+<li><p>questo significa che il virtual host deve chiamarsi dominio.local</p></li>
+</ul>
+
+<p>Noi suggeriamo l'utilizzo di Laragon perchè crea automaticamente i virtual host.
+Dopo aver installato laragon, Assicurarsi di abilitate tutte le estensioni php indicate nella foto</p>
+
+<p><img class="block m-auto" src="https://laraxot.github.io/module_xot_fila3/assets/img/php-extentions.png" alt="php extentions" /></p>
+
+<p>Configurare le preferenze di laragon come in foto</p>
+
+<p><img class="block m-auto" src="https://laraxot.github.io/module_xot_fila3/assets/img/laragon-config.png" alt="laragon config" /></p>
+
+<p>Creare una cartella _bases dentro la cartella www, in questa cartella si andrà a clonare il progetto.</p>
+
 <h3>Clonare la base in locale nella cartella del server, scaricando i submodules, e senza la storia delle modifiche</h3>
 
 <pre><code class="language-bash">git clone https://NOME_BASE.git --recurse-submodules --depth=1
@@ -496,22 +518,6 @@ in caso eseguire:</p>
 <pre><code class="language-bash">npm install
 npm run dev
 </code></pre>
-
-<h3>virtual host &amp; Laragon</h3>
-
-<p>Il progetto può utilizzare varie configurazioni, situati dentro la cartella laravel/config.</p>
-
-<p>Crearsi il virtual host con il nome del dominio uguale a quello del file di configurazione. Esempio:</p>
-
-<ul>
-<li><p>copio la cartella laravel/config/localhost in laravel/config/local/dominio/* e imposto i parametri nei file</p></li>
-<li><p>questo significa che il virtual host deve chiamarsi dominio.local</p></li>
-</ul>
-
-<p>Noi suggeriamo l'utilizzo di Laragon perchè per crea automaticamente i virtual host.
-Dopo aver installato laragon, Assicurarsi di abilitate tutte le estensioni php indicate nella foto</p>
-
-<p><img class="block m-auto" src="https://laraxot.github.io/module_xot_fila3/assets/img/php-extentions.png" alt="php extentions" /></p>
         </div>
     </div>
 </section>
