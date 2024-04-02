@@ -160,7 +160,7 @@ trait IsProfileTrait
 
     /*
      * Get all of the teams the user belongs to.
-     
+
     public function teams(): BelongsToMany
     {
         $xot = XotData::make();
