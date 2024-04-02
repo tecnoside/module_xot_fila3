@@ -13,9 +13,6 @@ class GetViewAction
 {
     use QueueableAction;
 
-    /**
-     * PER ORA FUNZIONA SOLO CON LIVEWIRE.
-     */
     public function execute(string $tpl = '', string $file0 = ''): string
     {
         if ('' === $file0) {
