@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers;
 
-use Illuminate\Support\Str;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Str;
 use Modules\Xot\Http\Middleware\SetDefaultLocaleForUrls;
-use Modules\Xot\Http\Middleware\SetDefaultLocaleForUrlsMiddleware;
 use Modules\Xot\Http\Middleware\SetDefaultTenantForUrlsMiddleware;
 
 // public function boot(\Illuminate\Routing\Router $router)
