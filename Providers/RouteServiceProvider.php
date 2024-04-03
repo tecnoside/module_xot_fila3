@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers;
 
-use Illuminate\Routing\Router;
 use Illuminate\Support\Str;
+use Illuminate\Routing\Router;
+use Modules\Xot\Http\Middleware\SetDefaultLocaleForUrls;
 use Modules\Xot\Http\Middleware\SetDefaultLocaleForUrlsMiddleware;
 use Modules\Xot\Http\Middleware\SetDefaultTenantForUrlsMiddleware;
 
@@ -40,13 +41,13 @@ class RouteServiceProvider extends XotBaseRouteServiceProvider
         // $this->registerLang();
 
         $this->registerRoutePattern($router);
-        // $this->registerMyMiddleware($router);
+        $this->registerMyMiddleware($router);
     }
 
     public function registerMyMiddleware(Router $router): void
     {
-        // $router->prependMiddlewareToGroup('web', SetDefaultLocaleForUrlsMiddleware::class);
-        // $router->prependMiddlewareToGroup('api', SetDefaultLocaleForUrlsMiddleware::class);
+        $router->prependMiddlewareToGroup('web', SetDefaultLocaleForUrls::class);
+        $router->prependMiddlewareToGroup('api', SetDefaultLocaleForUrls::class);
 
         $router->prependMiddlewareToGroup('web', SetDefaultTenantForUrlsMiddleware::class);
         $router->prependMiddlewareToGroup('api', SetDefaultTenantForUrlsMiddleware::class);
