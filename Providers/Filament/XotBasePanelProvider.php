@@ -86,7 +86,10 @@ abstract class XotBasePanelProvider extends PanelProvider
                 ]
             )
             ->discoverClusters(in: base_path('Modules/'.$this->module.'/Filament/Clusters'), for: sprintf('%s\Filament\Clusters', $moduleNamespace))
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2006259 (up)
             ->middleware(
                 [
                     EncryptCookies::class,
