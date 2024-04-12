@@ -36,11 +36,16 @@ class Log extends BaseModel
     use \Sushi\Sushi;
     protected $fillable = ['id', 'name', 'size'];
 
-    protected $casts = [
+    protected function casts(): array
+    {
+        return [
+
         'id' => 'string',
         'name' => 'string',
         'size' => 'integer',
-    ];
+
+        ];
+    }
 
     public function getRows(): array
     {
