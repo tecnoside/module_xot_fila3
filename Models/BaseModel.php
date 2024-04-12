@@ -47,7 +47,7 @@ abstract class BaseModel extends Model
     /** @var array<int, string> */
     protected $fillable = ['id'];
 
-    /** @var array<string, string> */
+    /** @return array<string, string> */
     protected function casts(): array
     {
         return [
