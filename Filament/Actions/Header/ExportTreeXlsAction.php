@@ -10,10 +10,8 @@ namespace Modules\Xot\Filament\Actions\Header;
 // Header actions must be an instance of Filament\Actions\Action, or Filament\Actions\ActionGroup.
 // use Filament\Tables\Actions\Action;
 use Filament\Actions\Action;
-use Filament\Resources\Pages\EditRecord;
-use Filament\Resources\Pages\ListRecords;
-use Modules\Xot\Actions\GetTransKeyAction;
 use Modules\Xot\Actions\Export\ExportXlsByCollection;
+use Modules\Xot\Actions\GetTransKeyAction;
 
 class ExportTreeXlsAction extends Action
 {
@@ -30,34 +28,32 @@ class ExportTreeXlsAction extends Action
             // ->icon('fas-file-excel')
             ->icon('heroicon-o-arrow-down-tray')
             ->action(
-                static function ($livewire,$record,$data) {
-                   /* dddx([
-                        'livewire'=>$livewire,
-                        'record'=>$record,
-                        'data'=>$data,
-                    ]);
-                    */
-                    $tableFilters=[
-                        'id'=>$record->getKey(),
+                static function ($livewire, $record, $data) {
+                    /* dddx([
+                         'livewire'=>$livewire,
+                         'record'=>$record,
+                         'data'=>$data,
+                     ]);
+                     */
+                    $tableFilters = [
+                        'id' => $record->getKey(),
                     ];
-
 
                     $filename = class_basename($livewire).'-'.collect($tableFilters)->flatten()->implode('-').'.xlsx';
                     $transKey = app(GetTransKeyAction::class)->execute($livewire::class);
                     $transKey .= '.fields';
-                    //$query = $livewire->getFilteredTableQuery(); // ->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
-                    //$rows = $query->get();
-                    $rows=$record->descendantsAndSelf;
-                    
+                    // $query = $livewire->getFilteredTableQuery(); // ->getQuery(); // Staudenmeir\LaravelCte\Query\Builder
+                    // $rows = $query->get();
+                    $rows = $record->descendantsAndSelf;
 
                     $resource = $livewire->getResource();
-                    
+
                     $fields = null;
-                    
+
                     if (method_exists($resource, 'getXlsFields')) {
                         $fields = $resource::getXlsFields($tableFilters);
                     }
-                    
+
                     return app(ExportXlsByCollection::class)->execute($rows, $filename, $transKey, $fields);
                 }
             );
