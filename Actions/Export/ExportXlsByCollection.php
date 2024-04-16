@@ -22,8 +22,8 @@ class ExportXlsByCollection
         ?string $transKey = null,
         ?array $fields = null,
     ): BinaryFileResponse {
+        
         $collectionExport = new CollectionExport($collection, $transKey, $fields);
-
         return Excel::download($collectionExport, $filename);
     }
 }
