@@ -4,21 +4,24 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers;
 
-use Illuminate\Auth\AuthenticationException;
-use Illuminate\Contracts\Debug\ExceptionHandler;
-use Illuminate\Database\Events\MigrationsEnded;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\File;
+use function Safe\realpath;
+use Webmozart\Assert\Assert;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\View;
-use Modules\Xot\Exceptions\Formatters\WebhookErrorFormatter;
-use Modules\Xot\Exceptions\Handlers\HandlerDecorator;
-use Modules\Xot\Exceptions\Handlers\HandlersRepository;
-use Modules\Xot\Providers\Traits\TranslatorTrait;
+use Illuminate\Support\Facades\Event;
 use Modules\Xot\View\Composers\XotComposer;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Events\MigrationsEnded;
+use Illuminate\Contracts\Debug\ExceptionHandler;
+use Modules\Xot\Providers\Traits\TranslatorTrait;
+use Modules\Xot\Exceptions\Handlers\HandlerDecorator;
 
-use function Safe\realpath;
+use Modules\Xot\Exceptions\Handlers\HandlersRepository;
+use Modules\Xot\Exceptions\Formatters\WebhookErrorFormatter;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Tables\Columns\TextColumn;
 
 /**
  * Class XotServiceProvider.
@@ -61,6 +64,21 @@ class XotServiceProvider extends XotBaseServiceProvider
         $this->registerEvents();
 
         $this->registerExceptionHandler();
+
+        
+
+        $this->registerTimezone();
+        
+    }
+
+    public function registerTimezone():void{
+        //config('app.user_timezone')
+        Assert::string($timezone = config('app.timezone') ?? 'Europe/Berlin');
+        date_default_timezone_set($timezone);
+        
+
+        DateTimePicker::configureUsing(fn (DateTimePicker $component) => $component->timezone($timezone));
+        TextColumn::configureUsing(fn (TextColumn $column) => $column->timezone($timezone));
     }
 
     public function registerCallback(): void
