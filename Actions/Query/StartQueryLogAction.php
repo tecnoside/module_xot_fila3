@@ -7,9 +7,8 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Actions\Query;
 
-use Spatie\QueueableAction\QueueableAction;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Spatie\QueueableAction\QueueableAction;
 
 class StartQueryLogAction
 {
@@ -17,22 +16,19 @@ class StartQueryLogAction
 
     public function execute(): void
     {
-        \Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {  
-           
-            $sql = $query->sql; 
+        \Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
+            $sql = $query->sql;
             $time = $query->time;
             $connection = $query->connection->getName();
-            
 
-            $log=Log::build([
+            $log = Log::build([
                 'driver' => 'daily',
                 'path' => storage_path('logs/querylog.log'),
             ]);
             $log->debug('query : '.$sql);
             $log->debug('time '.$time);
             $log->debug('connection '.$connection);
-            $log->debug('bindings '.print_r($query->bindings,true));
-              
-          });
+            $log->debug('bindings '.print_r($query->bindings, true));
+        });
     }
 }
