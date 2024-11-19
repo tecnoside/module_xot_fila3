@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Modules\Xot\Providers;
 
+use Filament\Facades\Filament;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
@@ -31,8 +32,9 @@ class RouteServiceProvider extends XotBaseRouteServiceProvider
      */
     protected string $module_ns = __NAMESPACE__;
 
-    public function bootCallback(): void
+    public function boot(): void
     {
+        parent::boot();
         // 36     Cannot access offset 'router' on Illuminate\Contracts\Foundation\Application
         // $router = $this->app['router'];
         $router = app('router');
@@ -81,7 +83,10 @@ class RouteServiceProvider extends XotBaseRouteServiceProvider
             }
         }
 
-        URL::defaults(['lang' => $lang]);
+        URL::defaults([
+            // 'tenant' => Filament::getTenant(),
+            'lang' => $lang,
+        ]);
     }
 
     public function registerRoutePattern(Router $router): void

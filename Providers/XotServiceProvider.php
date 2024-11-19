@@ -8,6 +8,7 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
 use Filament\Infolists\Components\Entry;
 use Filament\Support\Components\Component;
@@ -19,12 +20,14 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Events\MigrationsEnded;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
+use Modules\Xot\Actions\GetTransKeyAction;
 use Modules\Xot\Exceptions\Formatters\WebhookErrorFormatter;
 use Modules\Xot\Exceptions\Handlers\HandlerDecorator;
 use Modules\Xot\Exceptions\Handlers\HandlersRepository;
@@ -46,8 +49,9 @@ class XotServiceProvider extends XotBaseServiceProvider
 
     protected string $module_ns = __NAMESPACE__;
 
-    public function bootCallback(): void
+    public function boot(): void
     {
+        parent::boot();
         $this->redirectSSL();
         // $this->registerTranslator(); to lang
         $this->registerViewComposers(); // rompe filament
@@ -60,8 +64,9 @@ class XotServiceProvider extends XotBaseServiceProvider
         $this->registerProviders();
     }
 
-    public function registerCallback(): void
+    public function register(): void
     {
+        parent::register();
         $this->registerConfigs();
         $this->registerExceptionHandlersRepository();
         $this->extendExceptionHandler();
@@ -85,6 +90,42 @@ class XotServiceProvider extends XotBaseServiceProvider
         DatePicker::configureUsing(fn (DatePicker $component) => $component->timezone($timezone)->displayFormat($date_format));
         TimePicker::configureUsing(fn (TimePicker $component) => $component->timezone($timezone));
         TextColumn::configureUsing(fn (TextColumn $column) => $column->timezone($timezone));
+        TextInput::configureUsing(fn (TextInput $component) => $component->validationMessages(__('user::validation')));
+
+        Field::configureUsing(function (Field $component) {
+            $backtrace = debug_backtrace();
+            Assert::string($class = Arr::get($backtrace, '4.class'));
+            $trans_key = app(GetTransKeyAction::class)->execute($class);
+            $label_key = $trans_key.'.fields.'.$component->getName().'.label';
+            $label = trans($label_key);
+            if (is_string($label)) {
+                $component->label($label);
+            }
+            $component->validationMessages(__('user::validation'));
+
+            return $component;
+        });
+
+        Column::configureUsing(function (Column $component) {
+            $backtrace = debug_backtrace();
+            Assert::string($class = Arr::get($backtrace, '4.class'));
+            $trans_key = app(GetTransKeyAction::class)->execute($class);
+            $label_key = $trans_key.'.fields.'.$component->getName().'.label';
+            try {
+                $label = trans($label_key);
+            } catch (\TypeError $e) {
+                $label = $label_key;
+            }
+
+            if (is_string($label)) {
+                $component->label($label);
+            }
+
+            // $tooltip = trans($trans_key.'.fields.'.$component->getName().'.tooltip');
+            // $component->tooltip($tooltip);
+
+            return $component;
+        });
         // ->validationMessages(__('xot::validation'))
     }
 
@@ -196,7 +237,8 @@ class XotServiceProvider extends XotBaseServiceProvider
     private function redirectSSL(): void
     {
         // --- meglio ficcare un controllo anche sull'env
-        if (config('xra.forcessl') && (isset($_SERVER['SERVER_NAME']) && 'localhost' !== $_SERVER['SERVER_NAME']
+        if (
+            config('xra.forcessl') && (isset($_SERVER['SERVER_NAME']) && 'localhost' !== $_SERVER['SERVER_NAME']
             && isset($_SERVER['REQUEST_SCHEME']) && 'http' === $_SERVER['REQUEST_SCHEME'])
         ) {
             URL::forceScheme('https');
